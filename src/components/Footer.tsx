@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
 
 export default function Footer() {
     return (
-        <footer className="flex justify-between items-center max-w-[1000px] mx-auto w-full text-xl leading-tight p-4">
+        <footer className="flex justify-between items-center max-w-[1000px] mx-auto w-full text-xl leading-tight p-4 md:px-4 md:py-7">
             <p className="">
                 notsobikeparts, {year}
             </p>

@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import Logo from "./Logo/Logo";
-import Image from "next/image";
 import NavMenu from "./NavMenu/NavMenu";
 import { ROUTES } from "@/constants/routes";
 import { useState } from "react";
+import BurgerButton from "./BurgerButton/BurgerButton";
 
 const menuOptions = [
     {
@@ -65,16 +65,7 @@ export default function Header() {
             <Link href={ROUTES.HOME}>
                 <Logo />
             </Link>
-            <button
-                className="flex w-12 h-12 justify-center items-center md:hidden relative z-10 cursor-pointer"
-                onClick={() => setMenuOpen(prevValue => !prevValue)}
-            >
-                {menuOpen ? (
-                    <Image src="/cross.webp" alt="Close menu" width={28} height={28} />
-                ) : (
-                    <Image src="/menu.webp" alt="Open menu" width={28} height={28} />
-                )}
-            </button>
+            <BurgerButton isOpen={menuOpen} onClick={() => setMenuOpen(prevValue => !prevValue)} />
             <NavMenu classNames={`${menuOpen ? 'block z-1' : 'hidden'} md:block`} items={menuOptions} />
         </header>
     )

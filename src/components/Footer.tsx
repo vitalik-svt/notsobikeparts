@@ -9,11 +9,9 @@ const year = new Date().getFullYear();
 
 export default function Footer() {
     return (
-        <footer className="flex justify-between items-center max-w-[1000px] mx-auto w-full text-xl leading-tight p-4 md:px-4 md:py-7">
-            <p className="">
-                notsobikeparts, {year}
-            </p>
-            <p className="flex gap-3 items-center">
+        <footer className="flex flex-col md:flex-row gap-5 justify-between items-center max-w-[1000px] mx-auto w-full text-xl leading-tight px-5 pt-8 pb-10 md:py-7">
+            <p>notsobikeparts, {year}</p>
+            <p className="flex gap-4 items-center">
                 <Link href={CONTACTS.INSTAGRAM} target="_blank" rel="noopener noreferrer">
                     <Image src="/insta.webp" alt="Instagram" width={28} height={28} />
                 </Link>

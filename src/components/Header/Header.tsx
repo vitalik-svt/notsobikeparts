@@ -7,6 +7,56 @@ import NavMenu from "./NavMenu/NavMenu";
 import { ROUTES } from "@/constants/routes";
 import { useState } from "react";
 
+const menuOptions = [
+    {
+        label: "продукты",
+        submenu: [
+            {
+                label: "топкэпы",
+                href: ROUTES.TOP_CAPS
+            },
+            {
+                label: "voile стрепы",
+                href: ROUTES.VOILE_STRAP
+            },
+            {
+                label: "кейджи",
+                href: ROUTES.CAGES
+            },
+            {
+                label: "держатели фидбега",
+                href: ROUTES.FEEDBAG_HANGER
+            },
+            {
+                label: "размыкатель цепи",
+                href: ROUTES.CHAIN_BREAKER
+            },
+        ]
+    },
+    {
+        label: "разное",
+        submenu: [
+            {
+                label: "щекотки и царапки",
+                href: ROUTES.ITCHY_AND_SCRATCHY
+            },
+            {
+                label: "мерч",
+                href: ROUTES.MERCH
+            },
+            {
+                label: "тест-райд",
+                href: ROUTES.TEST_RIDE
+            },
+        ]
+    },
+    {
+        label: "купить",
+        href: ROUTES.BUY,
+        submenu: []
+    }
+]
+
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -16,7 +66,7 @@ export default function Header() {
                 <Logo />
             </Link>
             <button
-                className="flex w-12 h-12 justify-center items-center md:hidden"
+                className="flex w-12 h-12 justify-center items-center md:hidden relative z-10 cursor-pointer"
                 onClick={() => setMenuOpen(prevValue => !prevValue)}
             >
                 {menuOpen ? (
@@ -25,7 +75,7 @@ export default function Header() {
                     <Image src="/menu.webp" alt="Open menu" width={28} height={28} />
                 )}
             </button>
-            <NavMenu classNames="hidden md:block" />
+            <NavMenu classNames={`${menuOpen ? 'block z-1' : 'hidden'} md:block`} items={menuOptions} />
         </header>
     )
 }

@@ -6,14 +6,24 @@ import NavMenu from "./NavMenu/NavMenu";
 import { ROUTES } from "@/constants/routes";
 import { useState } from "react";
 import BurgerButton from "./BurgerButton/BurgerButton";
+import { MenuItem } from "@/types/menu";
 
-const menuOptions = [
+const menuOptions: MenuItem[] = [
     {
         label: "продукты",
         submenu: [
             {
                 label: "топкэпы",
-                href: ROUTES.TOP_CAPS
+                submenu: [
+                    {
+                        label: "серийные",
+                        href: ROUTES.TOP_CAPS
+                    },
+                    {
+                        label: "на заказ",
+                        href: ROUTES.TOP_CAPS
+                    }
+                ],
             },
             {
                 label: "voile стрепы",
@@ -21,7 +31,24 @@ const menuOptions = [
             },
             {
                 label: "кейджи",
-                href: ROUTES.CAGES
+                submenu: [
+                    {
+                        label: "малый",
+                        href: ROUTES.CAGES
+                    },
+                    {
+                        label: "плюсовой",
+                        href: ROUTES.CAGES
+                    },
+                    {
+                        label: "фронтальный",
+                        href: ROUTES.CAGES
+                    },
+                    {
+                        label: "объем",
+                        href: ROUTES.CAGES
+                    },
+                ],
             },
             {
                 label: "держатели фидбега",
@@ -53,12 +80,11 @@ const menuOptions = [
     {
         label: "купить",
         href: ROUTES.BUY,
-        submenu: []
     }
 ]
 
 export default function Header() {
-    const [menuOpen, setMenuOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(true);
 
     return (
         <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm flex p-5 md:px-4 md:pt-7 md:pb-4 justify-between items-center w-screen md:max-w-[1000px] md:mx-auto md:w-full">

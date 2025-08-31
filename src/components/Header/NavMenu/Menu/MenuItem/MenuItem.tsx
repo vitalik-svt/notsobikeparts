@@ -16,8 +16,8 @@ export default function MenuItemControl({ item, collapsed, onClick }: Props) {
     ) : (
         <button className="flex justify-between items-stretch w-full" onClick={onClick}>
             <span className="block w-full text-left ps-5 py-2 hover:text-blue-500">{item.label}</span>
-            <span className="flex items-center border-s shrink-0 px-4">
-                <Image className={collapsed ? "" : "rotate-180"} src="/icons/arrow-down.webp" alt="Icon" width={28} height={28} />
+            <span className="flex items-center border-s shrink-0 px-4 md:!border-0">
+                <Image className={collapsed ? "rotate-180" : ""} src="/icons/arrow-down.webp" alt="Icon" width={28} height={28} />
             </span>
         </button>
     );

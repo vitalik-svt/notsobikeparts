@@ -6,9 +6,12 @@ import Footer from "@/components/Footer";
 import I18nProvider from "@/providers/I18nProvider";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-    const baseUrl = "https://example.com";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const { locale } = await params;
 
+    if (!baseUrl) {
+        throw new Error("Environment variable NEXT_PUBLIC_BASE_URL is not set");
+    }
     return {
         title: locale === "ru" ? "Notsobikeparts | Велокомпоненты" : "Notsobikeparts | Bike Parts",
         description:

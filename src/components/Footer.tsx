@@ -6,6 +6,7 @@ import Image from "next/image";
 import { CONTACTS } from "@/constants/contacts";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { i18n } from "@/i18n/settings";
 
 const year = new Date().getFullYear();
 
@@ -14,8 +15,11 @@ export default function Footer({ locale }: { locale: string }) {
     const pathname = usePathname();
     const { t } = useTranslation();
 
-    const handleChange = (locale: string) => {
-        const newPath = pathname.replace(/^\/(ru|en)/, `/${locale}`);
+    const localePattern = `^/(${i18n.locales.join("|")})`;
+    const localeRegex = new RegExp(localePattern);
+
+    const handleChange = (newLocale: string) => {
+        const newPath = pathname.replace(localeRegex, `/${newLocale}`);
         router.push(newPath);
     };
 

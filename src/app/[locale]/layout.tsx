@@ -6,18 +6,18 @@ import Main from "@/components/Main";
 import Footer from "@/components/Footer";
 import I18nProvider from "@/providers/I18nProvider";
 
-export async function generateMetadata({ params }: { params: { lng: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
     const baseUrl = "https://example.com";
-    const lng = params.lng;
+    const locale = params.locale;
 
     return {
-        title: lng === "ru" ? "Notsobikeparts | Велокомпоненты" : "Notsobikeparts | Bike Parts",
+        title: locale === "ru" ? "Notsobikeparts | Велокомпоненты" : "Notsobikeparts | Bike Parts",
         description:
-            lng === "ru"
+            locale === "ru"
                 ? "Компоненты и аксессуары для велосипедов, туризма и байкпакинга."
                 : "Bike parts and accessories for commuting, touring, and bikepacking.",
         alternates: {
-            canonical: `${baseUrl}/${lng}`,
+            canonical: `${baseUrl}/${locale}`,
             languages: {
                 en: `${baseUrl}/en`,
                 ru: `${baseUrl}/ru`,

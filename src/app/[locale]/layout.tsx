@@ -1,14 +1,13 @@
 import { initI18n } from "@/i18n";
 import type { Metadata } from "next";
-import BodyMainContainer from "@/components/BodyMainContainer";
 import Header from "@/components/Header/Header";
 import Main from "@/components/Main";
 import Footer from "@/components/Footer";
 import I18nProvider from "@/providers/I18nProvider";
 
-export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const baseUrl = "https://example.com";
-    const locale = params.locale;
+    const { locale } = await params;
 
     return {
         title: locale === "ru" ? "Notsobikeparts | Велокомпоненты" : "Notsobikeparts | Bike Parts",

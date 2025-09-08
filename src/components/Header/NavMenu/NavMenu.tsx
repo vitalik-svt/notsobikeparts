@@ -1,7 +1,7 @@
 "use client";
 
 import { ROUTES } from '@/constants/routes';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 
 export default function NavMenu() {

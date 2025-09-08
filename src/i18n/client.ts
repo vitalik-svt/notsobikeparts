@@ -2,15 +2,15 @@
 
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
-import { DEFAULT_LANGUAGE, FALLBACK_LANGUAGE } from "../settings";
 
 import ruCommon from "../../public/locales/ru/common.json";
 import enCommon from "../../public/locales/en/common.json";
+import { i18n } from "./settings";
 
 if (!i18next.isInitialized) {
 	i18next.use(initReactI18next).init({
-		lng: DEFAULT_LANGUAGE,
-		fallbackLng: FALLBACK_LANGUAGE,
+		lng: i18n.defaultLocale,
+		fallbackLng: i18n.defaultLocale,
 		ns: ["common"],
 		defaultNS: "common",
 		resources: {

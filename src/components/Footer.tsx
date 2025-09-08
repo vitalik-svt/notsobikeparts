@@ -5,7 +5,7 @@ import Select from "./Select";
 import Image from "next/image";
 import { CONTACTS } from "@/constants/contacts";
 import { usePathname, useRouter } from "next/navigation";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
 
 const year = new Date().getFullYear();
 

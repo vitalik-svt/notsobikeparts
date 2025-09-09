@@ -4,7 +4,7 @@ import { CSSProperties, ReactNode } from "react";
 
 interface SelectOptions {
     label: string;
-    value: string;
+    locale: string;
 }
 
 interface Props {
@@ -13,15 +13,21 @@ interface Props {
     icon?: ReactNode;
     style?: CSSProperties;
     className?: string;
+    value?: string;
 }
 
-export default function Select({ options, onChange, icon, style, className }: Props) {
+export default function Select({ options, onChange, icon, style, className, value }: Props) {
     return (
         <div className="flex items-center gap-2">
             {icon}
-            <select onChange={(e) => onChange(e.target.value)} className={`border-0 ${className}`} style={style}>
+            <select
+                style={style}
+                onChange={(e) => onChange(e.target.value)}
+                className={`border-0 ${className}`}
+                value={value}
+            >
                 {options.map((option) => (
-                    <option key={option.value} value={option.value}>
+                    <option key={option.locale} value={option.locale}>
                         {option.label}
                     </option>
                 ))}

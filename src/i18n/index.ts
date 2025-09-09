@@ -3,24 +3,24 @@ import Backend from "i18next-fs-backend";
 import { i18n } from "./settings";
 import path from "path";
 
-export async function initI18n(lng: string) {
-	if (!i18next.isInitialized) {
-		await i18next
-			.use(Backend)
-			.init({
-				lng,
-				fallbackLng: i18n.defaultLocale,
-				preload: i18n.locales,
-				ns: ["common"],
-				backend: {
-					loadPath: path.resolve("./public/locales/{{lng}}/{{ns}}.json"),
-				},
-			});
-	} else {
-		await i18next.changeLanguage(lng);
-	}
+export async function initI18n(locale: string) {
+    const instance = i18next.createInstance();
 
-	return {
-		t: i18next.getFixedT(lng),
-	};
+    await instance
+        .use(Backend)
+        .init({
+            lng: locale,
+            fallbackLng: i18n.defaultLocale,
+            preload: i18n.locales,
+            ns: ["common"],
+            defaultNS: "common",
+            backend: {
+                loadPath: path.join(process.cwd(), "public/locales/{{lng}}/{{ns}}.json"),
+            },
+            initImmediate: false,
+        });
+
+    return {
+        t: instance.getFixedT(locale, "common"),
+    };
 }

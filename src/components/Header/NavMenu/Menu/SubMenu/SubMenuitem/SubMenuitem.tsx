@@ -12,7 +12,7 @@ export default function SubMenuitem({ subitem, hasLink }: Props) {
     const [collapsed, setCollapsed] = useState(true);
 
     return (
-        <li key={subitem.label} className="text-lg md:w-[25%] md:pb-65 bg-amber-300">
+        <li key={subitem.label} className={`text-lg md:w-[25%] ${subitem.submenu && "md:pb-65"}`}>
             {hasLink ? (
                 <Link href={subitem.href || ``} className="block px-4 py-2 hover:bg-gray-100 ">
                     {subitem.label}
@@ -48,7 +48,7 @@ export default function SubMenuitem({ subitem, hasLink }: Props) {
                                             {grandchild.label}
                                         </Link>
                                     )}
-                                    <div className="hidden md:flex w-full border-2 border-black h-50 justify-center items-center">
+                                    <div className="hidden md:flex w-full border-2 border-black h-50 justify-center items-center rounded-xl bg-black text-white uppercase">
                                         картинка
                                     </div>
                                 </li>

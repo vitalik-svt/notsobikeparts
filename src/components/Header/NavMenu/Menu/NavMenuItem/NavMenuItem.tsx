@@ -14,7 +14,7 @@ export default function NavMenuItem({ item, onClick, isSelected }: Props) {
 
     const subMenuClassNames = isTouch && item.submenu && item.submenu.length > 0 && isSelected
         ? "block"
-        : "hidden md:group-hover:flex";
+        : `hidden ${!item.href ? "md:group-hover:flex" : ""}`;
 
     return (
         <li

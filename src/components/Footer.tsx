@@ -24,18 +24,18 @@ export default function Footer({ locale }: { locale: string }) {
     };
 
     return (
-        <footer className="flex flex-col invert-1 bg-white rounded-t-2xl md:flex-row gap-5 justify-between items-center max-w-[1000px] mx-auto w-full text-xl leading-tight px-5 pt-8 pb-10 md:py-7">
+        <footer className="flex flex-col bg-black text-white rounded-t-2xl md:flex-row gap-5 justify-between items-center max-w-[1000px] mx-auto w-full text-xl leading-tight px-5 pt-8 pb-10 md:py-7">
             <p>notsobikeparts, {year}</p>
             <p className="flex gap-4 items-center">
                 <Link href={CONTACTS.INSTAGRAM} target="_blank" rel="noopener noreferrer">
-                    <Image src="/insta.webp" alt={t("footer.instagram")} width={28} height={28} />
+                    <Image className="invert-100" src="/icons/insta.webp" alt={t("footer.instagram")} width={28} height={28} />
                 </Link>
                 <Link href={`mailto:${CONTACTS.EMAIL}`}>
-                    <Image src="/email.webp" alt={t("footer.email")} width={36} height={36} />
+                    <Image className="invert-100" src="/icons/email.webp" alt={t("footer.email")} width={36} height={36} />
                 </Link>
             </p>
             <Select
-                icon={<Image src="/language.webp" alt="" width={28} height={28} />}
+                icon={<Image className="invert-100" src="/icons/language.webp" alt="" width={28} height={28} />}
                 className="uppercase text-base"
                 onChange={handleChange}
                 options={[

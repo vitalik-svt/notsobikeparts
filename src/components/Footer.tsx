@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Select from "./Select";
 import Image from "next/image";
-import { CONTACTS, DESKTOP_WIDTH } from "@/constants/contacts";
+import { CONTACTS } from "@/constants/contacts";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { i18n } from "@/i18n/settings";
@@ -24,7 +24,7 @@ export default function Footer({ locale }: { locale: string }) {
     };
 
     return (
-        <footer className={`flex flex-col bg-black text-white rounded-t-2xl md:flex-row gap-5 justify-between items-center max-w-[${DESKTOP_WIDTH}px] mx-auto w-full text-xl leading-tight px-5 pt-8 pb-10 md:py-7`}>
+        <footer className={`flex flex-col bg-black text-white rounded-t-2xl md:flex-row gap-5 justify-between items-center max-w-[1200px] mx-auto w-full text-xl leading-tight px-5 pt-8 pb-10 md:py-7`}>
             <p>notsobikeparts, {year}</p>
             <p className="flex gap-4 items-center">
                 <Link href={CONTACTS.INSTAGRAM} target="_blank" rel="noopener noreferrer">

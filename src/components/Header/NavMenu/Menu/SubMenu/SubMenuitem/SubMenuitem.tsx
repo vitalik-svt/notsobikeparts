@@ -6,10 +6,9 @@ import { useIsTouchDevice } from "../../../useIsTouchDevice";
 
 interface Props {
     subitem: MenuItem;
-    hasLink: boolean
 }
 
-export default function SubMenuitem({ subitem, hasLink }: Props) {
+export default function SubMenuitem({ subitem }: Props) {
     const isTouch = useIsTouchDevice();
     const [collapsed, setCollapsed] = useState(isTouch);
 
@@ -21,9 +20,9 @@ export default function SubMenuitem({ subitem, hasLink }: Props) {
 
     return (
         <li key={subitem.label} className={`group/sub text-lg md:w-[25%] ${subitem.submenu ? "md:hover:pb-65" : ""}`}>
-            {hasLink ? (
+            {!subitem.submenu ? (
                 <Link href={subitem.href || ``} className="block px-4 py-2 lowercase md:hover:text-blue-500">
-                    {subitem.label}1
+                    {subitem.label}
                 </Link>
             ) : (
                 <>

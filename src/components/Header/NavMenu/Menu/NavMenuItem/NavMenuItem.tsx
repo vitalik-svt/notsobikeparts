@@ -19,10 +19,15 @@ export default function NavMenuItem({ item, onClick, isSelected }: Props) {
     return (
         <li
             key={item.label}
-            className="group last:border-b md:border-0 md:last:border-b-0"
+            className="group last:border-b md:border-0 md:last:border-b-0 md:first:w-full"
         >
-            <MenuItemControl item={item} collapsed={isSelected} onClick={onClick} />
-            <SubMenu item={item} classNames={subMenuClassNames} />
+            <MenuItemControl
+                labelClassName="md:[li:first-child_&]:w-full md:[li:first-child_&]:text-right"
+                item={item}
+                collapsed={isSelected}
+                onClick={onClick}
+            />
+            <SubMenu item={item} className={subMenuClassNames} />
         </li>
     );
 }

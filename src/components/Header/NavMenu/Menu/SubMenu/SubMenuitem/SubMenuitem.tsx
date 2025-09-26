@@ -19,13 +19,11 @@ export default function SubMenuitem({ subitem, hasLink }: Props) {
         }
     }
 
-    console.log('isTouch  | collapsed', isTouch, collapsed)
-
     return (
-        <li key={subitem.label} className={`group/sub text-lg md:w-[25%] ${subitem.submenu && "md:pb-65"}`}>
+        <li key={subitem.label} className={`group/sub text-lg md:w-[25%] ${subitem.submenu ? "md:hover:pb-65" : ""}`}>
             {hasLink ? (
                 <Link href={subitem.href || ``} className="block px-4 py-2 md:hover:text-blue-500">
-                    {subitem.label}
+                    {subitem.label}1
                 </Link>
             ) : (
                 <>

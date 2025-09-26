@@ -22,13 +22,13 @@ export default function SubMenuitem({ subitem, hasLink }: Props) {
     return (
         <li key={subitem.label} className={`group/sub text-lg md:w-[25%] ${subitem.submenu ? "md:hover:pb-65" : ""}`}>
             {hasLink ? (
-                <Link href={subitem.href || ``} className="block px-4 py-2 md:hover:text-blue-500">
+                <Link href={subitem.href || ``} className="block px-4 py-2 lowercase md:hover:text-blue-500">
                     {subitem.label}1
                 </Link>
             ) : (
                 <>
                     <button
-                        className="flex justify-between items-stretch w-full border-b md:border-0 relative before:absolute before:top-0 before:left-0 before:w-5 before:h-full before:bg-black before:content-[''] md:before:hidden md:justify-start"
+                        className="flex justify-between items-stretch lowercase w-full border-b md:border-0 relative before:absolute before:top-0 before:left-0 before:w-5 before:h-full before:bg-black before:content-[''] md:before:hidden md:justify-start"
                         onClick={onHandleClick}
                     >
                         <span className={`block w-full text-left ps-10 py-2 md:!px-2 md:w-auto ${subitem.submenu ? "" : "hover:text-blue-500"}`}>
@@ -55,7 +55,7 @@ export default function SubMenuitem({ subitem, hasLink }: Props) {
                             {subitem.submenu?.map(grandchild => (
                                 <li key={grandchild.label} className="last:border-b w-full text-left md:w-[20%] md:border-0 md:py-0 md:last:border-b-0">
                                     {grandchild.href && (
-                                        <Link href={grandchild.href} className="block px-15 py-2 md:hover:text-blue-500 relative before:absolute before:top-0 before:left-0 before:w-10 before:h-full before:bg-black before:content-[''] md:before:hidden md:text-left md:px-2 md:w-full">
+                                        <Link href={grandchild.href} className="block px-15 py-2 lowercase md:hover:text-blue-500 relative before:absolute before:top-0 before:left-0 before:w-10 before:h-full before:bg-black before:content-[''] md:before:hidden md:text-left md:px-2 md:w-full">
                                             {grandchild.label}
                                         </Link>
                                     )}

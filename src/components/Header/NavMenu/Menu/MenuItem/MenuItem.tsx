@@ -10,11 +10,11 @@ interface Props {
 
 export default function MenuItemControl({ item, collapsed, onClick }: Props) {
     return item.href ? (
-        <Link href={item.href} className="block px-10 py-2 hover:text-blue-500">
+        <Link href={item.href} className="block px-10 py-2 lowercase hover:text-blue-500">
             {item.label}
         </Link>
     ) : (
-        <button className="flex justify-between items-stretch w-full" onClick={onClick}>
+        <button className="flex justify-between items-stretch w-full lowercase" onClick={onClick}>
             <span className="block w-full text-left ps-10 py-2 hover:text-blue-500">{item.label}</span>
             <span className="flex items-center border-s shrink-0 px-4 md:!border-0">
                 <Image

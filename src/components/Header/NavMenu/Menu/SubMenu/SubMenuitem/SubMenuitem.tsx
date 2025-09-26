@@ -40,9 +40,9 @@ export default function SubMenuitem({ subitem, hasLink }: Props) {
                     </button>
 
                     {subitem.submenu && subitem.submenu.length > 0 && !collapsed && (
-                        <ul className="flex flex-col md:border-0 md:divide-y-0 md:mt-2 md:flex-row items-start text-center md:absolute md:w-[925px] md:left-5 md:gap-2">
+                        <ul className="flex flex-col divide-y md:border-0 md:divide-y-0 md:mt-2 md:flex-row items-start text-center md:absolute md:w-[925px] md:left-5 md:gap-2">
                             {subitem.submenu.map(grandchild => (
-                                <li key={grandchild.label} className="md:w-[20%] md:border-0 md:py-0">
+                                <li key={grandchild.label} className="last:border-b w-full text-left md:w-[20%] md:border-0 md:py-0 md:last:border-b-0">
                                     {grandchild.href && (
                                         <Link href={grandchild.href} className="block px-15 py-2 hover:bg-gray-100 relative before:absolute before:top-0 before:left-0 before:w-10 before:h-full before:bg-black before:content-[''] md:before:hidden md:text-left md:px-2 md:w-full">
                                             {grandchild.label}

@@ -14,7 +14,7 @@ export default function Header() {
 
     return (
         <header
-            className={`sticky top-0 z-50 bg-white/90 backdrop-blur-sm flex p-5 md:px-4 md:pt-7 md:pb-4 justify-between items-center w-screen md:max-w-[1200px] md:mx-auto md:w-full`}
+            className={`sticky top-0 z-50 bg-white/90 backdrop-blur-sm flex p-5 md:px-10 md:pt-7 md:pb-4 justify-between items-center w-screen md:max-w-[1200px] md:mx-auto md:w-full`}
         >
             <Link href={ROUTES.HOME}>
                 <Logo />

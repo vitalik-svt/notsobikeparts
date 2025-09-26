@@ -24,7 +24,7 @@ export default function Footer({ locale }: { locale: string }) {
     };
 
     return (
-        <footer className={`flex flex-col bg-black text-white rounded-t-2xl md:flex-row gap-5 justify-between items-center max-w-[1200px] mx-auto w-full text-xl leading-tight px-5 pt-8 pb-10 md:py-7`}>
+        <footer className={`flex flex-col bg-black text-white rounded-t-2xl gap-5 justify-between items-center max-w-[1200px] mx-auto w-full text-xl leading-tight px-5 pt-8 pb-10 md:py-7 md:flex-row md:px-10`}>
             <p>notsobikeparts, {year}</p>
             <p className="flex gap-4 items-center">
                 <Link href={CONTACTS.INSTAGRAM} target="_blank" rel="noopener noreferrer">

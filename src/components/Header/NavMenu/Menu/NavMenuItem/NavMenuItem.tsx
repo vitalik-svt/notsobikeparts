@@ -22,7 +22,7 @@ export default function NavMenuItem({ item, onClick, isSelected }: Props) {
             className="group last:border-b md:border-0 md:last:border-b-0 md:first:w-full"
         >
             <MenuItemControl
-                labelClassName="md:[li:first-child_&]:w-full md:[li:first-child_&]:text-right"
+                labelClassName="md:[li:first-child_&]:w-full md:[li:first-child_&]:text-right md:[li:last-child_&]:pr-0"
                 item={item}
                 collapsed={isSelected}
                 onClick={onClick}

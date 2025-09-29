@@ -38,7 +38,7 @@ export default async function LocaleLayout({
 
     return (
         <I18nProvider locale={resolvedParams.locale}>
-            <Header />
+            <Header locale={resolvedParams.locale} />
             <Main>
                 {children}
             </Main>

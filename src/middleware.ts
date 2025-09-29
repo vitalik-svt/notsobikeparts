@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const PUBLIC_FILE = /\.(.*)$/;
+const locales = ["ru", "en"];
 
 export function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;
@@ -14,8 +15,12 @@ export function middleware(req: NextRequest) {
 		return;
 	}
 
-	if (pathname === "/") {
-		return NextResponse.redirect(new URL("/ru", req.url));
+	const hasLocale = locales.some((locale) =>
+		pathname.startsWith(`/${locale}`)
+	);
+
+	if (!hasLocale) {
+		return NextResponse.redirect(new URL(`/ru${pathname}`, req.url));
 	}
 }
 

@@ -4,5 +4,19 @@
   "main.greeting": "Components and accessories for you, your bike, bikepacking, touring, and commuting",
   "menu.products": "Products",
   "menu.other": "Other",
-  "menu.buy": "Buy"
+  "menu.buy": "Buy",
+  "menu.topcaps": "Top caps",
+  "menu.topcaps.series": "Standard",
+  "menu.topcaps.custom": "Custom",
+  "menu.voile": "Voile straps",
+  "menu.cages": "Cages",
+  "menu.cages.small": "Small",
+  "menu.cages.plus": "Plus-size",
+  "menu.cages.front": "Front",
+  "menu.cages.volume": "Volume",
+  "menu.feedbag_hanger": "Feedbag hangers",
+  "menu.chain_breaker": "Chain breaker",
+  "menu.other.itchy_and_scratchy": "Itchies & scratchies",
+  "menu.other.merch": "Merch",
+  "menu.other.test_ride": "Test ride"
 }

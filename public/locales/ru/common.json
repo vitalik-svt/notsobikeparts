@@ -4,5 +4,19 @@
   "main.greeting": "Компоненты и аксессуары для вас, вашего велосипеда, байкпакинга, туризма и коммьютинга",
   "menu.products": "Продукты",
   "menu.other": "Разное",
-  "menu.buy": "Купить"
+  "menu.buy": "Купить",
+  "menu.topcaps": "Топкэпы",
+  "menu.topcaps.series": "Серийные",
+  "menu.topcaps.custom": "На заказ",
+  "menu.voile": "Voile стрепы",
+  "menu.cages": "Кейджи",
+  "menu.cages.small": "Малый",
+  "menu.cages.plus": "Плюсовой",
+  "menu.cages.front": "Фронтальный",
+  "menu.cages.volume": "Объем",
+  "menu.feedbag_hanger": "Держатели фидбега",
+  "menu.chain_breaker": "Размыкатель цепи",
+  "menu.other.itchy_and_scratchy": "Щекотки и царапки",
+  "menu.other.merch": "Мерч",
+  "menu.other.test_ride": "Тест-райд"
 }

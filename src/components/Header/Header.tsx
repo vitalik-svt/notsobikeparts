@@ -9,7 +9,7 @@ import BurgerButton from "./BurgerButton/BurgerButton";
 import { useHeaderMenuOptions } from "./useHeaderMenuOptions";
 
 export default function Header() {
-    const [menuOpen, setMenuOpen] = useState(true);
+    const [menuOpen, setMenuOpen] = useState(false);
     const menuOptions = useHeaderMenuOptions();
 
     return (

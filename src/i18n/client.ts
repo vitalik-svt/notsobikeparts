@@ -3,7 +3,9 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 
+import ruCages from "../../public/locales/ru/cages.json";
 import ruCommon from "../../public/locales/ru/common.json";
+import enCages from "../../public/locales/en/cages.json";
 import enCommon from "../../public/locales/en/common.json";
 import { i18n } from "./settings";
 
@@ -16,9 +18,11 @@ if (!i18next.isInitialized) {
 		resources: {
 			ru: {
 				common: ruCommon,
+				cages: ruCages,
 			},
 			en: {
 				common: enCommon,
+				cages: enCages,
 			},
 		},
 		interpolation: { escapeValue: false },

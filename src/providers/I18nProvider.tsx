@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect } from "react";
 import i18n from "@/i18n/client";
 

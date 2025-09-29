@@ -6,15 +6,16 @@ import { useIsTouchDevice } from "../../../useIsTouchDevice";
 
 interface Props {
     subitem: MenuItem;
+    onClick: VoidFunction;
+    isOpen: boolean;
 }
 
-export default function SubMenuitem({ subitem }: Props) {
+export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
     const isTouch = useIsTouchDevice();
-    const [collapsed, setCollapsed] = useState(true);
 
     const onHandleClick = () => {
         if (isTouch) {
-            setCollapsed(prev => !prev)
+            onClick?.();
         }
     }
 
@@ -23,9 +24,9 @@ export default function SubMenuitem({ subitem }: Props) {
             key={subitem.label}
             className={`group/sub text-lg md:w-[25%] ${subitem.submenu
                     ? isTouch
-                        ? collapsed
-                            ? ""
-                            : "md:pb-65"
+                        ? isOpen
+                            ? "md:pb-65"
+                            : ""
                         : "md:hover:pb-65"
                     : ""
                 }`}
@@ -46,7 +47,7 @@ export default function SubMenuitem({ subitem }: Props) {
                         {subitem.submenu && (
                             <span className="flex items-center border-s shrink-0 px-4 md:!border-0 md:px-0">
                                 <Image
-                                    className={`transition-transform ${isTouch ? (collapsed ? "" : "rotate-180") : ""} md:w-[20px] md:h-[20px] md:group-hover/sub:rotate-180`}
+                                    className={`transition-transform ${isTouch ? (isOpen ? "rotate-180" : "") : ""} md:w-[20px] md:h-[20px] md:group-hover/sub:rotate-180`}
                                     src="/icons/arrow-down.webp"
                                     alt="Icon"
                                     width={28}
@@ -57,7 +58,7 @@ export default function SubMenuitem({ subitem }: Props) {
                     </button>
 
                     <ul
-                        className={`flex-col divide-y md:border-0 md:divide-y-0 md:mt-2 md:flex-row items-start text-center md:absolute md:w-[925px] md:left-5 md:gap-4 ${isTouch ? (collapsed ? "hidden" : "flex") : "hidden md:group-hover/sub:flex"
+                        className={`flex-col divide-y md:border-0 md:divide-y-0 md:mt-2 md:flex-row items-start text-center md:absolute md:w-[925px] md:left-5 md:gap-4 ${isTouch ? (isOpen ? "flex" : "hidden") : "hidden md:group-hover/sub:flex"
                             }`}
                     >
                         {subitem.submenu?.map(grandchild => (

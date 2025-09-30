@@ -18,5 +18,7 @@
   "menu.chain_breaker": "Chain breaker",
   "menu.other.itchy_and_scratchy": "Itchies & scratchies",
   "menu.other.merch": "Merch",
-  "menu.other.test_ride": "Test ride"
+  "menu.other.test_ride": "Test ride",
+  "product.add_to_cart": "Add to cart",
+  "product.characteristics_title": "Characteristics"
 }

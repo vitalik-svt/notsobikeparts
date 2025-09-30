@@ -35,6 +35,7 @@ export default function Footer({ locale }: { locale: string }) {
                 </Link>
             </p>
             <Select
+                variant="text"
                 icon={<Image className="invert-100" src="/icons/language.webp" alt="" width={28} height={28} />}
                 className="uppercase text-base"
                 onChange={handleChange}

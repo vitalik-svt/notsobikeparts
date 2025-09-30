@@ -19,7 +19,6 @@
   "menu.other.itchy_and_scratchy": "Щекотки и царапки",
   "menu.other.merch": "Мерч",
   "menu.other.test_ride": "Тест-райд",
-  "product.add.to.cart": "В корзину",
-  "product.characteristics.title": "Характеристики",
-  "product.rub": "руб."
+  "product.add_to_cart": "В корзину",
+  "product.characteristics_title": "Характеристики"
 }

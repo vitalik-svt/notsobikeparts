@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { i18n } from "./i18n/settings";
 
 const PUBLIC_FILE = /\.(.*)$/;
-const locales = ["ru", "en"];
 
 export function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;
@@ -15,12 +15,12 @@ export function middleware(req: NextRequest) {
 		return;
 	}
 
-	const hasLocale = locales.some((locale) =>
+	const hasLocale = i18n.locales.some((locale) =>
 		pathname.startsWith(`/${locale}`)
 	);
 
 	if (!hasLocale) {
-		return NextResponse.redirect(new URL(`/ru${pathname}`, req.url));
+		return NextResponse.redirect(new URL(`/${i18n.defaultLocale}${pathname}`, req.url));
 	}
 }
 

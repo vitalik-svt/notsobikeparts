@@ -40,8 +40,8 @@ export default function Footer({ locale }: { locale: string }) {
                 className="uppercase text-base"
                 onChange={handleChange}
                 options={[
-                    { label: "русский", locale: "ru" },
-                    { label: "english", locale: "en" },
+                    { label: "русский", value: "ru" },
+                    { label: "english", value: "en" },
                 ]}
                 value={locale}
             />

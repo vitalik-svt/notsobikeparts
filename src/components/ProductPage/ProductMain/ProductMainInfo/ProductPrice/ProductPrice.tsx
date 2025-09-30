@@ -11,5 +11,5 @@ export default function ProductPrice({ price, currency, locale }: Props) {
         maximumFractionDigits: 0,
     }).format(price);
 
-    return <p className="mb-5 text-2xl">{formattedPrice}</p>;
+    return <p className="text-2xl">{formattedPrice}</p>;
 }

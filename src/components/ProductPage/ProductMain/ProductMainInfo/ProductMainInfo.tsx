@@ -11,7 +11,8 @@ import InputNumber from "@/components/InputNumber/InputNumber";
 
 export default function ProductMainInfo() {
     const cages = useCagesProductData();
-    const { t } = useTranslation();
+    const { t: tCommon } = useTranslation('common');
+    const { t: tCages } = useTranslation('cages');
 
     return <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-5">
@@ -24,7 +25,7 @@ export default function ProductMainInfo() {
             <p>{cages.front.description}</p>
         </div>
 
-        <SectionInfoBlock title="Key Features">
+        <SectionInfoBlock title={tCages("features.title")}>
             <List items={cages.front.features} />
         </SectionInfoBlock>
 
@@ -36,7 +37,7 @@ export default function ProductMainInfo() {
             />
             <div className="flex items-center gap-4">
                 <InputNumber />
-                <Button onClick={() => { }} fluid>{t("product.add_to_cart")}</Button>
+                <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
             </div>
         </div>
     </div>

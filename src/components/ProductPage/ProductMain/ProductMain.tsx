@@ -2,7 +2,7 @@ import Image from "next/image";
 import ProductMainInfo from "./ProductMainInfo/ProductMainInfo";
 
 export default function ProductMain() {
-    return <div className="flex flex-col gap-8 md:gap-16 lg:flex-row">
+    return <div className="flex flex-col gap-8 md:gap-12 lg:flex-row">
         <div className="flex h-[368px] bg-gray-700 w-full max-w-lg shrink-0">
             <Image
                 className="flex w-full h-full object-cover"

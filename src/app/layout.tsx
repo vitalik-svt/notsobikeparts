@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "keen-slider/keen-slider.min.css";
 import "./globals.css";
 import BodyMainContainer from "@/components/BodyMainContainer";
 import { ReactNode } from "react";

@@ -20,5 +20,8 @@
   "menu.other.merch": "Merch",
   "menu.other.test_ride": "Test ride",
   "product.add_to_cart": "Add to cart",
-  "product.characteristics_title": "Characteristics"
+  "product.characteristics_title": "Characteristics",
+  "product.previous_label": "Previous",
+  "product.next_label": "Next",
+  "product.close_label": "Close"
 }

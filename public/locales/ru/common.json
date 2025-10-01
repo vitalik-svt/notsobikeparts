@@ -20,5 +20,8 @@
   "menu.other.merch": "Мерч",
   "menu.other.test_ride": "Тест-райд",
   "product.add_to_cart": "В корзину",
-  "product.characteristics_title": "Характеристики"
-}
+  "product.characteristics_title": "Характеристики",
+  "product.previous_label": "Предыдущий",
+  "product.next_label": "Следующий",
+  "product.close_label": "Закрыть"
+  }

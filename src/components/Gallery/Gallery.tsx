@@ -93,10 +93,10 @@ export default function Gallery({ images }: Props) {
                 <>
                     <NavButton direction="prev" onClick={goToPrevSlide} />
                     <NavButton direction="next" onClick={goToNextSlide} />
+                    <CloseButton onClick={closeSlideShowMode} />
                 </>
             )}
 
-            <CloseButton onClick={closeSlideShowMode} />
 
             <div ref={sliderRef} className={mainSliderClasses}>
                 {images.map((src, idx) => (

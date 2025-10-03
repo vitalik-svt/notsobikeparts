@@ -4,6 +4,7 @@ import Button from "@/components/Button/Button";
 import Gallery from "@/components/Gallery/Gallery";
 import InputNumber from "@/components/InputNumber/InputNumber";
 import List from "@/components/List/List";
+import OptionsCountBlock from "@/components/OptionsCountBlock/OptionsCountBlock";
 import ProductCharacteristics from "@/components/ProductPage/ProductCharacteristics/ProductCharacteristics";
 import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
@@ -27,7 +28,7 @@ const images = [
 export default function FrontCagePage() {
 	const cages = useCagesProductData();
 	const { t: tCommon } = useTranslation('common');
-    const { t: tCages } = useTranslation('cages');
+	const { t: tCages } = useTranslation('cages');
 
 	return (
 		<ProductPage>
@@ -42,7 +43,7 @@ export default function FrontCagePage() {
 						<List items={cages.front.features} />
 					</SectionInfoBlock>
 
-					<div className="flex flex-col gap-4 content-stretch max-w-md">
+					<OptionsCountBlock>
 						<Select
 							options={cages.front.colorOptions}
 							onChange={() => { }}
@@ -52,11 +53,14 @@ export default function FrontCagePage() {
 							<InputNumber />
 							<Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
 						</div>
-					</div>
+					</OptionsCountBlock>
 				</ProductMainInfo>
 
 			</ProductMain>
-			<ProductCharacteristics />
+			<ProductCharacteristics
+				title={tCommon("product.characteristics_title")}
+				options={cages.front.characteristics}
+			/>
 		</ProductPage>
 	);
 }

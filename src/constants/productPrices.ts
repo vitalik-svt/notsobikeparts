@@ -1,7 +1,7 @@
 import { Locales } from "@/types/locales";
 
 type ProductCageType = 'front';
-type ProductVoileType = 'nine-black' | 'twelve-black' | 'twenty-black-w-logo' | 'twenty-five-black-w-logo';
+export type ProductVoileType = 'nine-black' | 'twelve-black' | 'twenty-black-w-logo' | 'twenty-five-black-w-logo';
 
 export interface ProductPriceSettings {
     currency: string;

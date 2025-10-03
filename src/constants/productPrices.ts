@@ -36,7 +36,7 @@ const productPriceSettings: RawProductPrices = {
         "twenty-five-black-w-logo": { ru: 1_400, en: 14 },
     },
     feedbagHanger: {
-        "one-price": { ru: 1_500, en: 15 }
+        "one-price": { ru: 2_500, en: 30 }
     },
 };
 

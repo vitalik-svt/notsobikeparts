@@ -1,7 +1,8 @@
 import { Locales } from "@/types/locales";
 
-export type ProductCageType = 'front' | 'little';
+export type ProductCageType = 'front' | 'little' | 'volume';
 export type ProductVoileType = 'nine-black' | 'twelve-black' | 'twenty-black-w-logo' | 'twenty-five-black-w-logo';
+export type ProductWithOnePrice = 'one-price';
 
 export interface ProductPriceSettings {
     currency: string;
@@ -13,24 +14,30 @@ export interface ProductPriceSettings {
 interface ProductPrices {
     cages: Record<ProductCageType, Record<Locales, ProductPriceSettings>>;
     voile: Record<ProductVoileType, Record<Locales, ProductPriceSettings>>;
+    feedbaghanger: Record<ProductWithOnePrice, Record<Locales, ProductPriceSettings>>;
 }
 
 interface RawProductPrices {
     cages: Record<ProductCageType, Record<Locales, number>>;
     voile: Record<ProductVoileType, Record<Locales, number>>;
+    feedbaghanger: Record<ProductWithOnePrice, Record<Locales, number>>;
 }
 
 const productPriceSettings: RawProductPrices = {
     cages: {
         front: { ru: 10_800, en: 150 },
         little: { ru: 1_800, en: 20 },
+        volume: { ru: 3_400, en: 50 },
     },
     voile: {
         "nine-black": { ru: 800, en: 8 },
         "twelve-black": { ru: 900, en: 9 },
         "twenty-black-w-logo": { ru: 1_200, en: 12 },
         "twenty-five-black-w-logo": { ru: 1_400, en: 14 },
-    }
+    },
+    feedbaghanger: {
+        "one-price": { ru: 1_500, en: 15 }
+    },
 };
 
 const localeCurrencyMap: Record<Locales, { currency: string; locale: string }> = {
@@ -66,6 +73,15 @@ function convertProductPriceSettings(settings: typeof productPriceSettings): Pro
                 },
             ])
         ) as ProductPrices["voile"],
+        feedbaghanger: Object.fromEntries(
+            Object.entries(settings.feedbaghanger).map(([type, prices]) => [
+                type,
+                {
+                    ru: getSettings(prices.ru, "ru"),
+                    en: getSettings(prices.en, "en"),
+                },
+            ])
+        ) as ProductPrices["feedbaghanger"],
     };
 }
 

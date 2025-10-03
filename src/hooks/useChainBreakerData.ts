@@ -8,7 +8,7 @@ export const useChainBreakerData = () => {
     const { t } = useTranslation('chainBreaker');
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
 
-    const chainBreaker   = {
+    const chainBreaker = {
         name: t(`chainBreaker.name`),
         description: t(`chainBreaker.description`),
         colorOptions: [],

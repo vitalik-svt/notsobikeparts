@@ -13,5 +13,12 @@
     "front.characteristics.7": "Maximum recommended load 3 kg",
     "front.characteristics.8": "Mounting bolts are hardened and may rust over time",
     "front.color_options.1": "Black",
-    "front.color_options.2": "Aluminum (clear anodized)"
+    "front.color_options.2": "Aluminum (clear anodized)",
+    "little.name": "Small Cage",
+    "little.description": "A compact platform for your tool roll, banana, or whatever else you carry. The slots on the wings can be used to attach a pump or something similar. The cage comes with a pair of flat-head bolts designed specifically for this purpose.",
+    "little.characteristics.1": "Aluminum",
+    "little.characteristics.2": "Anodized",
+    "little.characteristics.3": "Weight: 40 g",
+    "little.characteristics.4": "Dimensions (projection): 66 × 109 mm",
+    "little.characteristics.5": "Includes several spacer washers for placing between the cage and the fork, helping to level the mounting surface on curved forks."
 }

@@ -15,12 +15,14 @@ interface ProductPrices {
     cages: Record<ProductCageType, Record<Locales, ProductPriceSettings>>;
     voile: Record<ProductVoileType, Record<Locales, ProductPriceSettings>>;
     feedbagHanger: Record<ProductWithOnePrice, Record<Locales, ProductPriceSettings>>;
+    chainBreaker: Record<ProductWithOnePrice, Record<Locales, ProductPriceSettings>>;
 }
 
 interface RawProductPrices {
     cages: Record<ProductCageType, Record<Locales, number>>;
     voile: Record<ProductVoileType, Record<Locales, number>>;
     feedbagHanger: Record<ProductWithOnePrice, Record<Locales, number>>;
+    chainBreaker: Record<ProductWithOnePrice, Record<Locales, number>>;
 }
 
 const productPriceSettings: RawProductPrices = {
@@ -36,6 +38,9 @@ const productPriceSettings: RawProductPrices = {
         "twenty-five-black-w-logo": { ru: 1_400, en: 14 },
     },
     feedbagHanger: {
+        "one-price": { ru: 1_500, en: 15 }
+    },
+    chainBreaker: {
         "one-price": { ru: 1_500, en: 15 }
     },
 };
@@ -82,6 +87,15 @@ function convertProductPriceSettings(settings: typeof productPriceSettings): Pro
                 },
             ])
         ) as ProductPrices["feedbagHanger"],
+        chainBreaker: Object.fromEntries(
+            Object.entries(settings.chainBreaker).map(([type, prices]) => [
+                type,
+                {
+                    ru: getSettings(prices.ru, "ru"),
+                    en: getSettings(prices.en, "en"),
+                },
+            ])
+        ) as ProductPrices["chainBreaker"],
     };
 }
 

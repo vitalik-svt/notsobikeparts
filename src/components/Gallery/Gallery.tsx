@@ -58,7 +58,7 @@ export default function Gallery({ images }: Props) {
 
     const mainSliderClasses = isSlideShowModeOn
         ? "keen-slider max-h-[90vh] w-auto max-w-none rounded"
-        : "keen-slider h-[368px] w-full max-w-lg shrink-0 bg-gray-700 rounded";
+        : "keen-slider h-[368px] w-full max-w-lg shrink-0 bg-gray-700 rounded mx-auto";
 
     const mainSliderImageClasses = isSlideShowModeOn
         ? "keen-slider__slide h-full object-contain"

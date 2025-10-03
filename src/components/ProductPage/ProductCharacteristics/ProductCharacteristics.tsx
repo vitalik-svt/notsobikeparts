@@ -1,17 +1,16 @@
-'use client';
-
 import List from "@/components/List/List";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
-import { useCagesProductData } from "@/hooks/useCagesProductData";
-import { useTranslation } from "react-i18next";
+import { ReactNode } from "react";
 
-export default function ProductCharacteristics() {
-    const { t } = useTranslation();
-    const cages = useCagesProductData();
-    
+interface Props {
+    title: string;
+    options: ReactNode[];
+}
+
+export default function ProductCharacteristics({ title, options }: Props) {
     return (
-        <SectionInfoBlock title={t("product.characteristics_title")}>
-            <List items={cages.front.characteristics} />
+        <SectionInfoBlock title={title}>
+            <List items={options} />
         </SectionInfoBlock>
     );
 }

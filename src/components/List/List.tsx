@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
 interface Props { 
-    items: string[]; 
+    items: ReactNode[]; 
 }
 
 const List: FC<Props> = ({ items }) => {

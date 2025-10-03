@@ -22,7 +22,7 @@ const images = [
 
 export default function FeedbagHangerPage() {
     const { t: tCommon } = useTranslation('common');
-    const { t: tCages } = useTranslation('cages');
+    const { t: tFeedbagHanger } = useTranslation('feedbagHanger');
     const feedbagHangerData = useFeedbagHangerData();
 
     return (
@@ -34,7 +34,7 @@ export default function FeedbagHangerPage() {
                     price={feedbagHangerData.price}
                     description={feedbagHangerData.description}
                 >
-                    <SectionInfoBlock title={tCages("features.title")}>
+                    <SectionInfoBlock title={tFeedbagHanger("features.title")}>
                         <List items={feedbagHangerData.features} />
                     </SectionInfoBlock>
 

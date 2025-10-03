@@ -8,15 +8,13 @@ import { useState } from "react";
 import BurgerButton from "./BurgerButton/BurgerButton";
 import { useHeaderMenuOptions } from "./useHeaderMenuOptions";
 
-export default function Header() {
+export default function Header({ locale }: { locale: string }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const menuOptions = useHeaderMenuOptions();
 
     return (
-        <header
-            className={`sticky top-0 z-50 bg-white/90 backdrop-blur-sm flex p-5 md:px-10 md:pt-7 md:pb-4 justify-between items-center w-screen md:max-w-[1200px] md:mx-auto md:w-full`}
-        >
-            <Link href={ROUTES.HOME}>
+        <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm flex p-5 md:px-10 md:pt-7 md:pb-4 justify-between items-center w-screen md:max-w-[1200px] md:mx-auto md:w-full">
+            <Link href={`/${locale}${ROUTES.HOME}`}>
                 <Logo />
             </Link>
             <BurgerButton

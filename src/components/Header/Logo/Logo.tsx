@@ -1,6 +1,6 @@
 export default function Logo() {
     return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
             <span className="flex w-9 h-9 bg-black rounded-full"></span>
             <span className="flex flex-col leading-none gap-0 select-none">
                 <span

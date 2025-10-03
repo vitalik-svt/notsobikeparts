@@ -2,6 +2,7 @@ export const ROUTES = {
   HOME: '/',
   BUY: '/buy',
   CAGES: '/cages',
+  CAGE_FRONT: '/cage-front',
   TOP_CAPS: '/top-caps',
   FEEDBAG_HANGER: '/feedbag-hanger',
   CHAIN_BREAKER: '/chain-breaker',

@@ -39,7 +39,7 @@ export const useHeaderMenuOptions = () => {
                         },
                         {
                             label: t("menu.cages.front"),
-                            href: ROUTES.CAGES
+                            href: ROUTES.CAGE_FRONT
                         },
                         {
                             label: t("menu.cages.volume"),

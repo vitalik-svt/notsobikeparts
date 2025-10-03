@@ -1,6 +1,6 @@
 import { Locales } from "@/types/locales";
 
-type ProductCageType = 'front';
+export type ProductCageType = 'front' | 'little';
 export type ProductVoileType = 'nine-black' | 'twelve-black' | 'twenty-black-w-logo' | 'twenty-five-black-w-logo';
 
 export interface ProductPriceSettings {
@@ -23,6 +23,7 @@ interface RawProductPrices {
 const productPriceSettings: RawProductPrices = {
     cages: {
         front: { ru: 10_800, en: 150 },
+        little: { ru: 1_800, en: 20 },
     },
     voile: {
         "nine-black": { ru: 800, en: 8 },

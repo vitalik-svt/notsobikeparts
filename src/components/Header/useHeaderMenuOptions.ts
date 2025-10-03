@@ -30,8 +30,8 @@ export const useHeaderMenuOptions = () => {
                     label: t("menu.cages"),
                     submenu: [
                         {
-                            label: t("menu.cages.small"),
-                            href: ROUTES.CAGES
+                            label: t("menu.cages.little"),
+                            href: ROUTES.CAGE_LITTLE
                         },
                         {
                             label: t("menu.cages.plus"),

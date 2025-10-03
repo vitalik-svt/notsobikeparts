@@ -11,6 +11,7 @@ import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInf
 import ProductPage from "@/components/ProductPage/ProductPage";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import Select from "@/components/Select";
+import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useTranslation } from "react-i18next";
 
@@ -36,7 +37,7 @@ export default function FrontCagePage() {
 				<Gallery images={images} />
 				<ProductMainInfo
 					title={cages.front.name}
-					price={cages.front.price}
+					price={cages.front.price as ProductPriceSettings}
 					description={cages.front.description}
 				>
 					<SectionInfoBlock title={tCages("features.title")}>
@@ -55,7 +56,6 @@ export default function FrontCagePage() {
 						</div>
 					</OptionsCountBlock>
 				</ProductMainInfo>
-
 			</ProductMain>
 			<ProductCharacteristics
 				title={tCommon("product.characteristics_title")}

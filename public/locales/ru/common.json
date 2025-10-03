@@ -10,7 +10,7 @@
   "menu.topcaps.custom": "На заказ",
   "menu.voile": "Voile стрепы",
   "menu.cages": "Кейджи",
-  "menu.cages.small": "Малый",
+  "menu.cages.little": "Малый",
   "menu.cages.plus": "Плюсовой",
   "menu.cages.front": "Фронтальный",
   "menu.cages.volume": "Объем",
@@ -24,4 +24,4 @@
   "product.previous_label": "Предыдущий",
   "product.next_label": "Следующий",
   "product.close_label": "Закрыть"
-  }
+}

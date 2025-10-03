@@ -34,7 +34,7 @@ export const useVoileProductData = () => {
                 title: t(`voile.options.4`),
                 description: t(`voile.characteristics.4`),
             },
-        ];
+        ],
     }
 
     return { voile };

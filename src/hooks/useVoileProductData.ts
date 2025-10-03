@@ -18,10 +18,22 @@ export const useVoileProductData = () => {
         options: voileOptions,
         price: productPrices.voile,
         characteristics: [
-            t(`voile.characteristics.1`),
-            t(`voile.characteristics.2`),
-            t(`voile.characteristics.3`),
-            t(`voile.characteristics.4`),
+            {
+                title: t(`voile.options.1`),
+                description: t(`voile.characteristics.1`),
+            },
+            {
+                title: t(`voile.options.2`),
+                description: t(`voile.characteristics.2`),
+            },
+            {
+                title: t(`voile.options.3`),
+                description: t(`voile.characteristics.3`),
+            },
+            {
+                title: t(`voile.options.4`),
+                description: t(`voile.characteristics.4`),
+            },
         ]
     }
 

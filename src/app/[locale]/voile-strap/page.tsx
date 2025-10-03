@@ -52,10 +52,10 @@ export default function VoileStrapPage() {
             </ProductMain>
             <ProductCharacteristics
                 title={tCommon("product.characteristics_title")}
-                options={voile.characteristics.map((item, index) => (
-                    <span className="flex flex-col py-1" key={index}>
-                        <span className="font-semibold">{voile.options[index].label}</span>
-                        <span>{item}</span>
+                options={voile.characteristics.map((item) => (
+                    <span className="flex flex-col py-1" key={item.title}>
+                        <span className="font-semibold">{item.title}</span>
+                        <span>{item.description}</span>
                     </span>
                 ))}
             />

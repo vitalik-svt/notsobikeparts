@@ -32,12 +32,18 @@ const productPriceSettings: RawProductPrices = {
     }
 };
 
+// Mapping from Locales to currency and locale string
+const localeCurrencyMap: Record<Locales, { currency: string; locale: string }> = {
+    ru: { currency: "RUB", locale: "ru-RU" },
+    en: { currency: "USD", locale: "en-US" },
+};
+
 function convertProductPriceSettings(settings: typeof productPriceSettings): ProductPrices {
     const getSettings = (amount: number, locale: Locales) => (
         {
             amount,
-            currency: locale === "ru" ? "RUB" : "USD",
-            locale: locale === "ru" ? "ru-RU" : "en-US",
+            currency: localeCurrencyMap[locale].currency,
+            locale: localeCurrencyMap[locale].locale,
         }
     );
 

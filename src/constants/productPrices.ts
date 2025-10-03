@@ -14,13 +14,13 @@ export interface ProductPriceSettings {
 interface ProductPrices {
     cages: Record<ProductCageType, Record<Locales, ProductPriceSettings>>;
     voile: Record<ProductVoileType, Record<Locales, ProductPriceSettings>>;
-    feedbaghanger: Record<ProductWithOnePrice, Record<Locales, ProductPriceSettings>>;
+    feedbagHanger: Record<ProductWithOnePrice, Record<Locales, ProductPriceSettings>>;
 }
 
 interface RawProductPrices {
     cages: Record<ProductCageType, Record<Locales, number>>;
     voile: Record<ProductVoileType, Record<Locales, number>>;
-    feedbaghanger: Record<ProductWithOnePrice, Record<Locales, number>>;
+    feedbagHanger: Record<ProductWithOnePrice, Record<Locales, number>>;
 }
 
 const productPriceSettings: RawProductPrices = {
@@ -35,7 +35,7 @@ const productPriceSettings: RawProductPrices = {
         "twenty-black-w-logo": { ru: 1_200, en: 12 },
         "twenty-five-black-w-logo": { ru: 1_400, en: 14 },
     },
-    feedbaghanger: {
+    feedbagHanger: {
         "one-price": { ru: 1_500, en: 15 }
     },
 };
@@ -73,15 +73,15 @@ function convertProductPriceSettings(settings: typeof productPriceSettings): Pro
                 },
             ])
         ) as ProductPrices["voile"],
-        feedbaghanger: Object.fromEntries(
-            Object.entries(settings.feedbaghanger).map(([type, prices]) => [
+        feedbagHanger: Object.fromEntries(
+            Object.entries(settings.feedbagHanger).map(([type, prices]) => [
                 type,
                 {
                     ru: getSettings(prices.ru, "ru"),
                     en: getSettings(prices.en, "en"),
                 },
             ])
-        ) as ProductPrices["feedbaghanger"],
+        ) as ProductPrices["feedbagHanger"],
     };
 }
 

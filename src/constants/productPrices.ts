@@ -16,6 +16,7 @@ interface ProductPrices {
     voile: Record<ProductVoileType, Record<Locales, ProductPriceSettings>>;
     feedbagHanger: Record<ProductWithOnePrice, Record<Locales, ProductPriceSettings>>;
     merch: Record<ProductWithOnePrice, Record<Locales, ProductPriceSettings>>;
+    chainBreaker: Record<ProductWithOnePrice, Record<Locales, ProductPriceSettings>>;
 }
 
 interface RawProductPrices {
@@ -23,6 +24,7 @@ interface RawProductPrices {
     voile: Record<ProductVoileType, Record<Locales, number>>;
     feedbagHanger: Record<ProductWithOnePrice, Record<Locales, number>>;
     merch: Record<ProductWithOnePrice, Record<Locales, number>>;
+    chainBreaker: Record<ProductWithOnePrice, Record<Locales, number>>;
 }
 
 const productPriceSettings: RawProductPrices = {
@@ -42,6 +44,9 @@ const productPriceSettings: RawProductPrices = {
     },
     merch: {
         "one-price": { ru: 3_000, en: 30 }
+    },
+    chainBreaker: {
+        "one-price": { ru: 1_500, en: 15 }
     },
 };
 

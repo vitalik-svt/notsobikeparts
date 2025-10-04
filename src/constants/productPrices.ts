@@ -15,12 +15,14 @@ interface ProductPrices {
     cages: Record<ProductCageType, Record<Locales, ProductPriceSettings>>;
     voile: Record<ProductVoileType, Record<Locales, ProductPriceSettings>>;
     feedbagHanger: Record<ProductWithOnePrice, Record<Locales, ProductPriceSettings>>;
+    merch: Record<ProductWithOnePrice, Record<Locales, ProductPriceSettings>>;
 }
 
 interface RawProductPrices {
     cages: Record<ProductCageType, Record<Locales, number>>;
     voile: Record<ProductVoileType, Record<Locales, number>>;
     feedbagHanger: Record<ProductWithOnePrice, Record<Locales, number>>;
+    merch: Record<ProductWithOnePrice, Record<Locales, number>>;
 }
 
 const productPriceSettings: RawProductPrices = {
@@ -38,6 +40,9 @@ const productPriceSettings: RawProductPrices = {
     feedbagHanger: {
         "one-price": { ru: 2_500, en: 30 }
     },
+    merch: {
+        "one-price": { ru: 3_000, en: 30 }
+    },
 };
 
 const localeCurrencyMap: Record<Locales, { currency: string; locale: string }> = {
@@ -54,34 +59,24 @@ function convertProductPriceSettings(settings: typeof productPriceSettings): Pro
         }
     );
 
+    const convertSection = <T extends Record<string, Record<Locales, number>>>(
+        section: T
+    ): Record<keyof T, Record<Locales, ProductPriceSettings>> =>
+        Object.fromEntries(
+            Object.entries(section).map(([type, prices]) => [
+                type,
+                {
+                    ru: getSettings(prices.ru, "ru"),
+                    en: getSettings(prices.en, "en"),
+                },
+            ])
+        ) as Record<keyof T, Record<Locales, ProductPriceSettings>>;
+
     return {
-        cages: Object.fromEntries(
-            Object.entries(settings.cages).map(([type, prices]) => [
-                type,
-                {
-                    ru: getSettings(prices.ru, "ru"),
-                    en: getSettings(prices.en, "en"),
-                },
-            ])
-        ) as ProductPrices["cages"],
-        voile: Object.fromEntries(
-            Object.entries(settings.voile).map(([type, prices]) => [
-                type,
-                {
-                    ru: getSettings(prices.ru, "ru"),
-                    en: getSettings(prices.en, "en"),
-                },
-            ])
-        ) as ProductPrices["voile"],
-        feedbagHanger: Object.fromEntries(
-            Object.entries(settings.feedbagHanger).map(([type, prices]) => [
-                type,
-                {
-                    ru: getSettings(prices.ru, "ru"),
-                    en: getSettings(prices.en, "en"),
-                },
-            ])
-        ) as ProductPrices["feedbagHanger"],
+        cages: convertSection(settings.cages),
+        voile: convertSection(settings.voile),
+        feedbagHanger: convertSection(settings.feedbagHanger),
+        merch: convertSection(settings.merch),
     };
 }
 

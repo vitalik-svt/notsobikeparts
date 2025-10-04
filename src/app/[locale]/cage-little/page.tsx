@@ -33,7 +33,6 @@ export default function LittleCagePage() {
                     price={cages.little.price as ProductPriceSettings}
                     description={cages.little.description}
                 >
-
                     <OptionsCountBlock>
                         <RowWrapper>
                             <InputNumber />

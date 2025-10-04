@@ -7,10 +7,12 @@ import ruCages from "../../public/locales/ru/cages.json";
 import ruCommon from "../../public/locales/ru/common.json";
 import ruVoile from "../../public/locales/ru/voile.json";
 import ruFeedbagHanger from "../../public/locales/ru/feedbagHanger.json";
+import ruMerch from "../../public/locales/ru/merch.json";
 import enCages from "../../public/locales/en/cages.json";
 import enCommon from "../../public/locales/en/common.json";
 import enVoile from "../../public/locales/en/voile.json";
 import enFeedbagHanger from "../../public/locales/en/feedbagHanger.json";
+import enMerch from "../../public/locales/en/merch.json";
 import { i18n } from "./settings";
 
 if (!i18next.isInitialized) {
@@ -25,12 +27,14 @@ if (!i18next.isInitialized) {
 				cages: ruCages,
 				voile: ruVoile,
 				feedbagHanger: ruFeedbagHanger,
+				merch: ruMerch,
 			},
 			en: {
 				common: enCommon,
 				cages: enCages,
 				voile: enVoile,
 				feedbagHanger: enFeedbagHanger,
+				merch: enMerch,
 			},
 		},
 		interpolation: { escapeValue: false },

@@ -9,6 +9,7 @@ import ProductCharacteristics from "@/components/ProductPage/ProductCharacterist
 import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
+import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import Select from "@/components/Select";
 import { ProductPriceSettings } from "@/constants/productPrices";
@@ -50,10 +51,10 @@ export default function FrontCagePage() {
 							onChange={() => { }}
 							fluid
 						/>
-						<div className="flex items-center gap-4">
+						<RowWrapper>
 							<InputNumber />
 							<Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
-						</div>
+						</RowWrapper>
 					</OptionsCountBlock>
 				</ProductMainInfo>
 			</ProductMain>

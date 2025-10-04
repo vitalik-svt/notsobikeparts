@@ -8,6 +8,7 @@ import OptionsCountBlock from "@/components/OptionsCountBlock/OptionsCountBlock"
 import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
+import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { useFeedbagHangerData } from "@/hooks/useFeedbagHangerData";
 import { useTranslation } from "react-i18next";
@@ -39,10 +40,10 @@ export default function FeedbagHangerPage() {
                     </SectionInfoBlock>
 
                     <OptionsCountBlock>
-                        <div className="flex items-center gap-4">
+                        <RowWrapper>
                             <InputNumber />
                             <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
-                        </div>
+                        </RowWrapper>
                     </OptionsCountBlock>
                 </ProductMainInfo>
              </ProductMain>

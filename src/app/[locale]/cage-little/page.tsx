@@ -8,6 +8,7 @@ import ProductCharacteristics from "@/components/ProductPage/ProductCharacterist
 import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
+import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useTranslation } from "react-i18next";
@@ -32,12 +33,11 @@ export default function LittleCagePage() {
                     price={cages.little.price as ProductPriceSettings}
                     description={cages.little.description}
                 >
-
                     <OptionsCountBlock>
-                        <div className="flex items-center gap-4">
+                        <RowWrapper>
                             <InputNumber />
                             <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
-                        </div>
+                        </RowWrapper>
                     </OptionsCountBlock>
                 </ProductMainInfo>
             </ProductMain>

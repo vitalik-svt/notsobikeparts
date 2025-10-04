@@ -5,49 +5,39 @@ import Gallery from "@/components/Gallery/Gallery";
 import InputNumber from "@/components/InputNumber/InputNumber";
 import List from "@/components/List/List";
 import OptionsCountBlock from "@/components/OptionsCountBlock/OptionsCountBlock";
-import ProductCharacteristics from "@/components/ProductPage/ProductCharacteristics/ProductCharacteristics";
 import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
-import Select from "@/components/Select";
-import { useCagesProductData } from "@/hooks/useCagesProductData";
+import { useMerchData } from "@/hooks/useMerchData";
 import { useTranslation } from "react-i18next";
 
 const images = [
-    "/images/cages/volume/product-pic-1.avif",
-    "/images/cages/volume/product-pic-2.avif",
-    "/images/cages/volume/product-pic-3.avif",
-    "/images/cages/volume/product-pic-4.avif",
-    "/images/cages/volume/product-pic-5.avif",
+    "/images/merch/product-pic-1.avif",
+    "/images/merch/product-pic-2.avif",
+    "/images/merch/product-pic-3.avif",
 ];
 
-export default function CageVolumePage() {
-    const cages = useCagesProductData();
+export default function MerchPage() {
     const { t: tCommon } = useTranslation('common');
-    const { t: tCages } = useTranslation('cages');
+    const { t: tMerch } = useTranslation('merch');
+    const merch = useMerchData();
 
     return (
         <ProductPage>
             <ProductMain>
                 <Gallery images={images} />
                 <ProductMainInfo
-                    title={cages.volume.name}
-                    price={cages.volume.price}
-                    description={cages.volume.description}
+                    title={merch.name}
+                    price={merch.price}
+                    description={merch.description}
                 >
-                    <p>{tCages("volume.description.2")}</p>
-                    <SectionInfoBlock title={tCages("features.title")}>
-                        <List items={cages.volume.features} />
+                    <SectionInfoBlock title={tMerch("merch.features_title")}>
+                        <List items={merch.features} />
                     </SectionInfoBlock>
 
                     <OptionsCountBlock>
-                        <Select
-                            options={cages.volume.colorOptions}
-                            onChange={() => { }}
-                            fluid
-                        />
                         <RowWrapper>
                             <InputNumber />
                             <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
@@ -55,10 +45,7 @@ export default function CageVolumePage() {
                     </OptionsCountBlock>
                 </ProductMainInfo>
             </ProductMain>
-            <ProductCharacteristics
-                title={tCommon("product.characteristics_title")}
-                options={cages.volume.characteristics}
-            />
         </ProductPage>
-    );
+    )
+
 }

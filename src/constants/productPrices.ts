@@ -82,6 +82,7 @@ function convertProductPriceSettings(settings: typeof productPriceSettings): Pro
         voile: convertSection(settings.voile),
         feedbagHanger: convertSection(settings.feedbagHanger),
         merch: convertSection(settings.merch),
+        chainBreaker: convertSection(settings.chainBreaker),
     };
 }
 

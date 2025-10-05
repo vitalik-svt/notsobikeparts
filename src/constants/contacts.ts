@@ -1,4 +1,4 @@
 export const CONTACTS = {
-  EMAIL: 'info@notsobikeparts.com',
-  INSTAGRAM: 'https://instagram.com/notsobikeparts',
+	EMAIL: 'notsobikeparts@gmail.com',
+	INSTAGRAM: 'https://instagram.com/notsobikeparts',
 };

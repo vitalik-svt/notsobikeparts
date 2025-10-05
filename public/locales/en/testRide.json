@@ -1,0 +1,12 @@
+{
+    "testRide.name": "Test Ride",
+    "testRide.description.1": "We understand how important it is to trust your gear, especially for touring",
+    "testRide.description.2": "That’s why we offer you the chance to test our cages before buying, so you can see if they work for you",
+    "testRide.description.3": "Testing is free (except for shipping, if needed)",
+    "testRide.features_title": "Important",
+    "testRide.features.1": "We only have one sample of each cage for this purpose, so the maximum test period is two weeks",
+    "testRide.features.2": "Unfortunately, we can’t manage waiting lists, so no reservations in advance. First come, first served",
+    "testRide.features.3": "Lost or not returned? We’ll ask you to reimburse the cost. No deposits taken — we try to act in good faith, and trust you will too",
+    "testRide.features.4": "Broken? If it’s your fault — see the previous point. If it broke on its own — well, we’ll take your word for it",
+    "testRide.contact_us": "Interested? Drop us a line at {{email}} and we’ll sort out the details."
+}

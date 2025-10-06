@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useKeenSlider } from "keen-slider/react";
 import NavButton from './NavButton/NavButton';
 import CloseButton from './CloseButton/CloseButton';
+import { useKeyPress } from '@/hooks/useKeyPress';
 
 interface Props {
     images: string[];
@@ -86,6 +87,10 @@ export default function Gallery({ images }: Props) {
             thumbsInstanceRef.current?.update();
         }, 0);
     }
+
+    useKeyPress("Escape", () => closeSlideShowMode());
+    useKeyPress("ArrowLeft", () => goToPrevSlide());
+    useKeyPress("ArrowRight", () => goToNextSlide());
 
     return (
         <div className={mainContentWrapperClasses}>

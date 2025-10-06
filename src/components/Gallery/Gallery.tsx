@@ -93,16 +93,19 @@ export default function Gallery({ images }: Props) {
         }, 0);
     }, [instanceRef, thumbsInstanceRef]);
 
-    useKeyPress("Escape", () => {
+    const handleEscape = useCallback(() => {
         if (isSlideShowModeOn) closeSlideShowMode();
-    });
-    useKeyPress("ArrowLeft", () => {
+    }, [isSlideShowModeOn, closeSlideShowMode]);
+    const handleArrowLeft = useCallback(() => {
         if (isSlideShowModeOn) goToPrevSlide();
-    });
-    useKeyPress("ArrowRight", () => {
+    }, [isSlideShowModeOn, goToPrevSlide]);
+    const handleArrowRight = useCallback(() => {
         if (isSlideShowModeOn) goToNextSlide();
-    });
+    }, [isSlideShowModeOn, goToNextSlide]);
 
+    useKeyPress("Escape", handleEscape);
+    useKeyPress("ArrowLeft", handleArrowLeft);
+    useKeyPress("ArrowRight", handleArrowRight);
     return (
         <div className={mainContentWrapperClasses}>
             {isSlideShowModeOn && (

@@ -1,10 +1,11 @@
 "use client";
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useKeenSlider } from "keen-slider/react";
 import NavButton from './NavButton/NavButton';
 import CloseButton from './CloseButton/CloseButton';
+import { useKeyPress } from '@/hooks/useKeyPress';
 
 interface Props {
     images: string[];
@@ -76,17 +77,35 @@ export default function Gallery({ images }: Props) {
         }, 100);
     };
 
-    const goToPrevSlide = () => instanceRef.current?.prev();
-    const goToNextSlide = () => instanceRef.current?.next();
-    const closeSlideShowMode = () => {
-        setIsSlideShowModeOn(false);
+    const goToPrevSlide = useCallback(() => {
+        instanceRef.current?.prev();
+    }, []);
 
+    const goToNextSlide = useCallback(() => {
+        instanceRef.current?.next();
+    }, []);
+
+    const closeSlideShowMode = useCallback(() => {
+        setIsSlideShowModeOn(false);
         setTimeout(() => {
             instanceRef.current?.update();
             thumbsInstanceRef.current?.update();
         }, 0);
-    }
+    }, []);
 
+    const handleEscape = useCallback(() => {
+        if (isSlideShowModeOn) closeSlideShowMode();
+    }, [isSlideShowModeOn, closeSlideShowMode]);
+    const handleArrowLeft = useCallback(() => {
+        if (isSlideShowModeOn) goToPrevSlide();
+    }, [isSlideShowModeOn, goToPrevSlide]);
+    const handleArrowRight = useCallback(() => {
+        if (isSlideShowModeOn) goToNextSlide();
+    }, [isSlideShowModeOn, goToNextSlide]);
+
+    useKeyPress("Escape", handleEscape);
+    useKeyPress("ArrowLeft", handleArrowLeft);
+    useKeyPress("ArrowRight", handleArrowRight);
     return (
         <div className={mainContentWrapperClasses}>
             {isSlideShowModeOn && (

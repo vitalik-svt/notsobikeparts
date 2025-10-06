@@ -88,9 +88,9 @@ export default function Gallery({ images }: Props) {
         }, 0);
     }
 
-    useKeyPress("Escape", () => closeSlideShowMode());
-    useKeyPress("ArrowLeft", () => goToPrevSlide());
-    useKeyPress("ArrowRight", () => goToNextSlide());
+    useKeyPress("Escape", () => isSlideShowModeOn ? closeSlideShowMode() : null);
+    useKeyPress("ArrowLeft", () => isSlideShowModeOn ? goToPrevSlide() : null);
+    useKeyPress("ArrowRight", () => isSlideShowModeOn ? goToNextSlide() : null);
 
     return (
         <div className={mainContentWrapperClasses}>

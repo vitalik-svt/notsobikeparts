@@ -79,11 +79,11 @@ export default function Gallery({ images }: Props) {
 
     const goToPrevSlide = useCallback(() => {
         instanceRef.current?.prev();
-    }, [instanceRef]);
+    }, []);
 
     const goToNextSlide = useCallback(() => {
         instanceRef.current?.next();
-    }, [instanceRef]);
+    }, []);
 
     const closeSlideShowMode = useCallback(() => {
         setIsSlideShowModeOn(false);

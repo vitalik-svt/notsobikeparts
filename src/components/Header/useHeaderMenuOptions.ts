@@ -14,11 +14,11 @@ export const useHeaderMenuOptions = () => {
                     submenu: [
                         {
                             label: t("menu.topcaps.series"),
-                            href: ROUTES.TOP_CAPS
+                            href: ROUTES.TOPCAPS
                         },
                         {
                             label: t("menu.topcaps.custom"),
-                            href: ROUTES.TOP_CAPS
+                            href: ROUTES.TOPCAPS_CUSTOM
                         }
                     ],
                 },

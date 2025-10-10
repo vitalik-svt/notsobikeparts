@@ -1,6 +1,7 @@
 import { Locales } from "@/types/locales";
 
 export type ProductCageType = 'front' | 'little' | 'volume';
+export type ProductTopcapsType = 'serial' | 'custom' | 'titanium-bolt' | 'custom-color' | 'thicker';
 export type ProductVoileType = 'nine-black' | 'twelve-black' | 'twenty-black-w-logo' | 'twenty-five-black-w-logo';
 export type ProductWithOnePrice = 'one-price';
 
@@ -12,6 +13,7 @@ export interface ProductPriceSettings {
 
 
 interface ProductPrices {
+    topcaps: Record<ProductTopcapsType, Record<Locales, ProductPriceSettings>>;
     cages: Record<ProductCageType, Record<Locales, ProductPriceSettings>>;
     voile: Record<ProductVoileType, Record<Locales, ProductPriceSettings>>;
     feedbagHanger: Record<ProductWithOnePrice, Record<Locales, ProductPriceSettings>>;
@@ -20,6 +22,7 @@ interface ProductPrices {
 }
 
 interface RawProductPrices {
+    topcaps: Record<ProductTopcapsType, Record<Locales, number>>;
     cages: Record<ProductCageType, Record<Locales, number>>;
     voile: Record<ProductVoileType, Record<Locales, number>>;
     feedbagHanger: Record<ProductWithOnePrice, Record<Locales, number>>;
@@ -28,6 +31,13 @@ interface RawProductPrices {
 }
 
 const productPriceSettings: RawProductPrices = {
+    topcaps: {
+        serial: { ru: 1_500, en: 20 },
+        custom: { ru: 300, en: 30 },
+        "titanium-bolt": { ru: 200, en: 3 },
+        "custom-color": { ru: 500, en: 5 },
+        "thicker": { ru: 500, en: 5 },
+    },
     cages: {
         front: { ru: 10_800, en: 150 },
         little: { ru: 1_800, en: 20 },
@@ -83,6 +93,7 @@ function convertProductPriceSettings(settings: typeof productPriceSettings): Pro
         feedbagHanger: convertSection(settings.feedbagHanger),
         merch: convertSection(settings.merch),
         chainBreaker: convertSection(settings.chainBreaker),
+        topcaps: convertSection(settings.topcaps),
     };
 }
 

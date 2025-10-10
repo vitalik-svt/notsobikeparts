@@ -24,6 +24,7 @@ const images = [
 export default function LittleCagePage() {
     const cages = useCagesProductData();
     const { t: tCommon } = useTranslation('common');
+    
     return (
         <ProductPage>
             <ProductMain>

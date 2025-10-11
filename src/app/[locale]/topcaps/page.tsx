@@ -6,7 +6,9 @@ import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
+import { CONTACTS } from "@/constants/contacts";
 import { useTopcapsData } from "@/hooks/useTopcapsData";
+import { Trans } from "react-i18next";
 
 export default function TopcapsPage() {
     const topcaps = useTopcapsData();
@@ -27,9 +29,18 @@ export default function TopcapsPage() {
                             <p key={index}>{item}</p>
                         ))}
                     </SectionInfoBlock>
+                    <p>
+                        <Trans
+                            ns="topcaps"
+                            i18nKey="topcaps.description.4"
+                            components={{
+                                1: <a href={`mailto:${CONTACTS.EMAIL}`} className="underline" />
+                            }}
+                        />
+                    </p>
                 </ProductMainInfo>
             </ProductMain>
-            <ProductGrid items={topcaps.serial.items}/>
+            <ProductGrid items={topcaps.serial.items} />
         </ProductPage>
     );
 }

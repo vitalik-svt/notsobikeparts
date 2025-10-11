@@ -28,6 +28,7 @@ export const useTopcapsData = () => {
                 t("topcaps.description.1"),
                 t("topcaps.description.2"),
                 t("topcaps.description.3"),
+                t("topcaps.description.4"),
             ],
             price: productPrices.topcaps.serial[locale],
             "price-options": [],

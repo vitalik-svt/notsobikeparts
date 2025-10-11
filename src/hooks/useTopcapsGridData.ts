@@ -104,7 +104,7 @@ export const useTopcapsGridData = () => {
             category: t(`topcaps.category.1`)
         },
         {
-            description: t(`topcaps.description.9004`),
+            description: t(`topcaps.description.black`),
             image: `${baseUrl}/product-pic-13.avif`,
             isAvailable: true,
             category: t(`topcaps.category.1`)
@@ -351,6 +351,96 @@ export const useTopcapsGridData = () => {
             description: ``,
             image: `${baseUrl}/product-pic-1010.avif`,
             isAvailable: false,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1011.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1012.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1013.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1014.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: t(`topcaps.description.black`),
+            image: `${baseUrl}/product-pic-1015.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1016.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1017.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1018.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1019.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1020.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1021.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1022.avif`,
+            isAvailable: false,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1023.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1024.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.4`),
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-1025.avif`,
+            isAvailable: true,
             category: t(`topcaps.category.4`),
         },
     ];

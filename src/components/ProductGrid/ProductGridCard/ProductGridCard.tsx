@@ -3,6 +3,7 @@
 import Button from '@/components/Button/Button';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
+import SoldOutLabel from './SoldOutLabel/SoldOutLabel';
 
 interface Props {
     description: string;
@@ -37,11 +38,7 @@ export default function ProductGridCard({ description, url, isAvailable }: Props
             </Button>
 
             {!isAvailable && (
-                <p className="absolute top-0 left-0 w-full h-full bg-gray-100/85 flex justify-center items-center text-lg uppercase pb-10 tracking-wider">
-                    <span className='border-2 px-2 py-1 bg-white/40 rounded border-red-600 text-red-600'>
-                    {t('product.sold_out')}
-                    </span>
-                </p>
+                <SoldOutLabel>{t('product.sold_out')}</SoldOutLabel>
             )}
         </article>
     );

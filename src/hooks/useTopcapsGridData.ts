@@ -361,7 +361,7 @@ export const useTopcapsGridData = () => {
     ).map((group) =>
         group.map((item, idx) => ({
             ...item,
-            id: idx + 1,
+            id: `${item.category}-${idx}`,
         }))
     );
 

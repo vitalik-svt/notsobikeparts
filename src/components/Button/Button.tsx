@@ -27,7 +27,7 @@ const Button: FC<Props> = ({ children, onClick, fluid, size = "l", variant = "pr
 
     return (
         <button
-            className={`${variantClasses} rounded  transition cursor-pointer lowercase ${fluid ? "w-full" : ""} ${sizeClasses}`}
+            className={`${variantClasses} rounded transition cursor-pointer lowercase ${fluid ? "w-full" : ""} ${sizeClasses}`}
             onClick={onClick}
             disabled={disabled}
         >

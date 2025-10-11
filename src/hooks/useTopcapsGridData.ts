@@ -104,7 +104,7 @@ export const useTopcapsGridData = () => {
             category: t(`topcaps.category.1`)
         },
         {
-            description: ``,
+            description: t(`topcaps.description.9004`),
             image: `${baseUrl}/product-pic-13.avif`,
             isAvailable: true,
             category: t(`topcaps.category.1`)
@@ -312,9 +312,9 @@ export const useTopcapsGridData = () => {
             category: t(`topcaps.category.4`)
         },
         {
-            description: ``,
+            description: t(`topcaps.description.1004`),
             image: `${baseUrl}/product-pic-1004.avif`,
-            isAvailable: true,
+            isAvailable: false,
             category: t(`topcaps.category.4`)
         },
         {

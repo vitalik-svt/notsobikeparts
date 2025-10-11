@@ -8,7 +8,7 @@ interface TopcapItemRaw {
 }
 
 export interface TopcapItem extends TopcapItemRaw {
-    id: number;
+    id: string;
 }
 
 function groupBy<T, K extends string | number | symbol>(

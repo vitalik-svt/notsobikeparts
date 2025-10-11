@@ -33,7 +33,7 @@ interface RawProductPrices {
 const productPriceSettings: RawProductPrices = {
     topcaps: {
         serial: { ru: 1_500, en: 20 },
-        custom: { ru: 300, en: 30 },
+        custom: { ru: 3_000, en: 30 },
         "titanium-bolt": { ru: 200, en: 3 },
         "custom-color": { ru: 500, en: 5 },
         "thicker": { ru: 500, en: 5 },

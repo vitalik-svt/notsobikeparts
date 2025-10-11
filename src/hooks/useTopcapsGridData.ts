@@ -73,6 +73,48 @@ export const useTopcapsGridData = () => {
             isAvailable: true,
             category: t(`topcaps.category.1`)
         },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-8.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-9.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-10.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-11.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-12.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-13.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-14.avif`,
+            isAvailable: false,
+            category: t(`topcaps.category.1`)
+        },
         ////
         {
             description: ``,

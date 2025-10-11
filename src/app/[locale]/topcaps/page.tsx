@@ -1,6 +1,7 @@
 'use client';
 
 import Gallery from "@/components/Gallery/Gallery";
+import ProductGrid from "@/components/ProductGrid/ProductGrid";
 import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
@@ -28,6 +29,7 @@ export default function TopcapsPage() {
                     </SectionInfoBlock>
                 </ProductMainInfo>
             </ProductMain>
+            <ProductGrid items={topcaps.serial.items}/>
         </ProductPage>
     );
 }

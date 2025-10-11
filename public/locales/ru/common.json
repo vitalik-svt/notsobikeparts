@@ -23,5 +23,7 @@
   "product.characteristics_title": "Характеристики",
   "product.previous_label": "Предыдущий",
   "product.next_label": "Следующий",
-  "product.close_label": "Закрыть"
+  "product.close_label": "Закрыть",
+  "product.sold_out": "Закончились",
+  "product.select": "Выбрать"
 }

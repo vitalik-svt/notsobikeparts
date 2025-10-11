@@ -5,8 +5,10 @@ import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { Locales } from "@/types/locales";
 import { useTranslation } from "react-i18next";
+import { useTopcapsGridData } from "./useTopcapsGridData";
 
 export const useTopcapsData = () => {
+    const topcaps = useTopcapsGridData();
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t } = useTranslation('topcaps');
 
@@ -35,7 +37,8 @@ export const useTopcapsData = () => {
                     t("topcaps.equipment.1"),
                     t("topcaps.equipment.2"),
                 ]
-            }
+            },
+            items: topcaps,
         },
         custom: {
             title: t("custom.name"),

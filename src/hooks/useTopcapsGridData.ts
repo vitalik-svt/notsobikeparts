@@ -287,10 +287,10 @@ export const useTopcapsGridData = () => {
     const topcaps: TopcapItem[][] = Object.values(
         groupBy(topcapsRaw, item => item.category)
     ).map((group) =>
-        group ? group.map((item, idx) => ({
+        group.map((item, idx) => ({
             ...item,
             id: idx + 1,
-        })) : []
+        }))
     );
 
     return topcaps;

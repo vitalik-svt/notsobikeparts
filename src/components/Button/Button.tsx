@@ -21,7 +21,7 @@ const Button: FC<Props> = ({ children, onClick, fluid, size = "l", variant = "pr
 
     const variantClasses = {
         primary: "bg-black text-white hover:bg-black/78",
-        secondary: "bg-white text-black border-1 hover:bg-black/78 hover:text-white",
+        secondary: "bg-white text-black border hover:bg-black/78 hover:text-white",
     }[variant];
 
 

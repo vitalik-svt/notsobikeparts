@@ -23,5 +23,7 @@
   "product.characteristics_title": "Characteristics",
   "product.previous_label": "Previous",
   "product.next_label": "Next",
-  "product.close_label": "Close"
+  "product.close_label": "Close",
+  "product.sold_out": "Sold out",
+  "product.select": "Select"
 }

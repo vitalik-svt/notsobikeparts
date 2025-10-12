@@ -430,7 +430,67 @@ export const useTopcapsGridData = () => {
         {
             description: ``,
             image: `${baseUrl}/product-pic-67.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-68.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-69.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-70.avif`,
             isAvailable: false,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-71.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-72.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-73.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-74.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-75.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-76.avif`,
+            isAvailable: true,
+            category: t(`topcaps.category.1`)
+        },
+        {
+            description: ``,
+            image: `${baseUrl}/product-pic-77.avif`,
+            isAvailable: true,
             category: t(`topcaps.category.1`)
         },
         ////

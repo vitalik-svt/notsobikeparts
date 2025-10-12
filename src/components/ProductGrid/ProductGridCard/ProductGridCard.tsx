@@ -22,22 +22,22 @@ export default function ProductGridCard({ description, url, isAvailable }: Props
                     alt=""
                     width={300}
                     height={300}
-                    className={`w-full object-cover ${isAvailable ? '' : 'blur-[1px]'}`}
+                    className={`w-full object-cover ${isAvailable ? '' : 'blur-[0.5px] opacity-45'}`}
                 />
                 {description && <p className="text-sm">{description}</p>}
             </div>
 
-            <Button
-                variant='secondary'
-                onClick={() => { }}
-                fluid
-                size="s"
-                disabled={!isAvailable}
-            >
-                {t('product.select')}
-            </Button>
-
-            {!isAvailable && (
+            {isAvailable ? (
+                <Button
+                    variant='secondary'
+                    onClick={() => { }}
+                    fluid
+                    size="s"
+                    disabled={!isAvailable}
+                >
+                    {t('product.select')}
+                </Button>
+            ) : (
                 <SoldOutLabel>{t('product.sold_out')}</SoldOutLabel>
             )}
         </article>

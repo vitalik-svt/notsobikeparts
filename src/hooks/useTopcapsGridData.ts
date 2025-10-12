@@ -769,11 +769,11 @@ export const useTopcapsGridData = () => {
         },
     ];
 
-    const topcaps: TopcapCategoryItem[] = topcapsRaw.map(category => ({
+    const topcaps: TopcapCategoryItem[] = topcapsRaw.map((category, catIdx) => ({
         ...category,
         items: category.items.map((item, index) => ({
             ...item,
-            id: `${category.categoryName.replace(/\s+/g, '-').toLowerCase()}-${index + 1}`
+            id: `cat${catIdx + 1}-item${index + 1}`
         }))
     }));
 

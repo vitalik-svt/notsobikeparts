@@ -4,6 +4,7 @@ import Button from '@/components/Button/Button';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import SoldOutLabel from './SoldOutLabel/SoldOutLabel';
+import { usePopup } from '@/providers/PopupProvider';
 
 interface Props {
     description: string;
@@ -13,6 +14,7 @@ interface Props {
 
 export default function ProductGridCard({ description, url, isAvailable }: Props) {
     const { t } = useTranslation();
+    const { open } = usePopup();
 
     return (
         <article className="flex flex-col gap-3 p-4 h-full justify-between relative items-center">
@@ -30,7 +32,7 @@ export default function ProductGridCard({ description, url, isAvailable }: Props
             {isAvailable ? (
                 <Button
                     variant='secondary'
-                    onClick={() => { }}
+                    onClick={() => open(<div>Любой контент попапа</div>)}
                     fluid
                     size="s"
                 >

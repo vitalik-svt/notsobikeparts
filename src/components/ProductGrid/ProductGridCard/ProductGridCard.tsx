@@ -16,13 +16,13 @@ export default function ProductGridCard({ description, url, isAvailable }: Props
 
     return (
         <article className="flex flex-col gap-3 p-4 h-full justify-between relative items-center">
-            <div className='flex flex-col gap-3'>
+            <div className={`flex flex-col gap-3 ${isAvailable ? '' : 'blur-[0.5px] opacity-45'}`}>
                 <Image
                     src={url}
                     alt=""
                     width={300}
                     height={300}
-                    className={`w-full object-cover ${isAvailable ? '' : 'blur-[0.5px] opacity-45'}`}
+                    className={`w-full object-cover`}
                 />
                 {description && <p className="text-sm">{description}</p>}
             </div>

@@ -1,11 +1,14 @@
 'use client';
 
 import CloseButton from "@/components/CloseButton/CloseButton";
+import { useKeyPress } from "@/hooks/useKeyPress";
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { createPortal } from "react-dom";
 
 function Popup({ children, onClose }: { children: ReactNode; onClose: () => void }) {
     const [mounted, setMounted] = useState(false);
+
+    useKeyPress("Escape", onClose);
 
     useEffect(() => {
         setMounted(true);
@@ -16,8 +19,8 @@ function Popup({ children, onClose }: { children: ReactNode; onClose: () => void
     return createPortal(
         <div className="fixed inset-0 z-250 flex items-center justify-center bg-black/50">
             <div className="bg-white w-screen h-screen px-5 pt-20 pb-10 shadow-lg relative md:w-5/6 md:h-5/6 md:rounded md:border-3 md:px-10">
-                <CloseButton 
-                    onClick={onClose} 
+                <CloseButton
+                    onClick={onClose}
                     withLabel={false}
                 />
                 {children}

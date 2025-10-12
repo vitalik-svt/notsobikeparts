@@ -33,7 +33,6 @@ export default function ProductGridCard({ description, url, isAvailable }: Props
                     onClick={() => { }}
                     fluid
                     size="s"
-                    disabled={!isAvailable}
                 >
                     {t('product.select')}
                 </Button>

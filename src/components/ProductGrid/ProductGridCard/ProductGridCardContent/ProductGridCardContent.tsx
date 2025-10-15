@@ -7,6 +7,9 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useFormattedPrice from '@/hooks/useFormattedPrice';
 import Radio from '@/components/Radio/Radio';
+import Checkbox from '@/components/Checkbox/Checkbox';
+import Button from '@/components/Button/Button';
+import Subtext from '@/components/Subtext/Subtext';
 
 interface Props {
     url: string;
@@ -20,6 +23,7 @@ type BoltColor = 'black' | 'light' | null;
 interface ProductParams {
     bolts: BoltMaterial;
     boltColor: BoltColor;
+    hasBox: boolean;
 }
 
 export default function ProductGridCardContent({ url, price, title }: Props) {
@@ -40,10 +44,13 @@ export default function ProductGridCardContent({ url, price, title }: Props) {
     const [productParams, setProductParams] = useState<ProductParams>({
         bolts: 'none',
         boltColor: 'black',
+        hasBox: false,
     });
 
+    console.log('productParams.hasBox', productParams.hasBox)
+
     return (
-        <div className="flex flex-col gap-5 md:flex-row">
+        <div className="flex flex-col grow gap-5 lg:flex-row lg:items-start">
             <div className='flex w-70 mx-auto flex-shrink-0 md:w-4/12 lg:w-6/12'>
                 <Image
                     className={`w-full object-contain max-w-xl mx-auto`}
@@ -53,26 +60,47 @@ export default function ProductGridCardContent({ url, price, title }: Props) {
                     height={200}
                 />
             </div>
-            <div className="flex flex-col gap-4 md:w-8/12 lg:w-6/12">
-                <ProductTitle title={title} />
-                <ProductPrice priceSettings={price} />
-                <SegmentedControl
-                    options={options}
-                    onChange={(value: BoltMaterial) => setProductParams({ ...productParams, bolts: value })}
-                    value={productParams.bolts}
-                />
-                {productParams.bolts === 'none' ? (
-                    <p className='leading-tight'>{t('product.topcap.annotation')}</p>
-                ) : (
-                    <Radio
-                        options={radioOptions}
-                        value={productParams.boltColor}
-                        onChange={(value) => setProductParams({ ...productParams, boltColor: value })}
+            <div className="flex flex-col grow justify-between gap-5 lg:w-6/12 lg:h-full">
+                <div className='flex flex-col gap-4 flex-1 xl:gap-5'>
+                    <ProductTitle title={title} />
+                    <ProductPrice priceSettings={price} />
+                    
+                    <div className='flex flex-col gap-2'>
+                        <SegmentedControl
+                            options={options}
+                            onChange={(value: BoltMaterial) => setProductParams({ ...productParams, bolts: value })}
+                            value={productParams.bolts}
+                        />
+
+                        {productParams.bolts === 'none' ? (
+                            <Subtext>{t('product.topcap.annotation')}</Subtext>
+                        ) : (
+                            <div className='pt-1 pb-3 xl:pt-2 xl:pb-4'>
+                                <Radio
+                                    options={radioOptions}
+                                    value={productParams.boltColor}
+                                    onChange={(value) => setProductParams({ ...productParams, boltColor: value })}
+                                />
+                            </div>
+                        )}
+                    </div>
+
+                    <Checkbox
+                        checked={productParams.hasBox}
+                        onChange={(value) => setProductParams({ ...productParams, hasBox: value })}
+                        name="hasBox"
+                        label={t('product.topcap.option.box.label')}
+                        subtext={t('product.topcap.option.box.description')}
                     />
-                )}
+                </div>
 
-
-                <p className='pt-3 text-xl'>{t('product.total')} {price.amount + 200} {price.currency}</p>
+                <div className='flex gap-4 items-center lg:gap-10 2xl:gap-20'>
+                    <p className='flex flex-col text-xl leading-none flex-shrink-0 xl:flex-row lg:gap-2'>
+                        <span>{t('product.total')}</span>
+                        <span className='font-bold'>{formattedPrice}</span>
+                    </p>
+                    <Button onClick={() => { }} fluid>Добавить в корзину</Button>
+                </div>
             </div>
         </div>
     );

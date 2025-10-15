@@ -41,7 +41,8 @@ export default function ProductGrid({ items, price, title }: Props) {
                                         isAvailable={item.isAvailable}
                                         selectProduct={() => open(<ProductGridCardContent
                                             title={title}
-                                            url={item.image} price={price}
+                                            url={item.image} 
+                                            price={price}
                                         />)}
                                     />
                                 </li>

@@ -21,8 +21,8 @@ export default function SegmentedControl<T extends string | number>({
             {options.map((option) => (
                 <li
                     key={option.value}
-                    className="flex justify-center items-center w-full text-sm font-medium whitespace-nowrap not-last:border-r-2">
-                    <label className={`w-full py-2 px-1 ${option.value === value ? 'bg-black text-white' : ''} flex justify-center items-center cursor-pointer sm:px-4`}>
+                    className="flex justify-center items-center w-full text-xs font-medium whitespace-nowrap not-last:border-r-2 md:text-sm">
+                    <label className={`w-full h-full py-2 px-1 ${option.value === value ? 'bg-black text-white' : ''} flex justify-center items-center cursor-pointer sm:px-4`}>
                         <input
                             className="hidden"
                             type="radio"

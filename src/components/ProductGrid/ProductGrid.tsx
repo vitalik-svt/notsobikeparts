@@ -1,12 +1,32 @@
+'use client';
+
 import ProductGridCard from "./ProductGridCard/ProductGridCard";
 import SectionInfoBlock from "../SectionInfoBlock/SectionInfoBlock";
 import { TopcapCategoryItem } from "@/hooks/useTopcapsGridData";
+import { useState } from "react";
+import { usePopup } from "@/providers/PopupProvider";
+import ProductGridCardContent from "./ProductGridCard/ProductGridCardContent/ProductGridCardContent";
+import { ProductPriceSettings } from "@/constants/productPrices";
 
 interface Props {
     items: TopcapCategoryItem[];
+    price: ProductPriceSettings;
+    title: string;
 }
 
-export default function ProductGrid({ items }: Props) {
+interface ProductPreviewSettings {
+    isOpen: boolean;
+    currentProductId: string | null;
+}
+
+export default function ProductGrid({ items, price, title }: Props) {
+    const { open } = usePopup();
+    const [productPreviewSettings, setProductPreviewSettings] = useState<ProductPreviewSettings>({
+        isOpen: false,
+        currentProductId: null,
+    });
+
+
     return (
         <ul className="block w-full space-y-8">
             {items.map((category) => (
@@ -19,6 +39,10 @@ export default function ProductGrid({ items }: Props) {
                                         url={item.image}
                                         description={item.description}
                                         isAvailable={item.isAvailable}
+                                        selectProduct={() => open(<ProductGridCardContent
+                                            title={title}
+                                            url={item.image} price={price}
+                                        />)}
                                     />
                                 </li>
                             ))}

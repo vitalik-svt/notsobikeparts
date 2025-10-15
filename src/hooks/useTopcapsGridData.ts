@@ -18,6 +18,10 @@ export interface TopcapCategoryItem {
     items: TopcapItem[];
 }
 
+function getFileNameFromPath(path: string, fallback: string): string {
+    return path.split('/').pop() ?? fallback;
+}
+
 const baseUrl = `/images/topcaps/serial/items`;
 
 export const useTopcapsGridData = () => {
@@ -773,7 +777,7 @@ export const useTopcapsGridData = () => {
         ...category,
         items: category.items.map((item, index) => ({
             ...item,
-            id: `cat${catIdx + 1}-item${index + 1}`
+            id: getFileNameFromPath(item.image, `${index + 1}`),
         }))
     }));
 

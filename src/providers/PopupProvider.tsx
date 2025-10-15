@@ -23,7 +23,9 @@ function Popup({ children, onClose }: { children: ReactNode; onClose: () => void
                     onClick={onClose}
                     withLabel={false}
                 />
-                {children}
+                <div className="overflow-auto max-h-full">
+                    {children}
+                </div>
             </div>
         </div>,
         document.body
@@ -45,7 +47,7 @@ export function usePopup() {
 }
 
 export function PopupProvider({ children }: { children: ReactNode }) {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const [content, setContent] = useState<ReactNode>(null);
 
     const open = (c: ReactNode) => {

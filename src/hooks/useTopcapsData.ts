@@ -31,7 +31,12 @@ export const useTopcapsData = () => {
                 t("topcaps.description.4"),
             ],
             price: productPrices.topcaps.serial[locale],
-            "price-options": [],
+            "price-options": [
+                {
+                    type: "titanium-bolt",
+                    price: productPrices.topcaps["titanium-bolt"][locale],
+                },
+            ],
             equipment: {
                 title: t("topcaps.equipment_title"),
                 items: [
@@ -51,6 +56,10 @@ export const useTopcapsData = () => {
             price: productPrices.topcaps.custom[locale],
             "price-options": [
                 {
+                    type: "titanium-bolt",
+                    price: productPrices.topcaps["titanium-bolt"][locale],
+                },
+                {
                     type: "custom-color",
                     price: productPrices.topcaps["custom-color"][locale],
                 },
@@ -59,10 +68,6 @@ export const useTopcapsData = () => {
                     price: productPrices.topcaps["thicker"][locale],
                 },
             ],
-        },
-        "common-options": {
-            type: "titanium-bolt",
-            price: productPrices.topcaps["titanium-bolt"][locale],
         },
     };
 };

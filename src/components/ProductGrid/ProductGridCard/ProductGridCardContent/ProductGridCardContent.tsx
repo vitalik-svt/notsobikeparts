@@ -121,13 +121,15 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
                         )}
                     </div>
 
-                    <Checkbox
-                        checked={productParams.hasBox}
-                        onChange={(value) => setProductParams({ ...productParams, hasBox: value })}
-                        name="hasBox"
-                        label={t('product.topcap.option.box.label')}
-                        subtext={t('product.topcap.option.box.description')}
-                    />
+                    <div className='md:pr-30'>
+                        <Checkbox
+                            checked={productParams.hasBox}
+                            onChange={(value) => setProductParams({ ...productParams, hasBox: value })}
+                            name="hasBox"
+                            label={t('product.topcap.option.box.label')}
+                            subtext={t('product.topcap.option.box.description')}
+                        />
+                    </div>
                 </div>
 
                 <div className='flex gap-4 items-center lg:gap-10 2xl:gap-20'>

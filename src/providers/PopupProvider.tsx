@@ -18,7 +18,7 @@ function Popup({ children, onClose }: { children: ReactNode; onClose: () => void
 
     return createPortal(
         <div className="fixed inset-0 z-250 flex items-center justify-center bg-black/50">
-            <div className="flex bg-white w-screen h-screen px-5 pt-10 pb-10 shadow-lg relative md:w-10/12 md:h-5/6 md:rounded md:border-3 md:px-10 md:pt-20">
+            <div className="flex bg-white w-screen h-screen px-5 pt-10 pb-10 shadow-lg relative max-w-[95%] md:h-5/6 md:rounded md:border-3 md:px-10 md:pt-20 xl:max-w-6xl">
                 <CloseButton
                     onClick={onClose}
                     withLabel={false}

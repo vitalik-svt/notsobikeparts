@@ -11,6 +11,8 @@ import Checkbox from '@/components/Checkbox/Checkbox';
 import Button from '@/components/Button/Button';
 import Subtext from '@/components/Subtext/Subtext';
 import { formatPrice } from '@/utils/formatPrice';
+import CardNavButton from './CardNavButton/CardNavButton';
+import { useKeyPress } from '@/hooks/useKeyPress';
 
 interface Props {
     url: string;
@@ -20,6 +22,8 @@ interface Props {
         type: string;
         price: ProductPriceSettings;
     }[];
+    goToPrev: VoidFunction;
+    goToNext: VoidFunction;
 }
 
 type BoltMaterial = 'none' | 'titanium' | 'steel';
@@ -31,7 +35,7 @@ interface ProductParams {
     hasBox: boolean;
 }
 
-export default function ProductGridCardContent({ url, price, title, additionalPriceOptions }: Props) {
+export default function ProductGridCardContent({ url, price, title, additionalPriceOptions, goToPrev, goToNext }: Props) {
     const { t } = useTranslation();
 
     const titaniumBoltPrice = useFormattedPrice(additionalPriceOptions.find(option => option.type === 'titanium-bolt')?.price);
@@ -52,6 +56,9 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
         boltColor: 'black',
         hasBox: false,
     });
+
+    useKeyPress("ArrowLeft", goToPrev);
+    useKeyPress("ArrowRight", goToNext);
 
     const getTotalPrice = useCallback(
         () => {
@@ -77,7 +84,9 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
     }
 
     return (
-        <div className="flex flex-col grow gap-5 lg:flex-row lg:items-start 2xl:gap-10">
+        <div className="relative flex flex-col grow gap-5 lg:flex-row lg:items-start 2xl:gap-10">
+            <CardNavButton direction="prev" onClick={goToPrev} />
+            <CardNavButton direction="next" onClick={goToNext} />
             <div className='flex w-70 mx-auto flex-shrink-0 md:w-4/12 lg:w-6/12'>
                 <Image
                     className={`w-full object-contain max-w-xl mx-auto`}

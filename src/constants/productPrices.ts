@@ -1,7 +1,7 @@
 import { Locales } from "@/types/locales";
 
 export type ProductCageType = 'front' | 'little' | 'volume';
-export type ProductTopcapsType = 'serial' | 'custom' | 'titanium-bolt' | 'custom-color' | 'thicker' | 'box';
+export type ProductTopcapsType = 'serial' | 'custom' | 'titanium-bolt' | 'custom-color' | 'thicker' | 'steel-bolt' | 'none-bolt' | 'box';
 export type ProductVoileType = 'nine-black' | 'twelve-black' | 'twenty-black-w-logo' | 'twenty-five-black-w-logo';
 export type ProductWithOnePrice = 'one-price';
 
@@ -37,6 +37,8 @@ const productPriceSettings: RawProductPrices = {
         "titanium-bolt": { ru: 200, en: 3 },
         "custom-color": { ru: 500, en: 5 },
         "thicker": { ru: 500, en: 5 },
+        "steel-bolt": { ru: 0, en: 0 },
+        "none-bolt": { ru: 0, en: 0 },
         "box": { ru: 0, en: 0 },
     },
     cages: {

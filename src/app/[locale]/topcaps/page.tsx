@@ -44,6 +44,7 @@ export default function TopcapsPage() {
                 items={topcaps.serial.items}
                 price={topcaps.serial.price}
                 title={topcaps.serial.title}
+                additionalPriceOptions={topcaps.serial["additional-price-options"]}
             />
         </ProductPage>
     );

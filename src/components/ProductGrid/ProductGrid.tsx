@@ -12,6 +12,10 @@ interface Props {
     items: TopcapCategoryItem[];
     price: ProductPriceSettings;
     title: string;
+    additionalPriceOptions: {
+        type: string;
+        price: ProductPriceSettings;
+    }[];
 }
 
 interface ProductPreviewSettings {
@@ -19,13 +23,12 @@ interface ProductPreviewSettings {
     currentProductId: string | null;
 }
 
-export default function ProductGrid({ items, price, title }: Props) {
+export default function ProductGrid({ items, price, title, additionalPriceOptions }: Props) {
     const { open } = usePopup();
     const [productPreviewSettings, setProductPreviewSettings] = useState<ProductPreviewSettings>({
         isOpen: false,
         currentProductId: null,
     });
-
 
     return (
         <ul className="block w-full space-y-8">
@@ -43,6 +46,7 @@ export default function ProductGrid({ items, price, title }: Props) {
                                             title={title}
                                             url={item.image} 
                                             price={price}
+                                            additionalPriceOptions={additionalPriceOptions}
                                         />)}
                                     />
                                 </li>

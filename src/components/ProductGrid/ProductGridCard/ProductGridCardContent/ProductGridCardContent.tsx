@@ -3,13 +3,14 @@ import { ProductPriceSettings } from '@/constants/productPrices';
 import Image from 'next/image';
 import ProductTitle from '../../ProductTitle/ProductTitle';
 import SegmentedControl from '@/components/SegmentedControl/SegmentedControl';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useFormattedPrice from '@/hooks/useFormattedPrice';
 import Radio from '@/components/Radio/Radio';
 import Checkbox from '@/components/Checkbox/Checkbox';
 import Button from '@/components/Button/Button';
 import Subtext from '@/components/Subtext/Subtext';
+import { formatPrice } from '@/utils/formatPrice';
 
 interface Props {
     url: string;
@@ -32,6 +33,7 @@ interface ProductParams {
 
 export default function ProductGridCardContent({ url, price, title, additionalPriceOptions }: Props) {
     const { t } = useTranslation();
+
     const titaniumBoltPrice = useFormattedPrice(additionalPriceOptions.find(option => option.type === 'titanium-bolt')?.price);
 
     const options: { label: string; value: BoltMaterial }[] = [
@@ -51,7 +53,28 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
         hasBox: false,
     });
 
-    console.log('productParams.hasBox', productParams.hasBox)
+    const getTotalPrice = useCallback(
+        () => {
+            let total = price.amount;
+
+            if (productParams.bolts === 'titanium') {
+                total += additionalPriceOptions.find(option => option.type === 'titanium-bolt')?.price.amount || 0;
+            }
+
+            return formatPrice({ amount: total, currency: price.currency, locale: price.locale });
+        },
+        [productParams, price, additionalPriceOptions],
+    )
+
+    const addToCard = () => {
+        console.log('add to cart', {
+            url,
+            title,
+            price,
+            additionalPriceOptions,
+            productParams
+        });
+    }
 
     return (
         <div className="flex flex-col grow gap-5 lg:flex-row lg:items-start 2xl:gap-10">
@@ -68,7 +91,7 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
                 <div className='flex flex-col gap-4 flex-1 xl:gap-5'>
                     <ProductTitle title={title} />
                     <ProductPrice priceSettings={price} />
-                    
+
                     <div className='flex flex-col gap-2'>
                         <SegmentedControl
                             options={options}
@@ -101,9 +124,13 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
                 <div className='flex gap-4 items-center lg:gap-10 2xl:gap-20'>
                     <p className='flex flex-col text-xl leading-none flex-shrink-0 xl:flex-row lg:gap-2'>
                         <span>{t('product.total')}</span>
-                        <span className='font-bold'>{titaniumBoltPrice}</span>
+                        <span className='font-bold'>{getTotalPrice()}</span>
                     </p>
-                    <Button onClick={() => { }} fluid>Добавить в корзину</Button>
+                    <Button
+                        onClick={addToCard}
+                        fluid>
+                        {t('product.add_to_cart')}
+                    </Button>
                 </div>
             </div>
         </div>

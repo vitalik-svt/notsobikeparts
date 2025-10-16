@@ -1,4 +1,5 @@
 import { ProductPriceSettings } from "@/constants/productPrices";
+import { formatPrice } from "@/utils/formatPrice";
 import { useMemo } from "react";
 
 export default function useFormattedPrice(priceSettings?: ProductPriceSettings) {
@@ -7,10 +8,6 @@ export default function useFormattedPrice(priceSettings?: ProductPriceSettings) 
             return '';
         }
 
-        return new Intl.NumberFormat(priceSettings.locale, {
-            style: "currency",
-            currency: priceSettings.currency,
-            maximumFractionDigits: 0,
-        }).format(priceSettings.amount);
+        return formatPrice(priceSettings);
     }, [priceSettings]);
 }

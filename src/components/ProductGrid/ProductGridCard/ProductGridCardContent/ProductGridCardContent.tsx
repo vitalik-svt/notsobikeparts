@@ -73,7 +73,7 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
         [productParams, price, additionalPriceOptions],
     )
 
-    const addToCard = () => {
+    const addToCart = () => {
         console.log('add to cart', {
             url,
             title,

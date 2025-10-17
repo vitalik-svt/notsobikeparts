@@ -6,7 +6,7 @@ import { TopcapCategoryItem } from "@/hooks/useTopcapsGridData";
 import { usePopup } from "@/providers/PopupProvider";
 import ProductGridCardContent from "./ProductGridCard/ProductGridCardContent/ProductGridCardContent";
 import { ProductPriceSettings } from "@/constants/productPrices";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 
 interface Props {
     items: TopcapCategoryItem[];
@@ -21,6 +21,27 @@ interface Props {
 export default function ProductGrid({ items, price, title, additionalPriceOptions }: Props) {
     const { open } = usePopup();
     const allProducts = useMemo(() => items.flatMap(category => category.items).filter(item => item.isAvailable), [items]);
+    const cardRefs = useRef<Record<number, HTMLLIElement | null>>({});
+
+    const scrollToCard = (index: number | null) => {
+        if (index !== null && cardRefs.current[index]) {
+            const card = cardRefs.current[index];
+
+            if (card) {
+                const cardRect = card.getBoundingClientRect();
+
+                if (
+                    cardRect.top < 0 ||
+                    cardRect.bottom > window.innerHeight
+                ) {
+                    window.scrollTo({
+                        top: window.scrollY + cardRect.top - 140,
+                        behavior: "smooth",
+                    });
+                }
+            }
+        }
+    }
 
     const openProductCard = (startIndex: number) => {
         open(
@@ -32,10 +53,12 @@ export default function ProductGrid({ items, price, title, additionalPriceOption
                 goToPrev={() => {
                     const prevIndex = (startIndex - 1 + allProducts.length) % allProducts.length;
                     openProductCard(prevIndex);
+                    setTimeout(() => scrollToCard(prevIndex), 110);
                 }}
                 goToNext={() => {
                     const nextIndex = (startIndex + 1) % allProducts.length;
                     openProductCard(nextIndex);
+                    setTimeout(() => scrollToCard(nextIndex), 110);
                 }}
             />
         );
@@ -51,7 +74,7 @@ export default function ProductGrid({ items, price, title, additionalPriceOption
                                 const globalIndex = allProducts.findIndex(p => p.id === item.id);
 
                                 return (
-                                    <li key={item.id}>
+                                    <li key={item.id} ref={el => { cardRefs.current[globalIndex] = el; }}>
                                         <ProductGridCard
                                             url={item.image}
                                             description={item.description}

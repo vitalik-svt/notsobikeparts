@@ -40,7 +40,12 @@ export default function TopcapsPage() {
                     </p>
                 </ProductMainInfo>
             </ProductMain>
-            <ProductGrid items={topcaps.serial.items} />
+            <ProductGrid
+                items={topcaps.serial.items}
+                price={topcaps.serial.price}
+                title={topcaps.serial.title}
+                additionalPriceOptions={topcaps.serial["additional-price-options"]}
+            />
         </ProductPage>
     );
 }

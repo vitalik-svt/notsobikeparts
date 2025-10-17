@@ -25,5 +25,14 @@
   "product.next_label": "Next",
   "product.close_label": "Close",
   "product.sold_out": "Sold out",
-  "product.select": "Select"
+  "product.select": "Select",
+  "product.topcap.option.none": "No bolts",
+  "product.topcap.option.titanium": "Titanium (+{{priceWithCurrency}})",
+  "product.topcap.option.steel": "Steel",
+  "product.topcap.bolt.color.black": "Black bolt",
+  "product.topcap.bolt.color.light": "Light bolt",
+  "product.topcap.annotation": "We don't include bolts with your order by default! You likely already have at least one. But if you're unsure whether yours will fit, or simply want more, let us know when ordering, and we'll include a couple for free. The black steel bolt is made of hardened steel and may rust over time!",
+  "product.topcap.option.box.label": "Gift kraft box (free)",
+  "product.topcap.option.box.description": "If you're getting a topcap as a gift — we'll pack it. If it's for yourself, there's probably no need to create extra waste. But if you want one — just let us know, and we’ll put the cap in a box",
+  "product.total": "Total:"
 }

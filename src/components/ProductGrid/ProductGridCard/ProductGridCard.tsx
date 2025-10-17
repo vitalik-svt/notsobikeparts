@@ -9,9 +9,10 @@ interface Props {
     description: string;
     url: string;
     isAvailable: boolean;
+    selectProduct: VoidFunction;
 }
 
-export default function ProductGridCard({ description, url, isAvailable }: Props) {
+export default function ProductGridCard({ description, url, isAvailable, selectProduct }: Props) {
     const { t } = useTranslation();
 
     return (
@@ -30,7 +31,7 @@ export default function ProductGridCard({ description, url, isAvailable }: Props
             {isAvailable ? (
                 <Button
                     variant='secondary'
-                    onClick={() => { }}
+                    onClick={selectProduct}
                     fluid
                     size="s"
                 >

@@ -1,13 +1,45 @@
 'use client';
 
-import { productPrices } from "@/constants/productPrices";
+import { productPrices, ProductPriceSettings } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { Locales } from "@/types/locales";
 import { useTranslation } from "react-i18next";
-import { useTopcapsGridData } from "./useTopcapsGridData";
+import { TopcapCategoryItem, useTopcapsGridData } from "./useTopcapsGridData";
 
-export const useTopcapsData = () => {
+interface AdditionalPriceOption {
+    type: string;
+    price: ProductPriceSettings;
+}
+
+interface Equipment {
+    title: string;
+    items: string[];
+}
+
+interface TopcapsSerial {
+    images: string[];
+    title: string;
+    description: string[];
+    price: ProductPriceSettings;
+    "additional-price-options": AdditionalPriceOption[];
+    equipment: Equipment;
+    items: TopcapCategoryItem[];
+}
+
+interface TopcapsCustom {
+    title: string;
+    description: string[];
+    price: ProductPriceSettings;
+    "additional-price-options": AdditionalPriceOption[];
+}
+
+export interface UseTopcapsDataResult {
+    serial: TopcapsSerial;
+    custom: TopcapsCustom;
+}
+
+export const useTopcapsData = (): UseTopcapsDataResult => {
     const topcaps = useTopcapsGridData();
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t } = useTranslation('topcaps');
@@ -31,7 +63,20 @@ export const useTopcapsData = () => {
                 t("topcaps.description.4"),
             ],
             price: productPrices.topcaps.serial[locale],
-            "price-options": [],
+            "additional-price-options": [
+                {
+                    type: "titanium-bolt",
+                    price: productPrices.topcaps["titanium-bolt"][locale],
+                },
+                {
+                    type: "steel-bolt",
+                    price: productPrices.topcaps["steel-bolt"][locale],
+                },
+                {
+                    type: "none-bolt",
+                    price: productPrices.topcaps["none-bolt"][locale],
+                },
+            ],
             equipment: {
                 title: t("topcaps.equipment_title"),
                 items: [
@@ -49,7 +94,11 @@ export const useTopcapsData = () => {
                 t("custom.description.3"),
             ],
             price: productPrices.topcaps.custom[locale],
-            "price-options": [
+            "additional-price-options": [
+                {
+                    type: "titanium-bolt",
+                    price: productPrices.topcaps["titanium-bolt"][locale],
+                },
                 {
                     type: "custom-color",
                     price: productPrices.topcaps["custom-color"][locale],
@@ -59,10 +108,6 @@ export const useTopcapsData = () => {
                     price: productPrices.topcaps["thicker"][locale],
                 },
             ],
-        },
-        "common-options": {
-            type: "titanium-bolt",
-            price: productPrices.topcaps["titanium-bolt"][locale],
         },
     };
 };

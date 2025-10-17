@@ -4,6 +4,7 @@ import Header from "@/components/Header/Header";
 import Main from "@/components/Main";
 import Footer from "@/components/Footer";
 import I18nProvider from "@/providers/I18nProvider";
+import { PopupProvider } from "@/providers/PopupProvider";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const baseUrl = "https://example.com";
@@ -38,11 +39,13 @@ export default async function LocaleLayout({
 
     return (
         <I18nProvider locale={resolvedParams.locale}>
-            <Header locale={resolvedParams.locale} />
-            <Main>
-                {children}
-            </Main>
-            <Footer locale={resolvedParams.locale} />
+            <PopupProvider>
+                <Header locale={resolvedParams.locale} />
+                <Main>
+                    {children}
+                </Main>
+                <Footer locale={resolvedParams.locale} />
+            </PopupProvider>
         </I18nProvider>
     );
 }

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { useKeenSlider } from "keen-slider/react";
 import NavButton from './NavButton/NavButton';
-import CloseButton from './CloseButton/CloseButton';
+import CloseButton from '../CloseButton/CloseButton';
 import { useKeyPress } from '@/hooks/useKeyPress';
 
 interface Props {
@@ -112,7 +112,7 @@ export default function Gallery({ images }: Props) {
                 <>
                     <NavButton direction="prev" onClick={goToPrevSlide} />
                     <NavButton direction="next" onClick={goToNextSlide} />
-                    <CloseButton onClick={closeSlideShowMode} />
+                    <CloseButton onClick={closeSlideShowMode} color='white' />
                 </>
             )}
 

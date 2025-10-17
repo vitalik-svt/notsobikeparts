@@ -6,6 +6,7 @@ import { TopcapCategoryItem } from "@/hooks/useTopcapsGridData";
 import { usePopup } from "@/providers/PopupProvider";
 import ProductGridCardContent from "./ProductGridCard/ProductGridCardContent/ProductGridCardContent";
 import { ProductPriceSettings } from "@/constants/productPrices";
+import { useMemo } from "react";
 
 interface Props {
     items: TopcapCategoryItem[];
@@ -19,8 +20,7 @@ interface Props {
 
 export default function ProductGrid({ items, price, title, additionalPriceOptions }: Props) {
     const { open } = usePopup();
-
-    const allProducts = items.flatMap(category => category.items);
+    const allProducts = useMemo(() => items.flatMap(category => category.items).filter(item => item.isAvailable), [items]);
 
     const openProductCard = (startIndex: number) => {
         open(

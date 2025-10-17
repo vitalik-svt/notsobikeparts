@@ -138,7 +138,7 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
                         <span className='font-bold'>{getTotalPrice()}</span>
                     </p>
                     <Button
-                        onClick={addToCard}
+                        onClick={addToCart}
                         fluid>
                         {t('product.add_to_cart')}
                     </Button>

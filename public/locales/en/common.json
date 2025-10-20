@@ -39,6 +39,7 @@
   "cart.empty": "Your cart is empty",
   "cart.remove_item": "Remove item",
   "cart.tablet.product_label": "Product",
+  "cart.tablet.price_label": "Price",
   "cart.tablet.quantity_label": "Quantity",
   "cart.tablet.subtotal_label": "Subtotal",
   "cart.first_name_label": "First name",

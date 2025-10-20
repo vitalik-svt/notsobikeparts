@@ -39,6 +39,7 @@
   "cart.empty": "Ваша корзина пуста",
   "cart.remove_item": "Удалить товар",
   "cart.tablet.product_label": "Продукт",
+  "cart.tablet.price_label": "Цена",
   "cart.tablet.quantity_label": "Количество",
   "cart.tablet.subtotal_label": "Сумма",
   "cart.first_name_label": "Имя",

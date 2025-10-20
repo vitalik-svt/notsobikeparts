@@ -13,7 +13,7 @@ import Subtext from '@/components/Subtext/Subtext';
 import { formatPrice } from '@/utils/formatPrice';
 import CardNavButton from './CardNavButton/CardNavButton';
 import { useKeyPress } from '@/hooks/useKeyPress';
-import { cartStore } from '@/stores/cartStore';
+import { BoltColor, BoltMaterial, cartStore, ProductParams } from '@/stores/cartStore';
 
 interface Props {
     url: string;
@@ -27,18 +27,9 @@ interface Props {
     goToNext: VoidFunction;
 }
 
-type BoltMaterial = 'none' | 'titanium' | 'steel';
-type BoltColor = 'black' | 'light' | null;
-
-interface ProductParams {
-    bolts: BoltMaterial;
-    boltColor: BoltColor;
-    hasBox: boolean;
-}
-
 export default function ProductGridCardContent({ url, price, title, additionalPriceOptions, goToPrev, goToNext }: Props) {
     const { t } = useTranslation();
-    const { inc } = cartStore();
+    const { addItem } = cartStore();
 
     const titaniumBoltPrice = useFormattedPrice(additionalPriceOptions.find(option => option.type === 'titanium-bolt')?.price);
 
@@ -84,7 +75,15 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
             productParams
         });
 
-        inc();
+        addItem({
+            // TODO: generate unique ID
+            id: `${title}-${url}-${JSON.stringify(productParams)}`,
+            quantity: 1,
+            url,
+            title,
+            price,
+            productParams
+        });
     }
 
     return (

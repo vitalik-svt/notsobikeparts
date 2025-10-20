@@ -2,6 +2,7 @@ import { cartStore } from "@/stores/cartStore";
 import { MenuItem } from "@/types/menu";
 import Image from "next/image";
 import Link from "next/link";
+
 interface Props {
     item: MenuItem;
     collapsed: boolean;

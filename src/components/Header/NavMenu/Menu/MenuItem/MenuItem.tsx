@@ -2,8 +2,6 @@ import { cartStore } from "@/stores/cartStore";
 import { MenuItem } from "@/types/menu";
 import Image from "next/image";
 import Link from "next/link";
-import { useStore } from "zustand/react";
-
 interface Props {
     item: MenuItem;
     collapsed: boolean;

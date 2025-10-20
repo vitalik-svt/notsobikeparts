@@ -13,6 +13,7 @@ import Subtext from '@/components/Subtext/Subtext';
 import { formatPrice } from '@/utils/formatPrice';
 import CardNavButton from './CardNavButton/CardNavButton';
 import { useKeyPress } from '@/hooks/useKeyPress';
+import { cartStore } from '@/stores/cartStore';
 
 interface Props {
     url: string;
@@ -37,6 +38,7 @@ interface ProductParams {
 
 export default function ProductGridCardContent({ url, price, title, additionalPriceOptions, goToPrev, goToNext }: Props) {
     const { t } = useTranslation();
+    const { inc } = cartStore();
 
     const titaniumBoltPrice = useFormattedPrice(additionalPriceOptions.find(option => option.type === 'titanium-bolt')?.price);
 
@@ -81,6 +83,8 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
             additionalPriceOptions,
             productParams
         });
+
+        inc();
     }
 
     return (

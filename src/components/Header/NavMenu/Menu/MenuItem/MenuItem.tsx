@@ -1,6 +1,8 @@
+import { cartStore } from "@/stores/cartStore";
 import { MenuItem } from "@/types/menu";
 import Image from "next/image";
 import Link from "next/link";
+import { useStore } from "zustand/react";
 
 interface Props {
     item: MenuItem;
@@ -10,9 +12,17 @@ interface Props {
 }
 
 export default function MenuItemControl({ item, collapsed, onClick, labelClassName }: Props) {
+    const { count } = cartStore();
+
     return item.href ? (
-        <Link href={item.href} className={`block px-5 py-2 lowercase hover:text-blue-500 md:px-10 ${labelClassName}`}>
+        <Link href={item.href} className={`flex items-center relative px-5 py-2 lowercase hover:text-blue-500 md:px-10 ${labelClassName}`}>
             {item.label}
+
+            {item.hasCounter && count !== 0 ? (
+                <span className="ml-2 inline-block bg-black text-white text-xs font-semibold px-2 py-1 rounded-full">
+                    {count}
+                </span>
+            ) : null}
         </Link>
     ) : (
         <button className={`flex justify-between items-stretch w-full lowercase`} onClick={onClick}>

@@ -75,8 +75,9 @@ export const useHeaderMenuOptions = () => {
             ]
         },
         {
-            label: t("menu.buy"),
-            href: ROUTES.BUY,
+            label: t("menu.cart"),
+            href: ROUTES.CART,
+            hasCounter: true,
         }
     ];
 

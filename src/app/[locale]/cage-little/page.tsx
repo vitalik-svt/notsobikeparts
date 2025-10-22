@@ -11,14 +11,14 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
-import { useCartStore } from "@/stores/cartStore";
+import { cartStore } from "@/stores/cartStore";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function LittleCagePage() {
     const [quantity, setQuantity] = useState(1)
     const cages = useCagesProductData();
-    const { addItem } = useCartStore();
+    const { addItem } = cartStore();
     const { t: tCommon } = useTranslation('common');
 
     const addToCart = () => {

@@ -1,7 +1,7 @@
 'use client';
 
 import InputNumber from "@/components/InputNumber/InputNumber";
-import { BoltColor, BoltMaterial, CartItem, TopcapOptions } from "@/stores/cartStore";
+import { BoltColor, BoltMaterial, CartItem, cartStore, TopcapOptions } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
@@ -13,6 +13,7 @@ interface Props {
 
 export default function CartTable({ items }: Props) {
     const { t } = useTranslation();
+    const { removeItem } = cartStore();
 
     return (
         <table className="table-fixed w-full text-left border-collapse lowercase">
@@ -46,7 +47,10 @@ export default function CartTable({ items }: Props) {
                         </td>
                         <td className="border-b-2 p-4">{formatPrice({ ...item.price, amount: item.price.amount * item.quantity })}</td>
                         <td className="border-b-2 p-4 w-16">
-                            <button className="bg-transparent border-none p-0 m-0 cursor-pointer w-10 h-10 flex items-center justify-center">
+                            <button
+                                className="bg-transparent border-none p-0 m-0 cursor-pointer w-10 h-10 flex items-center justify-center"
+                                onClick={() => removeItem(item.id)}
+                            >
                                 <Image src="/icons/bin.webp" alt="Remove" width={24} height={24} />
                             </button>
                         </td>

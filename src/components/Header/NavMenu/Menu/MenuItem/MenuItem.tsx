@@ -1,6 +1,6 @@
 'use client';
 
-import { useCartStore } from "@/stores/cartStore";
+import { cartStore } from "@/stores/cartStore";
 import { MenuItem } from "@/types/menu";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function MenuItemControl({ item, collapsed, onClick, labelClassName }: Props) {
-    const count = useCartStore((state) => state.count);
+    const count = cartStore((state) => state.count);
 
     return item.href ? (
         <Link href={item.href} className={`flex items-center relative px-5 py-2 lowercase hover:text-blue-500 md:px-10 ${labelClassName}`}>

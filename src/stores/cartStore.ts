@@ -26,10 +26,11 @@ interface Store {
 	count: number;
 	inc: () => void;
 	addItem: (item: CartItem) => void;
+	removeItem: (id: string) => void;
 	items: CartItem[];
 }
 
-export const useCartStore = create<Store>()(
+export const cartStore = create<Store>()(
 	persist(
 		(set) => ({
 			count: 1,

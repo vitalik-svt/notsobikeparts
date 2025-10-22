@@ -13,7 +13,7 @@ import Subtext from '@/components/Subtext/Subtext';
 import { formatPrice } from '@/utils/formatPrice';
 import CardNavButton from './CardNavButton/CardNavButton';
 import { useKeyPress } from '@/hooks/useKeyPress';
-import { BoltColor, BoltMaterial, useCartStore, ProductParams } from '@/stores/cartStore';
+import { BoltColor, BoltMaterial, cartStore, ProductParams } from '@/stores/cartStore';
 import { AdditionalPriceOption } from '@/hooks/useTopcapsData';
 
 interface Props {
@@ -27,7 +27,7 @@ interface Props {
 
 export default function ProductGridCardContent({ url, price, title, additionalPriceOptions, goToPrev, goToNext }: Props) {
     const { t } = useTranslation();
-    const { addItem } = useCartStore();
+    const { addItem } = cartStore();
 
     const titaniumBoltPrice = useFormattedPrice(additionalPriceOptions.find(option => option.type === 'titanium')?.price);
 

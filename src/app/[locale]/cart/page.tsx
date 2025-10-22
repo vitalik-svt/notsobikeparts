@@ -3,13 +3,13 @@
 import Button from "@/components/Button/Button";
 import CartTable from "@/components/CartTable/CartTable";
 import ProductPage from "@/components/ProductPage/ProductPage";
-import { useCartStore } from "@/stores/cartStore";
+import { cartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
 import { useTranslation } from "react-i18next";
 
 export default function CartPage() {
     const { t } = useTranslation();
-    const { items } = useCartStore();
+    const { items } = cartStore();
 
     console.log('items', items)
 

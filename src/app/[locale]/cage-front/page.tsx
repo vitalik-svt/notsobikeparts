@@ -14,17 +14,31 @@ import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import Select from "@/components/Select";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
+import { CageColor, cartStore } from "@/stores/cartStore";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 
 export default function FrontCagePage() {
-	const [quantity, setQuantity] = useState(1);
 	const cages = useCagesProductData();
+	const [colorOption, setColorOption] = useState<CageColor>(cages.front.colorOptions[0].value);
+	const [quantity, setQuantity] = useState(1);
+	const { addItem } = cartStore();
 	const { t: tCommon } = useTranslation('common');
 	const { t: tCages } = useTranslation('cages');
 
-	const addToCart = () => {}
+	const addToCart = () => {
+		addItem({
+			id: cages.front.images[0] + '-' + colorOption,
+			url: cages.front.images[0],
+			title: cages.front.name,
+			price: cages.front.price as ProductPriceSettings,
+			quantity,
+			productParams: {
+				cageColor: colorOption,
+			}
+		});
+	};
 
 	return (
 		<ProductPage>
@@ -42,7 +56,8 @@ export default function FrontCagePage() {
 					<OptionsCountBlock>
 						<Select
 							options={cages.front.colorOptions}
-							onChange={() => { }}
+							value={colorOption}
+							onChange={(value: string) => setColorOption(value as CageColor)}
 							fluid
 						/>
 						<RowWrapper>

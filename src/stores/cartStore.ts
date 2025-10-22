@@ -6,12 +6,19 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 export type BoltMaterial = 'none' | 'titanium' | 'steel';
 export type TopcapOptions = 'custom-color' | 'thicker';
 export type BoltColor = 'black' | 'light' | null;
+export type CageColor = 'black' | 'aluminum';
 
-export interface ProductParams {
+export interface TopcapParams {
 	bolts: BoltMaterial;
 	boltColor: BoltColor;
 	hasBox: boolean;
 }
+
+export interface CageParams {
+	cageColor: CageColor;
+}
+
+export type ProductParams = Partial<TopcapParams & CageParams>;
 
 export interface CartItem {
 	id: string

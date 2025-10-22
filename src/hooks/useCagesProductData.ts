@@ -1,6 +1,7 @@
 import { ProductCageType, productPrices, ProductPriceSettings } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
+import { CageColor } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { useTranslation } from "react-i18next";
 
@@ -8,7 +9,7 @@ interface CageSettings {
     name: string;
     images: string[];
     description: string;
-    colorOptions: { label: string; value: string }[];
+    colorOptions: { label: string; value: CageColor }[];
     price: ProductPriceSettings;
     features: string[];
     characteristics: string[];

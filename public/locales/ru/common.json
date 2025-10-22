@@ -55,8 +55,11 @@
   "cart.order_comment_label": "Комментарий к заказу",
   "cart.order_comment_placeholder": "Задайте нам вопрос или уточните детали заказа",
   "cart.bolt_color": "Цвет болта",
+  "cart.color_label": "Цвет",
   "cart.bolt_material": "Материал",
   "cart.box": "Упаковка",
   "cart.total_price": "Общая сумма: {{priceWithCurrency}}",
+  "cart.yes_label": "Да",
+  "cart.no_label": "Нет",
   "cart.checkout": "Оформить заказ"
 }

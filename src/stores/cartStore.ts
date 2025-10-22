@@ -30,42 +30,53 @@ export interface CartItem {
 }
 
 interface Store {
-	count: number;
+	totalCount: number;
 	inc: () => void;
 	addItem: (item: CartItem) => void;
 	removeItem: (id: string) => void;
+	changeQuantity: (id: string, quantity: number) => void;
 	items: CartItem[];
 }
 
 export const cartStore = create<Store>()(
 	persist(
 		(set) => ({
-			count: 1,
-			inc: () => set((state) => ({ count: state.count + 1 })),
+			totalCount: 1,
+			inc: () => set((state) => ({ totalCount: state.totalCount + 1 })),
 			addItem: (item: CartItem) => set((state) => {
 				const newItems = [...state.items, item];
 
-				return ({ items: newItems, count: newItems.length });
+				return ({ items: newItems, totalCount: state.totalCount + item.quantity });
 			}),
-			removeItem: (id: string) => set((state) => ({ items: state.items.filter(item => item.id !== id) })),
-			items: [
-				{
-					"url": "/images/topcaps/serial/items/product-pic-1.avif",
-					"title": "Топкэпы",
-					"price": {
-						"amount": 1500,
-						"currency": "RUB",
-						"locale": "ru-RU"
-					},
-					"productParams": {
-						"bolts": "titanium",
-						"boltColor": "light",
-						"hasBox": true
-					},
-					id: '',
-					quantity: 1,
-				}
-			],
+			removeItem: (id: string) => set((state) => {
+				const newItems = state.items.filter(item => item.id !== id);
+				const newCount = newItems.reduce((sum, item) => sum + item.quantity, 0);
+
+				return { items: newItems, totalCount: newCount };
+			}),
+			changeQuantity: (id: string, quantity: number) => set((state) => {
+				let newTotal = 0;
+				const newItems = state.items.reduce((acc: CartItem[], item) => {
+					if (item.id === id) {
+						if (quantity === 0) {
+							return acc;
+						}
+
+						acc.push({ ...item, quantity });
+						newTotal += quantity;
+
+						return acc;
+					}
+					
+					acc.push(item);
+					newTotal += item.quantity;
+
+					return acc;
+				}, []);
+
+				return { items: newItems, totalCount: newTotal };
+			}),
+			items: [],
 		}),
 		{
 			name: 'cart-storage',

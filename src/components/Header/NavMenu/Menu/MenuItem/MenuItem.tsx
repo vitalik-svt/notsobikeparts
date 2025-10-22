@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function MenuItemControl({ item, collapsed, onClick, labelClassName }: Props) {
-    const count = cartStore((state) => state.count);
+    const count = cartStore((state) => state.totalCount);
 
     return item.href ? (
         <Link href={item.href} className={`flex items-center relative px-5 py-2 lowercase hover:text-blue-500 md:px-10 ${labelClassName}`}>

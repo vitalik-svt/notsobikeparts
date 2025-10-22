@@ -13,7 +13,7 @@ interface Props {
 
 export default function CartTable({ items }: Props) {
     const { t } = useTranslation();
-    const { removeItem } = cartStore();
+    const { removeItem, changeQuantity } = cartStore();
 
     return (
         <table className="table-fixed w-full text-left border-collapse lowercase">
@@ -43,7 +43,10 @@ export default function CartTable({ items }: Props) {
                         </td>
                         <td className="border-b-2 p-4 w-32">{formatPrice(item.price)}</td>
                         <td className="border-b-2 p-4 w-32">
-                            <InputNumber value={item.quantity} onChange={(value) => console.log(value)} />
+                            <InputNumber
+                                value={item.quantity}
+                                onChange={(value) => changeQuantity(item.id, value)}
+                            />
                         </td>
                         <td className="border-b-2 p-4">{formatPrice({ ...item.price, amount: item.price.amount * item.quantity })}</td>
                         <td className="border-b-2 p-4 w-16">

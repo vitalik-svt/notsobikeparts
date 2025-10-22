@@ -10,6 +10,11 @@ export const useChainBreakerData = () => {
 
     const chainBreaker = {
         name: t(`chainBreaker.name`),
+        images: [
+            "/images/chain-breaker/product-pic-1.avif",
+            "/images/chain-breaker/product-pic-2.avif",
+            "/images/chain-breaker/product-pic-3.avif",
+        ],
         description: t(`chainBreaker.description`),
         colorOptions: [],
         price: productPrices.chainBreaker["one-price"][locale],

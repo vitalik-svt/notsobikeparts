@@ -8,7 +8,7 @@ interface Props {
 const InputNumber: FC<Props> = ({ value, onChange }) => (
     <input
         type="number"
-        min={1}
+        min={0}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         className="w-21 h-12 px-4 border-2 rounded"

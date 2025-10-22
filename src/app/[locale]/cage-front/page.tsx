@@ -14,13 +14,17 @@ import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import Select from "@/components/Select";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 
 export default function FrontCagePage() {
+	const [quantity, setQuantity] = useState(1);
 	const cages = useCagesProductData();
 	const { t: tCommon } = useTranslation('common');
 	const { t: tCages } = useTranslation('cages');
+
+	const addToCart = () => {}
 
 	return (
 		<ProductPage>
@@ -42,8 +46,16 @@ export default function FrontCagePage() {
 							fluid
 						/>
 						<RowWrapper>
-							<InputNumber value={1} onChange={() => { }} />
-							<Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
+							<InputNumber
+								value={quantity}
+								onChange={setQuantity}
+							/>
+							<Button
+								onClick={addToCart}
+								fluid
+							>
+								{tCommon("product.add_to_cart")}
+							</Button>
 						</RowWrapper>
 					</OptionsCountBlock>
 				</ProductMainInfo>

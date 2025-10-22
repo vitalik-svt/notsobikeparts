@@ -13,9 +13,11 @@ import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import Select from "@/components/Select";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function CageVolumePage() {
+    const [quantity, setQuantity] = useState(1);
     const cages = useCagesProductData();
     const { t: tCommon } = useTranslation('common');
     const { t: tCages } = useTranslation('cages');
@@ -41,7 +43,7 @@ export default function CageVolumePage() {
                             fluid
                         />
                         <RowWrapper>
-                            <InputNumber value={1} onChange={() => { }} />
+                            <InputNumber value={quantity} onChange={setQuantity} />
                             <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
                         </RowWrapper>
                     </OptionsCountBlock>

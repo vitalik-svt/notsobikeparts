@@ -11,6 +11,7 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { useMerchData } from "@/hooks/useMerchData";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const images = [
@@ -20,6 +21,7 @@ const images = [
 ];
 
 export default function MerchPage() {
+    const [quantity, setQuantity] = useState(1);
     const { t: tCommon } = useTranslation('common');
     const { t: tMerch } = useTranslation('merch');
     const merch = useMerchData();
@@ -39,7 +41,7 @@ export default function MerchPage() {
 
                     <OptionsCountBlock>
                         <RowWrapper>
-                            <InputNumber />
+                            <InputNumber value={quantity} onChange={setQuantity} />
                             <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
                         </RowWrapper>
                     </OptionsCountBlock>

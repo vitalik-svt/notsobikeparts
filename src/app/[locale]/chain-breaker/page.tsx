@@ -9,6 +9,7 @@ import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
 import { useChainBreakerData } from "@/hooks/useChainBreakerData";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const images = [
@@ -18,6 +19,7 @@ const images = [
 ];
 
 export default function ChainBreakerPage() {
+    const [quantity, setQuantity] = useState(1);
     const { t: tCommon } = useTranslation('common');
     const chainBreakerData = useChainBreakerData();
 
@@ -33,7 +35,7 @@ export default function ChainBreakerPage() {
                 >
                     <OptionsCountBlock>
                         <div className="flex items-center gap-4">
-                            <InputNumber />
+                            <InputNumber value={quantity} onChange={setQuantity} />
                             <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
                         </div>
                     </OptionsCountBlock>

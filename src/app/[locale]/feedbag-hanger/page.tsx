@@ -11,6 +11,7 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { useFeedbagHangerData } from "@/hooks/useFeedbagHangerData";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const images = [
@@ -22,6 +23,7 @@ const images = [
 ];
 
 export default function FeedbagHangerPage() {
+    const [quantity, setQuantity] = useState(1);
     const { t: tCommon } = useTranslation('common');
     const { t: tFeedbagHanger } = useTranslation('feedbagHanger');
     const feedbagHangerData = useFeedbagHangerData();
@@ -41,7 +43,7 @@ export default function FeedbagHangerPage() {
 
                     <OptionsCountBlock>
                         <RowWrapper>
-                            <InputNumber value={0} onChange={() => { }} />
+                            <InputNumber value={quantity} onChange={setQuantity} />
                             <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
                         </RowWrapper>
                     </OptionsCountBlock>

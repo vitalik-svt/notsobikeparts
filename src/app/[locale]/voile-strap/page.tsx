@@ -24,6 +24,7 @@ const images = [
 ];
 
 export default function VoileStrapPage() {
+    const [quantity, setQuantity] = useState(1);
     const { voile } = useVoileProductData();
     const { t: tCommon } = useTranslation('common');
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
@@ -45,7 +46,7 @@ export default function VoileStrapPage() {
                             fluid
                         />
                         <RowWrapper>
-                            <InputNumber />
+                            <InputNumber value={quantity} onChange={setQuantity} />
                             <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
                         </RowWrapper>
                     </OptionsCountBlock>

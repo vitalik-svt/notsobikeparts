@@ -31,7 +31,6 @@ export interface CartItem {
 
 interface Store {
 	totalCount: number;
-	inc: () => void;
 	addItem: (item: CartItem) => void;
 	removeItem: (id: string) => void;
 	changeQuantity: (id: string, quantity: number) => void;
@@ -41,12 +40,34 @@ interface Store {
 export const cartStore = create<Store>()(
 	persist(
 		(set) => ({
-			totalCount: 1,
-			inc: () => set((state) => ({ totalCount: state.totalCount + 1 })),
+			totalCount: 0,
 			addItem: (item: CartItem) => set((state) => {
-				const newItems = [...state.items, item];
+				let found = false;
+				let newTotal = 0;
 
-				return ({ items: newItems, totalCount: state.totalCount + item.quantity });
+				const newItems = state.items.reduce((acc: CartItem[], it) => {
+					if (it.id === item.id) {
+						found = true;
+						const updated = { ...it, quantity: it.quantity + item.quantity };
+						acc.push(updated);
+						newTotal += updated.quantity;
+					} else {
+						acc.push(it);
+						newTotal += it.quantity;
+					}
+
+					return acc;
+				}, []);
+
+				if (!found) {
+					newItems.push(item);
+					newTotal += item.quantity;
+				}
+
+				return { 
+					items: newItems, 
+					totalCount: newTotal 
+				};
 			}),
 			removeItem: (id: string) => set((state) => {
 				const newItems = state.items.filter(item => item.id !== id);
@@ -67,7 +88,7 @@ export const cartStore = create<Store>()(
 
 						return acc;
 					}
-					
+
 					acc.push(item);
 					newTotal += item.quantity;
 

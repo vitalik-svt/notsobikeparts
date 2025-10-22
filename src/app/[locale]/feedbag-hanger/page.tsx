@@ -41,7 +41,7 @@ export default function FeedbagHangerPage() {
 
                     <OptionsCountBlock>
                         <RowWrapper>
-                            <InputNumber />
+                            <InputNumber value={0} onChange={() => { }} />
                             <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
                         </RowWrapper>
                     </OptionsCountBlock>

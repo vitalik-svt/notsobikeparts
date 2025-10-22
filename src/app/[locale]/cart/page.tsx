@@ -3,15 +3,19 @@
 import Button from "@/components/Button/Button";
 import CartTable from "@/components/CartTable/CartTable";
 import ProductPage from "@/components/ProductPage/ProductPage";
-import { cartStore } from "@/stores/cartStore";
+import { useCartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
 import { useTranslation } from "react-i18next";
 
 export default function CartPage() {
     const { t } = useTranslation();
-    const { items } = cartStore();
+    const { items } = useCartStore();
 
     console.log('items', items)
+
+    const totalPrice = items.reduce((total, item) => {
+        return total + item.price.amount * item.quantity;
+    }, 0);
 
     return (
         <ProductPage>
@@ -21,8 +25,8 @@ export default function CartPage() {
             <CartTable items={items} />
 
             <div className="flex flex-col gap-2 text-right items-end w-4/12 ms-auto">
-                <p className="lowercase">
-                    {t("cart.total_price", { priceWithCurrency: formatPrice({ ...items[0].price, amount: items[0].price.amount * items[0].quantity }) })}
+                <p className="uppercase font-bold ">
+                    {t("cart.total_price", { priceWithCurrency: formatPrice({ ...items[0].price, amount: totalPrice }) })}
                 </p>
                 <Button
                     onClick={() => { }} fluid

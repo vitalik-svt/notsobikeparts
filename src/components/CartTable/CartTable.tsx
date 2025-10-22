@@ -1,10 +1,11 @@
 'use client';
 
 import InputNumber from "@/components/InputNumber/InputNumber";
-import { CartItem } from "@/stores/cartStore";
+import { BoltColor, BoltMaterial, CartItem, TopcapOptions } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import ProductOptionParams from "./ProductOptionParams/ProductOptionParams";
 
 interface Props {
     items: CartItem[]
@@ -36,20 +37,7 @@ export default function CartTable({ items }: Props) {
                         <td className="border-b-2 p-4 w-32">
                             <div className="flex flex-col gap-2">
                                 <span>{item.title}</span>
-                                <div className="flex flex-col text-sm leading-4.5">
-                                    <p className="flex gap-1">
-                                        <span className="font-bold">цвет болта:</span>
-                                        <span>светлый</span>
-                                    </p>
-                                    <p className="flex gap-1">
-                                        <span className="font-bold">материал:</span>
-                                        <span>титан</span>
-                                    </p>
-                                    <p className="flex gap-1">
-                                        <span className="font-bold">упаковка:</span>
-                                        <span>да</span>
-                                    </p>
-                                </div>
+                                {item.productParams && <ProductOptionParams productParams={item.productParams} />}
                             </div>
                         </td>
                         <td className="border-b-2 p-4 w-32">{formatPrice(item.price)}</td>

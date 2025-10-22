@@ -11,7 +11,7 @@ export interface ProductParams {
   hasBox: boolean;
 }
 
-interface CartItem {
+export interface CartItem {
   id: string
   quantity: number,
   url: string;

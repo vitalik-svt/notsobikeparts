@@ -13,14 +13,6 @@ import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useTranslation } from "react-i18next";
 
-const images = [
-    "/images/cages/little/product-pic-1.avif",
-    "/images/cages/little/product-pic-2.avif",
-    "/images/cages/little/product-pic-3.avif",
-    "/images/cages/little/product-pic-4.avif",
-    "/images/cages/little/product-pic-5.avif",
-];
-
 export default function LittleCagePage() {
     const cages = useCagesProductData();
     const { t: tCommon } = useTranslation('common');
@@ -28,7 +20,7 @@ export default function LittleCagePage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={images} />
+                <Gallery images={cages.little.images} />
                 <ProductMainInfo
                     title={cages.little.name}
                     price={cages.little.price as ProductPriceSettings}
@@ -36,7 +28,7 @@ export default function LittleCagePage() {
                 >
                     <OptionsCountBlock>
                         <RowWrapper>
-                            <InputNumber />
+                            <InputNumber value={1} onChange={(value) => console.log(value)} />
                             <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
                         </RowWrapper>
                     </OptionsCountBlock>

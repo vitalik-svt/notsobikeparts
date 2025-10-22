@@ -16,16 +16,6 @@ import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useTranslation } from "react-i18next";
 
-const images = [
-	"/images/cages/front/product-pic-0.avif",
-	"/images/cages/front/product-pic-2.avif",
-	"/images/cages/front/product-pic-1.avif",
-	"/images/cages/front/product-pic-3.avif",
-	"/images/cages/front/product-pic-4.avif",
-	"/images/cages/front/product-pic-5.avif",
-	"/images/cages/front/product-pic-6.avif",
-	"/images/cages/front/product-pic-7.avif",
-];
 
 export default function FrontCagePage() {
 	const cages = useCagesProductData();
@@ -35,7 +25,7 @@ export default function FrontCagePage() {
 	return (
 		<ProductPage>
 			<ProductMain>
-				<Gallery images={images} />
+				<Gallery images={cages.front.images} />
 				<ProductMainInfo
 					title={cages.front.name}
 					price={cages.front.price as ProductPriceSettings}
@@ -52,7 +42,7 @@ export default function FrontCagePage() {
 							fluid
 						/>
 						<RowWrapper>
-							<InputNumber />
+							<InputNumber value={1} onChange={() => { }} />
 							<Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
 						</RowWrapper>
 					</OptionsCountBlock>

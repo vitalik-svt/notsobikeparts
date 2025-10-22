@@ -15,14 +15,6 @@ import Select from "@/components/Select";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useTranslation } from "react-i18next";
 
-const images = [
-    "/images/cages/volume/product-pic-1.avif",
-    "/images/cages/volume/product-pic-2.avif",
-    "/images/cages/volume/product-pic-3.avif",
-    "/images/cages/volume/product-pic-4.avif",
-    "/images/cages/volume/product-pic-5.avif",
-];
-
 export default function CageVolumePage() {
     const cages = useCagesProductData();
     const { t: tCommon } = useTranslation('common');
@@ -31,7 +23,7 @@ export default function CageVolumePage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={images} />
+                <Gallery images={cages.volume.images} />
                 <ProductMainInfo
                     title={cages.volume.name}
                     price={cages.volume.price}
@@ -49,7 +41,7 @@ export default function CageVolumePage() {
                             fluid
                         />
                         <RowWrapper>
-                            <InputNumber />
+                            <InputNumber value={1} onChange={() => { }} />
                             <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
                         </RowWrapper>
                     </OptionsCountBlock>

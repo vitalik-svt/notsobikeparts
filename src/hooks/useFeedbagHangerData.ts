@@ -10,6 +10,13 @@ export function useFeedbagHangerData() {
 
     const feedbagHanger = {
         name: t(`feedbagHanger.name`),
+        images: [
+            "/images/feedbag-hanger/product-pic-1.avif",
+            "/images/feedbag-hanger/product-pic-2.avif",
+            "/images/feedbag-hanger/product-pic-3.avif",
+            "/images/feedbag-hanger/product-pic-4.avif",
+            "/images/feedbag-hanger/product-pic-5.avif",
+        ],
         description: t(`feedbagHanger.description`),
         colorOptions: [],
         price: productPrices.feedbagHanger["one-price"][locale],

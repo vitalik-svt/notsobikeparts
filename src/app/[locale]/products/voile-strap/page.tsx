@@ -14,25 +14,36 @@ import { ProductVoileType } from "@/constants/productPrices";
 import { useVoileProductData } from "@/hooks/useVoileProductData";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
+import { cartStore } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const images = [
-    "/images/voile/product-pic-1.avif",
-    "/images/voile/product-pic-2.avif",
-];
-
 export default function VoileStrapPage() {
+    const [quantity, setQuantity] = useState(1);
     const { voile } = useVoileProductData();
     const { t: tCommon } = useTranslation('common');
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
-    const [currentOption, setCurrentOption] = useState<ProductVoileType>('nine-black')
+    const [currentOption, setCurrentOption] = useState<ProductVoileType>('nine-black');
+    const { addItem } = cartStore();
+
+    const addToCart = () => {
+        addItem({
+            id: `voile-${currentOption}`,
+            quantity,
+            url: voile.images[0],
+            title: voile.name,
+            price: voile.price[currentOption][locale],
+            productParams: {
+                voileType: currentOption,
+            },
+        });
+    };
 
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={images} />
+                <Gallery images={voile.images} />
                 <ProductMainInfo
                     title={voile.name}
                     price={voile.price[currentOption][locale]}
@@ -45,8 +56,11 @@ export default function VoileStrapPage() {
                             fluid
                         />
                         <RowWrapper>
-                            <InputNumber />
-                            <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
+                            <InputNumber value={quantity} onChange={setQuantity} />
+                            <Button
+                                onClick={addToCart}
+                                fluid
+                            >{tCommon("product.add_to_cart")}</Button>
                         </RowWrapper>
                     </OptionsCountBlock>
                 </ProductMainInfo>

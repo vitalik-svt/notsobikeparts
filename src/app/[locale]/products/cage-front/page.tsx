@@ -14,28 +14,36 @@ import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import Select from "@/components/Select";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
+import { CageColor, cartStore } from "@/stores/cartStore";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const images = [
-	"/images/cages/front/product-pic-0.avif",
-	"/images/cages/front/product-pic-2.avif",
-	"/images/cages/front/product-pic-1.avif",
-	"/images/cages/front/product-pic-3.avif",
-	"/images/cages/front/product-pic-4.avif",
-	"/images/cages/front/product-pic-5.avif",
-	"/images/cages/front/product-pic-6.avif",
-	"/images/cages/front/product-pic-7.avif",
-];
 
 export default function FrontCagePage() {
 	const cages = useCagesProductData();
+	const [colorOption, setColorOption] = useState<CageColor>(cages.front.colorOptions[0].value);
+	const [quantity, setQuantity] = useState(1);
+	const { addItem } = cartStore();
 	const { t: tCommon } = useTranslation('common');
 	const { t: tCages } = useTranslation('cages');
+
+	const addToCart = () => {
+		addItem({
+			id: `cage-front-${colorOption}`,
+			url: cages.front.images[0],
+			title: cages.front.name,
+			price: cages.front.price as ProductPriceSettings,
+			quantity,
+			productParams: {
+				cageColor: colorOption,
+			}
+		});
+	};
 
 	return (
 		<ProductPage>
 			<ProductMain>
-				<Gallery images={images} />
+				<Gallery images={cages.front.images} />
 				<ProductMainInfo
 					title={cages.front.name}
 					price={cages.front.price as ProductPriceSettings}
@@ -48,12 +56,21 @@ export default function FrontCagePage() {
 					<OptionsCountBlock>
 						<Select
 							options={cages.front.colorOptions}
-							onChange={() => { }}
+							value={colorOption}
+							onChange={(value: string) => setColorOption(value as CageColor)}
 							fluid
 						/>
 						<RowWrapper>
-							<InputNumber />
-							<Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
+							<InputNumber
+								value={quantity}
+								onChange={setQuantity}
+							/>
+							<Button
+								onClick={addToCart}
+								fluid
+							>
+								{tCommon("product.add_to_cart")}
+							</Button>
 						</RowWrapper>
 					</OptionsCountBlock>
 				</ProductMainInfo>

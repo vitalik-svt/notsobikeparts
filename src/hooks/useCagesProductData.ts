@@ -1,17 +1,21 @@
 import { ProductCageType, productPrices, ProductPriceSettings } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
+import { CageColor } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { useTranslation } from "react-i18next";
 
 interface CageSettings {
     name: string;
+    images: string[];
     description: string;
-    colorOptions: { label: string; value: string }[];
+    colorOptions: { label: string; value: CageColor }[];
     price: ProductPriceSettings;
     features: string[];
     characteristics: string[];
 }
+
+const baseImgUrl = "/images/cages";
 
 export const useCagesProductData = () => {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
@@ -20,6 +24,16 @@ export const useCagesProductData = () => {
     const cages: Record<ProductCageType, CageSettings> = {
         front: {
             name: t(`front.name`),
+            images: [
+                `${baseImgUrl}/front/product-pic-0.avif`,
+                `${baseImgUrl}/front/product-pic-2.avif`,
+                `${baseImgUrl}/front/product-pic-1.avif`,
+                `${baseImgUrl}/front/product-pic-3.avif`,
+                `${baseImgUrl}/front/product-pic-4.avif`,
+                `${baseImgUrl}/front/product-pic-5.avif`,
+                `${baseImgUrl}/front/product-pic-6.avif`,
+                `${baseImgUrl}/front/product-pic-7.avif`,
+            ],
             description: t(`front.description`),
             colorOptions: [
                 { label: t(`front.color_options.1`), value: 'black' },
@@ -43,6 +57,13 @@ export const useCagesProductData = () => {
         },
         volume: {
             name: t(`volume.name`),
+            images: [
+                `${baseImgUrl}/volume/product-pic-1.avif`,
+                `${baseImgUrl}/volume/product-pic-2.avif`,
+                `${baseImgUrl}/volume/product-pic-3.avif`,
+                `${baseImgUrl}/volume/product-pic-4.avif`,
+                `${baseImgUrl}/volume/product-pic-5.avif`,
+            ],
             description: t(`volume.description.1`),
             colorOptions: [
                 { label: t(`volume.color_options.1`), value: 'black' },
@@ -65,6 +86,13 @@ export const useCagesProductData = () => {
             ]
         },
         little: {
+            images: [
+                `${baseImgUrl}/little/product-pic-1.avif`,
+                `${baseImgUrl}/little/product-pic-2.avif`,
+                `${baseImgUrl}/little/product-pic-3.avif`,
+                `${baseImgUrl}/little/product-pic-4.avif`,
+                `${baseImgUrl}/little/product-pic-5.avif`,
+            ],
             name: t(`little.name`),
             description: t(`little.description`),
             colorOptions: [],

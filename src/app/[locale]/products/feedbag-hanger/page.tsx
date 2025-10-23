@@ -11,25 +11,31 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { useFeedbagHangerData } from "@/hooks/useFeedbagHangerData";
+import { cartStore } from "@/stores/cartStore";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const images = [
-    "/images/feedbag-hanger/product-pic-1.avif",
-    "/images/feedbag-hanger/product-pic-2.avif",
-    "/images/feedbag-hanger/product-pic-3.avif",
-    "/images/feedbag-hanger/product-pic-4.avif",
-    "/images/feedbag-hanger/product-pic-5.avif",
-];
-
 export default function FeedbagHangerPage() {
+    const [quantity, setQuantity] = useState(1);
+    const { addItem } = cartStore();
     const { t: tCommon } = useTranslation('common');
     const { t: tFeedbagHanger } = useTranslation('feedbagHanger');
     const feedbagHangerData = useFeedbagHangerData();
 
+    const addToCart = () => {
+        addItem({
+            id: 'feedbag-hanger',
+            quantity,
+            url: feedbagHangerData.images[0],
+            title: feedbagHangerData.name,
+            price: feedbagHangerData.price,
+        });
+    };
+
     return (
         <ProductPage>
-             <ProductMain>
-                <Gallery images={images} />
+            <ProductMain>
+                <Gallery images={feedbagHangerData.images} />
                 <ProductMainInfo
                     title={feedbagHangerData.name}
                     price={feedbagHangerData.price}
@@ -41,12 +47,17 @@ export default function FeedbagHangerPage() {
 
                     <OptionsCountBlock>
                         <RowWrapper>
-                            <InputNumber />
-                            <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
+                            <InputNumber value={quantity} onChange={setQuantity} />
+                            <Button
+                                onClick={addToCart}
+                                fluid
+                            >
+                                {tCommon("product.add_to_cart")}
+                            </Button>
                         </RowWrapper>
                     </OptionsCountBlock>
                 </ProductMainInfo>
-             </ProductMain>
+            </ProductMain>
         </ProductPage>
     )
 }

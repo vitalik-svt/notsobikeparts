@@ -11,24 +11,30 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
+import { cartStore } from "@/stores/cartStore";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const images = [
-    "/images/cages/little/product-pic-1.avif",
-    "/images/cages/little/product-pic-2.avif",
-    "/images/cages/little/product-pic-3.avif",
-    "/images/cages/little/product-pic-4.avif",
-    "/images/cages/little/product-pic-5.avif",
-];
-
 export default function LittleCagePage() {
+    const [quantity, setQuantity] = useState(1);
     const cages = useCagesProductData();
+    const { addItem } = cartStore();
     const { t: tCommon } = useTranslation('common');
-    
+
+    const addToCart = () => {
+        addItem({
+            id: `cage-little`,
+            url: cages.little.images[0],
+            title: cages.little.name,
+            price: cages.little.price as ProductPriceSettings,
+            quantity,
+        });
+    };
+
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={images} />
+                <Gallery images={cages.little.images} />
                 <ProductMainInfo
                     title={cages.little.name}
                     price={cages.little.price as ProductPriceSettings}
@@ -36,8 +42,13 @@ export default function LittleCagePage() {
                 >
                     <OptionsCountBlock>
                         <RowWrapper>
-                            <InputNumber />
-                            <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
+                            <InputNumber value={quantity} onChange={setQuantity} />
+                            <Button
+                                onClick={addToCart}
+                                fluid
+                            >
+                                {tCommon("product.add_to_cart")}
+                            </Button>
                         </RowWrapper>
                     </OptionsCountBlock>
                 </ProductMainInfo>

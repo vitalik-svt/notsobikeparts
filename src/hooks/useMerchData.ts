@@ -10,6 +10,11 @@ export function useMerchData() {
 
     const feedbagHanger = {
         name: t(`merch.name`),
+        images: [
+            "/images/merch/product-pic-1.avif",
+            "/images/merch/product-pic-2.avif",
+            "/images/merch/product-pic-3.avif",
+        ],
         description: t(`merch.description`),
         colorOptions: [],
         price: productPrices.merch["one-price"][locale],

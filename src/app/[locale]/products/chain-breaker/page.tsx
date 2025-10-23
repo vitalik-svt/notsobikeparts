@@ -9,23 +9,30 @@ import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
 import { useChainBreakerData } from "@/hooks/useChainBreakerData";
+import { cartStore } from "@/stores/cartStore";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const images = [
-    "/images/chain-breaker/product-pic-1.avif",
-    "/images/chain-breaker/product-pic-2.avif",
-    "/images/chain-breaker/product-pic-3.avif",
-];
-
 export default function ChainBreakerPage() {
+    const [quantity, setQuantity] = useState(1);
     const { t: tCommon } = useTranslation('common');
     const chainBreakerData = useChainBreakerData();
+    const { addItem } = cartStore();
 
+    const addToCart = () => {
+        addItem({
+            id: 'chain-breaker',
+            quantity,
+            url: chainBreakerData.images[0],
+            title: chainBreakerData.name,
+            price: chainBreakerData.price,
+        });
+    };
 
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={images} />
+                <Gallery images={chainBreakerData.images} />
                 <ProductMainInfo
                     title={chainBreakerData.name}
                     price={chainBreakerData.price}
@@ -33,8 +40,13 @@ export default function ChainBreakerPage() {
                 >
                     <OptionsCountBlock>
                         <div className="flex items-center gap-4">
-                            <InputNumber />
-                            <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
+                            <InputNumber value={quantity} onChange={setQuantity} />
+                            <Button
+                                onClick={addToCart}
+                                fluid
+                            >
+                                {tCommon("product.add_to_cart")}
+                            </Button>
                         </div>
                     </OptionsCountBlock>
                 </ProductMainInfo>

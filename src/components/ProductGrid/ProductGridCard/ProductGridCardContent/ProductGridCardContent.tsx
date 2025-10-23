@@ -13,38 +13,27 @@ import Subtext from '@/components/Subtext/Subtext';
 import { formatPrice } from '@/utils/formatPrice';
 import CardNavButton from './CardNavButton/CardNavButton';
 import { useKeyPress } from '@/hooks/useKeyPress';
-import { cartStore } from '@/stores/cartStore';
+import { BoltColor, BoltMaterial, cartStore, TopcapParams } from '@/stores/cartStore';
+import { AdditionalPriceOption } from '@/hooks/useTopcapsData';
 
 interface Props {
     url: string;
     title: string;
     price: ProductPriceSettings;
-    additionalPriceOptions: {
-        type: string;
-        price: ProductPriceSettings;
-    }[];
+    additionalPriceOptions: AdditionalPriceOption[];
     goToPrev: VoidFunction;
     goToNext: VoidFunction;
 }
 
-type BoltMaterial = 'none' | 'titanium' | 'steel';
-type BoltColor = 'black' | 'light' | null;
-
-interface ProductParams {
-    bolts: BoltMaterial;
-    boltColor: BoltColor;
-    hasBox: boolean;
-}
-
 export default function ProductGridCardContent({ url, price, title, additionalPriceOptions, goToPrev, goToNext }: Props) {
     const { t } = useTranslation();
-    const { inc } = cartStore();
+    const { addItem } = cartStore();
 
-    const titaniumBoltPrice = useFormattedPrice(additionalPriceOptions.find(option => option.type === 'titanium-bolt')?.price);
+    const titaniumBoltPrice = useFormattedPrice(additionalPriceOptions.find(option => option.type === 'titanium')?.price);
 
     const options: { label: string; value: BoltMaterial }[] = [
         { label: t(`product.topcap.option.none`), value: 'none' },
-        { label: t(`product.topcap.option.titanium`, { priceWithCurrency: titaniumBoltPrice }), value: 'titanium' },
+        { label: `${t(`product.topcap.option.titanium`)} (+${titaniumBoltPrice})`, value: 'titanium' },
         { label: t(`product.topcap.option.steel`), value: 'steel' },
     ];
 
@@ -53,9 +42,9 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
         { label: t('product.topcap.bolt.color.light'), value: 'light' },
     ];
 
-    const [productParams, setProductParams] = useState<ProductParams>({
+    const [productParams, setProductParams] = useState<TopcapParams>({
         bolts: 'none',
-        boltColor: 'black',
+        boltColor: null,
         hasBox: false,
     });
 
@@ -67,7 +56,7 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
             let total = price.amount;
 
             if (productParams.bolts === 'titanium') {
-                total += additionalPriceOptions.find(option => option.type === 'titanium-bolt')?.price.amount || 0;
+                total += additionalPriceOptions.find(option => option.type === 'titanium')?.price.amount || 0;
             }
 
             return formatPrice({ amount: total, currency: price.currency, locale: price.locale });
@@ -84,7 +73,14 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
             productParams
         });
 
-        inc();
+        addItem({
+            id: `topcap-${productParams.bolts}-${productParams.boltColor}-${productParams.hasBox}`,
+            quantity: 1,
+            url,
+            title,
+            price,
+            productParams
+        });
     }
 
     return (

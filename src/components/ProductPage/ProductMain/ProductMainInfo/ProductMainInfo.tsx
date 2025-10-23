@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function ProductMainInfo({ title, children, price, description }: Props) {
-    return <div className="flex flex-col gap-3">
+    return <div className="flex flex-col gap-3 w-full">
         <div className="flex flex-col gap-5">
             <ProductTitle title={title} />
             {price && (

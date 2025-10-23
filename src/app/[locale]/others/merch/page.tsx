@@ -11,23 +11,31 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { useMerchData } from "@/hooks/useMerchData";
+import { cartStore } from "@/stores/cartStore";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const images = [
-    "/images/merch/product-pic-1.avif",
-    "/images/merch/product-pic-2.avif",
-    "/images/merch/product-pic-3.avif",
-];
-
 export default function MerchPage() {
+    const [quantity, setQuantity] = useState(1);
     const { t: tCommon } = useTranslation('common');
     const { t: tMerch } = useTranslation('merch');
     const merch = useMerchData();
+    const { addItem } = cartStore();
+
+    const addToCart = () => {
+        addItem({
+            id: 'merch',
+            quantity,
+            url: merch.images[0],
+            title: merch.name,
+            price: merch.price,
+        });
+    };
 
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={images} />
+                <Gallery images={merch.images} />
                 <ProductMainInfo
                     title={merch.name}
                     price={merch.price}
@@ -39,8 +47,13 @@ export default function MerchPage() {
 
                     <OptionsCountBlock>
                         <RowWrapper>
-                            <InputNumber />
-                            <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
+                            <InputNumber value={quantity} onChange={setQuantity} />
+                            <Button
+                                onClick={addToCart}
+                                fluid
+                            >
+                                {tCommon("product.add_to_cart")}
+                            </Button>
                         </RowWrapper>
                     </OptionsCountBlock>
                 </ProductMainInfo>

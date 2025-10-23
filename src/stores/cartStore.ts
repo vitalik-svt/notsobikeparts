@@ -41,65 +41,52 @@ interface Store {
 	items: CartItem[];
 }
 
+const calcTotalCount = (items: CartItem[]) => items.reduce((sum, it) => sum + it.quantity, 0);
+
 export const cartStore = create<Store>()(
 	persist(
 		(set) => ({
 			totalCount: 0,
 			addItem: (item: CartItem) => set((state) => {
 				let found = false;
-				let newTotal = 0;
 
 				const newItems = state.items.reduce((acc: CartItem[], it) => {
 					if (it.id === item.id) {
 						found = true;
-						const updated = { ...it, quantity: it.quantity + item.quantity };
-						acc.push(updated);
-						newTotal += updated.quantity;
+						acc.push({ ...it, quantity: it.quantity + item.quantity });
 					} else {
 						acc.push(it);
-						newTotal += it.quantity;
 					}
-
 					return acc;
 				}, []);
 
 				if (!found) {
 					newItems.push(item);
-					newTotal += item.quantity;
 				}
 
-				return { 
-					items: newItems, 
-					totalCount: newTotal 
+				return {
+					items: newItems,
+					totalCount: calcTotalCount(newItems),
 				};
 			}),
 			removeItem: (id: string) => set((state) => {
 				const newItems = state.items.filter(item => item.id !== id);
-				const newCount = newItems.reduce((sum, item) => sum + item.quantity, 0);
-
-				return { items: newItems, totalCount: newCount };
+				return { items: newItems, totalCount: calcTotalCount(newItems) };
 			}),
 			changeQuantity: (id: string, quantity: number) => set((state) => {
-				let newTotal = 0;
 				const newItems = state.items.reduce((acc: CartItem[], item) => {
 					if (item.id === id) {
 						if (quantity === 0) {
-							return acc;
+							return acc; // удаляем элемент
 						}
-
 						acc.push({ ...item, quantity });
-						newTotal += quantity;
-
 						return acc;
 					}
-
 					acc.push(item);
-					newTotal += item.quantity;
-
 					return acc;
 				}, []);
 
-				return { items: newItems, totalCount: newTotal };
+				return { items: newItems, totalCount: calcTotalCount(newItems) };
 			}),
 			items: [],
 		}),

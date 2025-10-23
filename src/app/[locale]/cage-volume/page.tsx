@@ -13,14 +13,30 @@ import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import Select from "@/components/Select";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
+import { CageColor, cartStore } from "@/stores/cartStore";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function CageVolumePage() {
     const [quantity, setQuantity] = useState(1);
     const cages = useCagesProductData();
+    const [colorOption, setColorOption] = useState<CageColor>(cages.volume.colorOptions[0].value);
     const { t: tCommon } = useTranslation('common');
     const { t: tCages } = useTranslation('cages');
+    const { addItem } = cartStore();
+
+    const addToCart = () => {
+        addItem({
+            id: `cage-volume-${colorOption}`,
+            url: cages.volume.images[0],
+            title: cages.volume.name,
+            price: cages.volume.price,
+            quantity,
+            productParams: {
+				cageColor: colorOption,
+			}
+        });
+    }
 
     return (
         <ProductPage>
@@ -39,12 +55,13 @@ export default function CageVolumePage() {
                     <OptionsCountBlock>
                         <Select
                             options={cages.volume.colorOptions}
-                            onChange={() => { }}
+                            value={colorOption}
+							onChange={(value: string) => setColorOption(value as CageColor)}
                             fluid
                         />
                         <RowWrapper>
                             <InputNumber value={quantity} onChange={setQuantity} />
-                            <Button onClick={() => { }} fluid>{tCommon("product.add_to_cart")}</Button>
+                            <Button onClick={addToCart} fluid>{tCommon("product.add_to_cart")}</Button>
                         </RowWrapper>
                     </OptionsCountBlock>
                 </ProductMainInfo>

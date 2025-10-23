@@ -1,7 +1,7 @@
 'use client';
 
 import InputNumber from "@/components/InputNumber/InputNumber";
-import { BoltColor, BoltMaterial, CartItem, cartStore, TopcapOptions } from "@/stores/cartStore";
+import { CartItem, cartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";

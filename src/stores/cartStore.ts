@@ -1,4 +1,4 @@
-import { ProductPriceSettings } from '@/constants/productPrices';
+import { ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware';
 
@@ -18,7 +18,11 @@ export interface CageParams {
 	cageColor: CageColor;
 }
 
-export type ProductParams = Partial<TopcapParams & CageParams>;
+export interface VoileParams {
+	voileType: ProductVoileType;
+}
+
+export type ProductParams = Partial<TopcapParams & CageParams & VoileParams>;
 
 export interface CartItem {
 	id: string

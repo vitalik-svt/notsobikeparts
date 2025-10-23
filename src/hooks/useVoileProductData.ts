@@ -14,6 +14,10 @@ export const useVoileProductData = () => {
 
     const voile = {
         name: t(`voile.name`),
+        images: [
+            "/images/voile/product-pic-1.avif",
+            "/images/voile/product-pic-2.avif",
+        ],
         description: t(`voile.description`),
         options: voileOptions,
         price: productPrices.voile,

@@ -23,7 +23,7 @@ export default function LittleCagePage() {
 
     const addToCart = () => {
         addItem({
-            id: cages.little.images[0],
+            id: `cage-little`,
             url: cages.little.images[0],
             title: cages.little.name,
             price: cages.little.price as ProductPriceSettings,

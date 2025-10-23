@@ -1,4 +1,4 @@
-import { ProductCageType, productPrices, ProductPriceSettings } from "@/constants/productPrices";
+import { productPrices, ProductPriceSettings } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { CageColor } from "@/stores/cartStore";
@@ -15,13 +15,30 @@ interface CageSettings {
     characteristics: string[];
 }
 
+type PlusPriceOptions = {
+    'plus-painted-no-opener': ProductPriceSettings;
+    'plus-anodized-opener': ProductPriceSettings;
+    'plus-painted-opener': ProductPriceSettings;
+};
+
+interface PlusCageSettings extends Omit<CageSettings, 'price'> {
+    price: PlusPriceOptions;
+}
+
 const baseImgUrl = "/images/cages";
+
+interface Cages {
+    front: CageSettings;
+    volume: CageSettings;
+    little: CageSettings;
+    plus: PlusCageSettings;
+}
 
 export const useCagesProductData = () => {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t } = useTranslation('cages');
 
-    const cages: Record<ProductCageType, CageSettings> = {
+    const cages: Cages = {
         front: {
             name: t(`front.name`),
             images: [
@@ -98,6 +115,36 @@ export const useCagesProductData = () => {
             colorOptions: [],
             price: productPrices.cages.little[locale],
             features: [],
+            characteristics: [
+                t(`little.characteristics.1`),
+                t(`little.characteristics.2`),
+                t(`little.characteristics.3`),
+                t(`little.characteristics.4`),
+                t(`little.characteristics.5`),
+            ]
+        },
+        plus: {
+            name: t(`plus.name`),
+            images: [
+                `${baseImgUrl}/plus/product-pic-1.avif`,
+                `${baseImgUrl}/plus/product-pic-2.avif`,
+                `${baseImgUrl}/plus/product-pic-3.avif`,
+                `${baseImgUrl}/plus/product-pic-4.avif`,
+                `${baseImgUrl}/plus/product-pic-5.avif`,
+                `${baseImgUrl}/plus/product-pic-6.avif`,
+                `${baseImgUrl}/plus/product-pic-7.avif`,
+            ],
+            description: t(`plus.description.1`),
+            colorOptions: [],
+            price: {
+                'plus-painted-no-opener':  productPrices.cages['plus-painted-no-opener'][locale],
+                'plus-anodized-opener':  productPrices.cages['plus-anodized-opener'][locale],
+                'plus-painted-opener': productPrices.cages['plus-painted-opener'][locale],
+            },
+            features: [
+                t(`plus.features.1`),
+                t(`plus.features.2`),
+            ],
             characteristics: [
                 t(`little.characteristics.1`),
                 t(`little.characteristics.2`),

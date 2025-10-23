@@ -16,7 +16,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function LittleCagePage() {
-    const [quantity, setQuantity] = useState(1)
+    const [quantity, setQuantity] = useState(1);
     const cages = useCagesProductData();
     const { addItem } = cartStore();
     const { t: tCommon } = useTranslation('common');

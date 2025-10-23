@@ -13,7 +13,7 @@ import Subtext from '@/components/Subtext/Subtext';
 import { formatPrice } from '@/utils/formatPrice';
 import CardNavButton from './CardNavButton/CardNavButton';
 import { useKeyPress } from '@/hooks/useKeyPress';
-import { BoltColor, BoltMaterial, cartStore, ProductParams, TopcapOptions, TopcapParams } from '@/stores/cartStore';
+import { BoltColor, BoltMaterial, cartStore, TopcapParams } from '@/stores/cartStore';
 import { AdditionalPriceOption } from '@/hooks/useTopcapsData';
 
 interface Props {
@@ -44,7 +44,7 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
 
     const [productParams, setProductParams] = useState<TopcapParams>({
         bolts: 'none',
-        boltColor: 'black',
+        boltColor: null,
         hasBox: false,
     });
 

@@ -40,7 +40,7 @@ export interface UseTopcapsDataResult {
     custom: TopcapsCustom;
 }
 
-const topcapBaseUrl = '/images/topcaps/serial/gallery/';
+const topcapBaseUrl = '/images/topcaps/serial/gallery';
 
 export const useTopcapsData = (): UseTopcapsDataResult => {
     const topcaps = useTopcapsGridData();

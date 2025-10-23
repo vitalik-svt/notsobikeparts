@@ -7,15 +7,13 @@ import { usePopup } from "@/providers/PopupProvider";
 import ProductGridCardContent from "./ProductGridCard/ProductGridCardContent/ProductGridCardContent";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import { useMemo, useRef } from "react";
+import { AdditionalPriceOption } from "@/hooks/useTopcapsData";
 
 interface Props {
     items: TopcapCategoryItem[];
     price: ProductPriceSettings;
     title: string;
-    additionalPriceOptions: {
-        type: string;
-        price: ProductPriceSettings;
-    }[];
+    additionalPriceOptions: AdditionalPriceOption[];
 }
 
 export default function ProductGrid({ items, price, title, additionalPriceOptions }: Props) {

@@ -30,7 +30,7 @@ export default function MerchPage() {
             title: merch.name,
             price: merch.price,
         });
-    }
+    };
 
     return (
         <ProductPage>

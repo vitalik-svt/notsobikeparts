@@ -5,6 +5,7 @@ export const ROUTES = {
   CAGE_FRONT: '/cage-front',
   CAGE_LITTLE: '/cage-little',
   CAGE_VOLUME: '/cage-volume',
+  CAGE_PLUS: '/cage-plus',
   TOPCAPS: '/topcaps',
   TOPCAPS_CUSTOM: '/topcaps_custom',
   FEEDBAG_HANGER: '/feedbag-hanger',

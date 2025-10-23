@@ -74,8 +74,7 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
         });
 
         addItem({
-            // TODO: generate unique ID
-            id: `${title}-${url}-${JSON.stringify(productParams)}`,
+            id: `topcap-${productParams.bolts}-${productParams.boltColor}-${productParams.hasBox}`,
             quantity: 1,
             url,
             title,

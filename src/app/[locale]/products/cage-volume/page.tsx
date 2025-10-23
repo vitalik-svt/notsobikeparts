@@ -56,7 +56,7 @@ export default function CageVolumePage() {
                         <Select
                             options={cages.volume.colorOptions}
                             value={colorOption}
-							onChange={(value: string) => setColorOption(value as CageColor)}
+                            onChange={(value: string) => setColorOption(value as CageColor)}
                             fluid
                         />
                         <RowWrapper>

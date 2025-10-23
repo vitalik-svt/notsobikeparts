@@ -33,8 +33,8 @@ export default function CageVolumePage() {
             price: cages.volume.price,
             quantity,
             productParams: {
-				cageColor: colorOption,
-			}
+                cageColor: colorOption,
+            }
         });
     }
 

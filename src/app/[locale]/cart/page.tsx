@@ -10,12 +10,8 @@ import { useTranslation } from "react-i18next";
 export default function CartPage() {
     const { t } = useTranslation();
     const { items } = cartStore();
-
-    console.log('items', items)
-
-    const totalPrice = items.reduce((total, item) => {
-        return total + item.price.amount * item.quantity;
-    }, 0);
+    
+    const totalPrice = items.reduce((total, item) => total + item.price.amount * item.quantity, 0);
 
     return (
         <ProductPage>

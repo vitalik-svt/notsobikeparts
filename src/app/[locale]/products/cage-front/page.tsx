@@ -29,7 +29,7 @@ export default function FrontCagePage() {
 
 	const addToCart = () => {
 		addItem({
-			id: `${cages.front.images[0]}-${colorOption}`,
+			id: `cage-front-${colorOption}`,
 			url: cages.front.images[0],
 			title: cages.front.name,
 			price: cages.front.price as ProductPriceSettings,

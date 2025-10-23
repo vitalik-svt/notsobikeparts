@@ -77,7 +77,7 @@ export const cartStore = create<Store>()(
 				const newItems = state.items.reduce((acc: CartItem[], item) => {
 					if (item.id === id) {
 						if (quantity === 0) {
-							return acc; // удаляем элемент
+							return acc;
 						}
 						acc.push({ ...item, quantity });
 						return acc;

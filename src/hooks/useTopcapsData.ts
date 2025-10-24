@@ -7,6 +7,7 @@ import { Locales } from "@/types/locales";
 import { useTranslation } from "react-i18next";
 import { TopcapCategoryItem, useTopcapsGridData } from "./useTopcapsGridData";
 import { BoltMaterial, TopcapOptions } from "@/stores/cartStore";
+import { formatPrice } from "@/utils/formatPrice";
 
 export interface AdditionalPriceOption {
     type: BoltMaterial | TopcapOptions;
@@ -29,6 +30,7 @@ interface TopcapsSerial {
 }
 
 export type TopcapCustomColor = 'black' | 'aluminum' | 'red' | 'blue' | 'green' | 'purple' | 'gold';
+export type TopcapCustomThickness = 'thin' | 'thick';
 
 interface TopcapsCustom {
     title: string;
@@ -37,6 +39,7 @@ interface TopcapsCustom {
     price: ProductPriceSettings;
     "additional-price-options": AdditionalPriceOption[];
     colorOptions: { label: string; value: TopcapCustomColor }[];
+    thickness: { label: string; value: TopcapCustomThickness }[];
 }
 
 export interface UseTopcapsDataResult {
@@ -110,6 +113,16 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
             ],
             description: [
                 t("topcaps.custom.description"),
+            ],
+            thickness: [
+                { 
+                    label: t("topcaps.custom.thickness.1"), 
+                    value: 'thin' 
+                },
+                { 
+                    label: `${t("topcaps.custom.thickness.2")} (+${formatPrice(productPrices.topcaps["thicker"][locale])})`, 
+                    value: 'thick' 
+                },
             ],
             colorOptions: [
                 { label: t("topcaps.custom.color.1"), value: 'black' },

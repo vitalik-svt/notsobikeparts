@@ -8,9 +8,10 @@ import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
+import SegmentedControl from "@/components/SegmentedControl/SegmentedControl";
 import Select from "@/components/Select";
 import { ProductPriceSettings } from "@/constants/productPrices";
-import { TopcapCustomColor, useTopcapsData } from "@/hooks/useTopcapsData";
+import { TopcapCustomColor, TopcapCustomThickness, useTopcapsData } from "@/hooks/useTopcapsData";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -18,6 +19,7 @@ export default function TopcapsCustomPage() {
     const topcaps = useTopcapsData();
     const [quantity, setQuantity] = useState(1);
     const [colorOption, setColorOption] = useState(topcaps.custom.colorOptions[0].value);
+    const [thickness, setThickness] = useState(topcaps.custom.thickness[0].value);
     const { t: tCommon } = useTranslation('common');
 
     const addToCart = () => {};
@@ -36,6 +38,11 @@ export default function TopcapsCustomPage() {
                     </SectionInfoBlock> */}
 
                     <OptionsCountBlock>
+                        <SegmentedControl 
+                            options={topcaps.custom.thickness} 
+                            onChange={(value: TopcapCustomThickness) => setThickness(value)}
+                            value={thickness}
+                        />
                         <Select
                             options={topcaps.custom.colorOptions}
                             value={colorOption}

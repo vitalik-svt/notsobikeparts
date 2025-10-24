@@ -9,27 +9,19 @@ interface CageSettings {
     name: string;
     images: string[];
     description: string;
-    colorOptions: { label: string; value: CageColor }[];
+    colorOptions: { label: string; value: CageColor | CagePlusColor }[];
     price: ProductPriceSettings;
     features: string[];
     characteristics: string[];
 }
 
-interface PlusCageSettings extends Omit<CageSettings, 'colorOptions'> {
-    colorOptions: { label: string; value: CagePlusColor }[];
-}
-
 const baseImgUrl = "/images/cages";
-
-type CagesMap = {
-  [K in ProductCageType]: K extends "plus" ? PlusCageSettings : CageSettings;
-};
 
 export const useCagesProductData = () => {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t } = useTranslation('cages');
 
-    const cages: CagesMap = {
+    const cages: Record<ProductCageType, CageSettings> = {
         front: {
             name: t(`front.name`),
             images: [

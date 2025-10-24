@@ -136,7 +136,7 @@ export const useCagesProductData = () => {
                 { label: t(`plus.color_options.3`), value: 'light-green' },
                 { label: t(`plus.color_options.4`), value: 'light-brown' },
             ],
-            price: productPrices.cages['plus-anodized-opener'][locale],
+            price: productPrices.cages['plus'][locale],
             features: [
                 t(`plus.features.1`),
                 t(`plus.features.2`),

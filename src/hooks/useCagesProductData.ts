@@ -142,11 +142,12 @@ export const useCagesProductData = () => {
                 t(`plus.features.2`),
             ],
             characteristics: [
-                t(`little.characteristics.1`),
-                t(`little.characteristics.2`),
-                t(`little.characteristics.3`),
-                t(`little.characteristics.4`),
-                t(`little.characteristics.5`),
+                t(`plus.characteristics.1`),
+                t(`plus.characteristics.2`),
+                t(`plus.characteristics.3`),
+                t(`plus.characteristics.4`),
+                t(`plus.characteristics.5`),
+                t(`plus.characteristics.6`),
             ]
         },
     }

@@ -1,4 +1,4 @@
-import { productPrices, ProductPriceSettings } from "@/constants/productPrices";
+import { ProductCageType, productPrices, ProductPriceSettings } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { CageColor, CagePlusColor } from "@/stores/cartStore";
@@ -21,18 +21,15 @@ interface PlusCageSettings extends Omit<CageSettings, 'colorOptions'> {
 
 const baseImgUrl = "/images/cages";
 
-interface Cages {
-    front: CageSettings;
-    volume: CageSettings;
-    little: CageSettings;
-    plus: PlusCageSettings;
-}
+type CagesMap = {
+  [K in ProductCageType]: K extends "plus" ? PlusCageSettings : CageSettings;
+};
 
 export const useCagesProductData = () => {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t } = useTranslation('cages');
 
-    const cages: Cages = {
+    const cages: CagesMap = {
         front: {
             name: t(`front.name`),
             images: [

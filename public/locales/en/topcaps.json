@@ -18,5 +18,14 @@
     "topcaps.category.graphics": "Graphics",
     "topcaps.equipment_title": "Package contents",
     "topcaps.equipment.1": "By default, we ship the cap in a kraft envelope without bolts.",
-    "topcaps.equipment.2": "Please specify any additional options when placing your order."
+    "topcaps.equipment.2": "Please specify any additional options when placing your order.",
+    "topcaps.custom.name": "Custom Topcaps",
+    "topcaps.custom.description": "Not enough of our designs and inscriptions? You can order topcaps with your own custom design — for your bike or as a gift.",
+    "topcaps.custom.color.1": "Black",
+    "topcaps.custom.color.2": "Light (aluminum)",
+    "topcaps.custom.color.3": "Red",
+    "topcaps.custom.color.4": "Blue",
+    "topcaps.custom.color.5": "Green",
+    "topcaps.custom.color.6": "Purple",
+    "topcaps.custom.color.7": "Gold"
 }

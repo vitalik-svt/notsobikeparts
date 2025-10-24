@@ -28,11 +28,15 @@ interface TopcapsSerial {
     items: TopcapCategoryItem[];
 }
 
+export type TopcapCustomColor = 'black' | 'aluminum' | 'red' | 'blue' | 'green' | 'purple' | 'gold';
+
 interface TopcapsCustom {
     title: string;
+    images: string[];
     description: string[];
     price: ProductPriceSettings;
     "additional-price-options": AdditionalPriceOption[];
+    colorOptions: { label: string; value: TopcapCustomColor }[];
 }
 
 export interface UseTopcapsDataResult {
@@ -40,7 +44,12 @@ export interface UseTopcapsDataResult {
     custom: TopcapsCustom;
 }
 
-const topcapBaseUrl = '/images/topcaps/serial/gallery';
+const baseUrl = {
+    serial: '/images/topcaps/serial',
+    custom: '/images/topcaps/custom',
+}
+
+const serialGalleryUrl = `${baseUrl.serial}/gallery`;
 
 export const useTopcapsData = (): UseTopcapsDataResult => {
     const topcaps = useTopcapsGridData();
@@ -50,13 +59,13 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
     return {
         serial: {
             images: [
-                `${topcapBaseUrl}/product-pic-1.avif`,
-                `${topcapBaseUrl}/product-pic-2.avif`,
-                `${topcapBaseUrl}/product-pic-3.avif`,
-                `${topcapBaseUrl}/product-pic-4.avif`,
-                `${topcapBaseUrl}/product-pic-5.avif`,
-                `${topcapBaseUrl}/product-pic-6.avif`,
-                `${topcapBaseUrl}/product-pic-7.avif`,
+                `${serialGalleryUrl}/product-pic-1.avif`,
+                `${serialGalleryUrl}/product-pic-2.avif`,
+                `${serialGalleryUrl}/product-pic-3.avif`,
+                `${serialGalleryUrl}/product-pic-4.avif`,
+                `${serialGalleryUrl}/product-pic-5.avif`,
+                `${serialGalleryUrl}/product-pic-6.avif`,
+                `${serialGalleryUrl}/product-pic-7.avif`,
             ],
             title: t("topcaps.name"),
             description: [
@@ -90,11 +99,26 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
             items: topcaps,
         },
         custom: {
-            title: t("custom.name"),
+            title: t("topcaps.custom.name"),
+            images: [
+                `${baseUrl.custom}/product-pic-1.avif`,
+                `${baseUrl.custom}/product-pic-2.avif`,
+                `${baseUrl.custom}/product-pic-3.avif`,
+                `${baseUrl.custom}/product-pic-4.avif`,
+                `${baseUrl.custom}/product-pic-5.avif`,
+                `${baseUrl.custom}/product-pic-6.avif`,
+            ],
             description: [
-                t("custom.description.1"),
-                t("custom.description.2"),
-                t("custom.description.3"),
+                t("topcaps.custom.description"),
+            ],
+            colorOptions: [
+                { label: t("topcaps.custom.color.1"), value: 'black' },
+                { label: t("topcaps.custom.color.2"), value: 'aluminum' },
+                { label: t("topcaps.custom.color.3"), value: 'red' },
+                { label: t("topcaps.custom.color.4"), value: 'blue' },
+                { label: t("topcaps.custom.color.5"), value: 'green' },
+                { label: t("topcaps.custom.color.6"), value: 'purple' },
+                { label: t("topcaps.custom.color.7"), value: 'gold' },
             ],
             price: productPrices.topcaps.custom[locale],
             "additional-price-options": [

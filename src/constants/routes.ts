@@ -5,7 +5,7 @@ export const ROUTES = {
   CAGE_VOLUME: '/products/cage-volume',
   CAGE_PLUS: '/products/cage-plus',
   TOPCAPS: '/products/topcaps',
-  TOPCAPS_CUSTOM: '/products/topcaps_custom',
+  TOPCAPS_CUSTOM: '/products/topcaps-custom',
   VOILE_STRAP: '/products/voile-strap',
   FEEDBAG_HANGER: '/products/feedbag-hanger',
   CHAIN_BREAKER: '/products/chain-breaker',

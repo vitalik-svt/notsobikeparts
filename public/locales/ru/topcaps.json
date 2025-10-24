@@ -18,5 +18,14 @@
     "topcaps.category.graphics": "Графика",
     "topcaps.equipment_title": "Комплектация",
     "topcaps.equipment.1": "По умолчанию мы отправляем кэп в крафт-конверте и без болтов.",
-    "topcaps.equipment.2": "Укажите при заказе нужные опции пожалуйста."
+    "topcaps.equipment.2": "Укажите при заказе нужные опции пожалуйста.",
+    "topcaps.custom.name": "Топкэпы на заказ",
+    "topcaps.custom.description": "Мало наших идей и надписей?) Вы можете заказть топкэпы с индивидуальным дизайном: себе на велосипед, или в подарок",
+    "topcaps.custom.color.1": "Черный",
+    "topcaps.custom.color.2": "Светлый (алюминий)",
+    "topcaps.custom.color.3": "Красный",
+    "topcaps.custom.color.4": "Синий",
+    "topcaps.custom.color.5": "Зеленый",
+    "topcaps.custom.color.6": "Фиолетовый",
+    "topcaps.custom.color.7": "Золотой"
 }

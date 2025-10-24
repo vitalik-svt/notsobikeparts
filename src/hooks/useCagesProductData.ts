@@ -15,8 +15,7 @@ interface CageSettings {
     characteristics: string[];
 }
 
-interface PlusCageSettings extends Omit<CageSettings, 'price' | 'colorOptions'> {
-    price: ProductPriceSettings;
+interface PlusCageSettings extends Omit<CageSettings, 'colorOptions'> {
     colorOptions: { label: string; value: CagePlusColor }[];
 }
 

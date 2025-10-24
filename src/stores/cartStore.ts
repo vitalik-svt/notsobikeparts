@@ -7,6 +7,8 @@ export type BoltMaterial = 'none' | 'titanium' | 'steel';
 export type TopcapOptions = 'custom-color' | 'thicker';
 export type BoltColor = 'black' | 'light' | null;
 export type CageColor = 'black' | 'aluminum';
+export type CagePlusColor = 'black' | 'transparent' | 'light-green' | 'light-brown';
+export type CagePlusMaterial = 'anodized' | 'painted';
 
 export interface TopcapParams {
 	bolts: BoltMaterial;
@@ -15,7 +17,7 @@ export interface TopcapParams {
 }
 
 export interface CageParams {
-	cageColor: CageColor;
+	cageColor: CageColor | CagePlusColor;
 }
 
 export interface VoileParams {

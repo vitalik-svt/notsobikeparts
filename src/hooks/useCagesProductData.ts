@@ -1,7 +1,7 @@
 import { productPrices, ProductPriceSettings } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
-import { CageColor } from "@/stores/cartStore";
+import { CageColor, CagePlusColor } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { useTranslation } from "react-i18next";
 
@@ -15,14 +15,9 @@ interface CageSettings {
     characteristics: string[];
 }
 
-type PlusPriceOptions = {
-    'plus-painted-no-opener': ProductPriceSettings;
-    'plus-anodized-opener': ProductPriceSettings;
-    'plus-painted-opener': ProductPriceSettings;
-};
-
-interface PlusCageSettings extends Omit<CageSettings, 'price'> {
-    price: PlusPriceOptions;
+interface PlusCageSettings extends Omit<CageSettings, 'price' | 'colorOptions'> {
+    price: ProductPriceSettings;
+    colorOptions: { label: string; value: CagePlusColor }[];
 }
 
 const baseImgUrl = "/images/cages";
@@ -135,12 +130,13 @@ export const useCagesProductData = () => {
                 `${baseImgUrl}/plus/product-pic-7.avif`,
             ],
             description: t(`plus.description.1`),
-            colorOptions: [],
-            price: {
-                'plus-painted-no-opener':  productPrices.cages['plus-painted-no-opener'][locale],
-                'plus-anodized-opener':  productPrices.cages['plus-anodized-opener'][locale],
-                'plus-painted-opener': productPrices.cages['plus-painted-opener'][locale],
-            },
+            colorOptions: [
+                { label: t(`plus.color_options.1`), value: 'black' },
+                { label: t(`plus.color_options.2`), value: 'transparent' },
+                { label: t(`plus.color_options.3`), value: 'light-green' },
+                { label: t(`plus.color_options.4`), value: 'light-brown' },
+            ],
+            price: productPrices.cages['plus-anodized-opener'][locale],
             features: [
                 t(`plus.features.1`),
                 t(`plus.features.2`),

@@ -1,7 +1,7 @@
 import { ProductCageType, productPrices, ProductPriceSettings } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
-import { CageColor } from "@/stores/cartStore";
+import { CageColor, CagePlusColor } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { useTranslation } from "react-i18next";
 
@@ -9,7 +9,7 @@ interface CageSettings {
     name: string;
     images: string[];
     description: string;
-    colorOptions: { label: string; value: CageColor }[];
+    colorOptions: { label: string; value: CageColor | CagePlusColor }[];
     price: ProductPriceSettings;
     features: string[];
     characteristics: string[];
@@ -104,6 +104,38 @@ export const useCagesProductData = () => {
                 t(`little.characteristics.3`),
                 t(`little.characteristics.4`),
                 t(`little.characteristics.5`),
+            ]
+        },
+        plus: {
+            name: t(`plus.name`),
+            images: [
+                `${baseImgUrl}/plus/product-pic-1.avif`,
+                `${baseImgUrl}/plus/product-pic-2.avif`,
+                `${baseImgUrl}/plus/product-pic-3.avif`,
+                `${baseImgUrl}/plus/product-pic-4.avif`,
+                `${baseImgUrl}/plus/product-pic-5.avif`,
+                `${baseImgUrl}/plus/product-pic-6.avif`,
+                `${baseImgUrl}/plus/product-pic-7.avif`,
+            ],
+            description: t(`plus.description.1`),
+            colorOptions: [
+                { label: t(`plus.color_options.1`), value: 'black' },
+                { label: t(`plus.color_options.2`), value: 'transparent' },
+                { label: t(`plus.color_options.3`), value: 'light-green' },
+                { label: t(`plus.color_options.4`), value: 'light-brown' },
+            ],
+            price: productPrices.cages['plus'][locale],
+            features: [
+                t(`plus.features.1`),
+                t(`plus.features.2`),
+            ],
+            characteristics: [
+                t(`plus.characteristics.1`),
+                t(`plus.characteristics.2`),
+                t(`plus.characteristics.3`),
+                t(`plus.characteristics.4`),
+                t(`plus.characteristics.5`),
+                t(`plus.characteristics.6`),
             ]
         },
     }

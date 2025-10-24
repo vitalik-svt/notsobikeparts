@@ -1,6 +1,7 @@
 'use client';
 
 import Button from "@/components/Button/Button";
+import Checkbox from "@/components/Checkbox/Checkbox";
 import Gallery from "@/components/Gallery/Gallery";
 import InputNumber from "@/components/InputNumber/InputNumber";
 import OptionsCountBlock from "@/components/OptionsCountBlock/OptionsCountBlock";
@@ -12,6 +13,7 @@ import SegmentedControl from "@/components/SegmentedControl/SegmentedControl";
 import Select from "@/components/Select";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import { TopcapCustomColor, TopcapCustomThickness, useTopcapsData } from "@/hooks/useTopcapsData";
+import { TopcapParams } from "@/stores/cartStore";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -20,9 +22,15 @@ export default function TopcapsCustomPage() {
     const [quantity, setQuantity] = useState(1);
     const [colorOption, setColorOption] = useState(topcaps.custom.colorOptions[0].value);
     const [thickness, setThickness] = useState(topcaps.custom.thickness[0].value);
-    const { t: tCommon } = useTranslation('common');
+    const { t } = useTranslation();
 
-    const addToCart = () => {};
+    const [productParams, setProductParams] = useState<TopcapParams>({
+            bolts: 'none',
+            boltColor: null,
+            hasBox: false,
+        });
+
+    const addToCart = () => { };
 
     return (
         <ProductPage>
@@ -38,8 +46,8 @@ export default function TopcapsCustomPage() {
                     </SectionInfoBlock> */}
 
                     <OptionsCountBlock>
-                        <SegmentedControl 
-                            options={topcaps.custom.thickness} 
+                        <SegmentedControl
+                            options={topcaps.custom.thickness}
                             onChange={(value: TopcapCustomThickness) => setThickness(value)}
                             value={thickness}
                         />
@@ -49,6 +57,15 @@ export default function TopcapsCustomPage() {
                             onChange={(value: string) => setColorOption(value as TopcapCustomColor)}
                             fluid
                         />
+
+                            <Checkbox
+                                checked={productParams.hasBox}
+                                onChange={(value) => setProductParams({ ...productParams, hasBox: value })}
+                                name="hasBox"
+                                label={t('product.topcap.option.box.label')}
+                                subtext={t('product.topcap.option.box.description')}
+                            />
+                        
                         <RowWrapper>
                             <InputNumber
                                 value={quantity}
@@ -58,7 +75,7 @@ export default function TopcapsCustomPage() {
                                 onClick={addToCart}
                                 fluid
                             >
-                                {tCommon("product.add_to_cart")}
+                                {t("product.add_to_cart")}
                             </Button>
                         </RowWrapper>
                     </OptionsCountBlock>

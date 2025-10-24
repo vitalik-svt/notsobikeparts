@@ -65,14 +65,6 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
     )
 
     const addToCart = () => {
-        console.log('add to cart', {
-            url,
-            title,
-            price,
-            additionalPriceOptions,
-            productParams
-        });
-
         addItem({
             id: `topcap-${productParams.bolts}-${productParams.boltColor}-${productParams.hasBox}`,
             quantity: 1,
@@ -101,6 +93,10 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
                     <ProductTitle title={title} />
                     <ProductPrice priceSettings={price} />
 
+                    {/* TODO: 
+                    Вынести в отдельный компонент 
+                    и переиспользовать на странице кастомных топкэпов 
+                    */}
                     <div className='flex flex-col gap-2'>
                         <SegmentedControl
                             options={options}

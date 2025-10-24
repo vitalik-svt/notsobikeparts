@@ -8,7 +8,6 @@ export type TopcapOptions = 'custom-color' | 'thicker';
 export type BoltColor = 'black' | 'light' | null;
 export type CageColor = 'black' | 'aluminum';
 export type CagePlusColor = 'black' | 'transparent' | 'light-green' | 'light-brown';
-export type CagePlusMaterial = 'anodized' | 'painted';
 
 export interface TopcapParams {
 	bolts: BoltMaterial;

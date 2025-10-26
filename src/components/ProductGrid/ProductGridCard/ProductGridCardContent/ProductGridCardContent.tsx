@@ -81,8 +81,8 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
                     <ProductPrice priceSettings={price} />
                     <BoltParamsControl
                         boltPrice={titaniumBoltPrice}
-                        boltsMaterial={'none'}
-                        boltColor={null}
+                        boltsMaterial={productParams.boltsMaterial}
+                        boltColor={productParams.boltColor}
                         setProductParams={(params) => setProductParams({ ...productParams, ...params })}
                     />
                     <div className='md:pr-30'>

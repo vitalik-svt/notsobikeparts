@@ -36,10 +36,10 @@ export default function ProductOptionParams({ productParams }: { productParams: 
                     value={optionDictionary[productParams.boltColor]}
                 />
             )}
-            {productParams.bolts && (
+            {productParams.boltsMaterial && (
                 <OptionRow
                     label={t("cart.bolt_material")}
-                    value={optionDictionary[productParams.bolts]}
+                    value={optionDictionary[productParams.boltsMaterial]}
                 />
             )}
             {typeof productParams.hasBox === "boolean" && (

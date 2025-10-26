@@ -2,19 +2,17 @@ import ProductPrice from '@/components/ProductPrice/ProductPrice';
 import { ProductPriceSettings } from '@/constants/productPrices';
 import Image from 'next/image';
 import ProductTitle from '../../ProductTitle/ProductTitle';
-import SegmentedControl from '@/components/SegmentedControl/SegmentedControl';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useFormattedPrice from '@/hooks/useFormattedPrice';
-import Radio from '@/components/Radio/Radio';
 import Checkbox from '@/components/Checkbox/Checkbox';
 import Button from '@/components/Button/Button';
-import Subtext from '@/components/Subtext/Subtext';
 import { formatPrice } from '@/utils/formatPrice';
 import CardNavButton from './CardNavButton/CardNavButton';
 import { useKeyPress } from '@/hooks/useKeyPress';
-import { BoltColor, BoltMaterial, cartStore, TopcapParams } from '@/stores/cartStore';
+import { cartStore, TopcapParams } from '@/stores/cartStore';
 import { AdditionalPriceOption } from '@/hooks/useTopcapsData';
+import { BoltParamsControl } from '@/components/BoltParamsControl/BoltParamsControl';
 
 interface Props {
     url: string;
@@ -31,19 +29,8 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
 
     const titaniumBoltPrice = useFormattedPrice(additionalPriceOptions.find(option => option.type === 'titanium')?.price);
 
-    const options: { label: string; value: BoltMaterial }[] = [
-        { label: t(`product.topcap.option.none`), value: 'none' },
-        { label: `${t(`product.topcap.option.titanium`)} (+${titaniumBoltPrice})`, value: 'titanium' },
-        { label: t(`product.topcap.option.steel`), value: 'steel' },
-    ];
-
-    const radioOptions: { label: string; value: BoltColor }[] = [
-        { label: t('product.topcap.bolt.color.black'), value: 'black' },
-        { label: t('product.topcap.bolt.color.light'), value: 'light' },
-    ];
-
     const [productParams, setProductParams] = useState<TopcapParams>({
-        bolts: 'none',
+        boltsMaterial: 'none',
         boltColor: null,
         hasBox: false,
     });
@@ -55,7 +42,7 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
         () => {
             let total = price.amount;
 
-            if (productParams.bolts === 'titanium') {
+            if (productParams.boltsMaterial === 'titanium') {
                 total += additionalPriceOptions.find(option => option.type === 'titanium')?.price.amount || 0;
             }
 
@@ -66,7 +53,7 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
 
     const addToCart = () => {
         addItem({
-            id: `topcap-${productParams.bolts}-${productParams.boltColor}-${productParams.hasBox}`,
+            id: `topcap-${productParams.boltsMaterial}-${productParams.boltColor}-${productParams.hasBox}`,
             quantity: 1,
             url,
             title,
@@ -92,31 +79,12 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
                 <div className='flex flex-col gap-4 flex-1 xl:gap-5'>
                     <ProductTitle title={title} />
                     <ProductPrice priceSettings={price} />
-
-                    {/* TODO: 
-                    Вынести в отдельный компонент 
-                    и переиспользовать на странице кастомных топкэпов 
-                    */}
-                    <div className='flex flex-col gap-2'>
-                        <SegmentedControl
-                            options={options}
-                            onChange={(value: BoltMaterial) => setProductParams({ ...productParams, bolts: value })}
-                            value={productParams.bolts}
-                        />
-
-                        {productParams.bolts === 'none' ? (
-                            <Subtext>{t('product.topcap.annotation')}</Subtext>
-                        ) : (
-                            <div className='pt-1 pb-3 xl:pt-2 xl:pb-4'>
-                                <Radio
-                                    options={radioOptions}
-                                    value={productParams.boltColor}
-                                    onChange={(value) => setProductParams({ ...productParams, boltColor: value })}
-                                />
-                            </div>
-                        )}
-                    </div>
-
+                    <BoltParamsControl
+                        boltPrice={titaniumBoltPrice}
+                        boltsMaterial={'none'}
+                        boltColor={null}
+                        setProductParams={(params) => setProductParams({ ...productParams, ...params })}
+                    />
                     <div className='md:pr-30'>
                         <Checkbox
                             checked={productParams.hasBox}

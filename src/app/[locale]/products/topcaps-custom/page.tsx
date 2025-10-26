@@ -1,5 +1,6 @@
 'use client';
 
+import { BoltParamsControl } from "@/components/BoltParamsControl/BoltParamsControl";
 import Button from "@/components/Button/Button";
 import Checkbox from "@/components/Checkbox/Checkbox";
 import Gallery from "@/components/Gallery/Gallery";
@@ -12,8 +13,9 @@ import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SegmentedControl from "@/components/SegmentedControl/SegmentedControl";
 import Select from "@/components/Select";
 import { ProductPriceSettings } from "@/constants/productPrices";
+import useFormattedPrice from "@/hooks/useFormattedPrice";
 import { TopcapCustomColor, TopcapCustomThickness, useTopcapsData } from "@/hooks/useTopcapsData";
-import { TopcapParams } from "@/stores/cartStore";
+import { BoltColor, BoltMaterial, TopcapParams } from "@/stores/cartStore";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -24,11 +26,15 @@ export default function TopcapsCustomPage() {
     const [thickness, setThickness] = useState(topcaps.custom.thickness[0].value);
     const { t } = useTranslation();
 
+    const titaniumBoltPrice = useFormattedPrice(topcaps.custom["additional-price-options"].find(option => option.type === 'titanium')?.price);
+
     const [productParams, setProductParams] = useState<TopcapParams>({
-            bolts: 'none',
-            boltColor: null,
-            hasBox: false,
-        });
+        boltsMaterial: 'none',
+        boltColor: null,
+        hasBox: false,
+    });
+
+    console.log(productParams)
 
     const addToCart = () => { };
 
@@ -51,6 +57,12 @@ export default function TopcapsCustomPage() {
                             onChange={(value: TopcapCustomThickness) => setThickness(value)}
                             value={thickness}
                         />
+                        <BoltParamsControl
+                            boltPrice={titaniumBoltPrice}
+                            boltsMaterial={productParams.boltsMaterial}
+                            boltColor={productParams.boltColor}
+                            setProductParams={(params) => setProductParams({ ...productParams, ...params })}
+                        />
                         <Select
                             options={topcaps.custom.colorOptions}
                             value={colorOption}
@@ -58,14 +70,14 @@ export default function TopcapsCustomPage() {
                             fluid
                         />
 
-                            <Checkbox
-                                checked={productParams.hasBox}
-                                onChange={(value) => setProductParams({ ...productParams, hasBox: value })}
-                                name="hasBox"
-                                label={t('product.topcap.option.box.label')}
-                                subtext={t('product.topcap.option.box.description')}
-                            />
-                        
+                        <Checkbox
+                            checked={productParams.hasBox}
+                            onChange={(value) => setProductParams({ ...productParams, hasBox: value })}
+                            name="hasBox"
+                            label={t('product.topcap.option.box.label')}
+                            subtext={t('product.topcap.option.box.description')}
+                        />
+
                         <RowWrapper>
                             <InputNumber
                                 value={quantity}

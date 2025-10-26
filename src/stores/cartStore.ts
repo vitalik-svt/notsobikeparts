@@ -10,7 +10,7 @@ export type CageColor = 'black' | 'aluminum';
 export type CagePlusColor = 'black' | 'transparent' | 'light-green' | 'light-brown';
 
 export interface TopcapParams {
-	bolts: BoltMaterial;
+	boltsMaterial: BoltMaterial;
 	boltColor: BoltColor;
 	hasBox: boolean;
 }

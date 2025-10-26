@@ -1,4 +1,5 @@
 import { ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
+import { TopcapCustomColor, TopcapCustomThickness } from '@/hooks/useTopcapsData';
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware';
 
@@ -23,7 +24,12 @@ export interface VoileParams {
 	voileType: ProductVoileType;
 }
 
-export type ProductParams = Partial<TopcapParams & CageParams & VoileParams>;
+export interface TopcapCustomParams {
+	colorOption: TopcapCustomColor;
+	customThickness: TopcapCustomThickness;
+}
+
+export type ProductParams = Partial<TopcapParams & CageParams & VoileParams & TopcapCustomParams>;
 
 export interface CartItem {
 	id: string

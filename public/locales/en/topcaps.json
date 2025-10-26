@@ -32,6 +32,7 @@
     "topcaps.custom.template.description.1": "To apply a design, you’ll need a vector file. Place your artwork on the topcap using <1>the provided template</1>",
     "topcaps.custom.template.description.2": "If you only want to add text to the topcap, just tell us what to write and how to place it — no need to use the template (unless you want to). You can include this text in the order comments.",
     "topcaps.custom.template.description.3": "After you place your order, we’ll contact you to confirm availability. In response to our email, you can send your prepared design",
+    "topcaps.custom_thickness_label": "Thickness of the cap",
     "topcaps.custom.color.1": "Black",
     "topcaps.custom.color.2": "Light (aluminum)",
     "topcaps.custom.color.3": "Red",

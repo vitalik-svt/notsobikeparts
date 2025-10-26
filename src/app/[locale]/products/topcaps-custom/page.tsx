@@ -13,11 +13,10 @@ import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import SegmentedControl from "@/components/SegmentedControl/SegmentedControl";
 import Select from "@/components/Select";
-import { CONTACTS } from "@/constants/contacts";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import useFormattedPrice from "@/hooks/useFormattedPrice";
 import { TopcapCustomColor, TopcapCustomThickness, useTopcapsData } from "@/hooks/useTopcapsData";
-import { TopcapParams } from "@/stores/cartStore";
+import { cartStore, TopcapParams } from "@/stores/cartStore";
 import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
@@ -28,6 +27,7 @@ export default function TopcapsCustomPage() {
     const [thickness, setThickness] = useState(topcaps.custom.thickness[0].value);
     const { t: tCommon } = useTranslation();
     const { t: tTopcap } = useTranslation(`topcaps`);
+    const { addItem } = cartStore();
 
     const titaniumBoltPrice = useFormattedPrice(topcaps.custom["additional-price-options"].find(option => option.type === 'titanium')?.price);
 
@@ -37,7 +37,20 @@ export default function TopcapsCustomPage() {
         hasBox: false,
     });
 
-    const addToCart = () => { };
+    const addToCart = () => { 
+        addItem({
+            id: `topcap-custom-${colorOption}-${thickness}-${productParams.boltsMaterial}-${productParams.boltColor}-${productParams.hasBox}`,
+            quantity,
+            url: topcaps.custom.images[0],
+            title: topcaps.custom.title,
+            price: topcaps.custom.price,
+            productParams: {
+                ...productParams,
+                colorOption: colorOption,
+                customThickness: thickness,
+            },
+        });
+    };
 
     return (
         <ProductPage>
@@ -48,10 +61,6 @@ export default function TopcapsCustomPage() {
                     price={topcaps.custom.price as ProductPriceSettings}
                     description={topcaps.custom.description[0]}
                 >
-                    {/* <SectionInfoBlock title={tCages("features.title")}>
-                        <List items={topcaps.custom.features} />
-                    </SectionInfoBlock> */}
-
                     <OptionsCountBlock>
                         <SegmentedControl
                             options={topcaps.custom.thickness}

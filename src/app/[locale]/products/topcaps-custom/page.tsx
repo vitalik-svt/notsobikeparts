@@ -10,21 +10,24 @@ import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
+import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import SegmentedControl from "@/components/SegmentedControl/SegmentedControl";
 import Select from "@/components/Select";
+import { CONTACTS } from "@/constants/contacts";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import useFormattedPrice from "@/hooks/useFormattedPrice";
 import { TopcapCustomColor, TopcapCustomThickness, useTopcapsData } from "@/hooks/useTopcapsData";
-import { BoltColor, BoltMaterial, TopcapParams } from "@/stores/cartStore";
+import { TopcapParams } from "@/stores/cartStore";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 export default function TopcapsCustomPage() {
     const topcaps = useTopcapsData();
     const [quantity, setQuantity] = useState(1);
     const [colorOption, setColorOption] = useState(topcaps.custom.colorOptions[0].value);
     const [thickness, setThickness] = useState(topcaps.custom.thickness[0].value);
-    const { t } = useTranslation();
+    const { t: tCommon } = useTranslation();
+    const { t: tTopcap } = useTranslation(`topcaps`);
 
     const titaniumBoltPrice = useFormattedPrice(topcaps.custom["additional-price-options"].find(option => option.type === 'titanium')?.price);
 
@@ -33,8 +36,6 @@ export default function TopcapsCustomPage() {
         boltColor: null,
         hasBox: false,
     });
-
-    console.log(productParams)
 
     const addToCart = () => { };
 
@@ -69,15 +70,13 @@ export default function TopcapsCustomPage() {
                             onChange={(value: string) => setColorOption(value as TopcapCustomColor)}
                             fluid
                         />
-
                         <Checkbox
                             checked={productParams.hasBox}
                             onChange={(value) => setProductParams({ ...productParams, hasBox: value })}
                             name="hasBox"
-                            label={t('product.topcap.option.box.label')}
-                            subtext={t('product.topcap.option.box.description')}
+                            label={tCommon('product.topcap.option.box.label')}
+                            subtext={tCommon('product.topcap.option.box.description')}
                         />
-
                         <RowWrapper>
                             <InputNumber
                                 value={quantity}
@@ -87,12 +86,32 @@ export default function TopcapsCustomPage() {
                                 onClick={addToCart}
                                 fluid
                             >
-                                {t("product.add_to_cart")}
+                                {tCommon("product.add_to_cart")}
                             </Button>
                         </RowWrapper>
                     </OptionsCountBlock>
                 </ProductMainInfo>
             </ProductMain>
+            <SectionInfoBlock title={tTopcap(`topcaps.custom.manufacturing_time.title`)}>
+                <p>{tTopcap(`topcaps.custom.manufacturing_time.description`)}</p>
+            </SectionInfoBlock>
+            <SectionInfoBlock title={tTopcap(`topcaps.custom.production.title`)}>
+                <p className="mb-2">{tTopcap(`topcaps.custom.production.description.1`)}</p>
+                <p>{tTopcap(`topcaps.custom.production.description.2`)}</p>
+            </SectionInfoBlock>
+            <SectionInfoBlock title={tTopcap(`topcaps.custom.template.title`)}>
+                <p className="mb-2">
+                    <Trans
+                        ns="topcaps"
+                        i18nKey="topcaps.custom.template.description.1"
+                        components={{
+                            1: <a href="/topcap_template_v1.ai" className="underline" />
+                        }}
+                    />
+                </p>
+                <p className="mb-2">{tTopcap(`topcaps.custom.template.description.2`)}</p>
+                <p>{tTopcap(`topcaps.custom.template.description.3`)}</p>
+            </SectionInfoBlock>
         </ProductPage>
     );
 }

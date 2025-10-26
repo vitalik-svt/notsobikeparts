@@ -115,13 +115,13 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
                 t("topcaps.custom.description"),
             ],
             thickness: [
-                { 
-                    label: t("topcaps.custom.thickness.1"), 
-                    value: 'thin' 
+                {
+                    label: t("topcaps.custom.thickness.1"),
+                    value: 'thin'
                 },
-                { 
-                    label: `${t("topcaps.custom.thickness.2")} (+${formatPrice(productPrices.topcaps["thicker"][locale])})`, 
-                    value: 'thick' 
+                {
+                    label: `${t("topcaps.custom.thickness.2")} (+${formatPrice(productPrices.topcaps["thick"][locale])})`,
+                    value: 'thick'
                 },
             ],
             colorOptions: [
@@ -144,8 +144,8 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
                     price: productPrices.topcaps["custom-color"][locale],
                 },
                 {
-                    type: "thicker",
-                    price: productPrices.topcaps["thicker"][locale],
+                    type: "thick",
+                    price: productPrices.topcaps["thick"][locale],
                 },
             ],
         },

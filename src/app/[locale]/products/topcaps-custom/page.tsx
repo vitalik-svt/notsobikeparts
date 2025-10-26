@@ -17,7 +17,7 @@ import { ProductPriceSettings } from "@/constants/productPrices";
 import useFormattedPrice from "@/hooks/useFormattedPrice";
 import { TopcapCustomColor, TopcapCustomThickness, useTopcapsData } from "@/hooks/useTopcapsData";
 import { cartStore, TopcapParams } from "@/stores/cartStore";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
 export default function TopcapsCustomPage() {
@@ -29,7 +29,7 @@ export default function TopcapsCustomPage() {
     const { t: tTopcap } = useTranslation(`topcaps`);
     const { addItem } = cartStore();
 
-    const titaniumBoltPrice = useFormattedPrice(topcaps.custom["additional-price-options"].find(option => option.type === 'titanium')?.price);
+    const titaniumBoltPrice = useFormattedPrice(topcaps.custom["additional-price-options"].find((option) => option.type === 'titanium')?.price);
 
     const [productParams, setProductParams] = useState<TopcapParams>({
         boltsMaterial: 'none',
@@ -37,13 +37,40 @@ export default function TopcapsCustomPage() {
         hasBox: false,
     });
 
+    const getTotalPrice = useCallback(
+      () => {
+        let total = topcaps.custom.price.amount;
+
+        if (productParams.boltsMaterial === 'titanium') {
+            total += topcaps.custom["additional-price-options"].find((option) => option.type === 'titanium')?.price.amount || 0;
+        }
+
+        if (thickness === 'thick') {
+            const thickOption = topcaps.custom["additional-price-options"].find((option) => String(option.type) === 'thick');
+            total += thickOption?.price.amount || 0;
+            console.log(`yes`, thickOption?.price.amount)
+        }
+
+        if (colorOption !== `black`) {
+            const colorOptionPrice = topcaps.custom["additional-price-options"].find((option) => String(option.type) === 'custom-color');
+            total += colorOptionPrice?.price.amount || 0;
+        }
+
+        return total;
+    },
+      [topcaps.custom, productParams.boltsMaterial, thickness, colorOption],
+    )
+    
+
+    const totalPrice: ProductPriceSettings = useMemo(() => ({ amount: getTotalPrice(), currency: topcaps.custom.price.currency, locale: topcaps.custom.price.locale }), [getTotalPrice, topcaps.custom.price.currency, topcaps.custom.price.locale]);
+
     const addToCart = () => { 
         addItem({
             id: `topcap-custom-${colorOption}-${thickness}-${productParams.boltsMaterial}-${productParams.boltColor}-${productParams.hasBox}`,
             quantity,
             url: topcaps.custom.images[0],
             title: topcaps.custom.title,
-            price: topcaps.custom.price,
+            price: totalPrice,
             productParams: {
                 ...productParams,
                 colorOption: colorOption,
@@ -52,13 +79,23 @@ export default function TopcapsCustomPage() {
         });
     };
 
+    const onSetProductParams = (params: Partial<TopcapParams>) => {
+        const hasBoltsMaterialValue = 'boltsMaterial' in params && params.boltsMaterial !== undefined;
+
+        if (hasBoltsMaterialValue && params.boltsMaterial !== 'none' && productParams.boltColor === null) {
+            setProductParams(prev => ({ ...prev, ...params, boltColor: 'black' }));
+        }
+
+        setProductParams(prev => ({ ...prev, ...params }));
+    }
+
     return (
         <ProductPage>
             <ProductMain>
                 <Gallery images={topcaps.custom.images} />
                 <ProductMainInfo
                     title={topcaps.custom.title}
-                    price={topcaps.custom.price as ProductPriceSettings}
+                    price={totalPrice}
                     description={topcaps.custom.description[0]}
                 >
                     <OptionsCountBlock>
@@ -71,7 +108,7 @@ export default function TopcapsCustomPage() {
                             boltPrice={titaniumBoltPrice}
                             boltsMaterial={productParams.boltsMaterial}
                             boltColor={productParams.boltColor}
-                            setProductParams={(params) => setProductParams({ ...productParams, ...params })}
+                            setProductParams={onSetProductParams}
                         />
                         <Select
                             options={topcaps.custom.colorOptions}

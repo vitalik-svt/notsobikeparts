@@ -62,6 +62,16 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
         });
     }
 
+    const onSetProductParams = (params: Partial<TopcapParams>) => {
+        const hasBoltsMaterialValue = 'boltsMaterial' in params && params.boltsMaterial !== undefined;
+
+        if (hasBoltsMaterialValue && params.boltsMaterial !== 'none' && productParams.boltColor === null) {
+            setProductParams(prev => ({ ...prev, ...params, boltColor: 'black' }));
+        }
+
+        setProductParams(prev => ({ ...prev, ...params }));
+    }
+
     return (
         <div className="relative flex flex-col grow gap-5 lg:flex-row lg:items-start 2xl:gap-10">
             <CardNavButton direction="prev" onClick={goToPrev} />
@@ -83,7 +93,7 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
                         boltPrice={titaniumBoltPrice}
                         boltsMaterial={productParams.boltsMaterial}
                         boltColor={productParams.boltColor}
-                        setProductParams={(params) => setProductParams({ ...productParams, ...params })}
+                        setProductParams={onSetProductParams}
                     />
                     <div className='md:pr-30'>
                         <Checkbox

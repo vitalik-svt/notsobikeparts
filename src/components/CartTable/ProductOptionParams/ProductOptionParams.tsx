@@ -17,7 +17,6 @@ export default function ProductOptionParams({ productParams }: { productParams: 
         'titanium': t(`product.topcap.option.titanium`),
         'steel': t(`product.topcap.option.steel`),
         'custom-color': t(`product.topcap.option.custom-color`),
-        'thicker': t(`product.topcap.option.thicker`),
         'black': t(`product.topcap.bolt.color.black`),
         'light': t(`product.topcap.bolt.color.light`),
         'aluminum': tCages(`front.color_options.2`),

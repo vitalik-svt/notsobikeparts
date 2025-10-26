@@ -5,7 +5,7 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 
 
 export type BoltMaterial = 'none' | 'titanium' | 'steel';
-export type TopcapOptions = 'custom-color' | 'thicker';
+export type TopcapOptions = 'custom-color' | 'thick';
 export type BoltColor = 'black' | 'light' | null;
 export type CageColor = 'black' | 'aluminum';
 export type CagePlusColor = 'black' | 'transparent' | 'light-green' | 'light-brown';

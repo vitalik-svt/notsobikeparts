@@ -125,7 +125,7 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
                 },
             ],
             colorOptions: [
-                { label: `${t("topcaps.custom.color.1")}`, value: 'black' },
+                { label: t("topcaps.custom.color.1"), value: 'black' },
                 { label: `${t("topcaps.custom.color.2")} (+${formatPrice(productPrices.topcaps["custom-color"][locale])})`, value: 'aluminum' },
                 { label: `${t("topcaps.custom.color.3")} (+${formatPrice(productPrices.topcaps["custom-color"][locale])})`, value: 'red' },
                 { label: `${t("topcaps.custom.color.4")} (+${formatPrice(productPrices.topcaps["custom-color"][locale])})`, value: 'blue' },

@@ -50,7 +50,7 @@ export default function TopcapsCustomPage() {
             total += thickOption?.price.amount || 0;
         }
 
-        if (colorOption !== TopcapCustomColor.black) {
+        if (colorOption !== 'black') {
             const colorOptionPrice = topcaps.custom["additional-price-options"].find((option) => String(option.type) === 'custom-color');
             total += colorOptionPrice?.price.amount || 0;
         }
@@ -81,10 +81,12 @@ export default function TopcapsCustomPage() {
     const onSetProductParams = (params: Partial<TopcapParams>) => {
         setProductParams(prev => {
             const hasBoltsMaterialValue = 'boltsMaterial' in params && params.boltsMaterial !== undefined;
-            let nextParams = { ...prev, ...params };
+            const nextParams = { ...prev, ...params };
+
             if (hasBoltsMaterialValue && params.boltsMaterial !== 'none' && prev.boltColor === null) {
                 nextParams.boltColor = 'black';
             }
+            
             return nextParams;
         });
     }

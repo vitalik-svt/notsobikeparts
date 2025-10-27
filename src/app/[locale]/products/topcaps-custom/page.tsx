@@ -79,13 +79,14 @@ export default function TopcapsCustomPage() {
     };
 
     const onSetProductParams = (params: Partial<TopcapParams>) => {
-        const hasBoltsMaterialValue = 'boltsMaterial' in params && params.boltsMaterial !== undefined;
-
-        if (hasBoltsMaterialValue && params.boltsMaterial !== 'none' && productParams.boltColor === null) {
-            setProductParams(prev => ({ ...prev, ...params, boltColor: 'black' }));
-        }
-
-        setProductParams(prev => ({ ...prev, ...params }));
+        setProductParams(prev => {
+            const hasBoltsMaterialValue = 'boltsMaterial' in params && params.boltsMaterial !== undefined;
+            let nextParams = { ...prev, ...params };
+            if (hasBoltsMaterialValue && params.boltsMaterial !== 'none' && prev.boltColor === null) {
+                nextParams.boltColor = 'black';
+            }
+            return nextParams;
+        });
     }
 
     return (

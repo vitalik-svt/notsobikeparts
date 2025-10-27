@@ -1,16 +1,17 @@
 import { ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
+import { TopcapCustomColor, TopcapCustomThickness } from '@/hooks/useTopcapsData';
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 
 export type BoltMaterial = 'none' | 'titanium' | 'steel';
-export type TopcapOptions = 'custom-color' | 'thicker';
+export type TopcapOptions = 'custom-color' | 'thick';
 export type BoltColor = 'black' | 'light' | null;
 export type CageColor = 'black' | 'aluminum';
 export type CagePlusColor = 'black' | 'transparent' | 'light-green' | 'light-brown';
 
 export interface TopcapParams {
-	bolts: BoltMaterial;
+	boltsMaterial: BoltMaterial;
 	boltColor: BoltColor;
 	hasBox: boolean;
 }
@@ -23,7 +24,12 @@ export interface VoileParams {
 	voileType: ProductVoileType;
 }
 
-export type ProductParams = Partial<TopcapParams & CageParams & VoileParams>;
+export interface TopcapCustomParams {
+	colorOption: TopcapCustomColor;
+	customThickness: TopcapCustomThickness;
+}
+
+export type ProductParams = Partial<TopcapParams & CageParams & VoileParams & TopcapCustomParams>;
 
 export interface CartItem {
 	id: string

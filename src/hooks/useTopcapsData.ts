@@ -7,6 +7,7 @@ import { Locales } from "@/types/locales";
 import { useTranslation } from "react-i18next";
 import { TopcapCategoryItem, useTopcapsGridData } from "./useTopcapsGridData";
 import { BoltMaterial, TopcapOptions } from "@/stores/cartStore";
+import { formatPrice } from "@/utils/formatPrice";
 
 export interface AdditionalPriceOption {
     type: BoltMaterial | TopcapOptions;
@@ -28,11 +29,17 @@ interface TopcapsSerial {
     items: TopcapCategoryItem[];
 }
 
+export type TopcapCustomColor = 'black' | 'aluminum' | 'red' | 'blue' | 'green' | 'purple' | 'gold';
+export type TopcapCustomThickness = 'thin' | 'thick';
+
 interface TopcapsCustom {
     title: string;
+    images: string[];
     description: string[];
     price: ProductPriceSettings;
     "additional-price-options": AdditionalPriceOption[];
+    colorOptions: { label: string; value: TopcapCustomColor }[];
+    thickness: { label: string; value: TopcapCustomThickness }[];
 }
 
 export interface UseTopcapsDataResult {
@@ -40,7 +47,12 @@ export interface UseTopcapsDataResult {
     custom: TopcapsCustom;
 }
 
-const topcapBaseUrl = '/images/topcaps/serial/gallery';
+const baseUrl = {
+    serial: '/images/topcaps/serial',
+    custom: '/images/topcaps/custom',
+}
+
+const serialGalleryUrl = `${baseUrl.serial}/gallery`;
 
 export const useTopcapsData = (): UseTopcapsDataResult => {
     const topcaps = useTopcapsGridData();
@@ -50,13 +62,13 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
     return {
         serial: {
             images: [
-                `${topcapBaseUrl}/product-pic-1.avif`,
-                `${topcapBaseUrl}/product-pic-2.avif`,
-                `${topcapBaseUrl}/product-pic-3.avif`,
-                `${topcapBaseUrl}/product-pic-4.avif`,
-                `${topcapBaseUrl}/product-pic-5.avif`,
-                `${topcapBaseUrl}/product-pic-6.avif`,
-                `${topcapBaseUrl}/product-pic-7.avif`,
+                `${serialGalleryUrl}/product-pic-1.avif`,
+                `${serialGalleryUrl}/product-pic-2.avif`,
+                `${serialGalleryUrl}/product-pic-3.avif`,
+                `${serialGalleryUrl}/product-pic-4.avif`,
+                `${serialGalleryUrl}/product-pic-5.avif`,
+                `${serialGalleryUrl}/product-pic-6.avif`,
+                `${serialGalleryUrl}/product-pic-7.avif`,
             ],
             title: t("topcaps.name"),
             description: [
@@ -90,11 +102,36 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
             items: topcaps,
         },
         custom: {
-            title: t("custom.name"),
+            title: t("topcaps.custom.name"),
+            images: [
+                `${baseUrl.custom}/product-pic-1.avif`,
+                `${baseUrl.custom}/product-pic-2.avif`,
+                `${baseUrl.custom}/product-pic-3.avif`,
+                `${baseUrl.custom}/product-pic-4.avif`,
+                `${baseUrl.custom}/product-pic-5.avif`,
+                `${baseUrl.custom}/product-pic-6.avif`,
+            ],
             description: [
-                t("custom.description.1"),
-                t("custom.description.2"),
-                t("custom.description.3"),
+                t("topcaps.custom.description"),
+            ],
+            thickness: [
+                {
+                    label: t("topcaps.custom.thickness.1"),
+                    value: 'thin'
+                },
+                {
+                    label: `${t("topcaps.custom.thickness.2")} (+${formatPrice(productPrices.topcaps["thick"][locale])})`,
+                    value: 'thick'
+                },
+            ],
+            colorOptions: [
+                { label: t("topcaps.custom.color.1"), value: 'black' },
+                { label: `${t("topcaps.custom.color.2")} (+${formatPrice(productPrices.topcaps["custom-color"][locale])})`, value: 'aluminum' },
+                { label: `${t("topcaps.custom.color.3")} (+${formatPrice(productPrices.topcaps["custom-color"][locale])})`, value: 'red' },
+                { label: `${t("topcaps.custom.color.4")} (+${formatPrice(productPrices.topcaps["custom-color"][locale])})`, value: 'blue' },
+                { label: `${t("topcaps.custom.color.5")} (+${formatPrice(productPrices.topcaps["custom-color"][locale])})`, value: 'green' },
+                { label: `${t("topcaps.custom.color.6")} (+${formatPrice(productPrices.topcaps["custom-color"][locale])})`, value: 'purple' },
+                { label: `${t("topcaps.custom.color.7")} (+${formatPrice(productPrices.topcaps["custom-color"][locale])})`, value: 'gold' },
             ],
             price: productPrices.topcaps.custom[locale],
             "additional-price-options": [
@@ -107,8 +144,8 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
                     price: productPrices.topcaps["custom-color"][locale],
                 },
                 {
-                    type: "thicker",
-                    price: productPrices.topcaps["thicker"][locale],
+                    type: "thick",
+                    price: productPrices.topcaps["thick"][locale],
                 },
             ],
         },

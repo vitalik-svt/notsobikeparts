@@ -65,11 +65,13 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
     const onSetProductParams = (params: Partial<TopcapParams>) => {
         const hasBoltsMaterialValue = 'boltsMaterial' in params && params.boltsMaterial !== undefined;
 
-        if (hasBoltsMaterialValue && params.boltsMaterial !== 'none' && productParams.boltColor === null) {
-            setProductParams(prev => ({ ...prev, ...params, boltColor: 'black' }));
-        }
-
-        setProductParams(prev => ({ ...prev, ...params }));
+        setProductParams(prev => {
+            // If boltsMaterial is being set to something other than 'none' and boltColor is null, set boltColor to 'black'
+            if (hasBoltsMaterialValue && params.boltsMaterial !== 'none' && prev.boltColor === null) {
+                return { ...prev, ...params, boltColor: 'black' };
+            }
+            return { ...prev, ...params };
+        });
     }
 
     return (

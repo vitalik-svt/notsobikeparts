@@ -50,7 +50,7 @@ export default function TopcapsCustomPage() {
             total += thickOption?.price.amount || 0;
         }
 
-        if (colorOption !== `black`) {
+        if (colorOption !== TopcapCustomColor.black) {
             const colorOptionPrice = topcaps.custom["additional-price-options"].find((option) => String(option.type) === 'custom-color');
             total += colorOptionPrice?.price.amount || 0;
         }

@@ -48,7 +48,6 @@ export default function TopcapsCustomPage() {
         if (thickness === 'thick') {
             const thickOption = topcaps.custom["additional-price-options"].find((option) => String(option.type) === 'thick');
             total += thickOption?.price.amount || 0;
-            console.log(`yes`, thickOption?.price.amount)
         }
 
         if (colorOption !== `black`) {

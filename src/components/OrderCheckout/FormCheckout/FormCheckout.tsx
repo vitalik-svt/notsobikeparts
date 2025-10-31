@@ -23,10 +23,10 @@ export default function FormCheckout({ onSubmit: onClick }: Props) {
     const { t } = useTranslation();
     const schema = z.object({
         name: z.string().min(1, t('cart.form.required')),
-        email: z.email(t('cart.email_label')),
+        email: z.email(t('form.email_label')),
         phone: z.string()
             .min(1, t('cart.form.required'))
-            .regex(/^\+?[0-9\s\-()]{7,15}$/, t('cart.phone_label')),
+            .regex(/^\+?[0-9\s\-()]{7,15}$/, t('form.phone_label')),
         deliveryMethod: z.string().min(1, t('cart.form.required')),
         comment: z.string().optional(),
     });
@@ -55,24 +55,24 @@ export default function FormCheckout({ onSubmit: onClick }: Props) {
             />
 
             <FormControl<CheckoutForm>
-                label={t('cart.email_label')}
-                placeholder={t('cart.email_placeholder')}
+                label={t('form.email_label')}
+                placeholder={t('form.email_placeholder')}
                 name="email"
                 register={register}
                 errors={errors}
             />
 
             <FormControl<CheckoutForm>
-                label={t('cart.phone_label')}
-                placeholder={t('cart.phone_placeholder')}
+                label={t('form.phone_label')}
+                placeholder={t('form.phone_placeholder')}
                 name="phone"
                 register={register}
                 errors={errors}
             />
 
             <FormControl<CheckoutForm>
-                label={t('cart.delivery_label')}
-                placeholder={t('cart.delivery_placeholder')}
+                label={t('form.delivery_label')}
+                placeholder={t('form.delivery_placeholder')}
                 name="deliveryMethod"
                 register={register}
                 errors={errors}

@@ -1,12 +1,15 @@
 import ProductOptionParams from "@/components/OrderSummary/CartTable/ProductOptionParams/ProductOptionParams";
-import { cartStore } from "@/stores/cartStore";
+import { CartItem } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
 import { useTranslation } from "react-i18next";
 
 
-export default function OrderTableCheckout() {
+interface Props {
+    items: CartItem[];
+}
+
+export default function OrderTableCheckout({ items }: Props) {
     const { t } = useTranslation();
-    const { items } = cartStore();
 
     return (
         <table className="table-fixed w-full text-left border-collapse lowercase">

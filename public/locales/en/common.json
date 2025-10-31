@@ -66,5 +66,6 @@
   "cart.option.1": "No",
   "cart.unit_label": "pcs.",
   "cart.total_price": "Total: {{priceWithCurrency}}",
-  "cart.checkout": "Checkout"
+  "cart.checkout": "Checkout",
+  "cart.edit": "Edit"
 }

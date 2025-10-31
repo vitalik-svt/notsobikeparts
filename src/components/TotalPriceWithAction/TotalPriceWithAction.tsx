@@ -19,9 +19,10 @@ export default function TotalPriceWithAction({ items, actionButton, className = 
 
     return (
         <div className={`flex flex-col gap-2 text-right items-end ms-auto pt-7 ${className}`}>
-            <p className="uppercase font-bold ">
+            <p className="uppercase font-bold">
                 {t("cart.total_price", { priceWithCurrency: formatPrice(priceForFormatting) })}
             </p>
+            <p className="max-w-[580px] leading-5 py-2">{t("cart.delivery_cost")}</p>
             {actionButton}
         </div>
     );

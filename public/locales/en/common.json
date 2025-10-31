@@ -66,6 +66,7 @@
   "cart.option.1": "No",
   "cart.unit_label": "pcs.",
   "cart.total_price": "Total: {{priceWithCurrency}}",
+  "cart.delivery_cost": "Delivery cost is not included in the total. We will calculate it and contact you after placing the order.",
   "cart.checkout": "Checkout",
   "cart.edit": "Edit"
 }

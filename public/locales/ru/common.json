@@ -50,6 +50,7 @@
   "form.comment_placeholder": "Задайте нам вопрос или уточните детали заказа",
   "form.email_label": "Email",
   "form.email_placeholder": "youremail@example.com",
+  "form.email_invalid": "Неверный адрес электронной почты",
   "form.delivery_label": "ПВЗ СДЭК",
   "form.delivery_placeholder": "Город N, улица все в таком духе",
   "form.phone_label": "Телефон",
@@ -63,5 +64,6 @@
   "cart.total_price": "Общая сумма: {{priceWithCurrency}}",
   "cart.yes_label": "Да",
   "cart.no_label": "Нет",
+  "cart.unit_label": "шт.",
   "cart.checkout": "Оформить заказ"
 }

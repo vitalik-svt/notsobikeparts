@@ -1,4 +1,7 @@
 import { FieldErrors, FieldValues, FieldError, Path, UseFormRegister } from "react-hook-form";
+import InputLabel from "../InputLabel/InputLabel";
+import InputError from "../InputError/InputError";
+import FormControlWrapper from "../FormControlWrapper/FormControlWrapper";
 
 interface Props<T extends FieldValues> {
     label: string;
@@ -15,8 +18,8 @@ export default function FormControl<T extends FieldValues>({ label, name, errors
     const fieldError = errors ? (errors as Record<string, FieldError | undefined>)[name as string] : undefined;
 
     return (
-        <div className="lowercase">
-            <label className="block font-medium mb-1">{label}</label>
+        <FormControlWrapper>
+            <InputLabel label={label} />
             <input
                 {...register(name)}
                 type={type}
@@ -24,7 +27,7 @@ export default function FormControl<T extends FieldValues>({ label, name, errors
                 aria-invalid={!!fieldError}
                 placeholder={placeholder?.toLowerCase()}
             />
-            {fieldError?.message && <p className="mt-1 text-xs  text-red-500">{fieldError.message}</p>}
-        </div>
+            {fieldError?.message && <InputError errorMessage={fieldError.message} />}
+        </FormControlWrapper>
     );
 }

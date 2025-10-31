@@ -22,12 +22,12 @@ interface Props {
 export default function FormCheckout({ onSubmit: onClick }: Props) {
     const { t } = useTranslation();
     const schema = z.object({
-        name: z.string().min(1, t('cart.form.required')),
-        email: z.email(t('form.email_label')),
+        name: z.string().min(1, t('form.required')),
+        email: z.email(t('form.email_invalid')),
         phone: z.string()
-            .min(1, t('cart.form.required'))
+            .min(1, t('form.required'))
             .regex(/^\+?[0-9\s\-()]{7,15}$/, t('form.phone_label')),
-        deliveryMethod: z.string().min(1, t('cart.form.required')),
+        deliveryMethod: z.string().min(1, t('form.required')),
         comment: z.string().optional(),
     });
 
@@ -45,7 +45,7 @@ export default function FormCheckout({ onSubmit: onClick }: Props) {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
             <FormControl<CheckoutForm>
                 label={t('form.full_name_label')}
                 placeholder={t('form.full_name_placeholder')}

@@ -50,6 +50,7 @@
   "form.required": "Обязательное поле",
   "form.email_label": "Email",
   "form.email_placeholder": "youremail@example.com",
+  "form.email_invalid": "Invalid email address",
   "form.delivery_label": "CDEK Pickup Point",
   "form.delivery_placeholder": "City, street, and other details",
   "form.phone_label": "Phone",
@@ -63,6 +64,7 @@
   "cart.option.yes": "Yes",
   "cart.option.no": "No",
   "cart.option.1": "No",
+  "cart.unit_label": "pcs.",
   "cart.total_price": "Total: {{priceWithCurrency}}",
   "cart.checkout": "Checkout"
 }

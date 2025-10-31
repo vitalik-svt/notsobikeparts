@@ -1,11 +1,25 @@
-import Button from "../Button/Button";
+import { use } from "react";
+import FormCheckout from "./FormCheckout/FormCheckout";
+import { useTranslation } from "react-i18next";
 
-export default function OrderCheckout({ onClick }: { onClick: VoidFunction }) {
+interface Props {
+    onClick: VoidFunction;
+}
+
+export default function OrderCheckout({ onClick }: Props) {
+    const { t } = useTranslation();
+
     return (
-        <div>
-            <div></div>
-            <div></div>
-            <Button onClick={onClick}>Complete Order</Button>
+        <div className="md:flex md:gap-10">
+            <section className="md:w-full">
+                <h2 className="text-2xl font-bold mb-4">{t("cart.title.details")}</h2>
+                <FormCheckout onSubmit={onClick} />
+            </section>
+         
+            <section className="md:w-full">
+                <h2 className="text-2xl font-bold mb-4">{t("cart.title.order")}</h2>
+
+            </section>
         </div>
     );
 }

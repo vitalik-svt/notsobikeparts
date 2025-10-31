@@ -21,7 +21,8 @@ export default function OrderSummary({ onClick }: { onClick: VoidFunction }) {
     }
 
     return (
-        <div>
+        <section>
+            <h2 className="text-2xl font-bold mb-5">{t("cart.title.order")}</h2>
             <CartTable items={items} />
             <div className="flex flex-col gap-2 text-right items-end md:w-4/12 ms-auto pt-7">
                 <p className="uppercase font-bold ">
@@ -31,6 +32,6 @@ export default function OrderSummary({ onClick }: { onClick: VoidFunction }) {
                     {t("cart.checkout")}
                 </Button>
             </div>
-        </div>
+        </section>
     );
 }

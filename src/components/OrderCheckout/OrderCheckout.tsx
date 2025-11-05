@@ -9,7 +9,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '@/components/Button/Button';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 interface Props {
     onClick: (value: OrderStep) => void;
@@ -18,7 +18,7 @@ interface Props {
 export default function OrderCheckout({ onClick }: Props) {
     const { items, userFormData, setUserFormData, finalizeOrder } = cartStore();
     const { t } = useTranslation();
-    const schema = z.object({
+    const schema = useMemo(() => z.object({
         name: z.string().min(1, t('form.required')),
         email: z.email(t('form.email_invalid')),
         phone: z.string()
@@ -26,7 +26,7 @@ export default function OrderCheckout({ onClick }: Props) {
             .regex(/^\+?[0-9\s\-()]{7,15}$/, t('form.phone_invalid')),
         deliveryMethod: z.string().min(1, t('form.required')),
         comment: z.string().optional(),
-    });
+    }), [t]);
 
     type FormData = z.infer<typeof schema>;
 

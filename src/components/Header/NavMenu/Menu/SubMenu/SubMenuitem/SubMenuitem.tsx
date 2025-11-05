@@ -32,7 +32,7 @@ export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
                 }`}
         >
             {!subitem.submenu ? (
-                <Link href={subitem.href || ``} className="block ps-10 py-2 lowercase relative before:absolute before:top-0 before:left-0 before:w-5 before:h-full before:bg-black before:content-[''] md:before:hidden md:hover:text-blue-500">
+                <Link href={subitem.href || ``} className="block ps-10 py-2 lowercase relative before:absolute before:top-0 before:left-0 before:w-5 before:h-full before:bg-black before:content-[''] md:before:hidden md:hover:text-gray-500">
                     {subitem.label}
                 </Link>
             ) : (
@@ -66,7 +66,7 @@ export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
                                 {grandchild.href && (
                                     <Link
                                         href={grandchild.href}
-                                        className="flex flex-col gap-1 px-15 py-2 lowercase md:hover:text-blue-500 relative before:absolute before:top-0 before:left-0 before:w-10 before:h-full before:bg-black before:content-[''] md:before:hidden md:text-left md:px-2 md:w-full md:items-center"
+                                        className="flex flex-col gap-1 px-15 py-2 lowercase md:hover:text-gray-500 relative before:absolute before:top-0 before:left-0 before:w-10 before:h-full before:bg-black before:content-[''] md:before:hidden md:text-left md:px-2 md:w-full md:items-center"
                                     >
                                         <span className="hidden md:flex w-40 h-50 border-2 border-black justify-center items-center bg-black text-white uppercase font-bold tracking-wider">
                                             картинка

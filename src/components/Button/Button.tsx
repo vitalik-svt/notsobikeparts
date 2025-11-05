@@ -5,7 +5,6 @@ type ButtonVariant = "primary" | "secondary";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
-    onClick: VoidFunction;
     fluid?: boolean;
     size?: ButtonSize;
     variant?: ButtonVariant;

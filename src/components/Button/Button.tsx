@@ -1,18 +1,23 @@
-import { FC, ReactNode } from "react";
+import { ButtonHTMLAttributes, FC, ReactNode } from "react";
 
 type ButtonSize = "s" | "m" | "l";
 type ButtonVariant = "primary" | "secondary";
 
-interface Props {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
-    onClick: VoidFunction;
     fluid?: boolean;
     size?: ButtonSize;
     variant?: ButtonVariant;
-    disabled?: boolean;
 }
 
-const Button: FC<Props> = ({ children, onClick, fluid, size = "l", variant = "primary", disabled = false }) => {
+const Button: FC<Props> = ({
+    children,
+    onClick,
+    fluid,
+    size = "l",
+    variant = "primary",
+    disabled = false
+}) => {
     const sizeClasses = {
         s: "h-8 text-sm py-1 px-2",
         m: "h-12 text-base py-2 px-4",
@@ -27,6 +32,7 @@ const Button: FC<Props> = ({ children, onClick, fluid, size = "l", variant = "pr
 
     return (
         <button
+            type="button"
             className={`${variantClasses} rounded transition cursor-pointer lowercase leading-none ${fluid ? "w-full" : ""} ${sizeClasses}`}
             onClick={onClick}
             disabled={disabled}

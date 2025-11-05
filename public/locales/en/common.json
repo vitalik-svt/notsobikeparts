@@ -55,6 +55,7 @@
   "form.delivery_placeholder": "City, street, and other details",
   "form.phone_label": "Phone",
   "form.phone_placeholder": "Your phone number",
+  "form.phone_invalid": "Invalid phone number",
   "form.order_comment_label": "Order comment",
   "form.order_comment_placeholder": "Ask a question or clarify order details",
   "cart.bolt_color": "Bolt color",
@@ -68,5 +69,7 @@
   "cart.total_price": "Total: {{priceWithCurrency}}",
   "cart.delivery_cost": "Delivery cost is not included in the total. We will calculate it and contact you after placing the order.",
   "cart.checkout": "Checkout",
-  "cart.edit": "Edit"
+  "cart.edit": "Edit",
+  "success.title": "Thank you for your order!",
+  "success.description": "Your order has been successfully placed. We will contact you shortly via email to confirm all details"
 }

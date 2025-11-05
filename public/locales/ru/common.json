@@ -55,6 +55,7 @@
   "form.delivery_placeholder": "Город N, улица все в таком духе",
   "form.phone_label": "Телефон",
   "form.phone_placeholder": "Ну номер телефона",
+  "form.phone_invalid": "Неверный номер телефона",
   "form.order_comment_label": "Комментарий к заказу",
   "form.order_comment_placeholder": "Задайте нам вопрос или уточните детали заказа",
   "cart.bolt_color": "Цвет болта",
@@ -67,5 +68,7 @@
   "cart.unit_label": "шт.",
   "cart.delivery_cost": "В общую сумму не входит стоимость доставки. Мы рассчитаем ее и свяжемся с вами после оформления заказа",
   "cart.checkout": "Оформить заказ",
-  "cart.edit": "Изменить"
+  "cart.edit": "Изменить",
+  "success.title": "Спасибо за ваш заказ!",
+  "success.description": "Ваш заказ успешно оформлен. Мы совсем скоро свяжемся с вами по почте и уточним все детали"
 }

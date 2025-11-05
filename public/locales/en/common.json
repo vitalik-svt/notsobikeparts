@@ -47,7 +47,7 @@
   "form.full_name_placeholder": "Your full name",
   "form.comment_label": "Comment",
   "form.comment_placeholder": "Ask us a question or clarify order details",
-  "form.required": "Обязательное поле",
+  "form.required": "Required field",
   "form.email_label": "Email",
   "form.email_placeholder": "youremail@example.com",
   "form.email_invalid": "Invalid email address",

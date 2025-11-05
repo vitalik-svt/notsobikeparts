@@ -11,11 +11,13 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { useFeedbagHangerData } from "@/hooks/useFeedbagHangerData";
+import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function FeedbagHangerPage() {
+    const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState(1);
     const { addItem } = cartStore();
     const { t: tCommon } = useTranslation('common');
@@ -30,6 +32,7 @@ export default function FeedbagHangerPage() {
             title: feedbagHangerData.name,
             price: feedbagHangerData.price,
         });
+        setNotification(feedbagHangerData.name);
     };
 
     return (

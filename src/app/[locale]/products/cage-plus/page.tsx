@@ -14,11 +14,13 @@ import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import Select from "@/components/Select";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
+import { useNotifications } from "@/providers/NotificationsProvider";
 import { CagePlusColor, cartStore } from "@/stores/cartStore";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function CagePlusPage() {
+    const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState<number>(1);
     const [colorOption, setColorOption] = useState<CagePlusColor>('black');
     const cages = useCagesProductData();
@@ -35,6 +37,7 @@ export default function CagePlusPage() {
             quantity,
             productParams: { cageColor: colorOption },
         });
+        setNotification(cages.plus.name);
     };
 
     return (

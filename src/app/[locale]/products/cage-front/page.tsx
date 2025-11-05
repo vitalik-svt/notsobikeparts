@@ -14,14 +14,16 @@ import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import Select from "@/components/Select";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
+import { useNotifications } from "@/providers/NotificationsProvider";
 import { CageColor, cartStore } from "@/stores/cartStore";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 
 export default function FrontCagePage() {
+	const { setNotification } = useNotifications();
 	const cages = useCagesProductData();
-	const [colorOption, setColorOption] = useState<CageColor>(cages.front.colorOptions[0].value);
+	const [colorOption, setColorOption] = useState<CageColor>(cages.front.colorOptions[0].value as CageColor);
 	const [quantity, setQuantity] = useState(1);
 	const { addItem } = cartStore();
 	const { t: tCommon } = useTranslation('common');
@@ -38,6 +40,7 @@ export default function FrontCagePage() {
 				cageColor: colorOption,
 			}
 		});
+		setNotification(cages.front.name);
 	};
 
 	return (

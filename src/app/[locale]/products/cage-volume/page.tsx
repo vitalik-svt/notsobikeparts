@@ -13,14 +13,16 @@ import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import Select from "@/components/Select";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
+import { useNotifications } from "@/providers/NotificationsProvider";
 import { CageColor, cartStore } from "@/stores/cartStore";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function CageVolumePage() {
+    const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState(1);
     const cages = useCagesProductData();
-    const [colorOption, setColorOption] = useState<CageColor>(cages.volume.colorOptions[0].value);
+    const [colorOption, setColorOption] = useState<CageColor>(cages.volume.colorOptions[0].value as CageColor);
     const { t: tCommon } = useTranslation('common');
     const { t: tCages } = useTranslation('cages');
     const { addItem } = cartStore();
@@ -36,6 +38,7 @@ export default function CageVolumePage() {
                 cageColor: colorOption,
             }
         });
+        setNotification(cages.volume.name);
     }
 
     return (

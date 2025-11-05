@@ -53,23 +53,24 @@ export default function OrderCheckout({ onClick }: Props) {
 
 
     useEffect(() => {
-        // watch returns a Subscription-like object with unsubscribe()
         const subscription = watch((value) => {
-            if (timer.current) window.clearTimeout(timer.current);
+            if (timer.current) {
+                window.clearTimeout(timer.current);
+            }
+
             timer.current = window.setTimeout(() => {
                 const json = JSON.stringify(value);
-                // avoid writing the same data repeatedly (prevents loop)
+
                 if (json !== prevSavedJson.current) {
                     setUserFormData(value as CheckoutForm);
                     prevSavedJson.current = json;
                 }
-            }, 500); // debounce (was 0)
+            }, 500);
         });
 
         return () => {
-            // правильно отписываемся
-            if (typeof (subscription as PushSubscription)?.unsubscribe === 'function') {
-                (subscription as PushSubscription).unsubscribe();
+            if (typeof subscription?.unsubscribe === 'function') {
+                subscription.unsubscribe();
             }
             if (timer.current) window.clearTimeout(timer.current);
         };

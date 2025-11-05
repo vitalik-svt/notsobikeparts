@@ -13,6 +13,7 @@ import { useKeyPress } from '@/hooks/useKeyPress';
 import { cartStore, TopcapParams } from '@/stores/cartStore';
 import { AdditionalPriceOption } from '@/hooks/useTopcapsData';
 import { BoltParamsControl } from '@/components/BoltParamsControl/BoltParamsControl';
+import { useNotifications } from '@/providers/NotificationsProvider';
 
 interface Props {
     url: string;
@@ -21,11 +22,13 @@ interface Props {
     additionalPriceOptions: AdditionalPriceOption[];
     goToPrev: VoidFunction;
     goToNext: VoidFunction;
+    close: VoidFunction;
 }
 
-export default function ProductGridCardContent({ url, price, title, additionalPriceOptions, goToPrev, goToNext }: Props) {
+export default function ProductGridCardContent({ url, price, title, additionalPriceOptions, goToPrev, goToNext, close }: Props) {
     const { t } = useTranslation();
     const { addItem } = cartStore();
+    const { setNotification } = useNotifications();
 
     const titaniumBoltPrice = useFormattedPrice(additionalPriceOptions.find(option => option.type === 'titanium')?.price);
 
@@ -60,6 +63,9 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
             price,
             productParams
         });
+
+        setNotification(title);
+        close();
     }
 
     const onSetProductParams = (params: Partial<TopcapParams>) => {

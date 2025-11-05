@@ -15,7 +15,7 @@ export type CheckoutForm = {
 interface Props<T extends FieldValues> {
     onSubmit: VoidFunction;
     register: UseFormRegister<T>;
-    handleSubmit: UseFormHandleSubmit<CheckoutForm, CheckoutForm>;
+    handleSubmit: UseFormHandleSubmit<CheckoutForm>;
     errors?: FieldErrors<T>;
 }
 

@@ -14,7 +14,7 @@ interface Props<T extends FieldValues> {
 export default function Textarea<T extends FieldValues>({ label, name, register, errors, placeholder }: Props<T>) {
 
     const fieldError = errors ? (errors as Record<string, FieldError | undefined>)[name as string] : undefined;
-    
+
     return (
         <FormControlWrapper>
             <InputLabel label={label} />
@@ -23,7 +23,7 @@ export default function Textarea<T extends FieldValues>({ label, name, register,
                 {...register(name)}
                 placeholder={placeholder?.toLowerCase()}
                 rows={4}
-                className={`border-2 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${fieldError ? 'border-red-500' : ''}`}
+                className={`border-2 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 transition ${fieldError ? 'border-red-500' : ''}`}
             />
 
             {fieldError?.message && (

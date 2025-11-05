@@ -11,11 +11,13 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
+import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function LittleCagePage() {
+    const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState(1);
     const cages = useCagesProductData();
     const { addItem } = cartStore();
@@ -29,6 +31,7 @@ export default function LittleCagePage() {
             price: cages.little.price as ProductPriceSettings,
             quantity,
         });
+        setNotification(cages.little.name);
     };
 
     return (

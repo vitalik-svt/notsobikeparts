@@ -11,10 +11,14 @@ export default function CartPage() {
     const { items, orderStep, setOrderStep } = cartStore();
 
      useEffect(() => {
-        if (items.length === 0) {
-            setOrderStep('summary');
+        return () => {
+            if (items.length === 0) {
+                setOrderStep('summary');
+            }
         }
     }, [items.length, setOrderStep]);
+
+
 
     return (
         <ProductPage>

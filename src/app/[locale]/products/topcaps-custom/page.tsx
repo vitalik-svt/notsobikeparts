@@ -16,11 +16,13 @@ import Select from "@/components/Select";
 import { ProductPriceSettings } from "@/constants/productPrices";
 import useFormattedPrice from "@/hooks/useFormattedPrice";
 import { TopcapCustomColor, TopcapCustomThickness, useTopcapsData } from "@/hooks/useTopcapsData";
+import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore, TopcapParams } from "@/stores/cartStore";
 import { useCallback, useMemo, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
 export default function TopcapsCustomPage() {
+    const { setNotification } = useNotifications();
     const topcaps = useTopcapsData();
     const [quantity, setQuantity] = useState(1);
     const [colorOption, setColorOption] = useState(topcaps.custom.colorOptions[0].value);
@@ -76,6 +78,8 @@ export default function TopcapsCustomPage() {
                 customThickness: thickness,
             },
         });
+
+        setNotification(topcaps.custom.title);
     };
 
     const onSetProductParams = (params: Partial<TopcapParams>) => {

@@ -14,12 +14,14 @@ import { ProductVoileType } from "@/constants/productPrices";
 import { useVoileProductData } from "@/hooks/useVoileProductData";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
+import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function VoileStrapPage() {
+    const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState(1);
     const { voile } = useVoileProductData();
     const { t: tCommon } = useTranslation('common');
@@ -38,6 +40,7 @@ export default function VoileStrapPage() {
                 voileType: currentOption,
             },
         });
+        setNotification(voile.name);
     };
 
     return (

@@ -9,11 +9,13 @@ import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
 import { useChainBreakerData } from "@/hooks/useChainBreakerData";
+import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function ChainBreakerPage() {
+    const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState(1);
     const { t: tCommon } = useTranslation('common');
     const chainBreakerData = useChainBreakerData();
@@ -27,6 +29,7 @@ export default function ChainBreakerPage() {
             title: chainBreakerData.name,
             price: chainBreakerData.price,
         });
+        setNotification(chainBreakerData.name);
     };
 
     return (

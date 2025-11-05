@@ -20,7 +20,7 @@ export default function MenuItemControl({ item, collapsed, onClick, labelClassNa
             {item.label}
 
             {item.hasCounter && count !== 0 ? (
-                <span className="ml-2 inline-block bg-black text-white text-xs font-semibold px-2 py-1 rounded-full">
+                <span className="ml-2 inline-flex bg-black text-white text-xs font-semibold px-2 py-1 rounded-full min-w-6 items-center justify-center">
                     {count}
                 </span>
             ) : null}

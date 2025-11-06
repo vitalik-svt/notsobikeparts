@@ -19,6 +19,9 @@ export function useItchyAndScratchyData() {
             t(`itchy_scratchy.description.2`),
             t(`itchy_scratchy.description.3`),
         ],
+        products: [
+            {}
+        ],
     }
 
     return { data };

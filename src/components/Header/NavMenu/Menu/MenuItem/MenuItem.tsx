@@ -1,6 +1,7 @@
 'use client';
 
 import { cartStore } from "@/stores/cartStore";
+import { menuStore } from "@/stores/menuStore";
 import { MenuItem } from "@/types/menu";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,9 +15,14 @@ interface Props {
 
 export default function MenuItemControl({ item, collapsed, onClick, labelClassName }: Props) {
     const count = cartStore((state) => state.totalCount);
+    const { setMenuOpen } = menuStore();
 
     return item.href ? (
-        <Link href={item.href} className={`flex items-center relative px-5 py-2 lowercase hover:text-gray-500 md:px-10 ${labelClassName}`}>
+        <Link
+            href={item.href}
+            className={`flex items-center relative px-5 py-2 lowercase hover:text-gray-500 md:px-10 ${labelClassName}`}
+            onClick={() => setMenuOpen(false)}
+        >
             {item.label}
 
             {item.hasCounter && count !== 0 ? (

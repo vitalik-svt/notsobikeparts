@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MenuItem } from "@/types/menu";
 import { useIsTouchDevice } from "../../../useIsTouchDevice";
+import { menuStore } from "@/stores/menuStore";
 
 interface Props {
     subitem: MenuItem;
@@ -11,7 +12,7 @@ interface Props {
 
 export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
     const isTouch = useIsTouchDevice();
-
+    const { setMenuOpen } = menuStore();
 
     const onHandleClick = () => {
         if (isTouch) {
@@ -32,7 +33,11 @@ export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
                 }`}
         >
             {!subitem.submenu ? (
-                <Link href={subitem.href || ``} className="block ps-10 py-2 lowercase relative before:absolute before:top-0 before:left-0 before:w-5 before:h-full before:bg-black before:content-[''] md:before:hidden md:hover:text-gray-500">
+                <Link
+                    href={subitem.href || ``}
+                    className="block ps-10 py-2 lowercase relative before:absolute before:top-0 before:left-0 before:w-5 before:h-full before:bg-black before:content-[''] md:before:hidden md:hover:text-gray-500"
+                    onClick={() => setMenuOpen(false)}
+                >
                     {subitem.label}
                 </Link>
             ) : (

@@ -16,7 +16,8 @@ const COMMON: Record<Locales, any> = {
 
 export default function LocalizedNotFound() {
     const pathname = usePathname() ?? '/';
-    const locale = (pathname.split('/')[1] || i18n.defaultLocale) as Locales;
+    const pathLocale = pathname.split('/')[1];
+    const locale = (i18n.locales.includes(pathLocale as Locales) ? pathLocale : i18n.defaultLocale) as Locales;
     const ns = COMMON[locale] ?? COMMON[i18n.defaultLocale];
 
     const msg = {

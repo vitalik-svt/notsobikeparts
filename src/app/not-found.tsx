@@ -29,9 +29,9 @@ export default function LocalizedNotFound() {
         <main className="min-h-screen flex items-center justify-center p-8">
             <div className="max-w-md text-center">
                 <div className="relative flex items-center gap-5 justify-center">
-                    <span aria-hidden="true" className=" text-black font-extrabold text-[10rem] pointer-events-none select-none">4</span>
+                    <span aria-hidden="true" className="text-black font-extrabold text-[10rem] pointer-events-none select-none">4</span>
                     <Image src="/notso-logo.webp" alt="" width={130} height={130} />
-                    <span aria-hidden="true" className=" text-black font-extrabold text-[10rem] pointer-events-none select-none">4</span>
+                    <span aria-hidden="true" className="text-black font-extrabold text-[10rem] pointer-events-none select-none">4</span>
                 </div>
                 <h1 className="text-3xl font-bold mb-14 leading-none">{msg.title}</h1>
                 <Link href={`/${locale}/`} className="inline-block lowercase rounded bg-black text-white px-4 py-2">

@@ -21,7 +21,6 @@ export default function LocalizedNotFound() {
 
     const msg = {
         title: ns['notFound.title'] ?? 'Page not found',
-        text: ns['notFound.text'] ?? '',
         home: ns['notFound.home'] ?? 'Home',
     };
 

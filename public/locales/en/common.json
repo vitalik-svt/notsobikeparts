@@ -74,6 +74,5 @@
   "success.description": "Your order has been successfully placed. We will contact you shortly via email to confirm all details",
   "success.added_to_cart": "{{itemTitle}} added to cart",
   "notFound.title": "Oops, it seems this page does not exist",
-  "notFound.text": "Please go to the homepage and find what you need there.",
   "notFound.home": "Home"
 }

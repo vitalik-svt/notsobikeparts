@@ -68,7 +68,6 @@ export default function ProductGridCardContent({ imageUrl, price, title, additio
             productParams
         });
 
-        console.log('imageUrl', pathname)
         setNotification(title);
         close();
     }

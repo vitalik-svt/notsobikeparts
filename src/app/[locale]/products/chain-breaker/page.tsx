@@ -11,10 +11,12 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import { useChainBreakerData } from "@/hooks/useChainBreakerData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function ChainBreakerPage() {
+    const pathname = usePathname();
     const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState(1);
     const { t: tCommon } = useTranslation('common');
@@ -25,9 +27,10 @@ export default function ChainBreakerPage() {
         addItem({
             id: 'chain-breaker',
             quantity,
-            url: chainBreakerData.images[0],
+            imageUrl: chainBreakerData.images[0],
             title: chainBreakerData.name,
             price: chainBreakerData.price,
+            productLink: pathname
         });
         setNotification(chainBreakerData.name);
     };

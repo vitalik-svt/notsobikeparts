@@ -12,10 +12,12 @@ import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { useMerchData } from "@/hooks/useMerchData";
 import { cartStore } from "@/stores/cartStore";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function MerchPage() {
+    const pathname = usePathname();
     const [quantity, setQuantity] = useState(1);
     const { t: tCommon } = useTranslation('common');
     const { t: tMerch } = useTranslation('merch');
@@ -26,9 +28,10 @@ export default function MerchPage() {
         addItem({
             id: 'merch',
             quantity,
-            url: merch.images[0],
+            imageUrl: merch.images[0],
             title: merch.name,
             price: merch.price,
+            productLink: pathname,
         });
     };
 

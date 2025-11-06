@@ -13,10 +13,12 @@ import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { useFeedbagHangerData } from "@/hooks/useFeedbagHangerData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function FeedbagHangerPage() {
+    const pathname = usePathname();
     const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState(1);
     const { addItem } = cartStore();
@@ -28,9 +30,10 @@ export default function FeedbagHangerPage() {
         addItem({
             id: 'feedbag-hanger',
             quantity,
-            url: feedbagHangerData.images[0],
+            imageUrl: feedbagHangerData.images[0],
             title: feedbagHangerData.name,
             price: feedbagHangerData.price,
+            productLink: pathname,
         });
         setNotification(feedbagHangerData.name);
     };

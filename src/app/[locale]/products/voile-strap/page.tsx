@@ -17,10 +17,12 @@ import { useLocale } from "@/providers/I18nProvider";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function VoileStrapPage() {
+    const pathname = usePathname();
     const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState(1);
     const { voile } = useVoileProductData();
@@ -33,12 +35,13 @@ export default function VoileStrapPage() {
         addItem({
             id: `voile-${currentOption}`,
             quantity,
-            url: voile.images[0],
+            imageUrl: voile.images[0],
             title: voile.name,
             price: voile.price[currentOption][locale],
             productParams: {
                 voileType: currentOption,
             },
+            productLink: pathname,  
         });
         setNotification(voile.name);
     };

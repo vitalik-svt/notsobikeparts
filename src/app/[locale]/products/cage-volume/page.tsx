@@ -15,10 +15,12 @@ import Select from "@/components/Select";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { CageColor, cartStore } from "@/stores/cartStore";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function CageVolumePage() {
+    const pathname = usePathname();
     const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState(1);
     const cages = useCagesProductData();
@@ -30,13 +32,14 @@ export default function CageVolumePage() {
     const addToCart = () => {
         addItem({
             id: `cage-volume-${colorOption}`,
-            url: cages.volume.images[0],
+            imageUrl: cages.volume.images[0],
             title: cages.volume.name,
             price: cages.volume.price,
             quantity,
             productParams: {
                 cageColor: colorOption,
-            }
+            },
+            productLink: pathname,
         });
         setNotification(cages.volume.name);
     }

@@ -14,3 +14,5 @@ export const ROUTES = {
   TEST_RIDE: '/others/test-ride',
   CART: '/cart',
 };
+
+export type ProductLink = typeof ROUTES[keyof typeof ROUTES];

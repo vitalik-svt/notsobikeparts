@@ -18,10 +18,12 @@ import useFormattedPrice from "@/hooks/useFormattedPrice";
 import { TopcapCustomColor, TopcapCustomThickness, useTopcapsData } from "@/hooks/useTopcapsData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore, TopcapParams } from "@/stores/cartStore";
+import { usePathname } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
 export default function TopcapsCustomPage() {
+    const pathname = usePathname();
     const { setNotification } = useNotifications();
     const topcaps = useTopcapsData();
     const [quantity, setQuantity] = useState(1);
@@ -40,36 +42,36 @@ export default function TopcapsCustomPage() {
     });
 
     const getTotalPrice = useCallback(
-      () => {
-        let total = topcaps.custom.price.amount;
+        () => {
+            let total = topcaps.custom.price.amount;
 
-        if (productParams.boltsMaterial === 'titanium') {
-            total += topcaps.custom["additional-price-options"].find((option) => option.type === 'titanium')?.price.amount || 0;
-        }
+            if (productParams.boltsMaterial === 'titanium') {
+                total += topcaps.custom["additional-price-options"].find((option) => option.type === 'titanium')?.price.amount || 0;
+            }
 
-        if (thickness === 'thick') {
-            const thickOption = topcaps.custom["additional-price-options"].find((option) => String(option.type) === 'thick');
-            total += thickOption?.price.amount || 0;
-        }
+            if (thickness === 'thick') {
+                const thickOption = topcaps.custom["additional-price-options"].find((option) => String(option.type) === 'thick');
+                total += thickOption?.price.amount || 0;
+            }
 
-        if (colorOption !== 'black') {
-            const colorOptionPrice = topcaps.custom["additional-price-options"].find((option) => String(option.type) === 'custom-color');
-            total += colorOptionPrice?.price.amount || 0;
-        }
+            if (colorOption !== 'black') {
+                const colorOptionPrice = topcaps.custom["additional-price-options"].find((option) => String(option.type) === 'custom-color');
+                total += colorOptionPrice?.price.amount || 0;
+            }
 
-        return total;
-    },
-      [topcaps.custom, productParams.boltsMaterial, thickness, colorOption],
+            return total;
+        },
+        [topcaps.custom, productParams.boltsMaterial, thickness, colorOption],
     )
-    
+
 
     const totalPrice: ProductPriceSettings = useMemo(() => ({ amount: getTotalPrice(), currency: topcaps.custom.price.currency, locale: topcaps.custom.price.locale }), [getTotalPrice, topcaps.custom.price.currency, topcaps.custom.price.locale]);
 
-    const addToCart = () => { 
+    const addToCart = () => {
         addItem({
             id: `topcap-custom-${colorOption}-${thickness}-${productParams.boltsMaterial}-${productParams.boltColor}-${productParams.hasBox}`,
             quantity,
-            url: topcaps.custom.images[0],
+            imageUrl: topcaps.custom.images[0],
             title: topcaps.custom.title,
             price: totalPrice,
             productParams: {
@@ -77,6 +79,7 @@ export default function TopcapsCustomPage() {
                 colorOption: colorOption,
                 customThickness: thickness,
             },
+            productLink: pathname,
         });
 
         setNotification(topcaps.custom.title);
@@ -90,7 +93,7 @@ export default function TopcapsCustomPage() {
             if (hasBoltsMaterialValue && params.boltsMaterial !== 'none' && prev.boltColor === null) {
                 nextParams.boltColor = 'black';
             }
-            
+
             return nextParams;
         });
     }

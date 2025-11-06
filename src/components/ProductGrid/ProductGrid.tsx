@@ -45,7 +45,7 @@ export default function ProductGrid({ items, price, title, additionalPriceOption
         open(
             <ProductGridCardContent
                 title={title}
-                url={allProducts[startIndex].image}
+                imageUrl={allProducts[startIndex].image}
                 price={price}
                 additionalPriceOptions={additionalPriceOptions}
                 goToPrev={() => {
@@ -58,7 +58,7 @@ export default function ProductGrid({ items, price, title, additionalPriceOption
                     openProductCard(nextIndex);
                     setTimeout(() => scrollToCard(nextIndex), 110);
                 }}
-                close={close} 
+                close={close}
             />
         );
     };

@@ -6,6 +6,7 @@ import { formatPrice } from "@/utils/formatPrice";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import ProductOptionParams from "./ProductOptionParams/ProductOptionParams";
+import Link from "next/link";
 
 interface Props {
     items: CartItem[]
@@ -31,18 +32,28 @@ export default function CartTable({ items }: Props) {
                 {items.map(item => (
                     <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={item.id}>
                         <td className="block p-4 pt-10 border-b md:w-32 md:pt-4 md:table-cell md:border-b-2">
-                            <div className="flex justify-center">
-                                <Image src={item.url} alt={item.title} className="w-32 h-32 object-contain" width={70} height={70} />
-                            </div>
+                            <Link href={item.productLink} aria-label={item.title} className="block w-full h-full">
+                                <div className="flex justify-center">
+                                    <Image
+                                        src={item.imageUrl}
+                                        alt={item.title}
+                                        className="w-32 h-32 object-contain"
+                                        width={70}
+                                        height={70}
+                                    />
+                                </div>
+                            </Link>
                         </td>
                         <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
-                            <div className="flex flex-col gap-2">
-                                <p className="flex justify-between items-center">
-                                    <span className="font-bold md:hidden">{t("cart.tablet.product_label")}:</span>
-                                    <span>{item.title}</span>
-                                </p>
-                                {item.productParams && <ProductOptionParams productParams={item.productParams} />}
-                            </div>
+                            <Link href={item.productLink} aria-label={`${item.title} — открыть товар`} className="block w-full h-full">
+                                <div className="flex flex-col gap-2">
+                                    <p className="flex justify-between items-center">
+                                        <span className="font-bold md:hidden">{t("cart.tablet.product_label")}:</span>
+                                        <span>{item.title}</span>
+                                    </p>
+                                    {item.productParams && <ProductOptionParams productParams={item.productParams} />}
+                                </div>
+                            </Link>
                         </td>
                         <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">
                             <p className="flex justify-between items-center">

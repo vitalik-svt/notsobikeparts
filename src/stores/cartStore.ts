@@ -1,5 +1,6 @@
 import { CheckoutForm } from '@/components/OrderCheckout/FormCheckout/FormCheckout';
 import { ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
+import { ProductLink } from '@/constants/routes';
 import { TopcapCustomColor, TopcapCustomThickness } from '@/hooks/useTopcapsData';
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware';
@@ -36,9 +37,10 @@ export type ProductParams = Partial<TopcapParams & CageParams & VoileParams & To
 export interface CartItem {
 	id: string
 	quantity: number,
-	url: string;
+	imageUrl: string;
 	title: string;
 	price: ProductPriceSettings;
+	productLink: ProductLink;
 	productParams?: ProductParams;
 }
 

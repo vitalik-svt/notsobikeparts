@@ -16,10 +16,12 @@ import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { CagePlusColor, cartStore } from "@/stores/cartStore";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-export default function CagePlusPage() {
+export default function CagePlusPage() {    
+    const pathname = usePathname();
     const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState<number>(1);
     const [colorOption, setColorOption] = useState<CagePlusColor>('black');
@@ -31,11 +33,12 @@ export default function CagePlusPage() {
     const addToCart = () => {
         addItem({
             id: `cage-plus-${colorOption}`,
-            url: cages.plus.images[0],
+            imageUrl: cages.plus.images[0],
             title: cages.plus.name,
             price: cages.plus.price as ProductPriceSettings,
             quantity,
             productParams: { cageColor: colorOption },
+            productLink: pathname,
         });
         setNotification(cages.plus.name);
     };

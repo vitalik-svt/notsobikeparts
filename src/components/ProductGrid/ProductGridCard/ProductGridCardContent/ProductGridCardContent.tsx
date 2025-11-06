@@ -14,9 +14,10 @@ import { cartStore, TopcapParams } from '@/stores/cartStore';
 import { AdditionalPriceOption } from '@/hooks/useTopcapsData';
 import { BoltParamsControl } from '@/components/BoltParamsControl/BoltParamsControl';
 import { useNotifications } from '@/providers/NotificationsProvider';
+import { usePathname } from 'next/navigation';
 
 interface Props {
-    url: string;
+    imageUrl: string;
     title: string;
     price: ProductPriceSettings;
     additionalPriceOptions: AdditionalPriceOption[];
@@ -25,7 +26,9 @@ interface Props {
     close: VoidFunction;
 }
 
-export default function ProductGridCardContent({ url, price, title, additionalPriceOptions, goToPrev, goToNext, close }: Props) {
+export default function ProductGridCardContent({ imageUrl, price, title, additionalPriceOptions, goToPrev, goToNext, close }: Props) {
+    const pathname = usePathname();
+
     const { t } = useTranslation();
     const { addItem } = cartStore();
     const { setNotification } = useNotifications();
@@ -58,12 +61,14 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
         addItem({
             id: `topcap-${productParams.boltsMaterial}-${productParams.boltColor}-${productParams.hasBox}`,
             quantity: 1,
-            url,
+            imageUrl,
             title,
             price,
+            productLink: pathname,
             productParams
         });
 
+        console.log('imageUrl', pathname)
         setNotification(title);
         close();
     }
@@ -87,7 +92,7 @@ export default function ProductGridCardContent({ url, price, title, additionalPr
             <div className='flex w-70 mx-auto flex-shrink-0 md:w-4/12 lg:w-6/12'>
                 <Image
                     className={`w-full object-contain max-w-xl mx-auto`}
-                    src={url}
+                    src={imageUrl}
                     alt=""
                     width={200}
                     height={200}

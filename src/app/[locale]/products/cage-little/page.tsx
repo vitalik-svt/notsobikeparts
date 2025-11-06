@@ -13,10 +13,12 @@ import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function LittleCagePage() {
+    const pathname = usePathname();
     const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState(1);
     const cages = useCagesProductData();
@@ -26,10 +28,11 @@ export default function LittleCagePage() {
     const addToCart = () => {
         addItem({
             id: `cage-little`,
-            url: cages.little.images[0],
+            imageUrl: cages.little.images[0],
             title: cages.little.name,
             price: cages.little.price as ProductPriceSettings,
             quantity,
+            productLink: pathname,
         });
         setNotification(cages.little.name);
     };

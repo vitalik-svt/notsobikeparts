@@ -71,5 +71,7 @@
   "cart.edit": "Изменить",
   "success.title": "Спасибо за ваш заказ!",
   "success.description": "Ваш заказ успешно оформлен. Мы совсем скоро свяжемся с вами по почте и уточним все детали",
-  "success.added_to_cart": "{{itemTitle}} добавлен в корзину"
+  "success.added_to_cart": "{{itemTitle}} добавлен в корзину",
+  "notFound.title": "Ой, кажется этой страницы не существует",
+  "notFound.home": "На главную"
 }

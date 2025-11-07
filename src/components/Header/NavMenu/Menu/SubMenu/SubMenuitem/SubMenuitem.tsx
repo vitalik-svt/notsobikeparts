@@ -72,6 +72,7 @@ export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
                                     <Link
                                         href={grandchild.href}
                                         className="flex flex-col gap-1 px-15 py-2 lowercase md:hover:text-gray-500 relative before:absolute before:top-0 before:left-0 before:w-10 before:h-full before:bg-black before:content-[''] md:before:hidden md:text-left md:px-2 md:w-full md:items-center"
+                                        onClick={isTouch ? () => setMenuOpen(false) : undefined}
                                     >
                                         {grandchild.imageSrc && (
                                             <span className="hidden md:flex w-40 h-50 justify-center items-center">

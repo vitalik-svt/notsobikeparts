@@ -3,4 +3,5 @@ export interface MenuItem {
     href?: string;
     submenu?: MenuItem[];
     hasCounter?: boolean;
+    imageSrc?: string;
 }

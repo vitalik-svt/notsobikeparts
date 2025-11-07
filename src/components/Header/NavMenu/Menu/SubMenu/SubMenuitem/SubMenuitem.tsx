@@ -77,7 +77,7 @@ export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
                                             <span className="hidden md:flex w-40 h-50 justify-center items-center">
                                                 <Image
                                                     src={grandchild.imageSrc}
-                                                    alt={grandchild.label}
+                                                    alt=""
                                                     width={250}
                                                     height={250}
                                                     className="object-cover"

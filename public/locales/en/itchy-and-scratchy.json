@@ -1,8 +1,8 @@
 {
-  "front.name": "Scratched & Scuffed",
-  "front.description.1": "Anything can happen in production — sometimes we end up with a perfectly functional item that just has a cosmetic flaw.",
-  "front.description.2": "Usually it’s about the finish — chipped anodizing or some noticeable scratches. Occasionally the laser engraving might go a bit off. We also include items used for photoshoots or short test rides here.",
-  "front.description.3": "You can get these products at a discounted price.",
+  "itchy_scratchy.name": "Scratched & Scuffed",
+  "itchy_scratchy.description.1": "Anything can happen in production — sometimes we end up with a perfectly functional item that just has a cosmetic flaw.",
+  "itchy_scratchy.description.2": "Usually it’s about the finish — chipped anodizing or some noticeable scratches. Occasionally the laser engraving might go a bit off. We also include items used for photoshoots or short test rides here.",
+  "itchy_scratchy.description.3": "You can get these products at a discounted price.",
   "itchy_scratchy.defect.product.1": "Stripped thread on the bottle opener",
   "itchy_scratchy.defect.product.2": "Minor flaws in anodizing"
 }

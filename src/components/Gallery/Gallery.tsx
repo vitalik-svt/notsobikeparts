@@ -111,7 +111,7 @@ export default function Gallery({ images }: Props) {
     
     return (
         <div className={mainContentWrapperClasses}>
-            {(isSlideShowModeOn) && (
+            {isSlideShowModeOn && (
                 <>
                     {hasMultipleImages && (
                         <>

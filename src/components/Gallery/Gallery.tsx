@@ -49,6 +49,8 @@ export default function Gallery({ images }: Props) {
         return () => window.removeEventListener("resize", handleResize);
     }, [instanceRef, thumbsInstanceRef]);
 
+    const hasMultipleImages = images.length > 1;
+
     const handleThumbClick = (idx: number) => {
         instanceRef.current?.moveToIdx(idx);
     };
@@ -97,21 +99,26 @@ export default function Gallery({ images }: Props) {
         if (isSlideShowModeOn) closeSlideShowMode();
     }, [isSlideShowModeOn, closeSlideShowMode]);
     const handleArrowLeft = useCallback(() => {
-        if (isSlideShowModeOn) goToPrevSlide();
-    }, [isSlideShowModeOn, goToPrevSlide]);
+        if (isSlideShowModeOn && hasMultipleImages) goToPrevSlide();
+    }, [isSlideShowModeOn, hasMultipleImages, goToPrevSlide]);
     const handleArrowRight = useCallback(() => {
-        if (isSlideShowModeOn) goToNextSlide();
-    }, [isSlideShowModeOn, goToNextSlide]);
+        if (isSlideShowModeOn && hasMultipleImages) goToNextSlide();
+    }, [isSlideShowModeOn, hasMultipleImages, goToNextSlide]);
 
     useKeyPress("Escape", handleEscape);
     useKeyPress("ArrowLeft", handleArrowLeft);
     useKeyPress("ArrowRight", handleArrowRight);
+    
     return (
         <div className={mainContentWrapperClasses}>
             {isSlideShowModeOn && (
                 <>
-                    <NavButton direction="prev" onClick={goToPrevSlide} />
-                    <NavButton direction="next" onClick={goToNextSlide} />
+                    {hasMultipleImages && (
+                        <>
+                            <NavButton direction="prev" onClick={goToPrevSlide} />
+                            <NavButton direction="next" onClick={goToNextSlide} />
+                        </>
+                    )}
                     <CloseButton onClick={closeSlideShowMode} color='white' />
                 </>
             )}
@@ -131,28 +138,32 @@ export default function Gallery({ images }: Props) {
                     />
                 ))}
             </div>
-            <div ref={thumbsRef} className={thumbsSliderClasses}>
-                {images.map((src, idx) => (
-                    <button
-                        key={idx}
-                        className={`keen-slider__slide border-2 w-40 ${currentSlide === idx ? "border-black" : "border-transparent opacity-50"} rounded flex-shrink-0`}
-                        onClick={() => handleThumbClick(idx)}
-                        tabIndex={0}
-                        type="button"
-                    >
-                        <Image
-                            src={src}
-                            alt=""
-                            width={60}
-                            height={60}
-                            className="flex w-40 object-cover"
-                        />
-                    </button>
-                ))}
-            </div>
-            <div className={isSlideShowModeOn ? 'text-white pt-5 text-xl' : 'hidden'}>
-                {currentSlide + 1} / {images.length}
-            </div>
+            {hasMultipleImages && (
+                <>
+                    <div ref={thumbsRef} className={thumbsSliderClasses}>
+                        {images.map((src, idx) => (
+                            <button
+                                key={idx}
+                                className={`keen-slider__slide border-2 w-40 ${currentSlide === idx ? "border-black" : "border-transparent opacity-50"} rounded flex-shrink-0`}
+                                onClick={() => handleThumbClick(idx)}
+                                tabIndex={0}
+                                type="button"
+                            >
+                                <Image
+                                    src={src}
+                                    alt=""
+                                    width={60}
+                                    height={60}
+                                    className="flex w-40 object-cover"
+                                />
+                            </button>
+                        ))}
+                    </div>
+                    <div className={isSlideShowModeOn ? 'text-white pt-5 text-xl' : 'hidden'}>
+                        {currentSlide + 1} / {images.length}
+                    </div>
+                </>
+            )}
         </div>
     );
 }   

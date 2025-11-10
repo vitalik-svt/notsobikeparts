@@ -68,7 +68,7 @@ export default function ProductGrid({ items, price, title, additionalPriceOption
             {items.map((category) => (
                 <li className="flex flex-col gap-2" key={category.categoryName}>
                     <SectionInfoBlock title={category.categoryName}>
-                        <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+                        <ul className="grid grid-cols-2 gap-7 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
                             {category.items.map((item) => {
                                 const globalIndex = allProducts.findIndex(p => p.id === item.id);
 

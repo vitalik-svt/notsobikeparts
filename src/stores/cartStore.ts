@@ -1,7 +1,7 @@
 import { CheckoutForm } from '@/components/OrderCheckout/FormCheckout/FormCheckout';
-import { ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
+import { ProductCageType, ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
 import { ProductLink } from '@/constants/routes';
-import { TopcapCustomColor, TopcapCustomThickness } from '@/hooks/useTopcapsData';
+import { TopcapCustomColor, TopcapCustomThickness, TopcapProductKey } from '@/hooks/useTopcapsData';
 import { ProductSection } from '@/types/productSection';
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware';
@@ -34,13 +34,13 @@ export interface TopcapCustomParams {
 }
 
 export type ProductParams = Partial<TopcapParams & CageParams & VoileParams & TopcapCustomParams>;
+export type ProductKey = ProductVoileType | ProductCageType | TopcapProductKey;
 
 export interface CartItem {
 	id: string
 	quantity: number,
 	productSection: ProductSection;
-	//TODO: change to productKeyType
-	productKey: string;
+	productKey: ProductKey;
 	imageUrl: string;
 	productLink: ProductLink;
 	productParams?: ProductParams;

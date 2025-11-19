@@ -47,7 +47,9 @@ export interface UseTopcapsDataResult {
     custom: TopcapsCustom;
 }
 
-const baseUrl = {
+export type TopcapProductKey = keyof UseTopcapsDataResult;
+
+const baseUrl: Record<TopcapProductKey, string> = {
     serial: '/images/topcaps/serial',
     custom: '/images/topcaps/custom',
 }

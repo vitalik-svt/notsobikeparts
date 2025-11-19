@@ -1,6 +1,15 @@
-import { productPrices, ProductVoileType } from "@/constants/productPrices";
+import { productPrices, ProductPriceSettings, ProductVoileType } from "@/constants/productPrices";
+import { Locales } from "@/types/locales";
 import { useTranslation } from "react-i18next";
 
+interface VoileProductData {
+    name: string;
+    images: string[];
+    description: string;
+    options: { label: string; value: ProductVoileType }[];
+    price: Record<ProductVoileType, Record<Locales, ProductPriceSettings>>;
+    characteristics: { title: string; description: string }[];
+}
 
 export const useVoileProductData = () => {
     const { t } = useTranslation('voile');
@@ -12,7 +21,7 @@ export const useVoileProductData = () => {
         { label: t(`voile.options.4`), value: 'twenty-five-black-w-logo' },
     ];
 
-    const voile = {
+    const voile: VoileProductData = {
         name: t(`voile.name`),
         images: [
             "/images/voile/product-pic-1.avif",
@@ -41,5 +50,5 @@ export const useVoileProductData = () => {
         ],
     }
 
-    return { voile };
+    return voile;
 };

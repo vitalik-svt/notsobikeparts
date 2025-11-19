@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import ProductOptionParams from "./ProductOptionParams/ProductOptionParams";
 import Link from "next/link";
-import { useProductData } from "@/hooks/useProductData";
+import { ProductSectionData, useProductData } from "@/hooks/useProductData";
 
 interface Props {
     items: CartItem[]

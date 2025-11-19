@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CageSettings, useCagesProductData } from "./useCagesProductData";
 import { ProductCageType } from "@/constants/productPrices";
+import { useTopcapsData, UseTopcapsDataResult } from "./useTopcapsData";
+import { useVoileProductData } from "./useVoileProductData";
 
 export type ProductSectionData = {
     cage: Record<ProductCageType, CageSettings>;
-    topcap: Record<string, any>; // замените на TopcapSettings когда определите
+    topcap: UseTopcapsDataResult;
     voile: Record<string, any>;
     itchyAndScratchy: Record<string, any>;
     feedbagHanger: Record<string, any>;
@@ -13,12 +15,14 @@ export type ProductSectionData = {
 };
 
 export const useProductData = () => {
-    const cages = useCagesProductData();
+    const cage = useCagesProductData();
+    const topcap = useTopcapsData();
+    const voile = useVoileProductData()
 
     const productData: ProductSectionData = {
-        cage: cages,
-        topcap: {},
-        voile: {},
+        cage,
+        topcap,
+        voile,
         itchyAndScratchy: {},
         feedbagHanger: {},
         merch: {},

@@ -34,8 +34,8 @@ export default function CagePlusPage() {
         addItem({
             id: `cage-plus-${colorOption}`,
             imageUrl: cages.plus.images[0],
-            title: cages.plus.name,
-            price: cages.plus.price as ProductPriceSettings,
+            productSection: 'cage',
+            productKey: 'plus',
             quantity,
             productParams: { cageColor: colorOption },
             productLink: pathname,

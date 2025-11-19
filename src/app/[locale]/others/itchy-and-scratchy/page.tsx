@@ -28,18 +28,17 @@ export default function ItchyAndScratchyPage() {
         powder: tCages('plus.color.painted'),
     };
 
-    const addToCart = ({ imageUrl, title, productParams, price }: {
-        imageUrl: string; title: string, productParams: {
+    const addToCart = ({ imageUrl, productParams }: {
+        imageUrl: string;
+        productParams: {
             cageColor: CageColor | CagePlusColor;
             paintedType: CoatingType;
-        }, price: ProductPriceSettings
+        };
     }) => {
         addItem({
             id: `itchy-and-scratchy-${productParams.cageColor}-${productParams.paintedType}`,
             imageUrl,
-            title,
             productParams,
-            price,
             quantity: 1,
             productLink
         })
@@ -66,9 +65,7 @@ export default function ItchyAndScratchyPage() {
                             url={item.images[0]}
                             selectProduct={() => addToCart({
                                 imageUrl: item.images[0],
-                                title: item.name,
                                 productParams: item.productParams,
-                                price: item.price
                             })}
                             title={item.name}
                             addInfo={(

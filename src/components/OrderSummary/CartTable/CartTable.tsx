@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import InputNumber from "@/components/InputNumber/InputNumber";
@@ -7,6 +8,7 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import ProductOptionParams from "./ProductOptionParams/ProductOptionParams";
 import Link from "next/link";
+import { useProductData } from "@/hooks/useProductData";
 
 interface Props {
     items: CartItem[]
@@ -15,6 +17,7 @@ interface Props {
 export default function CartTable({ items }: Props) {
     const { t } = useTranslation();
     const { removeItem, changeQuantity } = cartStore();
+    const productData = useProductData();
 
     return (
         <table className="table-fixed w-full text-left border-collapse lowercase">
@@ -29,14 +32,17 @@ export default function CartTable({ items }: Props) {
                 </tr>
             </thead>
             <tbody>
-                {items.map(item => (
+                {items.map(item => {
+                    const productSectionData = (productData as any)[item.productSection][item.productKey];
+                    
+                    return (
                     <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={item.id}>
                         <td className="block p-4 pt-10 border-b md:w-32 md:pt-4 md:table-cell md:border-b-2">
-                            <Link href={item.productLink} aria-label={item.title} className="block w-full h-full">
+                            <Link href={item.productLink} aria-label={`${productSectionData?.name} — открыть товар`} className="block w-full h-full">
                                 <div className="flex justify-center">
                                     <Image
                                         src={item.imageUrl}
-                                        alt={item.title}
+                                        alt=""
                                         className="w-32 h-32 object-contain"
                                         width={70}
                                         height={70}
@@ -45,11 +51,11 @@ export default function CartTable({ items }: Props) {
                             </Link>
                         </td>
                         <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
-                            <Link href={item.productLink} aria-label={`${item.title} — открыть товар`} className="block w-full h-full">
+                            <Link href={item.productLink} aria-label={`${productSectionData.name} — открыть товар`} className="block w-full h-full">
                                 <div className="flex flex-col gap-2">
                                     <p className="flex justify-between items-center">
                                         <span className="font-bold md:hidden">{t("cart.tablet.product_label")}:</span>
-                                        <span>{item.title}</span>
+                                        <span>{productSectionData.name}</span>
                                     </p>
                                     {item.productParams && <ProductOptionParams productParams={item.productParams} />}
                                 </div>
@@ -58,7 +64,7 @@ export default function CartTable({ items }: Props) {
                         <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">
                             <p className="flex justify-between items-center">
                                 <span className="font-bold md:hidden">{t("cart.tablet.price_label")}:</span>
-                                <span>{formatPrice(item.price)}</span>
+                                <span>{formatPrice(productSectionData.price)}</span>
                             </p>
                         </td>
                         <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
@@ -73,7 +79,7 @@ export default function CartTable({ items }: Props) {
                         <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">
                             <p className="flex justify-between items-center">
                                 <span className="font-bold md:hidden">{t("cart.tablet.subtotal_label")}:</span>
-                                <span>{formatPrice({ ...item.price, amount: item.price.amount * item.quantity })}</span>
+                                <span>{formatPrice({ ...productSectionData.price, amount: (productSectionData.price?.amount || 0) * item.quantity })}</span>
                             </p>
                         </td>
                         <td className="block p-4 border-b-3 md:w-16 md:table-cell md:border-b-2">
@@ -87,7 +93,7 @@ export default function CartTable({ items }: Props) {
                             </p>
                         </td>
                     </tr>
-                ))}
+                )})}
             </tbody>
         </table>
     );

@@ -3,11 +3,13 @@ import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { CageColor, CagePlusColor } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
+import { ProductSection } from "@/types/productSection";
 import { useTranslation } from "react-i18next";
 
-interface CageSettings {
+export interface CageSettings {
     name: string;
     images: string[];
+    productSection: ProductSection;
     description: string;
     colorOptions: { label: string; value: CageColor | CagePlusColor }[];
     price: ProductPriceSettings;
@@ -24,6 +26,7 @@ export const useCagesProductData = () => {
     const cages: Record<ProductCageType, CageSettings> = {
         front: {
             name: t(`front.name`),
+            productSection: 'cage',
             images: [
                 `${baseImgUrl}/front/product-pic-0.avif`,
                 `${baseImgUrl}/front/product-pic-2.avif`,
@@ -57,6 +60,7 @@ export const useCagesProductData = () => {
         },
         volume: {
             name: t(`volume.name`),
+            productSection: 'cage',
             images: [
                 `${baseImgUrl}/volume/product-pic-1.avif`,
                 `${baseImgUrl}/volume/product-pic-2.avif`,
@@ -86,6 +90,7 @@ export const useCagesProductData = () => {
             ]
         },
         little: {
+            productSection: 'cage',
             images: [
                 `${baseImgUrl}/little/product-pic-1.avif`,
                 `${baseImgUrl}/little/product-pic-2.avif`,
@@ -108,6 +113,7 @@ export const useCagesProductData = () => {
         },
         plus: {
             name: t(`plus.name`),
+            productSection: 'cage',
             images: [
                 `${baseImgUrl}/plus/product-pic-1.avif`,
                 `${baseImgUrl}/plus/product-pic-2.avif`,

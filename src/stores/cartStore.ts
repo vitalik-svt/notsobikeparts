@@ -70,12 +70,12 @@ export const cartStore = create<Store>()(
 			addItem: (item: CartItem) => set((state) => {
 				let found = false;
 
-				const newItems = state.items.reduce((acc: CartItem[], item) => {
-					if (item.id === item.id) {
+				const newItems = state.items.reduce((acc: CartItem[], cartItem) => {
+					if (cartItem.id === item.id) {
 						found = true;
-						acc.push({ ...item, quantity: item.quantity + item.quantity });
+						acc.push({ ...cartItem, quantity: cartItem.quantity + item.quantity });
 					} else {
-						acc.push(item);
+						acc.push(cartItem);
 					}
 					return acc;
 				}, []);

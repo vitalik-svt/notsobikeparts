@@ -29,8 +29,8 @@ export default function LittleCagePage() {
         addItem({
             id: `cage-little`,
             imageUrl: cages.little.images[0],
-            title: cages.little.name,
-            price: cages.little.price as ProductPriceSettings,
+            productSection: `cage`,
+            productKey: `little`,
             quantity,
             productLink: pathname,
         });

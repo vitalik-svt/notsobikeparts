@@ -14,6 +14,7 @@ export function getProductPrice(
     const section = productData[item.productSection as keyof typeof productData];
 
     if (!section) {
+        console.warn(`Section not found for: ${item.productSection}`);
         return null;
     }
 
@@ -27,6 +28,11 @@ export function getProductPrice(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const product = (section as Record<string, any>)?.[item.productKey];
     if (!product?.price) {
+        console.warn(`Product not found: section=${item.productSection}, key=${item.productKey}`, {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            availableKeys: Object.keys(section as Record<string, any>),
+            itemKey: item.productKey
+        });
         return null;
     }
 

@@ -18,7 +18,7 @@ export default function TopcapsPage() {
             <ProductMain>
                 <Gallery images={topcaps.serial.images} />
                 <ProductMainInfo
-                    title={topcaps.serial.title}
+                    title={topcaps.serial.name}
                     price={topcaps.serial.price}
                     description={topcaps.serial.description[0]}
                 >
@@ -43,7 +43,7 @@ export default function TopcapsPage() {
             <ProductGrid
                 items={topcaps.serial.items}
                 price={topcaps.serial.price}
-                title={topcaps.serial.title}
+                title={topcaps.serial.name}
                 additionalPriceOptions={topcaps.serial["additional-price-options"]}
             />
         </ProductPage>

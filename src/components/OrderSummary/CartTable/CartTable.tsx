@@ -10,15 +10,21 @@ import ProductOptionParams from "./ProductOptionParams/ProductOptionParams";
 import Link from "next/link";
 import { useProductData } from "@/hooks/useProductData";
 import { getProductPrice } from "@/utils/getProductPrice";
+import { getProductSectionData } from "@/utils/getProductSectionData";
+import { Locales } from "@/types/locales";
+import { i18n } from "@/i18n/settings";
+import { useLocale } from "@/providers/I18nProvider";
 
 interface Props {
     items: CartItem[]
 }
 
 export default function CartTable({ items }: Props) {
+    const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t } = useTranslation();
     const { removeItem, changeQuantity } = cartStore();
     const productData = useProductData();
+    
 
     return (
         <table className="table-fixed w-full text-left border-collapse lowercase">
@@ -34,10 +40,8 @@ export default function CartTable({ items }: Props) {
             </thead>
             <tbody>
                 {items.map(item => {
-                    const productSectionData = (productData as any)[item.productSection][item.productKey];
-                    const price = getProductPrice(productData, item);
-
-                    
+                    const productSectionData = getProductSectionData(productData, item);
+                    const price = getProductPrice(productData, item, locale);
 
                     console.log('productSectionData', productSectionData, productData, item.productSection, item.productKey)
 
@@ -57,11 +61,11 @@ export default function CartTable({ items }: Props) {
                                 </Link>
                             </td>
                             <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
-                                <Link href={item.productLink} aria-label={`${productSectionData?.title} — открыть товар`} className="block w-full h-full">
+                                <Link href={item.productLink} aria-label={`${productSectionData?.name} — открыть товар`} className="block w-full h-full">
                                     <div className="flex flex-col gap-2">
                                         <p className="flex justify-between items-center">
                                             <span className="font-bold md:hidden">{t("cart.tablet.product_label")}:</span>
-                                            <span>{productSectionData?.title}</span>
+                                            <span>{productSectionData?.name}</span>
                                         </p>
                                         {item.productParams && <ProductOptionParams productParams={item.productParams} />}
                                     </div>

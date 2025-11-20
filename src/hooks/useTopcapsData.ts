@@ -21,7 +21,7 @@ interface Equipment {
 
 interface TopcapsSerial {
     images: string[];
-    title: string;
+    name: string;
     description: string[];
     price: ProductPriceSettings;
     "additional-price-options": AdditionalPriceOption[];
@@ -33,7 +33,7 @@ export type TopcapCustomColor = 'black' | 'aluminum' | 'red' | 'blue' | 'green' 
 export type TopcapCustomThickness = 'thin' | 'thick';
 
 interface TopcapsCustom {
-    title: string;
+    name: string;
     images: string[];
     description: string[];
     price: ProductPriceSettings;
@@ -72,7 +72,7 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
                 `${serialGalleryUrl}/product-pic-6.avif`,
                 `${serialGalleryUrl}/product-pic-7.avif`,
             ],
-            title: t("topcaps.name"),
+            name: t("topcaps.name"),
             description: [
                 t("topcaps.description.1"),
                 t("topcaps.description.2"),
@@ -104,7 +104,7 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
             items: topcaps,
         },
         custom: {
-            title: t("topcaps.custom.name"),
+            name: t("topcaps.custom.name"),
             images: [
                 `${baseUrl.custom}/product-pic-1.avif`,
                 `${baseUrl.custom}/product-pic-2.avif`,

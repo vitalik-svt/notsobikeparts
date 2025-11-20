@@ -64,7 +64,7 @@ export default function TopcapsCustomPage() {
             productLink: pathname,
         });
 
-        setNotification(topcaps.custom.title);
+        setNotification(topcaps.custom.name);
     };
 
     const onSetProductParams = (params: Partial<TopcapParams>) => {
@@ -85,7 +85,7 @@ export default function TopcapsCustomPage() {
             <ProductMain>
                 <Gallery images={topcaps.custom.images} />
                 <ProductMainInfo
-                    title={topcaps.custom.title}
+                    title={topcaps.custom.name}
                     price={totalPrice}
                     description={topcaps.custom.description[0]}
                 >

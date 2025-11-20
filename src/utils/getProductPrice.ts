@@ -1,16 +1,31 @@
-import type { CartItem } from "@/stores/cartStore";
+import type { ProductSectionData } from "@/hooks/useProductData";
+import type { CartItem, TopcapParams } from "@/stores/cartStore";
 import type { ProductPriceSettings } from "@/constants/productPrices";
-import { ProductSectionData } from "@/hooks/useProductData";
+import { getTopcapCustomPrice } from "./getTopcapCustomPrice";
+import { TopcapCustomColor, TopcapCustomThickness } from "@/hooks/useTopcapsData";
 
 export function getProductPrice(
     productData: ProductSectionData,
-    item: Pick<CartItem, 'productSection' | 'productKey'>
+    item: CartItem
 ): ProductPriceSettings | null {
     const section = productData[item.productSection as keyof typeof productData];
-    if (!section) return null;
+    if (!section) {
+        return null;
+    }
     
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const product = (section as Record<string, any>)?.[item.productKey];
-    
-    return product?.price ?? null;
+    if (!product?.price) {
+        return null;
+    }
+
+    if (item.productSection === 'topcap' && item.productKey === 'custom' && item.productParams) {
+        return getTopcapCustomPrice({
+            basePrice: product.price,
+            additionalPriceOptions: product["additional-price-options"] || [],
+            productParams: item.productParams as TopcapParams & { colorOption?: TopcapCustomColor; customThickness?: TopcapCustomThickness },
+        });
+    }
+
+    return product.price;
 }

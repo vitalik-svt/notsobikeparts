@@ -59,7 +59,7 @@ interface Store {
 	items: CartItem[];
 }
 
-const calcTotalCount = (items: CartItem[]) => items.reduce((sum, it) => sum + it.quantity, 0);
+const calcTotalCount = (items: CartItem[]) => items.reduce((acc, item) => acc + item.quantity, 0);
 
 export const cartStore = create<Store>()(
 	persist(
@@ -70,12 +70,12 @@ export const cartStore = create<Store>()(
 			addItem: (item: CartItem) => set((state) => {
 				let found = false;
 
-				const newItems = state.items.reduce((acc: CartItem[], it) => {
-					if (it.id === item.id) {
+				const newItems = state.items.reduce((acc: CartItem[], item) => {
+					if (item.id === item.id) {
 						found = true;
-						acc.push({ ...it, quantity: it.quantity + item.quantity });
+						acc.push({ ...item, quantity: item.quantity + item.quantity });
 					} else {
-						acc.push(it);
+						acc.push(item);
 					}
 					return acc;
 				}, []);

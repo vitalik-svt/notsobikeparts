@@ -1,6 +1,8 @@
 import ProductOptionParams from "@/components/OrderSummary/CartTable/ProductOptionParams/ProductOptionParams";
+import { useProductData } from "@/hooks/useProductData";
 import { CartItem } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
+import { getProductPrice } from "@/utils/getProductPrice";
 import { useTranslation } from "react-i18next";
 
 
@@ -10,6 +12,7 @@ interface Props {
 
 export default function OrderTableCheckout({ items }: Props) {
     const { t } = useTranslation();
+    const productData = useProductData();
 
     return (
         <table className="table-fixed w-full text-left border-collapse lowercase">
@@ -20,25 +23,31 @@ export default function OrderTableCheckout({ items }: Props) {
                 </tr>
             </thead>
             <tbody>
-                {items.map(item => (
-                    <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={item.id}>
-                        <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
-                            <div className="flex flex-col gap-2">
+                {items.map(item => {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const productSectionData = (productData as any)[item.productSection]?.[item.productKey];
+                    const price = getProductPrice(productData, item);
+
+                    return (
+                        <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={item.id}>
+                            <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
+                                <div className="flex flex-col gap-2">
+                                    <p className="flex justify-between items-center">
+                                        <span className="font-bold md:hidden">{t("cart.tablet.product_label")}:</span>
+                                        <span>{productSectionData.title} <span className="text-sm">[{item.quantity} {t("cart.unit_label")}]</span></span>
+                                    </p>
+                                    {item.productParams && <ProductOptionParams productParams={item.productParams} />}
+                                </div>
+                            </td>
+                            <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">
                                 <p className="flex justify-between items-center">
-                                    <span className="font-bold md:hidden">{t("cart.tablet.product_label")}:</span>
-                                    <span>{item.title} <span className="text-sm">[{item.quantity} {t("cart.unit_label")}]</span></span>
+                                    <span className="font-bold md:hidden">{t("cart.tablet.subtotal_label")}:</span>
+                                    <span>{price ? formatPrice({ ...price, amount: price.amount * item.quantity }) : '—'}</span>
                                 </p>
-                                {item.productParams && <ProductOptionParams productParams={item.productParams} />}
-                            </div>
-                        </td>
-                        <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">
-                            <p className="flex justify-between items-center">
-                                <span className="font-bold md:hidden">{t("cart.tablet.subtotal_label")}:</span>
-                                <span>{formatPrice({ ...item.price, amount: item.price.amount * item.quantity })}</span>
-                            </p>
-                        </td>
-                    </tr>
-                ))}
+                            </td>
+                        </tr>
+                    )
+                })}
             </tbody>
         </table>
     );

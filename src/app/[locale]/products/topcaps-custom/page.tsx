@@ -13,13 +13,13 @@ import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import SegmentedControl from "@/components/SegmentedControl/SegmentedControl";
 import Select from "@/components/Select";
-import { ProductPriceSettings } from "@/constants/productPrices";
 import useFormattedPrice from "@/hooks/useFormattedPrice";
+import { useTopcapCustomPrice } from "@/hooks/useTopcapCustomPrice";
 import { TopcapCustomColor, TopcapCustomThickness, useTopcapsData } from "@/hooks/useTopcapsData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore, TopcapParams } from "@/stores/cartStore";
 import { usePathname } from "next/navigation";
-import { useCallback, useMemo, useState } from "react";
+import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
 export default function TopcapsCustomPage() {
@@ -41,39 +41,21 @@ export default function TopcapsCustomPage() {
         hasBox: false,
     });
 
-    const getTotalPrice = useCallback(
-        () => {
-            let total = topcaps.custom.price.amount;
-
-            if (productParams.boltsMaterial === 'titanium') {
-                total += topcaps.custom["additional-price-options"].find((option) => option.type === 'titanium')?.price.amount || 0;
-            }
-
-            if (thickness === 'thick') {
-                const thickOption = topcaps.custom["additional-price-options"].find((option) => String(option.type) === 'thick');
-                total += thickOption?.price.amount || 0;
-            }
-
-            if (colorOption !== 'black') {
-                const colorOptionPrice = topcaps.custom["additional-price-options"].find((option) => String(option.type) === 'custom-color');
-                total += colorOptionPrice?.price.amount || 0;
-            }
-
-            return total;
-        },
-        [topcaps.custom, productParams.boltsMaterial, thickness, colorOption],
-    )
-
-
-    const totalPrice: ProductPriceSettings = useMemo(() => ({ amount: getTotalPrice(), currency: topcaps.custom.price.currency, locale: topcaps.custom.price.locale }), [getTotalPrice, topcaps.custom.price.currency, topcaps.custom.price.locale]);
+    const totalPrice = useTopcapCustomPrice({
+        basePrice: topcaps.custom.price,
+        additionalPriceOptions: topcaps.custom["additional-price-options"],
+        productParams,
+        thickness,
+        colorOption,
+    });
 
     const addToCart = () => {
         addItem({
             id: `topcap-custom-${colorOption}-${thickness}-${productParams.boltsMaterial}-${productParams.boltColor}-${productParams.hasBox}`,
             quantity,
             imageUrl: topcaps.custom.images[0],
-            title: topcaps.custom.title,
-            price: totalPrice,
+            productSection: 'topcap',
+            productKey: 'custom',
             productParams: {
                 ...productParams,
                 colorOption: colorOption,

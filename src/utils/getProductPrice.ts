@@ -6,9 +6,7 @@ import type { ProductPriceSettings, ProductVoileType } from "@/constants/product
 import { AdditionalPriceOption, TopcapCustomColor, TopcapCustomThickness } from "@/hooks/useTopcapsData";
 import { i18n } from "@/i18n/settings";
 import type { Locales } from "@/types/locales";
-
-// Секции с одиночным продуктом (не Record, а сам объект)
-const SINGLE_PRODUCT_SECTIONS = ['chainBreaker', 'feedbagHanger', 'merch', 'itchyAndScratchy'] as const;
+import { SINGLE_PRODUCT_SECTIONS } from "@/constants/singleProductSections";
 
 export function getProductPrice(
     productData: ProductSectionData,
@@ -55,7 +53,6 @@ export function getProductPrice(
 
     // Для одиночных продуктов (chainBreaker, feedbagHanger и т.д.) — берём price напрямую
     if (SINGLE_PRODUCT_SECTIONS.includes(item.productSection as any)) {
-         
         return (section as any)?.price ?? null;
     }
     

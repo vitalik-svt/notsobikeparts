@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // utils/getProductSectionData.ts
+import { SINGLE_PRODUCT_SECTIONS } from "@/constants/singleProductSections";
 import type { ProductSectionData } from "@/hooks/useProductData";
 import type { CartItem } from "@/stores/cartStore";
-
-const SINGLE_PRODUCT_SECTIONS = ['chainBreaker', 'feedbagHanger', 'merch', 'itchyAndScratchy'] as const;
 
 export function getProductSectionData(
     productData: ProductSectionData,
@@ -12,8 +11,7 @@ export function getProductSectionData(
     const section = productData[item.productSection as keyof ProductSectionData];
     if (!section) return null;
 
-    // Для одиночных продуктов — возвращаем весь объект
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // Для одиночных продуктов — возвращаем весь объект 
     if (SINGLE_PRODUCT_SECTIONS.includes(item.productSection as any)) {
         return section;
     }

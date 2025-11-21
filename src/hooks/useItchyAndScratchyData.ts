@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 export type CoatingType = 'anodized' | 'powder';
 
-export interface CagePlusItchyAndScratchyColorMap {
+export interface ItchyAndScratchyColorMap {
     cageColor: CageColor | CagePlusColor;
     paintedType: CoatingType;
 }
@@ -21,7 +21,7 @@ interface ItchyAndScratchyData {
         name: string;
         description: string[];
         price: ProductPriceSettings;
-        productParams: CagePlusItchyAndScratchyColorMap;
+        productParams: ItchyAndScratchyColorMap;
     }[];
 }
 

@@ -6,7 +6,6 @@ import ProductGridCard from "@/components/ProductGrid/ProductGridCard/ProductGri
 import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
-import { ProductPriceSettings } from "@/constants/productPrices";
 import { CoatingType, useItchyAndScratchyData } from "@/hooks/useItchyAndScratchyData";
 import useProductOptionDictionary from "@/hooks/useProductOptionDictionary";
 import { CageColor, CagePlusColor, cartStore } from "@/stores/cartStore";
@@ -18,7 +17,7 @@ export default function ItchyAndScratchyPage() {
     const productLink = usePathname();
     const { t: tCommon } = useTranslation();
     const { t: tCages } = useTranslation(`cages`);
-    const { data } = useItchyAndScratchyData();
+    const itchyAndScratchy  = useItchyAndScratchyData();
     const optionDictionary = useProductOptionDictionary();
     const { addItem } = cartStore();
 
@@ -38,6 +37,8 @@ export default function ItchyAndScratchyPage() {
         addItem({
             id: `itchy-and-scratchy-${productParams.cageColor}-${productParams.paintedType}`,
             imageUrl,
+            productSection: `itchyAndScratchy`,
+            productKey: `one-price`,
             productParams,
             quantity: 1,
             productLink
@@ -48,17 +49,17 @@ export default function ItchyAndScratchyPage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={data.images} />
+                <Gallery images={itchyAndScratchy.images} />
                 <ProductMainInfo
-                    title={data.name}
-                    description={data.description[0]}
+                    title={itchyAndScratchy.name}
+                    description={itchyAndScratchy.description[0]}
                 >
-                    <p>{data.description[1]}</p>
-                    <p>{data.description[2]}</p>
+                    <p>{itchyAndScratchy.description[1]}</p>
+                    <p>{itchyAndScratchy.description[2]}</p>
                 </ProductMainInfo>
             </ProductMain>
             <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {data.products.map((item, index) => (
+                {itchyAndScratchy.products.map((item, index) => (
                     <li key={index}>
                         <ProductGridCard
                             description={item.description.join(' ')}

@@ -1,6 +1,7 @@
 import { CheckoutForm } from '@/components/OrderCheckout/FormCheckout/FormCheckout';
 import { ProductCageType, ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
 import { ProductLink } from '@/constants/routes';
+import { CagePlusItchyAndScratchyColorMap } from '@/hooks/useItchyAndScratchyData';
 import { TopcapCustomColor, TopcapCustomThickness, TopcapProductKey } from '@/hooks/useTopcapsData';
 import { ProductSection } from '@/types/productSection';
 import { create } from 'zustand'
@@ -33,7 +34,13 @@ export interface TopcapCustomParams {
 	customThickness: TopcapCustomThickness;
 }
 
-export type ProductParams = Partial<TopcapParams & CageParams & VoileParams & TopcapCustomParams>;
+export type ProductParams = Partial<
+	TopcapParams &
+	CageParams &
+	VoileParams &
+	TopcapCustomParams &
+	CagePlusItchyAndScratchyColorMap
+>;
 export type ProductKey = ProductVoileType | ProductCageType | TopcapProductKey | 'one-price';
 
 export interface CartItem {

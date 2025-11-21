@@ -25,18 +25,41 @@ export function getProductPrice(
 
     // Особая логика для voile — цена находится в voile.price[productKey][locale]
     if (item.productSection === 'voile') {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const voilePrice = (section as any).price?.[item.productKey as ProductVoileType]?.[currentLocale];
         return voilePrice ?? null;
     }
 
-    // Для одиночных продуктов (chainBreaker, feedbagHanger и т.д.) — берём price напрямую
-    if (SINGLE_PRODUCT_SECTIONS.includes(item.productSection as any)) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return (section as any)?.price ?? null;
+    // ItchyAndScratchy: section contains products[] each with its own price
+    if (item.productSection === 'itchyAndScratchy') {
+        const sec: any = section;
+        if (Array.isArray(sec.products) && sec.products.length > 0) {
+            // try find by id/productKey
+            let found = item.productKey ? sec.products.find((p: any) => p.id === item.productKey) : null;
+
+            // try match by productParams if not found
+            if (!found && item.productParams) {
+                found = sec.products.find((p: any) =>
+                    p.productParams?.paintedType === item.productParams?.paintedType
+                    && p.productParams?.cageColor === item.productParams?.cageColor
+                );
+            }
+
+            const product = found ?? sec.products[0];
+            return product?.price ?? null;
+        }
+
+        // fallback to direct price field if exists
+        return (section as any).price ?? null;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+    // Для одиночных продуктов (chainBreaker, feedbagHanger и т.д.) — берём price напрямую
+    if (SINGLE_PRODUCT_SECTIONS.includes(item.productSection as any)) {
+         
+        return (section as any)?.price ?? null;
+    }
+    
+     
     const product = (section as Record<string, any>)?.[item.productKey];
 
     if (!product) {

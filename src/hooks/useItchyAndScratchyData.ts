@@ -7,6 +7,11 @@ import { useTranslation } from "react-i18next";
 
 export type CoatingType = 'anodized' | 'powder';
 
+export interface CagePlusItchyAndScratchyColorMap {
+    cageColor: CageColor | CagePlusColor;
+    paintedType: CoatingType;
+}
+
 interface ItchyAndScratchyData {
     name: string;
     images: string[];
@@ -16,10 +21,7 @@ interface ItchyAndScratchyData {
         name: string;
         description: string[];
         price: ProductPriceSettings;
-        productParams: {
-            cageColor: CageColor | CagePlusColor;
-            paintedType: CoatingType;
-        };
+        productParams: CagePlusItchyAndScratchyColorMap;
     }[];
 }
 
@@ -98,5 +100,5 @@ export function useItchyAndScratchyData() {
         ],
     }
 
-    return { data };
+    return data;
 }

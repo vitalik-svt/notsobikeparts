@@ -34,7 +34,7 @@ export interface TopcapCustomParams {
 }
 
 export type ProductParams = Partial<TopcapParams & CageParams & VoileParams & TopcapCustomParams>;
-export type ProductKey = ProductVoileType | ProductCageType | TopcapProductKey;
+export type ProductKey = ProductVoileType | ProductCageType | TopcapProductKey | 'one-price';
 
 export interface CartItem {
 	id: string

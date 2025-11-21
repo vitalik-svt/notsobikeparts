@@ -1,8 +1,12 @@
 import ProductOptionParams from "@/components/OrderSummary/CartTable/ProductOptionParams/ProductOptionParams";
 import { useProductData } from "@/hooks/useProductData";
+import { i18n } from "@/i18n/settings";
+import { useLocale } from "@/providers/I18nProvider";
 import { CartItem } from "@/stores/cartStore";
+import { Locales } from "@/types/locales";
 import { formatPrice } from "@/utils/formatPrice";
 import { getProductPrice } from "@/utils/getProductPrice";
+import { getProductSectionData } from "@/utils/getProductSectionData";
 import { useTranslation } from "react-i18next";
 
 
@@ -11,6 +15,7 @@ interface Props {
 }
 
 export default function OrderTableCheckout({ items }: Props) {
+    const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t } = useTranslation();
     const productData = useProductData();
 
@@ -24,9 +29,8 @@ export default function OrderTableCheckout({ items }: Props) {
             </thead>
             <tbody>
                 {items.map(item => {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    const productSectionData = (productData as any)[item.productSection]?.[item.productKey];
-                    const price = getProductPrice(productData, item);
+                    const productSectionData = getProductSectionData(productData, item);
+                    const price = getProductPrice(productData, item, locale);
 
                     return (
                         <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={item.id}>
@@ -34,7 +38,7 @@ export default function OrderTableCheckout({ items }: Props) {
                                 <div className="flex flex-col gap-2">
                                     <p className="flex justify-between items-center">
                                         <span className="font-bold md:hidden">{t("cart.tablet.product_label")}:</span>
-                                        <span>{productSectionData.title} <span className="text-sm">[{item.quantity} {t("cart.unit_label")}]</span></span>
+                                        <span>{productSectionData.name} <span className="text-sm">[{item.quantity} {t("cart.unit_label")}]</span></span>
                                     </p>
                                     {item.productParams && <ProductOptionParams productParams={item.productParams} />}
                                 </div>

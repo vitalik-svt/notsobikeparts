@@ -1,9 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// utils/getProductPrice.ts
 import type { ProductSectionData } from "@/hooks/useProductData";
 import type { CartItem, TopcapParams } from "@/stores/cartStore";
 import type { ProductPriceSettings, ProductVoileType } from "@/constants/productPrices";
 import { AdditionalPriceOption, TopcapCustomColor, TopcapCustomThickness } from "@/hooks/useTopcapsData";
 import { i18n } from "@/i18n/settings";
 import type { Locales } from "@/types/locales";
+
+// Секции с одиночным продуктом (не Record, а сам объект)
+const SINGLE_PRODUCT_SECTIONS = ['chainBreaker', 'feedbagHanger', 'merch', 'itchyAndScratchy'] as const;
 
 export function getProductPrice(
     productData: ProductSectionData,
@@ -25,14 +30,25 @@ export function getProductPrice(
         return voilePrice ?? null;
     }
 
+    // Для одиночных продуктов (chainBreaker, feedbagHanger и т.д.) — берём price напрямую
+    if (SINGLE_PRODUCT_SECTIONS.includes(item.productSection as any)) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return (section as any)?.price ?? null;
+    }
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const product = (section as Record<string, any>)?.[item.productKey];
-    if (!product?.price) {
+
+    if (!product) {
         console.warn(`Product not found: section=${item.productSection}, key=${item.productKey}`, {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             availableKeys: Object.keys(section as Record<string, any>),
             itemKey: item.productKey
         });
+        return null;
+    }
+
+    if (!product?.price) {
+        console.warn(`Price not found for product: ${item.productSection}/${item.productKey}`);
         return null;
     }
 

@@ -4,13 +4,22 @@ import Link from "next/link";
 import Logo from "./Logo/Logo";
 import NavMenu from "./NavMenu/NavMenu";
 import { ROUTES } from "@/constants/routes";
-import { useState } from "react";
+import { useEffect } from "react";
 import BurgerButton from "./BurgerButton/BurgerButton";
 import { useHeaderMenuOptions } from "./useHeaderMenuOptions";
+import { usePathname } from "next/navigation";
+import { menuStore } from "@/stores/menuStore";
 
 export default function Header({ locale }: { locale: string }) {
-    const [menuOpen, setMenuOpen] = useState(false);
+    const { menuOpen, setMenuOpen } = menuStore();
     const menuOptions = useHeaderMenuOptions();
+
+    const pathname = usePathname();
+
+    useEffect(() => {
+        if (menuOpen) setMenuOpen(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pathname]);
 
     return (
         <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm flex p-5 md:px-10 md:pt-7 md:pb-4 justify-between items-center w-screen md:max-w-[1200px] md:mx-auto md:w-full">
@@ -19,7 +28,7 @@ export default function Header({ locale }: { locale: string }) {
             </Link>
             <BurgerButton
                 isOpen={menuOpen}
-                onClick={() => setMenuOpen(prev => !prev)}
+                onClick={() => setMenuOpen(!menuOpen)}
             />
             <NavMenu
                 classNames={`${menuOpen ? 'block z-1' : 'hidden'} md:block`}

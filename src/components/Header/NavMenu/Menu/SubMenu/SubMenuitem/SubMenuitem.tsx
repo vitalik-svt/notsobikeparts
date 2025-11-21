@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MenuItem } from "@/types/menu";
 import { useIsTouchDevice } from "../../../useIsTouchDevice";
+import { menuStore } from "@/stores/menuStore";
 
 interface Props {
     subitem: MenuItem;
@@ -11,7 +12,7 @@ interface Props {
 
 export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
     const isTouch = useIsTouchDevice();
-
+    const { setMenuOpen } = menuStore();
 
     const onHandleClick = () => {
         if (isTouch) {
@@ -32,7 +33,11 @@ export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
                 }`}
         >
             {!subitem.submenu ? (
-                <Link href={subitem.href || ``} className="block ps-10 py-2 lowercase relative before:absolute before:top-0 before:left-0 before:w-5 before:h-full before:bg-black before:content-[''] md:before:hidden md:hover:text-gray-500">
+                <Link
+                    href={subitem.href || ``}
+                    className="block py-2 lowercase relative before:absolute before:top-0 before:left-0 before:w-5 before:h-full before:bg-black before:content-[''] md:before:hidden md:hover:text-gray-500 px-10 md:px-2"
+                    onClick={() => setMenuOpen(false)}
+                >
                     {subitem.label}
                 </Link>
             ) : (
@@ -67,10 +72,19 @@ export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
                                     <Link
                                         href={grandchild.href}
                                         className="flex flex-col gap-1 px-15 py-2 lowercase md:hover:text-gray-500 relative before:absolute before:top-0 before:left-0 before:w-10 before:h-full before:bg-black before:content-[''] md:before:hidden md:text-left md:px-2 md:w-full md:items-center"
+                                        onClick={isTouch ? () => setMenuOpen(false) : undefined}
                                     >
-                                        <span className="hidden md:flex w-40 h-50 border-2 border-black justify-center items-center bg-black text-white uppercase font-bold tracking-wider">
-                                            картинка
-                                        </span>
+                                        {grandchild.imageSrc && (
+                                            <span className="hidden md:flex w-40 h-50 justify-center items-center">
+                                                <Image
+                                                    src={grandchild.imageSrc}
+                                                    alt=""
+                                                    width={250}
+                                                    height={250}
+                                                    className="object-cover"
+                                                />
+                                            </span>
+                                        )}
                                         {grandchild.label}
                                     </Link>
                                 )}

@@ -14,10 +14,12 @@ export const useHeaderMenuOptions = () => {
                     submenu: [
                         {
                             label: t("menu.topcaps.series"),
+                            imageSrc: '/images/menu/topcap-serial.webp',
                             href: ROUTES.TOPCAPS
                         },
                         {
                             label: t("menu.topcaps.custom"),
+                            imageSrc: '/images/menu/topcap-custom.webp',
                             href: ROUTES.TOPCAPS_CUSTOM
                         }
                     ],
@@ -31,18 +33,22 @@ export const useHeaderMenuOptions = () => {
                     submenu: [
                         {
                             label: t("menu.cages.little"),
+                            imageSrc: '/images/menu/cage-little.webp',
                             href: ROUTES.CAGE_LITTLE
                         },
                         {
                             label: t("menu.cages.plus"),
+                            imageSrc: '/images/menu/cage-plus.webp',
                             href: ROUTES.CAGE_PLUS
                         },
                         {
                             label: t("menu.cages.front"),
+                            imageSrc: '/images/menu/cage-front.webp',
                             href: ROUTES.CAGE_FRONT
                         },
                         {
                             label: t("menu.cages.volume"),
+                            imageSrc: '/images/menu/cage-volume.webp',
                             href: ROUTES.CAGE_VOLUME
                         },
                     ],

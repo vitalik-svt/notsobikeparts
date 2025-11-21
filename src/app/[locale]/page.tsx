@@ -5,7 +5,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const { t } = await initI18n((await params).locale);
 
 	return (
-		<div className="flex items-center justify-center w-full p-8 pb-20 gap-16 sm:p-20 font-sans">
+		<div className="flex flex-col items-center justify-center w-full p-8 pb-20 gap-16 font-sans sm:p-20 md:flex-row md:gap-32">
 			<Image
 				src="/notso-logo.webp"
 				alt=""

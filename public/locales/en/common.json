@@ -35,6 +35,8 @@
   "product.topcap.option.box.label": "Gift kraft box (free)",
   "product.topcap.option.box.description": "If you're getting a topcap as a gift — we'll pack it. If it's for yourself, there's probably no need to create extra waste. But if you want one — just let us know, and we’ll put the cap in a box",
   "product.total": "Total:",
+  "cart.yes_label": "Yes",
+  "cart.no_label": "No",
   "cart.title.order": "Your Order",
   "cart.title.details": "Your Details",
   "cart.empty": "Your cart is empty",
@@ -74,5 +76,6 @@
   "success.description": "Your order has been successfully placed. We will contact you shortly via email to confirm all details",
   "success.added_to_cart": "{{itemTitle}} added to cart",
   "notFound.title": "Oops, it seems this page does not exist",
-  "notFound.home": "Home"
+  "notFound.home": "Home",
+  "coatingTypeLabel": "Coating type"
 }

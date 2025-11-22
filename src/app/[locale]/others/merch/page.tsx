@@ -29,8 +29,8 @@ export default function MerchPage() {
             id: 'merch',
             quantity,
             imageUrl: merch.images[0],
-            title: merch.name,
-            price: merch.price,
+            productSection: `merch`,
+            productKey: `one-price`,
             productLink: pathname,
         });
     };

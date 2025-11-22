@@ -62,8 +62,8 @@ export default function ProductGridCardContent({ imageUrl, price, title, additio
             id: `topcap-${productParams.boltsMaterial}-${productParams.boltColor}-${productParams.hasBox}`,
             quantity: 1,
             imageUrl,
-            title,
-            price,
+            productSection: 'topcap',
+            productKey: `serial`,
             productLink: pathname,
             productParams
         });

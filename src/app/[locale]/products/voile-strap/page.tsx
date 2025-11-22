@@ -25,7 +25,7 @@ export default function VoileStrapPage() {
     const pathname = usePathname();
     const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState(1);
-    const { voile } = useVoileProductData();
+    const voile  = useVoileProductData();
     const { t: tCommon } = useTranslation('common');
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const [currentOption, setCurrentOption] = useState<ProductVoileType>('nine-black');
@@ -36,8 +36,8 @@ export default function VoileStrapPage() {
             id: `voile-${currentOption}`,
             quantity,
             imageUrl: voile.images[0],
-            title: voile.name,
-            price: voile.price[currentOption][locale],
+            productSection: 'voile',
+            productKey: currentOption,
             productParams: {
                 voileType: currentOption,
             },

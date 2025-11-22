@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import InputNumber from "@/components/InputNumber/InputNumber";
@@ -7,14 +8,23 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import ProductOptionParams from "./ProductOptionParams/ProductOptionParams";
 import Link from "next/link";
+import { useProductData } from "@/hooks/useProductData";
+import { getProductPrice } from "@/utils/getProductPrice";
+import { getProductSectionData } from "@/utils/getProductSectionData";
+import { Locales } from "@/types/locales";
+import { i18n } from "@/i18n/settings";
+import { useLocale } from "@/providers/I18nProvider";
 
 interface Props {
     items: CartItem[]
 }
 
 export default function CartTable({ items }: Props) {
+    const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t } = useTranslation();
     const { removeItem, changeQuantity } = cartStore();
+    const productData = useProductData();
+    
 
     return (
         <table className="table-fixed w-full text-left border-collapse lowercase">
@@ -29,65 +39,70 @@ export default function CartTable({ items }: Props) {
                 </tr>
             </thead>
             <tbody>
-                {items.map(item => (
-                    <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={item.id}>
-                        <td className="block p-4 pt-10 border-b md:w-32 md:pt-4 md:table-cell md:border-b-2">
-                            <Link href={item.productLink} aria-label={item.title} className="block w-full h-full">
-                                <div className="flex justify-center">
-                                    <Image
-                                        src={item.imageUrl}
-                                        alt={item.title}
-                                        className="w-32 h-32 object-contain"
-                                        width={70}
-                                        height={70}
+                {items.map(item => {
+                    const productSectionData = getProductSectionData(productData, item);
+                    const price = getProductPrice(productData, item, locale);
+
+                    return (
+                        <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={item.id}>
+                            <td className="block p-4 pt-10 border-b md:w-32 md:pt-4 md:table-cell md:border-b-2">
+                                <Link href={item.productLink} aria-label={`${productSectionData?.title} — открыть товар`} className="block w-full h-full">
+                                    <div className="flex justify-center">
+                                        <Image
+                                            src={item.imageUrl}
+                                            alt=""
+                                            className="w-32 h-32 object-contain"
+                                            width={70}
+                                            height={70}
+                                        />
+                                    </div>
+                                </Link>
+                            </td>
+                            <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
+                                <Link href={item.productLink} aria-label={`${productSectionData?.name} — открыть товар`} className="block w-full h-full">
+                                    <div className="flex flex-col gap-2">
+                                        <p className="flex justify-between items-center">
+                                            <span className="font-bold md:hidden">{t("cart.tablet.product_label")}:</span>
+                                            <span>{productSectionData?.name}</span>
+                                        </p>
+                                        {item.productParams && <ProductOptionParams productParams={item.productParams} />}
+                                    </div>
+                                </Link>
+                            </td>
+                            <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">
+                                <p className="flex justify-between items-center">
+                                    <span className="font-bold md:hidden">{t("cart.tablet.price_label")}:</span>
+                                    <span>{price ? formatPrice(price) : '—'}</span>
+                                </p>
+                            </td>
+                            <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
+                                <p className="flex justify-between items-center">
+                                    <span className="font-bold md:hidden">{t("cart.tablet.quantity_label")}:</span>
+                                    <InputNumber
+                                        value={item.quantity}
+                                        onChange={(value) => changeQuantity(item.id, value)}
                                     />
-                                </div>
-                            </Link>
-                        </td>
-                        <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
-                            <Link href={item.productLink} aria-label={`${item.title} — открыть товар`} className="block w-full h-full">
-                                <div className="flex flex-col gap-2">
-                                    <p className="flex justify-between items-center">
-                                        <span className="font-bold md:hidden">{t("cart.tablet.product_label")}:</span>
-                                        <span>{item.title}</span>
-                                    </p>
-                                    {item.productParams && <ProductOptionParams productParams={item.productParams} />}
-                                </div>
-                            </Link>
-                        </td>
-                        <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">
-                            <p className="flex justify-between items-center">
-                                <span className="font-bold md:hidden">{t("cart.tablet.price_label")}:</span>
-                                <span>{formatPrice(item.price)}</span>
-                            </p>
-                        </td>
-                        <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
-                            <p className="flex justify-between items-center">
-                                <span className="font-bold md:hidden">{t("cart.tablet.quantity_label")}:</span>
-                                <InputNumber
-                                    value={item.quantity}
-                                    onChange={(value) => changeQuantity(item.id, value)}
-                                />
-                            </p>
-                        </td>
-                        <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">
-                            <p className="flex justify-between items-center">
-                                <span className="font-bold md:hidden">{t("cart.tablet.subtotal_label")}:</span>
-                                <span>{formatPrice({ ...item.price, amount: item.price.amount * item.quantity })}</span>
-                            </p>
-                        </td>
-                        <td className="block p-4 border-b-3 md:w-16 md:table-cell md:border-b-2">
-                            <p className="flex justify-center items-center">
-                                <button
-                                    className="bg-transparent border-none p-0 m-0 cursor-pointer w-10 h-10 flex items-center justify-center"
-                                    onClick={() => removeItem(item.id)}
-                                >
-                                    <Image src="/icons/bin.webp" alt="Remove" width={24} height={24} />
-                                </button>
-                            </p>
-                        </td>
-                    </tr>
-                ))}
+                                </p>
+                            </td>
+                            <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">
+                                <p className="flex justify-between items-center">
+                                    <span className="font-bold md:hidden">{t("cart.tablet.subtotal_label")}:</span>
+                                    <span>{price ? formatPrice({ ...price, amount: price.amount * item.quantity }) : '—'}</span>
+                                </p>
+                            </td>
+                            <td className="block p-4 border-b-3 md:w-16 md:table-cell md:border-b-2">
+                                <p className="flex justify-center items-center">
+                                    <button
+                                        className="bg-transparent border-none p-0 m-0 cursor-pointer w-10 h-10 flex items-center justify-center"
+                                        onClick={() => removeItem(item.id)}
+                                    >
+                                        <Image src="/icons/bin.webp" alt="Remove" width={24} height={24} />
+                                    </button>
+                                </p>
+                            </td>
+                        </tr>
+                    )
+                })}
             </tbody>
         </table>
     );

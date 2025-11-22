@@ -33,8 +33,8 @@ export default function CageVolumePage() {
         addItem({
             id: `cage-volume-${colorOption}`,
             imageUrl: cages.volume.images[0],
-            title: cages.volume.name,
-            price: cages.volume.price,
+            productSection: `cage`,
+            productKey: `volume`,
             quantity,
             productParams: {
                 cageColor: colorOption,

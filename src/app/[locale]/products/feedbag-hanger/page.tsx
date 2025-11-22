@@ -31,8 +31,8 @@ export default function FeedbagHangerPage() {
             id: 'feedbag-hanger',
             quantity,
             imageUrl: feedbagHangerData.images[0],
-            title: feedbagHangerData.name,
-            price: feedbagHangerData.price,
+            productSection: `feedbagHanger`,
+            productKey: `one-price`,
             productLink: pathname,
         });
         setNotification(feedbagHangerData.name);

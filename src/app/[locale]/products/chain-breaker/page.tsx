@@ -28,8 +28,8 @@ export default function ChainBreakerPage() {
             id: 'chain-breaker',
             quantity,
             imageUrl: chainBreakerData.images[0],
-            title: chainBreakerData.name,
-            price: chainBreakerData.price,
+            productSection: `chainBreaker`,
+            productKey: `one-price`,
             productLink: pathname
         });
         setNotification(chainBreakerData.name);

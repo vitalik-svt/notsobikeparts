@@ -1,7 +1,9 @@
 import { CheckoutForm } from '@/components/OrderCheckout/FormCheckout/FormCheckout';
-import { ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
+import { ProductCageType, ProductVoileType } from '@/constants/productPrices';
 import { ProductLink } from '@/constants/routes';
-import { TopcapCustomColor, TopcapCustomThickness } from '@/hooks/useTopcapsData';
+import { ItchyAndScratchyColorMap } from '@/hooks/useItchyAndScratchyData';
+import { TopcapCustomColor, TopcapCustomThickness, TopcapProductKey } from '@/hooks/useTopcapsData';
+import { ProductSection } from '@/types/productSection';
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware';
 
@@ -32,14 +34,21 @@ export interface TopcapCustomParams {
 	customThickness: TopcapCustomThickness;
 }
 
-export type ProductParams = Partial<TopcapParams & CageParams & VoileParams & TopcapCustomParams>;
+export type ProductParams = Partial<
+	TopcapParams &
+	CageParams &
+	VoileParams &
+	TopcapCustomParams &
+	ItchyAndScratchyColorMap
+>;
+export type ProductKey = ProductVoileType | ProductCageType | TopcapProductKey | 'one-price';
 
 export interface CartItem {
 	id: string
 	quantity: number,
+	productSection: ProductSection;
+	productKey: ProductKey;
 	imageUrl: string;
-	title: string;
-	price: ProductPriceSettings;
 	productLink: ProductLink;
 	productParams?: ProductParams;
 }
@@ -57,7 +66,7 @@ interface Store {
 	items: CartItem[];
 }
 
-const calcTotalCount = (items: CartItem[]) => items.reduce((sum, it) => sum + it.quantity, 0);
+const calcTotalCount = (items: CartItem[]) => items.reduce((acc, item) => acc + item.quantity, 0);
 
 export const cartStore = create<Store>()(
 	persist(
@@ -68,12 +77,12 @@ export const cartStore = create<Store>()(
 			addItem: (item: CartItem) => set((state) => {
 				let found = false;
 
-				const newItems = state.items.reduce((acc: CartItem[], it) => {
-					if (it.id === item.id) {
+				const newItems = state.items.reduce((acc: CartItem[], cartItem) => {
+					if (cartItem.id === item.id) {
 						found = true;
-						acc.push({ ...it, quantity: it.quantity + item.quantity });
+						acc.push({ ...cartItem, quantity: cartItem.quantity + item.quantity });
 					} else {
-						acc.push(it);
+						acc.push(cartItem);
 					}
 					return acc;
 				}, []);

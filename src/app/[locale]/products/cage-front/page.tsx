@@ -35,8 +35,8 @@ export default function FrontCagePage() {
 		addItem({
 			id: `cage-front-${colorOption}`,
 			imageUrl: cages.front.images[0],
-			title: cages.front.name,
-			price: cages.front.price as ProductPriceSettings,
+			productSection: `cage`,
+			productKey: `front`,
 			quantity,
 			productParams: {
 				cageColor: colorOption,

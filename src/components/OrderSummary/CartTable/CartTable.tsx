@@ -43,8 +43,6 @@ export default function CartTable({ items }: Props) {
                     const productSectionData = getProductSectionData(productData, item);
                     const price = getProductPrice(productData, item, locale);
 
-                    console.log('productSectionData', productSectionData, productData, item.productSection, item.productKey)
-
                     return (
                         <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={item.id}>
                             <td className="block p-4 pt-10 border-b md:w-32 md:pt-4 md:table-cell md:border-b-2">

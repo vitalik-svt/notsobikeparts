@@ -69,24 +69,24 @@ interface Store {
 const calcTotalCount = (items: CartItem[]) => items.reduce((acc, item) => acc + item.quantity, 0);
 
 const upsertItem = (items: CartItem[], incoming: CartItem) => {
-    const idx = items.findIndex(i => i.id === incoming.id);
+	const idx = items.findIndex(i => i.id === incoming.id);
 
-    if (idx >= 0) {
-        const copy = items.slice();
-        copy[idx] = { ...copy[idx], quantity: copy[idx].quantity + incoming.quantity };
+	if (idx >= 0) {
+		const copy = items.slice();
+		copy[idx] = { ...copy[idx], quantity: copy[idx].quantity + incoming.quantity };
 
-        return copy;
-    }
+		return copy;
+	}
 
-    return [...items, incoming];
+	return [...items, incoming];
 }
 
 const replaceQuantity = (items: CartItem[], id: string, quantity: number) => {
-    if (quantity <= 0) {
+	if (quantity <= 0) {
 		return items.filter(i => i.id !== id);
 	};
 
-    return items.map(i => i.id === id ? { ...i, quantity } : i);
+	return items.map(i => i.id === id ? { ...i, quantity } : i);
 }
 
 export const cartStore = create<Store>()(
@@ -97,22 +97,29 @@ export const cartStore = create<Store>()(
 			setOrderStep: (step: OrderStep) => set({ orderStep: step }),
 			setUserFormData: (form: CheckoutForm) => set({ userFormData: form }),
 			addItem: (item: CartItem) => set((state) => {
-                const items = upsertItem(state.items, item);
+				const items = upsertItem(state.items, item);
 
-                return {
-                    items,
-                    totalCount: calcTotalCount(items),
-                };
-            }),
+				return {
+					items,
+					totalCount: calcTotalCount(items),
+				};
+			}),
 			removeItem: (id: string) => set((state) => {
-				const newItems = state.items.filter(item => item.id !== id);
-				return { items: newItems, totalCount: calcTotalCount(newItems) };
+				const items = state.items.filter(item => item.id !== id);
+
+				return {
+					items,
+					totalCount: calcTotalCount(items),
+				};
 			}),
 			changeQuantity: (id: string, quantity: number) => set((state) => {
-                const items = replaceQuantity(state.items, id, quantity);
+				const items = replaceQuantity(state.items, id, quantity);
 
-                return { items, totalCount: calcTotalCount(items) };
-            }),
+				return {
+					items,
+					totalCount: calcTotalCount(items),
+				};
+			}),
 			finalizeOrder: () => set({ items: [], totalCount: 0, userFormData: null, orderStep: 'done' }),
 			items: [],
 			userFormData: null,

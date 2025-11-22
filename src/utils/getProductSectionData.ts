@@ -8,7 +8,8 @@ export function getProductSectionData(
     productData: ProductSectionData,
     item: Pick<CartItem, 'productSection' | 'productKey'>
 ) {
-    const section = productData[item.productSection as keyof ProductSectionData];
+    const section = productData[item.productSection];
+    
     if (!section) return null;
 
     // Для одиночных продуктов — возвращаем весь объект 

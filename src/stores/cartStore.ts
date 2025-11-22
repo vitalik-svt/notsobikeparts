@@ -68,57 +68,54 @@ interface Store {
 
 const calcTotalCount = (items: CartItem[]) => items.reduce((acc, item) => acc + item.quantity, 0);
 
+const upsertItem = (items: CartItem[], incoming: CartItem) => {
+    const idx = items.findIndex(i => i.id === incoming.id);
+
+    if (idx >= 0) {
+        const copy = items.slice();
+        copy[idx] = { ...copy[idx], quantity: copy[idx].quantity + incoming.quantity };
+
+        return copy;
+    }
+
+    return [...items, incoming];
+}
+
+const replaceQuantity = (items: CartItem[], id: string, quantity: number) => {
+    if (quantity <= 0) {
+		return items.filter(i => i.id !== id);
+	};
+
+    return items.map(i => i.id === id ? { ...i, quantity } : i);
+}
+
 export const cartStore = create<Store>()(
 	persist(
 		(set) => ({
 			totalCount: 0,
 			orderStep: 'summary',
 			setOrderStep: (step: OrderStep) => set({ orderStep: step }),
+			setUserFormData: (form: CheckoutForm) => set({ userFormData: form }),
 			addItem: (item: CartItem) => set((state) => {
-				let found = false;
+                const items = upsertItem(state.items, item);
 
-				const newItems = state.items.reduce((acc: CartItem[], cartItem) => {
-					if (cartItem.id === item.id) {
-						found = true;
-						acc.push({ ...cartItem, quantity: cartItem.quantity + item.quantity });
-					} else {
-						acc.push(cartItem);
-					}
-					return acc;
-				}, []);
-
-				if (!found) {
-					newItems.push(item);
-				}
-
-				return {
-					items: newItems,
-					totalCount: calcTotalCount(newItems),
-				};
-			}),
+                return {
+                    items,
+                    totalCount: calcTotalCount(items),
+                };
+            }),
 			removeItem: (id: string) => set((state) => {
 				const newItems = state.items.filter(item => item.id !== id);
 				return { items: newItems, totalCount: calcTotalCount(newItems) };
 			}),
 			changeQuantity: (id: string, quantity: number) => set((state) => {
-				const newItems = state.items.reduce((acc: CartItem[], item) => {
-					if (item.id === id) {
-						if (quantity === 0) {
-							return acc;
-						}
-						acc.push({ ...item, quantity });
-						return acc;
-					}
-					acc.push(item);
-					return acc;
-				}, []);
+                const items = replaceQuantity(state.items, id, quantity);
 
-				return { items: newItems, totalCount: calcTotalCount(newItems) };
-			}),
+                return { items, totalCount: calcTotalCount(items) };
+            }),
+			finalizeOrder: () => set({ items: [], totalCount: 0, userFormData: null, orderStep: 'done' }),
 			items: [],
 			userFormData: null,
-			setUserFormData: (form: CheckoutForm) => set({ userFormData: form }),
-			finalizeOrder: () => set({ items: [], totalCount: 0, userFormData: null, orderStep: 'done' }),
 		}),
 		{
 			name: 'cart-storage',

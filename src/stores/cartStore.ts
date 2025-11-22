@@ -1,5 +1,5 @@
 import { CheckoutForm } from '@/components/OrderCheckout/FormCheckout/FormCheckout';
-import { ProductCageType, ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
+import { ProductCageType, ProductVoileType } from '@/constants/productPrices';
 import { ProductLink } from '@/constants/routes';
 import { ItchyAndScratchyColorMap } from '@/hooks/useItchyAndScratchyData';
 import { TopcapCustomColor, TopcapCustomThickness, TopcapProductKey } from '@/hooks/useTopcapsData';

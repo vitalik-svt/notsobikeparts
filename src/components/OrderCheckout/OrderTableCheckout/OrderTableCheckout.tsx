@@ -38,7 +38,7 @@ export default function OrderTableCheckout({ items }: Props) {
                                 <div className="flex flex-col gap-2">
                                     <p className="flex justify-between items-center">
                                         <span className="font-bold md:hidden">{t("cart.tablet.product_label")}:</span>
-                                        <span>{productSectionData.name} <span className="text-sm">[{item.quantity} {t("cart.unit_label")}]</span></span>
+                                        <span>{productSectionData?.name} <span className="text-sm">[{item.quantity} {t("cart.unit_label")}]</span></span>
                                     </p>
                                     {item.productParams && <ProductOptionParams productParams={item.productParams} />}
                                 </div>

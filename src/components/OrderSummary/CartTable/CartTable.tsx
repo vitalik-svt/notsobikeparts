@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
+ 'use client';
 
 import InputNumber from "@/components/InputNumber/InputNumber";
 import { CartItem, cartStore } from "@/stores/cartStore";

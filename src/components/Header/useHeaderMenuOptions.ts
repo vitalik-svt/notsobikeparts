@@ -1,8 +1,37 @@
 import { ROUTES } from "@/constants/routes";
+import { Locales } from "@/types/locales";
 import { MenuItem } from "@/types/menu";
 import { useTranslation } from "react-i18next";
 
-export const useHeaderMenuOptions = () => {
+function localizeMenuOptions(menuOptions: MenuItem[], locale: Locales): MenuItem[] {
+    if (!Array.isArray(menuOptions) || !locale) return menuOptions;
+
+    const alreadyPrefixed = (href: string) => href.startsWith(`/${locale}/`) || href === `/${locale}`;
+
+    return menuOptions.map(item => {
+        const copy: MenuItem = { ...item };
+
+        if (typeof item.href === 'string' && item.href.length > 0) {
+            if (!alreadyPrefixed(item.href)) {
+                if (item.href.startsWith('/')) {
+                    copy.href = `/${locale}${item.href}`;
+                } else {
+                    copy.href = `/${locale}/${item.href}`;
+                }
+            } else {
+                copy.href = item.href;
+            }
+        }
+
+        if (Array.isArray(item.submenu) && item.submenu.length > 0) {
+            copy.submenu = localizeMenuOptions(item.submenu, locale);
+        }
+
+        return copy;
+    });
+}
+
+export const useHeaderMenuOptions = (locale: Locales) => {
     const { t } = useTranslation();
 
     const menuOptions: MenuItem[] = [
@@ -87,5 +116,5 @@ export const useHeaderMenuOptions = () => {
         }
     ];
 
-    return menuOptions;
+    return localizeMenuOptions(menuOptions, locale);
 };

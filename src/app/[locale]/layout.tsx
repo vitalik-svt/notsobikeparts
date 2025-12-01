@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const { locale } = await params;
 
     return {
-        title: locale === "ru" ? "Notsobikeparts | Велокомпоненты" : "Notsobikeparts | Bike Parts",
+        title: locale === "ru" ? "Notsobikeparts | Велоаксессуары" : "Notsobikeparts | Bike Accessories",
         description:
             locale === "ru"
                 ? "Компоненты и аксессуары для велосипедов, туризма и байкпакинга."

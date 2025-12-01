@@ -28,14 +28,14 @@ export const useCagesProductData = () => {
             name: t(`front.name`),
             productSection: 'cage',
             images: [
-                `${baseImgUrl}/front/product-pic-0.avif`,
-                `${baseImgUrl}/front/product-pic-2.avif`,
                 `${baseImgUrl}/front/product-pic-1.avif`,
+                `${baseImgUrl}/front/product-pic-2.avif`,
                 `${baseImgUrl}/front/product-pic-3.avif`,
                 `${baseImgUrl}/front/product-pic-4.avif`,
                 `${baseImgUrl}/front/product-pic-5.avif`,
                 `${baseImgUrl}/front/product-pic-6.avif`,
                 `${baseImgUrl}/front/product-pic-7.avif`,
+                `${baseImgUrl}/front/product-pic-8.avif`,
             ],
             description: t(`front.description`),
             colorOptions: [

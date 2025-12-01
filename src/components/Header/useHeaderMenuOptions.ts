@@ -18,8 +18,6 @@ function localizeMenuOptions(menuOptions: MenuItem[], locale: Locales): MenuItem
                 } else {
                     copy.href = `/${locale}/${item.href}`;
                 }
-            } else {
-                copy.href = item.href;
             }
         }
 

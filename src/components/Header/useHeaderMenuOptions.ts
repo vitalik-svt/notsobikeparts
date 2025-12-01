@@ -4,7 +4,7 @@ import { MenuItem } from "@/types/menu";
 import { useTranslation } from "react-i18next";
 
 function localizeMenuOptions(menuOptions: MenuItem[], locale: Locales): MenuItem[] {
-    if (!Array.isArray(menuOptions) || !locale) return menuOptions;
+    if (!Array.isArray(menuOptions)) return menuOptions;
 
     const alreadyPrefixed = (href: string) => href.startsWith(`/${locale}/`) || href === `/${locale}`;
 

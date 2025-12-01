@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import I18nProvider from "@/providers/I18nProvider";
 import { PopupProvider } from "@/providers/PopupProvider";
 import { NotificationsProvider } from "@/providers/NotificationsProvider";
-import { Locales } from "@/types/locales";
+import { ensureLocale } from "@/utils/ensureLocale";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const baseUrl = "https://example.com";
@@ -36,7 +36,7 @@ export default async function LocaleLayout({
     params: Promise<{ locale: string }>;
 }) {
     const resolvedParams = await params;
-    const locale = resolvedParams.locale as Locales;
+    const locale = ensureLocale(resolvedParams.locale);
 
     await initI18n(locale);
 

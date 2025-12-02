@@ -56,6 +56,7 @@ export default function FeedbagHangerPage() {
                             <InputNumber value={quantity} onChange={setQuantity} />
                             <Button
                                 onClick={addToCart}
+                                disabled={!quantity || quantity <= 0}
                                 fluid
                             >
                                 {tCommon("product.add_to_cart")}

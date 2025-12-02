@@ -26,7 +26,7 @@ const Button: FC<Props> = ({
 
     const variantClasses = {
         primary: "bg-black text-white hover:bg-black/78",
-        secondary: "bg-white text-black border-2 hover:bg-black/78 hover:text-white",
+        secondary: "bg-white text-black border-2 hover:bg-black/78 hover:text-white hover:border-black/78",
     }[variant];
 
     const disabledClasses = disabled ? "opacity-40 cursor-not-allowed" : "cursor-pointer";

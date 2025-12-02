@@ -71,6 +71,7 @@ export default function CagePlusPage() {
                             />
                             <Button
                                 onClick={addToCart}
+                                disabled={!quantity || quantity <= 0}
                                 fluid
                             >
                                 {tCommon("product.add_to_cart")}

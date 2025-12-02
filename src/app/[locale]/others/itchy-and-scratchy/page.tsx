@@ -8,6 +8,7 @@ import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInf
 import ProductPage from "@/components/ProductPage/ProductPage";
 import { CoatingType, useItchyAndScratchyData } from "@/hooks/useItchyAndScratchyData";
 import useProductOptionDictionary from "@/hooks/useProductOptionDictionary";
+import { useNotifications } from "@/providers/NotificationsProvider";
 import { CageColor, CagePlusColor, cartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
 import { usePathname } from "next/navigation";
@@ -20,6 +21,7 @@ export default function ItchyAndScratchyPage() {
     const itchyAndScratchy  = useItchyAndScratchyData();
     const optionDictionary = useProductOptionDictionary();
     const { addItem } = cartStore();
+    const { setNotification } = useNotifications();
 
 
     const paintedTypeLabel: Record<CoatingType, string> = {
@@ -42,7 +44,8 @@ export default function ItchyAndScratchyPage() {
             productParams,
             quantity: 1,
             productLink
-        })
+        });
+        setNotification(itchyAndScratchy.name);
     }
 
 

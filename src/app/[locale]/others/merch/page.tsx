@@ -11,6 +11,7 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { useMerchData } from "@/hooks/useMerchData";
+import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -23,6 +24,8 @@ export default function MerchPage() {
     const { t: tMerch } = useTranslation('merch');
     const merch = useMerchData();
     const { addItem } = cartStore();
+    const { setNotification } = useNotifications();
+    
 
     const addToCart = () => {
         addItem({
@@ -33,6 +36,7 @@ export default function MerchPage() {
             productKey: `one-price`,
             productLink: pathname,
         });
+        setNotification(merch.name);
     };
 
     return (

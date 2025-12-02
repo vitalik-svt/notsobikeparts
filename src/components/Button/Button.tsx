@@ -29,11 +29,12 @@ const Button: FC<Props> = ({
         secondary: "bg-white text-black border-2 hover:bg-black/78 hover:text-white",
     }[variant];
 
+    const disabledClasses = disabled ? "opacity-40 cursor-not-allowed" : "cursor-pointer";
 
     return (
         <button
             type="button"
-            className={`${variantClasses} rounded transition cursor-pointer lowercase leading-none ${fluid ? "w-full" : ""} ${sizeClasses}`}
+            className={`${variantClasses} rounded transition ${disabledClasses} lowercase leading-none ${fluid ? "w-full" : ""} ${sizeClasses}`}
             onClick={onClick}
             disabled={disabled}
         >

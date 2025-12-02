@@ -22,7 +22,7 @@ import { useTranslation } from "react-i18next";
 export default function CageVolumePage() {
     const pathname = usePathname();
     const { setNotification } = useNotifications();
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState<number | undefined>(1);
     const cages = useCagesProductData();
     const [colorOption, setColorOption] = useState<CageColor>(cages.volume.colorOptions[0].value as CageColor);
     const { t: tCommon } = useTranslation('common');
@@ -35,7 +35,7 @@ export default function CageVolumePage() {
             imageUrl: cages.volume.images[0],
             productSection: `cage`,
             productKey: `volume`,
-            quantity,
+            quantity: quantity ?? 1,
             productParams: {
                 cageColor: colorOption,
             },

@@ -23,7 +23,7 @@ import { useTranslation } from "react-i18next";
 export default function CagePlusPage() {    
     const pathname = usePathname();
     const { setNotification } = useNotifications();
-    const [quantity, setQuantity] = useState<number>(1);
+    const [quantity, setQuantity] = useState<number | undefined>(1);
     const [colorOption, setColorOption] = useState<CagePlusColor>('black');
     const cages = useCagesProductData();
     const { t: tCommon } = useTranslation('common');
@@ -36,7 +36,7 @@ export default function CagePlusPage() {
             imageUrl: cages.plus.images[0],
             productSection: 'cage',
             productKey: 'plus',
-            quantity,
+            quantity: quantity ?? 1,
             productParams: { cageColor: colorOption },
             productLink: pathname,
         });

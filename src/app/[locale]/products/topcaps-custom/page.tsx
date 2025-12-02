@@ -26,7 +26,7 @@ export default function TopcapsCustomPage() {
     const pathname = usePathname();
     const { setNotification } = useNotifications();
     const topcaps = useTopcapsData();
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState<number | undefined>(1);
     const [colorOption, setColorOption] = useState(topcaps.custom.colorOptions[0].value);
     const [thickness, setThickness] = useState(topcaps.custom.thickness[0].value);
     const { t: tCommon } = useTranslation();
@@ -52,7 +52,7 @@ export default function TopcapsCustomPage() {
     const addToCart = () => {
         addItem({
             id: `topcap-custom-${colorOption}-${thickness}-${productParams.boltsMaterial}-${productParams.boltColor}-${productParams.hasBox}`,
-            quantity,
+            quantity: quantity ?? 1,
             imageUrl: topcaps.custom.images[0],
             productSection: 'topcap',
             productKey: 'custom',

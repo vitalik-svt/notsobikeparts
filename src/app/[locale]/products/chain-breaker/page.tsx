@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 export default function ChainBreakerPage() {
     const pathname = usePathname();
     const { setNotification } = useNotifications();
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState<number | undefined>(1);
     const { t: tCommon } = useTranslation('common');
     const chainBreakerData = useChainBreakerData();
     const { addItem } = cartStore();
@@ -26,7 +26,7 @@ export default function ChainBreakerPage() {
     const addToCart = () => {
         addItem({
             id: 'chain-breaker',
-            quantity,
+            quantity: quantity ?? 1,
             imageUrl: chainBreakerData.images[0],
             productSection: `chainBreaker`,
             productKey: `one-price`,

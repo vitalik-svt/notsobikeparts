@@ -26,7 +26,7 @@ export default function FrontCagePage() {
 	const { setNotification } = useNotifications();
 	const cages = useCagesProductData();
 	const [colorOption, setColorOption] = useState<CageColor>(cages.front.colorOptions[0].value as CageColor);
-	const [quantity, setQuantity] = useState(1);
+	const [quantity, setQuantity] = useState<number | undefined>(1);
 	const { addItem } = cartStore();
 	const { t: tCommon } = useTranslation('common');
 	const { t: tCages } = useTranslation('cages');
@@ -37,7 +37,7 @@ export default function FrontCagePage() {
 			imageUrl: cages.front.images[0],
 			productSection: `cage`,
 			productKey: `front`,
-			quantity,
+			quantity: quantity ?? 1,
 			productParams: {
 				cageColor: colorOption,
 			},

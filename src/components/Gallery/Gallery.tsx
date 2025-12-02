@@ -94,7 +94,7 @@ export default function Gallery({ images }: Props) {
             instanceRef.current?.update();
             thumbsInstanceRef.current?.update();
         }, 0);
-    }, []);
+    }, [instanceRef, thumbsInstanceRef]);
 
     const handleEscape = useCallback(() => {
         if (isSlideShowModeOn) closeSlideShowMode();

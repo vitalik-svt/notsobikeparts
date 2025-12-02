@@ -44,8 +44,8 @@ export type ProductParams = Partial<
 export type ProductKey = ProductVoileType | ProductCageType | TopcapProductKey | 'one-price';
 
 export interface CartItem {
-	id: string
-	quantity: number,
+	id: string;
+	quantity: number;
 	productSection: ProductSection;
 	productKey: ProductKey;
 	imageUrl: string;

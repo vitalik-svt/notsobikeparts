@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
 export default function FeedbagHangerPage() {
     const pathname = usePathname();
     const { setNotification } = useNotifications();
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState<number | undefined>(1);
     const { addItem } = cartStore();
     const { t: tCommon } = useTranslation('common');
     const { t: tFeedbagHanger } = useTranslation('feedbagHanger');
@@ -29,7 +29,7 @@ export default function FeedbagHangerPage() {
     const addToCart = () => {
         addItem({
             id: 'feedbag-hanger',
-            quantity,
+            quantity: quantity ?? 1,
             imageUrl: feedbagHangerData.images[0],
             productSection: `feedbagHanger`,
             productKey: `one-price`,

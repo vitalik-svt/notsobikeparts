@@ -9,9 +9,9 @@ import Image from "next/image";
 
 export default function OrderSummary({ onClick }: { onClick: VoidFunction }) {
     const { t } = useTranslation();
-    const { items, totalCount } = cartStore();
+    const { items } = cartStore();
 
-    if (totalCount === 0) {
+    if (items.length === 0) {
         return (
             <div className="flex flex-col gap-1 mx-auto items-center justify-center py-40 text-center text-lg">
                 <Image

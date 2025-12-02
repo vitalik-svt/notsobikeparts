@@ -77,8 +77,8 @@ export default function OrderCheckout({ onClick }: Props) {
     }, [watch, setUserFormData]);
 
     const onSubmit = (data: FormData) => {
+        console.log('data', data, items)
         finalizeOrder();
-        console.log('data', data)
     };
 
     return (

@@ -26,7 +26,7 @@ const Button: FC<Props> = ({
 
     const variantClasses = {
         primary: "bg-black text-white hover:bg-black/78",
-        secondary: "bg-white text-black border hover:bg-black/78 hover:text-white",
+        secondary: "bg-white text-black border-2 hover:bg-black/78 hover:text-white",
     }[variant];
 
 

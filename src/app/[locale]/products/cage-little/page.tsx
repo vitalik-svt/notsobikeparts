@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
 export default function LittleCagePage() {
     const pathname = usePathname();
     const { setNotification } = useNotifications();
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState<number | undefined>(1);
     const cages = useCagesProductData();
     const { addItem } = cartStore();
     const { t: tCommon } = useTranslation('common');
@@ -31,7 +31,7 @@ export default function LittleCagePage() {
             imageUrl: cages.little.images[0],
             productSection: `cage`,
             productKey: `little`,
-            quantity,
+            quantity: quantity ?? 1,
             productLink: pathname,
         });
         setNotification(cages.little.name);
@@ -51,6 +51,7 @@ export default function LittleCagePage() {
                             <InputNumber value={quantity} onChange={setQuantity} />
                             <Button
                                 onClick={addToCart}
+                                disabled={!quantity || quantity <= 0}
                                 fluid
                             >
                                 {tCommon("product.add_to_cart")}

@@ -44,8 +44,8 @@ export type ProductParams = Partial<
 export type ProductKey = ProductVoileType | ProductCageType | TopcapProductKey | 'one-price';
 
 export interface CartItem {
-	id: string
-	quantity: number,
+	id: string;
+	quantity: number;
 	productSection: ProductSection;
 	productKey: ProductKey;
 	imageUrl: string;
@@ -57,7 +57,7 @@ interface Store {
 	totalCount: number;
 	orderStep: OrderStep;
 	userFormData: CheckoutForm | null;
-	setOrderStep: (step: OrderStep) => void;
+	setOrderStep: (orderStep: OrderStep) => void;
 	setUserFormData: (form: CheckoutForm) => void;
 	addItem: (item: CartItem) => void;
 	removeItem: (id: string) => void;
@@ -82,11 +82,11 @@ const upsertItem = (items: CartItem[], incoming: CartItem) => {
 }
 
 const replaceQuantity = (items: CartItem[], id: string, quantity: number) => {
-	if (quantity <= 0) {
+	if (quantity < 0) {
 		return items.filter(i => i.id !== id);
-	};
+	}
 
-	return items.map(i => i.id === id ? { ...i, quantity } : i);
+	return items.map(item => item.id === id ? { ...item, quantity } : item);
 }
 
 export const cartStore = create<Store>()(
@@ -94,7 +94,19 @@ export const cartStore = create<Store>()(
 		(set) => ({
 			totalCount: 0,
 			orderStep: 'summary',
-			setOrderStep: (step: OrderStep) => set({ orderStep: step }),
+			setOrderStep: (orderStep: OrderStep) => set((state) => {
+				if (orderStep === 'checkout') {
+					const items = state.items.filter(item => item.quantity !== 0);
+
+					return {
+						orderStep,
+						items,
+						totalCount: calcTotalCount(items),
+					};
+				}
+
+				return { orderStep };
+			}),
 			setUserFormData: (form: CheckoutForm) => set({ userFormData: form }),
 			addItem: (item: CartItem) => set((state) => {
 				const items = upsertItem(state.items, item);

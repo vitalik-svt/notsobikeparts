@@ -20,7 +20,7 @@ export default function ProductGridCard({ description, url, isAvailable, selectP
 
     return (
         <article className="flex flex-col gap-3 h-full justify-between relative items-center">
-            <div className={`flex flex-col gap-3 ${isAvailable ? '' : 'blur-[0.5px] opacity-45'}`}>
+            <div className={`flex flex-col gap-3 w-full ${isAvailable ? '' : 'blur-[0.5px] opacity-45'}`}>
                 <Image
                     src={url}
                     alt=""

@@ -8,6 +8,7 @@ import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInf
 import ProductPage from "@/components/ProductPage/ProductPage";
 import { CoatingType, useItchyAndScratchyData } from "@/hooks/useItchyAndScratchyData";
 import useProductOptionDictionary from "@/hooks/useProductOptionDictionary";
+import { useNotifications } from "@/providers/NotificationsProvider";
 import { CageColor, CagePlusColor, cartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
 import { usePathname } from "next/navigation";
@@ -20,6 +21,7 @@ export default function ItchyAndScratchyPage() {
     const itchyAndScratchy  = useItchyAndScratchyData();
     const optionDictionary = useProductOptionDictionary();
     const { addItem } = cartStore();
+    const { setNotification } = useNotifications();
 
 
     const paintedTypeLabel: Record<CoatingType, string> = {
@@ -42,7 +44,8 @@ export default function ItchyAndScratchyPage() {
             productParams,
             quantity: 1,
             productLink
-        })
+        });
+        setNotification(itchyAndScratchy.name);
     }
 
 
@@ -58,7 +61,7 @@ export default function ItchyAndScratchyPage() {
                     <p>{itchyAndScratchy.description[2]}</p>
                 </ProductMainInfo>
             </ProductMain>
-            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <ul className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {itchyAndScratchy.products.map((item, index) => (
                     <li key={index}>
                         <ProductGridCard

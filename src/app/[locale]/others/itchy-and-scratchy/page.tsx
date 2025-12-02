@@ -61,7 +61,7 @@ export default function ItchyAndScratchyPage() {
                     <p>{itchyAndScratchy.description[2]}</p>
                 </ProductMainInfo>
             </ProductMain>
-            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <ul className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {itchyAndScratchy.products.map((item, index) => (
                     <li key={index}>
                         <ProductGridCard

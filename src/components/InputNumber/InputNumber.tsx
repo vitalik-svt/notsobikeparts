@@ -9,6 +9,8 @@ const InputNumber: FC<Props> = ({ value, onChange }) => (
     <input
         type="number"
         min={0}
+        step={1}
+        inputMode="numeric"
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         className="w-21 h-12 px-4 border-2 rounded"

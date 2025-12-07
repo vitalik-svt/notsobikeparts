@@ -9,10 +9,11 @@ import BurgerButton from "./BurgerButton/BurgerButton";
 import { useHeaderMenuOptions } from "./useHeaderMenuOptions";
 import { usePathname } from "next/navigation";
 import { menuStore } from "@/stores/menuStore";
+import { Locales } from "@/types/locales";
 
-export default function Header({ locale }: { locale: string }) {
+export default function Header({ locale }: { locale: Locales }) {
     const { menuOpen, setMenuOpen } = menuStore();
-    const menuOptions = useHeaderMenuOptions();
+    const menuOptions = useHeaderMenuOptions(locale);
 
     const pathname = usePathname();
 

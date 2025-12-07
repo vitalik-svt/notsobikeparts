@@ -11,6 +11,7 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { useMerchData } from "@/hooks/useMerchData";
+import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -18,21 +19,24 @@ import { useTranslation } from "react-i18next";
 
 export default function MerchPage() {
     const pathname = usePathname();
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState<number | undefined>(1);
     const { t: tCommon } = useTranslation('common');
     const { t: tMerch } = useTranslation('merch');
     const merch = useMerchData();
     const { addItem } = cartStore();
+    const { setNotification } = useNotifications();
+    
 
     const addToCart = () => {
         addItem({
             id: 'merch',
-            quantity,
+            quantity: quantity ?? 1,
             imageUrl: merch.images[0],
             productSection: `merch`,
             productKey: `one-price`,
             productLink: pathname,
         });
+        setNotification(merch.name);
     };
 
     return (
@@ -50,9 +54,10 @@ export default function MerchPage() {
 
                     <OptionsCountBlock>
                         <RowWrapper>
-                            <InputNumber value={quantity} onChange={setQuantity} />
+                            <InputNumber value={quantity} onChange={(value) => setQuantity(value)} />
                             <Button
                                 onClick={addToCart}
+                                disabled={!quantity || quantity <= 0}
                                 fluid
                             >
                                 {tCommon("product.add_to_cart")}

@@ -32,13 +32,11 @@ export default function Gallery({ images }: Props) {
     });
 
     useEffect(() => {
-        requestAnimationFrame(() => {
+        const rafId = requestAnimationFrame(() => {
             instanceRef.current?.update();
             thumbsInstanceRef.current?.update();
         });
-    }, [instanceRef, thumbsInstanceRef]);
 
-    useEffect(() => {
         const handleResize = () => {
             instanceRef.current?.update();
             thumbsInstanceRef.current?.update();
@@ -46,7 +44,10 @@ export default function Gallery({ images }: Props) {
 
         window.addEventListener("resize", handleResize);
 
-        return () => window.removeEventListener("resize", handleResize);
+        return () => {
+            cancelAnimationFrame(rafId);
+            window.removeEventListener("resize", handleResize);
+        };
     }, [instanceRef, thumbsInstanceRef]);
 
     const hasMultipleImages = images.length > 1;
@@ -81,11 +82,11 @@ export default function Gallery({ images }: Props) {
 
     const goToPrevSlide = useCallback(() => {
         instanceRef.current?.prev();
-    }, []);
+    }, [instanceRef]);
 
     const goToNextSlide = useCallback(() => {
         instanceRef.current?.next();
-    }, []);
+    }, [instanceRef]);
 
     const closeSlideShowMode = useCallback(() => {
         setIsSlideShowModeOn(false);
@@ -93,7 +94,7 @@ export default function Gallery({ images }: Props) {
             instanceRef.current?.update();
             thumbsInstanceRef.current?.update();
         }, 0);
-    }, []);
+    }, [instanceRef, thumbsInstanceRef]);
 
     const handleEscape = useCallback(() => {
         if (isSlideShowModeOn) closeSlideShowMode();
@@ -108,7 +109,7 @@ export default function Gallery({ images }: Props) {
     useKeyPress("Escape", handleEscape);
     useKeyPress("ArrowLeft", handleArrowLeft);
     useKeyPress("ArrowRight", handleArrowRight);
-    
+
     return (
         <div className={mainContentWrapperClasses}>
             {isSlideShowModeOn && (

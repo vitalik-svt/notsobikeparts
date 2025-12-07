@@ -7,10 +7,15 @@ import { CONTACTS } from "@/constants/contacts";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { i18n } from "@/i18n/settings";
+import { Locales } from "@/types/locales";
 
 const year = new Date().getFullYear();
 
-export default function Footer({ locale }: { locale: string }) {
+interface Props {
+    locale: Locales;
+}
+
+export default function Footer({ locale }: Props) {
     const router = useRouter();
     const pathname = usePathname();
     const { t } = useTranslation();

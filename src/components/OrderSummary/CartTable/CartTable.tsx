@@ -1,4 +1,4 @@
- 'use client';
+'use client';
 
 import InputNumber from "@/components/InputNumber/InputNumber";
 import { CartItem, cartStore } from "@/stores/cartStore";
@@ -23,7 +23,6 @@ export default function CartTable({ items }: Props) {
     const { t } = useTranslation();
     const { removeItem, changeQuantity } = cartStore();
     const productData = useProductData();
-    
 
     return (
         <table className="table-fixed w-full text-left border-collapse lowercase">
@@ -79,7 +78,7 @@ export default function CartTable({ items }: Props) {
                                     <span className="font-bold md:hidden">{t("cart.tablet.quantity_label")}:</span>
                                     <InputNumber
                                         value={item.quantity}
-                                        onChange={(value) => changeQuantity(item.id, value)}
+                                        onChange={(value) => changeQuantity(item.id, isNaN(Number(value)) ? 0 : Number(value))}
                                     />
                                 </p>
                             </td>

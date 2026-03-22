@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
       from,
       to: process.env.ADMIN_EMAIL,
       replyTo: process.env.ADMIN_EMAIL,
-      subject: '🧪 Test Email from Not So Bike Parts',
+      subject: '🧪 Test Email from notsobikeparts',
       html: '<h1>Test Email</h1><p>If you received this, Resend is working!</p>',
     });
 

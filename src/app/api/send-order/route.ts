@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
         </table>
         
         <div style="text-align: right; font-size: 18px; font-weight: bold; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
-          Итого: ${totalPrice}
+          Итого без учета доставки: ${totalPrice}
         </div>
       </div>
     `;
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
     const customerEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background-color: #333; color: white; padding: 20px; text-align: center;">
-          <h1 style="margin: 0;">Not So Bike Parts</h1>
+          <h1 style="margin: 0;">Notsobikeparts</h1>
         </div>
         
         <div style="padding: 30px 20px;">
@@ -116,8 +116,7 @@ export async function POST(request: NextRequest) {
           ${orderDetailsHtml}
           
           <p style="color: #666; margin-top: 30px; font-size: 14px; line-height: 1.6;">
-            С уважением,<br/>
-            <strong>Команда Not So Bike Parts</strong>
+            С уважением, Виталик из notsobikeparts<br/>
           </p>
         </div>
         
@@ -135,14 +134,7 @@ export async function POST(request: NextRequest) {
         </div>
         
         <div style="padding: 30px 20px;">
-          <h2 style="color: #333;">Заказ от ${userFormData.name}</h2>
-          
           ${orderDetailsHtml}
-          
-          <div style="margin-top: 30px; padding: 15px; background-color: #e7f3ff; border-left: 4px solid #2196F3; border-radius: 4px;">
-            <p style="margin: 0; font-weight: bold;">💡 Совет:</p>
-            <p style="margin: 5px 0 0 0;">Свяжитесь с клиентом в течение 24 часов для подтверждения заказа.</p>
-          </div>
         </div>
       </div>
     `;
@@ -152,7 +144,7 @@ export async function POST(request: NextRequest) {
       from,
       to: userFormData.email,
       replyTo: process.env.ADMIN_EMAIL,
-      subject: 'Подтверждение заказа - Not So Bike Parts',
+      subject: 'Подтверждение заказа из notsobikeparts',
       html: customerEmailHtml,
     });
     if (customerEmail.error) {

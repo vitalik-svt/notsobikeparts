@@ -6,6 +6,19 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: 'RESEND_API_KEY is not set on the server' },
+        { status: 500 }
+      );
+    }
+    if (!process.env.ADMIN_EMAIL) {
+      return NextResponse.json(
+        { error: 'ADMIN_EMAIL is not set on the server' },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     const { userFormData, items, totalPrice } = body;
 
@@ -16,6 +29,10 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    const from =
+      process.env.RESEND_FROM ??
+      'Notsobikepartsarts <noreply@notsobikeparts.com>';
 
     // HTML для таблицы товаров
     const itemsHtml = items
@@ -132,20 +149,33 @@ export async function POST(request: NextRequest) {
 
     // Отправка письма покупателю
     const customerEmail = await resend.emails.send({
-      from: 'Not So Bike Parts <onboarding@resend.dev>', // Для тестов
+      from,
       to: userFormData.email,
+      replyTo: process.env.ADMIN_EMAIL,
       subject: 'Подтверждение заказа - Not So Bike Parts',
       html: customerEmailHtml,
     });
+    if (customerEmail.error) {
+      return NextResponse.json(
+        { error: 'Resend (customer)', details: customerEmail.error },
+        { status: 502 }
+      );
+    }
 
     // Отправка письма администратору
     const adminEmail = await resend.emails.send({
-      from: 'Not So Bike Parts Orders <onboarding@resend.dev>',
-      to: process.env.ADMIN_EMAIL!,
+      from,
+      to: process.env.ADMIN_EMAIL,
       subject: `🛒 Новый заказ от ${userFormData.name}`,
       html: adminEmailHtml,
       replyTo: userFormData.email, // Можно сразу ответить клиенту
     });
+    if (adminEmail.error) {
+      return NextResponse.json(
+        { error: 'Resend (admin)', details: adminEmail.error },
+        { status: 502 }
+      );
+    }
 
     console.log('Emails sent:', { customerEmail, adminEmail });
 

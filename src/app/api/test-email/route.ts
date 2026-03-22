@@ -6,16 +6,41 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function GET(request: NextRequest) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: 'RESEND_API_KEY is not set on the server' },
+        { status: 500 }
+      );
+    }
+    if (!process.env.ADMIN_EMAIL) {
+      return NextResponse.json(
+        { error: 'ADMIN_EMAIL is not set on the server' },
+        { status: 500 }
+      );
+    }
+
     console.log('🧪 Testing Resend configuration...');
     console.log('API Key exists:', !!process.env.RESEND_API_KEY);
     console.log('Admin email:', process.env.ADMIN_EMAIL);
 
+    const from =
+      process.env.RESEND_FROM ??
+      'Notsobikeparts <noreply@notsobikeparts.com>';
+
     const result = await resend.emails.send({
-      from: 'Test <onboarding@resend.dev>',
-      to: process.env.ADMIN_EMAIL!,
+      from,
+      to: process.env.ADMIN_EMAIL,
+      replyTo: process.env.ADMIN_EMAIL,
       subject: '🧪 Test Email from Not So Bike Parts',
       html: '<h1>Test Email</h1><p>If you received this, Resend is working!</p>',
     });
+
+    if (result.error) {
+      return NextResponse.json(
+        { error: 'Resend rejected the request', details: result.error },
+        { status: 502 }
+      );
+    }
 
     console.log('✅ Test email sent:', result);
 

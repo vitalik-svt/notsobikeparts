@@ -623,25 +623,25 @@ export const useTopcapsGridData = () => {
                 },
             ],
         },
-        {
-            categoryName: t(`topcaps.category.collaborations`),
-            items: [{
-                description: t(`topcaps.description.401`),
-                image: `${baseUrl}/product-pic-401.avif`,
-                isAvailable: true,
-            },
-            {
-                description: t(`topcaps.description.402`),
-                image: `${baseUrl}/product-pic-402.avif`,
-                isAvailable: true,
-            },
-            {
-                description: t(`topcaps.description.403`),
-                image: `${baseUrl}/product-pic-403.avif`,
-                isAvailable: true,
-            },
-            ],
-        },
+        // {
+        //     categoryName: t(`topcaps.category.collaborations`),
+        //     items: [{
+        //         description: t(`topcaps.description.401`),
+        //         image: `${baseUrl}/product-pic-401.avif`,
+        //         isAvailable: true,
+        //     },
+        //     {
+        //         description: t(`topcaps.description.402`),
+        //         image: `${baseUrl}/product-pic-402.avif`,
+        //         isAvailable: true,
+        //     },
+        //     {
+        //         description: t(`topcaps.description.403`),
+        //         image: `${baseUrl}/product-pic-403.avif`,
+        //         isAvailable: true,
+        //     },
+        //     ],
+        // },
         {
             categoryName: t(`topcaps.category.graphics`),
             items: [{

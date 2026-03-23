@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
 
     const from =
       process.env.RESEND_FROM ??
-      'Notsobikeparts <noreply@notsobikeparts.com>';
+      'notsobikeparts <noreply@notsobikeparts.com>';
 
     const result = await resend.emails.send({
       from,

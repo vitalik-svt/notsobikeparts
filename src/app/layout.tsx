@@ -5,7 +5,7 @@ import BodyMainContainer from "@/components/BodyMainContainer";
 import { ReactNode } from "react";
 
 export const metadata: Metadata = {
-    title: "Велоаксессуары | Notsobikeparts | Notso bike parts",
+    title: "Велоаксессуары | notsobikeparts | notso bike parts",
     description: "Компоненты и аксессуары для вас, вашего велосипеда, байкпакинга, туризма и коммьютинга",
 };
 

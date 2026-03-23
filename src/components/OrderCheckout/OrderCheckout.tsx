@@ -16,10 +16,10 @@ import { getProductSectionData } from "@/utils/getProductSectionData";
 import { formatPrice } from "@/utils/formatPrice";
 
 interface Props {
-    onClick: (value: OrderStep) => void;
+    setOrderStep: (value: OrderStep) => void;
 }
 
-export default function OrderCheckout({ onClick }: Props) {
+export default function OrderCheckout({ setOrderStep }: Props) {
     const { items, userFormData, setUserFormData, finalizeOrder } = cartStore();
     const { t } = useTranslation();
     const productData = useProductData();
@@ -133,7 +133,6 @@ export default function OrderCheckout({ onClick }: Props) {
 
             // Успех - очищаем корзину и переходим на страницу "done"
             finalizeOrder();
-            onClick('done');
 
         } catch (error) {
             console.error('Ошибка отправки заказа:', error);
@@ -151,7 +150,7 @@ export default function OrderCheckout({ onClick }: Props) {
                 <section className="md:w-full">
                     <h2 className="text-2xl font-bold mb-4 md:mb-10">{t("cart.title.details")}</h2>
                     <FormCheckout
-                        onSubmit={() => onClick('summary')}
+                        onSubmit={() => setOrderStep('summary')}
                         register={register}
                         handleSubmit={handleSubmit}
                         errors={errors}
@@ -184,7 +183,7 @@ export default function OrderCheckout({ onClick }: Props) {
                         <div className="flex gap-2 flex-col-reverse w-full md:flex-row md:w-1/2 md:gap-5">
                             <Button
                                 disabled={isSubmitting}
-                                onClick={() => onClick(`summary`)}
+                                onClick={() => setOrderStep('summary')}
                                 variant="secondary"
                                 fluid
                             >

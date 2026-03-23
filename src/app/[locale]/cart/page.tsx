@@ -10,7 +10,7 @@ import { useEffect } from "react";
 export default function CartPage() {
     const { items, orderStep, setOrderStep } = cartStore();
 
-     useEffect(() => {
+    useEffect(() => {
         return () => {
             if (items.length === 0) {
                 setOrderStep('summary');
@@ -24,7 +24,7 @@ export default function CartPage() {
         <ProductPage>
             <div className="flex flex-col gap-3 grow pt-5">
                 {orderStep === 'summary' && <OrderSummary onClick={() => setOrderStep('checkout')} />}
-                {orderStep === 'checkout' && <OrderCheckout onClick={(value: OrderStep) => setOrderStep(value)} />}
+                {orderStep === 'checkout' && <OrderCheckout setOrderStep={(value: OrderStep) => setOrderStep(value)} />}
                 {orderStep === 'done' && <OrderSuccessDone />}
             </div>
 

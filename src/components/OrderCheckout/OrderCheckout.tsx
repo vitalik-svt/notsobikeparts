@@ -155,6 +155,11 @@ export default function OrderCheckout() {
         }
     };
 
+    // Prevent empty checkout flash while redirecting to cart.
+    if (!isHydrated || (items.length === 0 && !isCompletingOrderRef.current)) {
+        return null;
+    }
+
     return (
         <>
             <div className="flex flex-col gap-10 md:flex-row md:gap-10">

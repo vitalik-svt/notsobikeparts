@@ -55,6 +55,7 @@ export interface CartItem {
 interface Store {
 	totalCount: number;
 	userFormData: CheckoutForm | null;
+	isHydrated: boolean;
 	setUserFormData: (form: CheckoutForm) => void;
 	addItem: (item: CartItem) => void;
 	removeItem: (id: string) => void;
@@ -90,6 +91,7 @@ export const cartStore = create<Store>()(
 	persist(
 		(set) => ({
 			totalCount: 0,
+			isHydrated: false,
 			setUserFormData: (form: CheckoutForm) => set({ userFormData: form }),
 			addItem: (item: CartItem) => set((state) => {
 				const items = upsertItem(state.items, item);
@@ -121,6 +123,11 @@ export const cartStore = create<Store>()(
 		}),
 		{
 			name: 'cart-storage',
-			storage: createJSONStorage(() => localStorage)
+			storage: createJSONStorage(() => localStorage),
+			onRehydrateStorage: () => (state) => {
+				if (state) {
+					state.isHydrated = true;
+				}
+			}
 		}
 	))

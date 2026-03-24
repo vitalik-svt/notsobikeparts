@@ -19,7 +19,7 @@ import { ensureLocale } from "@/utils/ensureLocale";
 import { ROUTES } from "@/constants/routes";
 
 export default function OrderCheckout() {
-    const { items, userFormData, setUserFormData, finalizeOrder } = cartStore();
+    const { items, userFormData, setUserFormData, finalizeOrder, isHydrated } = cartStore();
     const { t } = useTranslation();
     const router = useRouter();
     const params = useParams();
@@ -29,10 +29,10 @@ export default function OrderCheckout() {
     const isCompletingOrderRef = useRef(false);
 
     useEffect(() => {
-        if (items.length === 0 && !isCompletingOrderRef.current) {
+        if (isHydrated && items.length === 0 && !isCompletingOrderRef.current) {
             router.replace(`/${locale}${ROUTES.CART}`);
         }
-    }, [items.length, locale, router]);
+    }, [isHydrated, items.length, locale, router]);
 
     const schema = useMemo(() => z.object({
         name: z.string().min(1, t('form.required')),

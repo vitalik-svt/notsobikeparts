@@ -1,6 +1,7 @@
 // src/app/api/send-order/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { createOrderSuccessToken, ORDER_SUCCESS_COOKIE } from '@/utils/orderSuccessToken';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -70,14 +71,13 @@ export async function POST(request: NextRequest) {
             <td style="padding: 8px; font-weight: bold;">Способ доставки:</td>
             <td style="padding: 8px;">${userFormData.deliveryMethod}</td>
           </tr>
-          ${
-            userFormData.comment
-              ? `<tr>
+          ${userFormData.comment
+        ? `<tr>
             <td style="padding: 8px; font-weight: bold;">Комментарий:</td>
             <td style="padding: 8px;">${userFormData.comment}</td>
           </tr>`
-              : ''
-          }
+        : ''
+      }
         </table>
         
         <h3 style="color: #555; border-bottom: 2px solid #eee; padding-bottom: 10px;">Товары</h3>
@@ -171,19 +171,29 @@ export async function POST(request: NextRequest) {
 
     console.log('Emails sent:', { customerEmail, adminEmail });
 
-    return NextResponse.json({ 
+    const response = NextResponse.json({
       success: true,
       customerEmailId: customerEmail.data?.id,
       adminEmailId: adminEmail.data?.id,
     });
 
+    response.cookies.set(ORDER_SUCCESS_COOKIE, createOrderSuccessToken(), {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+      maxAge: 15 * 60,
+    });
+
+    return response;
+
   } catch (error) {
     console.error('Email send error:', error);
-    
+
     return NextResponse.json(
-      { 
-        error: 'Failed to send email', 
-        details: error instanceof Error ? error.message : 'Unknown error' 
+      {
+        error: 'Failed to send email',
+        details: error instanceof Error ? error.message : 'Unknown error'
       },
       { status: 500 }
     );

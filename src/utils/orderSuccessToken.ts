@@ -6,7 +6,20 @@ const TOKEN_TTL_MS = 15 * 60 * 1000;
 const SECRET_FALLBACK = 'dev-only-order-success-secret';
 
 function getSecret() {
-    return process.env.ORDER_SUCCESS_SECRET || process.env.RESEND_API_KEY || SECRET_FALLBACK;
+    const secretFromEnv = process.env.ORDER_SUCCESS_SECRET;
+
+    if (secretFromEnv) {
+        return secretFromEnv;
+    }
+
+    const isProduction = process.env.NODE_ENV === 'production';
+
+    if (isProduction) {
+        throw new Error('ORDER_SUCCESS_SECRET must be set in production');
+    }
+
+    // In non-production environments, fall back to a fixed, dev-only secret.
+    return SECRET_FALLBACK;
 }
 
 function sign(value: string) {

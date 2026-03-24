@@ -13,6 +13,8 @@ export const ROUTES = {
   MERCH: '/others/merch',
   TEST_RIDE: '/others/test-ride',
   CART: '/cart',
+  CHECKOUT: '/checkout',
+  THANKYOU: '/thankyou',
 };
 
 export type ProductLink = typeof ROUTES[keyof typeof ROUTES];

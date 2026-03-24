@@ -13,7 +13,6 @@ export type TopcapOptions = 'custom-color' | 'thick';
 export type BoltColor = 'black' | 'light' | null;
 export type CageColor = 'black' | 'aluminum';
 export type CagePlusColor = 'black' | 'transparent' | 'light-green' | 'light-brown';
-export type OrderStep = 'summary' | 'checkout' | 'done';
 
 export interface TopcapParams {
 	boltsMaterial: BoltMaterial;
@@ -55,9 +54,7 @@ export interface CartItem {
 
 interface Store {
 	totalCount: number;
-	orderStep: OrderStep;
 	userFormData: CheckoutForm | null;
-	setOrderStep: (orderStep: OrderStep) => void;
 	setUserFormData: (form: CheckoutForm) => void;
 	addItem: (item: CartItem) => void;
 	removeItem: (id: string) => void;
@@ -93,20 +90,6 @@ export const cartStore = create<Store>()(
 	persist(
 		(set) => ({
 			totalCount: 0,
-			orderStep: 'summary',
-			setOrderStep: (orderStep: OrderStep) => set((state) => {
-				if (orderStep === 'checkout') {
-					const items = state.items.filter(item => item.quantity !== 0);
-
-					return {
-						orderStep,
-						items,
-						totalCount: calcTotalCount(items),
-					};
-				}
-
-				return { orderStep };
-			}),
 			setUserFormData: (form: CheckoutForm) => set({ userFormData: form }),
 			addItem: (item: CartItem) => set((state) => {
 				const items = upsertItem(state.items, item);
@@ -132,7 +115,7 @@ export const cartStore = create<Store>()(
 					totalCount: calcTotalCount(items),
 				};
 			}),
-			finalizeOrder: () => set({ items: [], totalCount: 0, userFormData: null, orderStep: 'done' }),
+			finalizeOrder: () => set({ items: [], totalCount: 0, userFormData: null }),
 			items: [],
 			userFormData: null,
 		}),

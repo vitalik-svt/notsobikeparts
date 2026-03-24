@@ -1,33 +1,21 @@
 'use client';
 
-import OrderCheckout from "@/components/OrderCheckout/OrderCheckout";
-import OrderSuccessDone from "@/components/OrderSuccessDone/OrderSuccessDone";
 import OrderSummary from "@/components/OrderSummary/OrderSummary";
 import ProductPage from "@/components/ProductPage/ProductPage";
-import { cartStore, OrderStep } from "@/stores/cartStore";
-import { useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { ensureLocale } from "@/utils/ensureLocale";
+import { ROUTES } from "@/constants/routes";
 
 export default function CartPage() {
-    const { items, orderStep, setOrderStep } = cartStore();
-
-    useEffect(() => {
-        return () => {
-            if (items.length === 0) {
-                setOrderStep('summary');
-            }
-        }
-    }, [items.length, setOrderStep]);
-
-
+    const router = useRouter();
+    const params = useParams();
+    const locale = ensureLocale(params.locale);
 
     return (
         <ProductPage>
             <div className="flex flex-col gap-3 grow pt-5">
-                {orderStep === 'summary' && <OrderSummary onClick={() => setOrderStep('checkout')} />}
-                {orderStep === 'checkout' && <OrderCheckout setOrderStep={(value: OrderStep) => setOrderStep(value)} />}
-                {orderStep === 'done' && <OrderSuccessDone />}
+                <OrderSummary onClick={() => router.push(`/${locale}${ROUTES.CHECKOUT}`)} />
             </div>
-
         </ProductPage>
     );
 }

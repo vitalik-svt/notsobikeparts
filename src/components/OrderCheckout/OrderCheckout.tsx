@@ -3,7 +3,7 @@
 import FormCheckout, { CheckoutForm } from "./FormCheckout/FormCheckout";
 import OrderTableCheckout from "./OrderTableCheckout/OrderTableCheckout";
 import TotalPriceWithAction from "../TotalPriceWithAction/TotalPriceWithAction";
-import { cartStore, OrderStep } from "@/stores/cartStore";
+import { cartStore } from "@/stores/cartStore";
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,16 +14,25 @@ import { useProductData } from "@/hooks/useProductData";
 import { getProductPrice } from "@/utils/getProductPrice";
 import { getProductSectionData } from "@/utils/getProductSectionData";
 import { formatPrice } from "@/utils/formatPrice";
+import { useParams, useRouter } from "next/navigation";
+import { ensureLocale } from "@/utils/ensureLocale";
+import { ROUTES } from "@/constants/routes";
 
-interface Props {
-    setOrderStep: (value: OrderStep) => void;
-}
-
-export default function OrderCheckout({ setOrderStep }: Props) {
+export default function OrderCheckout() {
     const { items, userFormData, setUserFormData, finalizeOrder } = cartStore();
     const { t } = useTranslation();
+    const router = useRouter();
+    const params = useParams();
+    const locale = ensureLocale(params.locale);
     const productData = useProductData();
     const [submitError, setSubmitError] = useState<string | null>(null);
+    const isCompletingOrderRef = useRef(false);
+
+    useEffect(() => {
+        if (items.length === 0 && !isCompletingOrderRef.current) {
+            router.replace(`/${locale}${ROUTES.CART}`);
+        }
+    }, [items.length, locale, router]);
 
     const schema = useMemo(() => z.object({
         name: z.string().min(1, t('form.required')),
@@ -131,8 +140,10 @@ export default function OrderCheckout({ setOrderStep }: Props) {
 
             console.log('Заказ успешно отправлен:', result);
 
-            // Успех - очищаем корзину и переходим на страницу "done"
+            // Успех - очищаем корзину и переходим на страницу thank you.
+            isCompletingOrderRef.current = true;
             finalizeOrder();
+            router.replace(`/${locale}${ROUTES.THANKYOU}`);
 
         } catch (error) {
             console.error('Ошибка отправки заказа:', error);
@@ -150,7 +161,7 @@ export default function OrderCheckout({ setOrderStep }: Props) {
                 <section className="md:w-full">
                     <h2 className="text-2xl font-bold mb-4 md:mb-10">{t("cart.title.details")}</h2>
                     <FormCheckout
-                        onSubmit={() => setOrderStep('summary')}
+                        onSubmit={() => router.push(`/${locale}${ROUTES.CART}`)}
                         register={register}
                         handleSubmit={handleSubmit}
                         errors={errors}
@@ -183,7 +194,7 @@ export default function OrderCheckout({ setOrderStep }: Props) {
                         <div className="flex gap-2 flex-col-reverse w-full md:flex-row md:w-1/2 md:gap-5">
                             <Button
                                 disabled={isSubmitting}
-                                onClick={() => setOrderStep('summary')}
+                                onClick={() => router.push(`/${locale}${ROUTES.CART}`)}
                                 variant="secondary"
                                 fluid
                             >

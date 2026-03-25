@@ -1,5 +1,7 @@
 'use client';
 
+import { CONTACTS } from '@/constants/contacts';
+import { renderEmailWithLink } from '@/utils/renderEmailWithLink';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 
@@ -16,7 +18,7 @@ export default function OrderSuccessDone() {
                 className="mb-4"
             />
             <h2 className="text-3xl font-bold">{t('success.title')}</h2>
-            <p className="text-center text-lg">{t('success.description')}</p>
+            <p className="text-center text-lg">{renderEmailWithLink(t("success.description", { email: CONTACTS.EMAIL }), CONTACTS.EMAIL)}</p>
         </section>
     );
 }

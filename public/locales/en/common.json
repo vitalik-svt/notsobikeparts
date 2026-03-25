@@ -73,7 +73,7 @@
   "cart.checkout": "Checkout",
   "cart.edit": "Edit",
   "success.title": "Thank you for your order!",
-  "success.description": "Your order has been successfully placed. We will contact you shortly via email to confirm all details",
+  "success.description": "Your order has been successfully placed. We will contact you by email shortly to confirm all the details. If you do not receive a confirmation email within 10 minutes, please contact us at {{email}}",
   "success.added_to_cart": "{{itemTitle}} added to cart",
   "notFound.title": "Oops, it seems this page does not exist",
   "notFound.home": "Home",

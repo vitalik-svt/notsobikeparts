@@ -7,6 +7,7 @@ import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInf
 import ProductPage from "@/components/ProductPage/ProductPage";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { CONTACTS } from "@/constants/contacts";
+import { renderEmailWithLink } from "@/utils/renderEmailWithLink";
 import { useTranslation } from "react-i18next";
 
 
@@ -18,22 +19,6 @@ const images = [
 	"/images/test-ride/product-pic-5.avif",
 	"/images/test-ride/product-pic-6.avif",
 ];
-
-function renderEmailWithLink(text: string, email: string) {
-	const index = text.indexOf(email);
-	if (index === -1) return text;
-
-	const before = text.slice(0, index);
-	const after = text.slice(index + email.length);
-
-	return (
-		<>
-			{before}
-			<a href={`mailto:${email}`} className="underline">{email}</a>
-			{after}
-		</>
-	);
-}
 
 export default function TestRidePage() {
 	const { t } = useTranslation('testRide');

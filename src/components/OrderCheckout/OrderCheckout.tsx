@@ -27,6 +27,8 @@ export default function OrderCheckout() {
     const productData = useProductData();
     const [submitError, setSubmitError] = useState<string | null>(null);
     const isCompletingOrderRef = useRef(false);
+    const isSubmittingOrderRef = useRef(false);
+    const checkoutFormId = 'checkout-form';
 
     useEffect(() => {
         if (isHydrated && items.length === 0 && !isCompletingOrderRef.current) {
@@ -93,6 +95,11 @@ export default function OrderCheckout() {
     }, [watch, setUserFormData]);
 
     const onSubmit = async (data: FormData) => {
+        if (isSubmittingOrderRef.current) {
+            return;
+        }
+
+        isSubmittingOrderRef.current = true;
         setSubmitError(null);
 
         try {
@@ -152,6 +159,8 @@ export default function OrderCheckout() {
                     ? error.message
                     : t('cart.error_sending_order') || 'Failed to send order'
             );
+        } finally {
+            isSubmittingOrderRef.current = false;
         }
     };
 
@@ -166,10 +175,11 @@ export default function OrderCheckout() {
                 <section className="md:w-full">
                     <h2 className="text-2xl font-bold mb-4 md:mb-10">{t("cart.title.details")}</h2>
                     <FormCheckout
-                        onSubmit={() => router.push(`/${locale}${ROUTES.CART}`)}
+                        onSubmit={onSubmit}
                         register={register}
                         handleSubmit={handleSubmit}
                         errors={errors}
+                        formId={checkoutFormId}
                     />
                 </section>
 
@@ -206,9 +216,9 @@ export default function OrderCheckout() {
                                 {t('cart.edit')}
                             </Button>
                             <Button
-                                type="button"
+                                type="submit"
+                                form={checkoutFormId}
                                 disabled={isSubmitting}
-                                onClick={handleSubmit(onSubmit)}
                                 fluid
                             >
                                 {isSubmitting ? (

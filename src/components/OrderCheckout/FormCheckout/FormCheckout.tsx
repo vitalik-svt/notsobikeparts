@@ -1,4 +1,4 @@
-import { FieldErrors, FieldValues, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
+import { FieldErrors, FieldValues, SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 import FormControl from './FormControl/FormControl';
 import Textarea from './Textarea/Textarea';
 import { useTranslation } from 'react-i18next';
@@ -13,17 +13,18 @@ export type CheckoutForm = {
 
 
 interface Props<T extends FieldValues> {
-    onSubmit: VoidFunction;
+    onSubmit: SubmitHandler<CheckoutForm>;
     register: UseFormRegister<T>;
     handleSubmit: UseFormHandleSubmit<CheckoutForm>;
     errors?: FieldErrors<T>;
+    formId?: string;
 }
 
-export default function FormCheckout({ onSubmit, register, handleSubmit, errors }: Props<CheckoutForm>) {
+export default function FormCheckout({ onSubmit, register, handleSubmit, errors, formId }: Props<CheckoutForm>) {
     const { t } = useTranslation();
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+        <form id={formId} onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
             <FormControl<CheckoutForm>
                 label={t('form.full_name_label')}
                 placeholder={t('form.full_name_placeholder')}

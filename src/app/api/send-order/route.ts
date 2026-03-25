@@ -20,6 +20,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    let orderSuccessToken: string;
+    try {
+      // Fail fast in production if token secret is not configured.
+      orderSuccessToken = createOrderSuccessToken();
+    } catch (error) {
+      return NextResponse.json(
+        {
+          error: 'ORDER_SUCCESS_SECRET is not set on the server',
+          details: error instanceof Error ? error.message : 'Unknown token error',
+        },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     const { userFormData, items, totalPrice } = body;
 
@@ -177,7 +191,7 @@ export async function POST(request: NextRequest) {
       adminEmailId: adminEmail.data?.id,
     });
 
-    response.cookies.set(ORDER_SUCCESS_COOKIE, createOrderSuccessToken(), {
+    response.cookies.set(ORDER_SUCCESS_COOKIE, orderSuccessToken, {
       httpOnly: true,
       sameSite: 'lax',
       secure: process.env.NODE_ENV === 'production',

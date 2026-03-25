@@ -16,7 +16,9 @@ const Button: FC<Props> = ({
     fluid,
     size = "l",
     variant = "primary",
-    disabled = false
+    disabled = false,
+    type = "button",
+    ...rest
 }) => {
     const sizeClasses = {
         s: "h-8 text-sm py-1 px-2",
@@ -33,10 +35,11 @@ const Button: FC<Props> = ({
 
     return (
         <button
-            type="button"
+            type={type}
             className={`${variantClasses} rounded transition ${disabledClasses} lowercase leading-none ${fluid ? "w-full" : ""} ${sizeClasses}`}
             onClick={onClick}
             disabled={disabled}
+            {...rest}
         >
             {children}
         </button>

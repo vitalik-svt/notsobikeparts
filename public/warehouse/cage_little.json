@@ -1,0 +1,19 @@
+[
+  {
+    "sku_id": 2000331,
+    "sku_name": "cage lil",
+    "product": "cage_little",
+    "sku_photo": "",
+    "photos": [
+      "/images/cages/little/product-pic-1.avif",
+      "/images/cages/little/product-pic-2.avif",
+      "/images/cages/little/product-pic-3.avif",
+      "/images/cages/little/product-pic-4.avif",
+      "/images/cages/little/product-pic-5.avif"
+    ],
+    "properties": {
+      "series": "lil",
+      "color": "black"
+    }
+  }
+]

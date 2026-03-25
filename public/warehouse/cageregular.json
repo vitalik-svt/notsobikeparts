@@ -1,0 +1,59 @@
+[
+  {
+    "sku_id": 2000083,
+    "sku_name": "cage_reg_black_painted",
+    "product": "cageregular",
+    "sku_photo": "",
+    "photos": [
+      "/images/cages/plus/product-pic-1.avif",
+      "/images/cages/plus/product-pic-2.avif",
+      "/images/cages/plus/product-pic-3.avif",
+      "/images/cages/plus/product-pic-4.avif",
+      "/images/cages/plus/product-pic-5.avif",
+      "/images/cages/plus/product-pic-6.avif",
+      "/images/cages/plus/product-pic-7.avif"
+    ],
+    "properties": {
+      "finish": "painted",
+      "color": "black"
+    }
+  },
+  {
+    "sku_id": 2000202,
+    "sku_name": "cage_reg_silver",
+    "product": "cageregular",
+    "sku_photo": "",
+    "photos": [
+      "/images/cages/plus/product-pic-1.avif",
+      "/images/cages/plus/product-pic-2.avif",
+      "/images/cages/plus/product-pic-3.avif",
+      "/images/cages/plus/product-pic-4.avif",
+      "/images/cages/plus/product-pic-5.avif",
+      "/images/cages/plus/product-pic-6.avif",
+      "/images/cages/plus/product-pic-7.avif"
+    ],
+    "properties": {
+      "finish": "anodized",
+      "color": "silver"
+    }
+  },
+  {
+    "sku_id": 2000205,
+    "sku_name": "cage_reg_black",
+    "product": "cageregular",
+    "sku_photo": "",
+    "photos": [
+      "/images/cages/plus/product-pic-1.avif",
+      "/images/cages/plus/product-pic-2.avif",
+      "/images/cages/plus/product-pic-3.avif",
+      "/images/cages/plus/product-pic-4.avif",
+      "/images/cages/plus/product-pic-5.avif",
+      "/images/cages/plus/product-pic-6.avif",
+      "/images/cages/plus/product-pic-7.avif"
+    ],
+    "properties": {
+      "finish": "anodized",
+      "color": "black"
+    }
+  }
+]

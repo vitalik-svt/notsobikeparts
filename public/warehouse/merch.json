@@ -1,0 +1,17 @@
+[
+  {
+    "sku_id": 2000265,
+    "sku_name": "свитик",
+    "product": "merch",
+    "sku_photo": "",
+    "photos": [
+      "/images/merch/product-pic-1.avif",
+      "/images/merch/product-pic-2.avif",
+      "/images/merch/product-pic-3.avif"
+    ],
+    "properties": {
+      "size": "large",
+      "color": "black"
+    }
+  }
+]

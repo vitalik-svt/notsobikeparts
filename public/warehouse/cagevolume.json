@@ -1,0 +1,34 @@
+[
+  {
+    "sku_id": 2000186,
+    "sku_name": "cage_volume_black",
+    "product": "cagevolume",
+    "sku_photo": "",
+    "photos": [
+      "/images/cages/volume/product-pic-1.avif",
+      "/images/cages/volume/product-pic-2.avif",
+      "/images/cages/volume/product-pic-3.avif",
+      "/images/cages/volume/product-pic-4.avif",
+      "/images/cages/volume/product-pic-5.avif"
+    ],
+    "properties": {
+      "color": "black"
+    }
+  },
+  {
+    "sku_id": 2000187,
+    "sku_name": "cage_volume_silver",
+    "product": "cagevolume",
+    "sku_photo": "",
+    "photos": [
+      "/images/cages/volume/product-pic-1.avif",
+      "/images/cages/volume/product-pic-2.avif",
+      "/images/cages/volume/product-pic-3.avif",
+      "/images/cages/volume/product-pic-4.avif",
+      "/images/cages/volume/product-pic-5.avif"
+    ],
+    "properties": {
+      "color": "silver"
+    }
+  }
+]

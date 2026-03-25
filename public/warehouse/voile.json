@@ -1,0 +1,197 @@
+[
+  {
+    "sku_id": 2000084,
+    "sku_name": "voile_20_black_logo",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 20,
+      "color": "black",
+      "logo": true
+    }
+  },
+  {
+    "sku_id": 2000172,
+    "sku_name": "voile_9_black",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 9,
+      "color": "black",
+      "logo": false
+    }
+  },
+  {
+    "sku_id": 2000173,
+    "sku_name": "voile_20_olive",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 20,
+      "color": "olive",
+      "logo": false
+    }
+  },
+  {
+    "sku_id": 2000174,
+    "sku_name": "voile_20_tan",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 20,
+      "color": "tan",
+      "logo": false
+    }
+  },
+  {
+    "sku_id": 2000175,
+    "sku_name": "voile_25_black",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 25,
+      "color": "black",
+      "logo": false
+    }
+  },
+  {
+    "sku_id": 2000176,
+    "sku_name": "voile_25_olive",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 25,
+      "color": "olive",
+      "logo": false
+    }
+  },
+  {
+    "sku_id": 2000177,
+    "sku_name": "voile_25_tan",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 25,
+      "color": "tan",
+      "logo": false
+    }
+  },
+  {
+    "sku_id": 2000178,
+    "sku_name": "voile_32_black",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 32,
+      "color": "black",
+      "logo": false
+    }
+  },
+  {
+    "sku_id": 2000217,
+    "sku_name": "voile_25_orange",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 25,
+      "color": "orange",
+      "logo": false
+    }
+  },
+  {
+    "sku_id": 2000218,
+    "sku_name": "voile_12_black",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 12,
+      "color": "black",
+      "logo": false
+    }
+  },
+  {
+    "sku_id": 2000219,
+    "sku_name": "voile_32_olive",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 32,
+      "color": "olive",
+      "logo": false
+    }
+  },
+  {
+    "sku_id": 2000220,
+    "sku_name": "voile_32_tan",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 32,
+      "color": "tan",
+      "logo": false
+    }
+  },
+  {
+    "sku_id": 2000307,
+    "sku_name": "voile_25_black_logo",
+    "product": "voile",
+    "sku_photo": "",
+    "photos": [
+      "/images/voile/product-pic-1.avif",
+      "/images/voile/product-pic-2.avif"
+    ],
+    "properties": {
+      "length_cm": 25,
+      "color": "black",
+      "logo": true
+    }
+  }
+]

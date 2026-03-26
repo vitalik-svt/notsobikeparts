@@ -1,0 +1,15 @@
+{
+  "2000111": {
+    "sku_name": "chainbreaker",
+    "product": "chainbreaker",
+    "sku_photo": "",
+    "photos": [
+      "/images/chain-breaker/product-pic-1.avif",
+      "/images/chain-breaker/product-pic-2.avif",
+      "/images/chain-breaker/product-pic-3.avif"
+    ],
+    "properties": {
+      "kit": "chainbreaker"
+    }
+  }
+}

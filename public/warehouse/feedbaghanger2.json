@@ -1,0 +1,18 @@
+{
+  "2000332": {
+    "sku_name": "feedbaghanger2_black",
+    "product": "feedbaghanger2",
+    "sku_photo": "",
+    "photos": [
+      "/images/feedbag-hanger/product-pic-1.avif",
+      "/images/feedbag-hanger/product-pic-2.avif",
+      "/images/feedbag-hanger/product-pic-3.avif",
+      "/images/feedbag-hanger/product-pic-4.avif",
+      "/images/feedbag-hanger/product-pic-5.avif"
+    ],
+    "properties": {
+      "rail": "1_s-section",
+      "color": "black"
+    }
+  }
+}

@@ -22,11 +22,11 @@ export interface WarehouseSku extends WarehouseEntry {
 }
 
 export interface SkuMeta {
-    skuId: number | null;
-    skuName: string | null;
+    skuId: string;
+    skuName: string;
 }
 
-const NULL_SKU_META: SkuMeta = { skuId: null, skuName: null };
+const NULL_SKU_META: SkuMeta = { skuId: '', skuName: '' };
 
 type RawWarehouseMap = Record<string, WarehouseEntry>;
 
@@ -60,8 +60,8 @@ export function toSkuMeta(sku?: WarehouseSku | null): SkuMeta {
     }
 
     return {
-        skuId: sku.sku_id,
-        skuName: sku.sku_name,
+        skuId: String(sku.sku_id),
+        skuName: sku.sku_name ?? '',
     };
 }
 

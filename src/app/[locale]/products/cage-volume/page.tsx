@@ -25,13 +25,15 @@ export default function CageVolumePage() {
     const [quantity, setQuantity] = useState<number | undefined>(1);
     const cages = useCagesProductData();
     const [colorOption, setColorOption] = useState<CageColor>(cages.volume.colorOptions[0].value as CageColor);
+    const selectedColorOption = cages.volume.colorOptionsByValue[colorOption] ?? cages.volume.colorOptions[0];
     const { t: tCommon } = useTranslation('common');
     const { t: tCages } = useTranslation('cages');
     const { addItem } = cartStore();
 
     const addToCart = () => {
         addItem({
-            id: `cage-volume-${colorOption}`,
+            skuId: selectedColorOption.skuId,
+            skuName: selectedColorOption.skuName,
             imageUrl: cages.volume.images[0],
             productSection: `cage`,
             productKey: `volume`,

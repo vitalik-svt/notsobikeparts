@@ -43,7 +43,8 @@ export type ProductParams = Partial<
 export type ProductKey = ProductVoileType | ProductCageType | TopcapProductKey | 'one-price';
 
 export interface CartItem {
-	id: string;
+	skuId: string;
+	skuName: string;
 	quantity: number;
 	productSection: ProductSection;
 	productKey: ProductKey;
@@ -58,16 +59,25 @@ interface Store {
 	isHydrated: boolean;
 	setUserFormData: (form: CheckoutForm) => void;
 	addItem: (item: CartItem) => void;
-	removeItem: (id: string) => void;
-	changeQuantity: (id: string, quantity: number) => void;
+	removeItem: (skuId: string, productParams?: ProductParams) => void;
+	changeQuantity: (skuId: string, quantity: number, productParams?: ProductParams) => void;
 	finalizeOrder: VoidFunction;
 	items: CartItem[];
 }
 
 const calcTotalCount = (items: CartItem[]) => items.reduce((acc, item) => acc + item.quantity, 0);
 
+const toParamsKey = (params?: ProductParams) => JSON.stringify(params ?? {});
+
+const isSameCartLine = (a: CartItem, b: CartItem) => (
+	a.skuId === b.skuId
+	&& a.productSection === b.productSection
+	&& a.productKey === b.productKey
+	&& toParamsKey(a.productParams) === toParamsKey(b.productParams)
+);
+
 const upsertItem = (items: CartItem[], incoming: CartItem) => {
-	const idx = items.findIndex(i => i.id === incoming.id);
+	const idx = items.findIndex(i => isSameCartLine(i, incoming));
 
 	if (idx >= 0) {
 		const copy = items.slice();
@@ -79,12 +89,15 @@ const upsertItem = (items: CartItem[], incoming: CartItem) => {
 	return [...items, incoming];
 }
 
-const replaceQuantity = (items: CartItem[], id: string, quantity: number) => {
+const replaceQuantity = (items: CartItem[], skuId: string, quantity: number, productParams?: ProductParams) => {
+	const paramsKey = toParamsKey(productParams);
+	const matcher = (item: CartItem) => item.skuId === skuId && toParamsKey(item.productParams) === paramsKey;
+
 	if (quantity < 0) {
-		return items.filter(i => i.id !== id);
+		return items.filter(i => !matcher(i));
 	}
 
-	return items.map(item => item.id === id ? { ...item, quantity } : item);
+	return items.map(item => matcher(item) ? { ...item, quantity } : item);
 }
 
 export const cartStore = create<Store>()(
@@ -101,16 +114,17 @@ export const cartStore = create<Store>()(
 					totalCount: calcTotalCount(items),
 				};
 			}),
-			removeItem: (id: string) => set((state) => {
-				const items = state.items.filter(item => item.id !== id);
+			removeItem: (skuId: string, productParams?: ProductParams) => set((state) => {
+				const paramsKey = toParamsKey(productParams);
+				const items = state.items.filter(item => !(item.skuId === skuId && toParamsKey(item.productParams) === paramsKey));
 
 				return {
 					items,
 					totalCount: calcTotalCount(items),
 				};
 			}),
-			changeQuantity: (id: string, quantity: number) => set((state) => {
-				const items = replaceQuantity(state.items, id, quantity);
+			changeQuantity: (skuId: string, quantity: number, productParams?: ProductParams) => set((state) => {
+				const items = replaceQuantity(state.items, skuId, quantity, productParams);
 
 				return {
 					items,

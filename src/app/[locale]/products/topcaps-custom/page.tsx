@@ -51,7 +51,8 @@ export default function TopcapsCustomPage() {
 
     const addToCart = () => {
         addItem({
-            id: `topcap-custom-${colorOption}-${thickness}-${productParams.boltsMaterial}-${productParams.boltColor}-${productParams.hasBox}`,
+            skuId: '',
+            skuName: topcaps.custom.name,
             quantity: quantity ?? 1,
             imageUrl: topcaps.custom.images[0],
             productSection: 'topcap',

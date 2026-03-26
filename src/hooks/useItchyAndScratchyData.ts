@@ -23,8 +23,8 @@ interface ItchyAndScratchyData {
         description: string[];
         price: ProductPriceSettings;
         productParams: ItchyAndScratchyColorMap;
-        skuId: number | null;
-        skuName: string | null;
+        skuId: string;
+        skuName: string;
     }[];
 }
 

@@ -3,7 +3,7 @@ import { Locales } from "@/types/locales";
 import { findSku, SkuMeta, toSkuMeta, warehouse } from "@/utils/warehouse";
 import { useTranslation } from "react-i18next";
 
-type VoileOption = { label: string; value: ProductVoileType; skuId: number | null; skuName: string | null };
+type VoileOption = { label: string; value: ProductVoileType; skuId: string; skuName: string };
 
 interface VoileProductData {
     name: string;
@@ -12,8 +12,8 @@ interface VoileProductData {
     options: VoileOption[];
     price: Record<ProductVoileType, Record<Locales, ProductPriceSettings>>;
     characteristics: { title: string; description: string }[];
-    skuId: number | null;
-    skuName: string | null;
+    skuId: string;
+    skuName: string;
     skus: SkuMeta[];
     skuByOption: Record<ProductVoileType, SkuMeta>;
 }

@@ -12,8 +12,8 @@ interface TopcapCategoryItemRaw {
 }
 interface TopcapItem extends TopcapItemRaw {
     id: string;
-    skuId: number | null;
-    skuName: string | null;
+    skuId: string;
+    skuName: string;
 }
 
 export interface TopcapCategoryItem {
@@ -786,8 +786,8 @@ export const useTopcapsGridData = () => {
         items: category.items.map((item, index) => ({
             ...item,
             id: getFileNameFromPath(item.image, `${index + 1}`),
-            skuId: skuByPhoto.get(item.image)?.skuId ?? null,
-            skuName: skuByPhoto.get(item.image)?.skuName ?? null,
+            skuId: skuByPhoto.get(item.image)?.skuId ?? '',
+            skuName: skuByPhoto.get(item.image)?.skuName ?? '',
         }))
     }));
 

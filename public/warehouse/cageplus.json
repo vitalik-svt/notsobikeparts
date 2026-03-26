@@ -1,7 +1,7 @@
 {
   "2000082": {
     "sku_name": "cage_plus_black_painted",
-    "product": "cageplus",
+    "product": "cage_plus",
     "sku_photo": "",
     "photos": [
       "/images/cages/plus/product-pic-1.avif",
@@ -19,7 +19,7 @@
   },
   "2000185": {
     "sku_name": "cage_plus_silver",
-    "product": "cageplus",
+    "product": "cage_plus",
     "sku_photo": "",
     "photos": [
       "/images/cages/plus/product-pic-1.avif",
@@ -37,7 +37,7 @@
   },
   "2000204": {
     "sku_name": "cage_plus_black",
-    "product": "cageplus",
+    "product": "cage_plus",
     "sku_photo": "",
     "photos": [
       "/images/cages/plus/product-pic-1.avif",
@@ -55,7 +55,7 @@
   },
   "2000212": {
     "sku_name": "cage_plus_brown",
-    "product": "cageplus",
+    "product": "cage_plus",
     "sku_photo": "",
     "photos": [
       "/images/cages/plus/product-pic-1.avif",
@@ -73,7 +73,7 @@
   },
   "2000213": {
     "sku_name": "cage_plus_green",
-    "product": "cageplus",
+    "product": "cage_plus",
     "sku_photo": "",
     "photos": [
       "/images/cages/plus/product-pic-1.avif",

@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { toSkuMeta, warehouse } from "@/utils/warehouse";
 
 interface TopcapItemRaw {
     description: string;
@@ -11,6 +12,8 @@ interface TopcapCategoryItemRaw {
 }
 interface TopcapItem extends TopcapItemRaw {
     id: string;
+    skuId: number | null;
+    skuName: string | null;
 }
 
 export interface TopcapCategoryItem {
@@ -26,6 +29,11 @@ const baseUrl = `/images/topcaps/serial/items`;
 
 export const useTopcapsGridData = () => {
     const { t } = useTranslation('topcaps');
+    const skuByPhoto = new Map(
+        warehouse.topCap
+            .filter((sku) => Boolean(sku.sku_photo) && sku.sku_photo !== 'XXX')
+            .map((sku) => [sku.sku_photo, toSkuMeta(sku)]),
+    );
 
     const topcapsRaw: TopcapCategoryItemRaw[] = [
         {
@@ -778,6 +786,8 @@ export const useTopcapsGridData = () => {
         items: category.items.map((item, index) => ({
             ...item,
             id: getFileNameFromPath(item.image, `${index + 1}`),
+            skuId: skuByPhoto.get(item.image)?.skuId ?? null,
+            skuName: skuByPhoto.get(item.image)?.skuName ?? null,
         }))
     }));
 

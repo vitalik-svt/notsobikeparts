@@ -1,6 +1,5 @@
-[
-  {
-    "sku_id": 2000332,
+{
+  "2000332": {
     "sku_name": "feedbaghanger2_black",
     "product": "feedbaghanger2",
     "sku_photo": "",
@@ -16,4 +15,4 @@
       "color": "black"
     }
   }
-]
+}

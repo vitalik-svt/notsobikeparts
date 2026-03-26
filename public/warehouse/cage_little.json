@@ -1,6 +1,5 @@
-[
-  {
-    "sku_id": 2000331,
+{
+  "2000331": {
     "sku_name": "cage lil",
     "product": "cage_little",
     "sku_photo": "",
@@ -16,4 +15,4 @@
       "color": "black"
     }
   }
-]
+}

@@ -1,6 +1,5 @@
-[
-  {
-    "sku_id": 2000265,
+{
+  "2000265": {
     "sku_name": "свитик",
     "product": "merch",
     "sku_photo": "",
@@ -14,4 +13,4 @@
       "color": "black"
     }
   }
-]
+}

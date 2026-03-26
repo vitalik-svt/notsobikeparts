@@ -1,6 +1,5 @@
-[
-  {
-    "sku_id": 2000192,
+{
+  "2000192": {
     "sku_name": "envelope_small",
     "product": "other",
     "sku_photo": "",
@@ -10,8 +9,7 @@
       "code": "envelope_small"
     }
   },
-  {
-    "sku_id": 2000193,
+  "2000193": {
     "sku_name": "envelope_medium",
     "product": "other",
     "sku_photo": "",
@@ -21,8 +19,7 @@
       "code": "envelope_medium"
     }
   },
-  {
-    "sku_id": 2000194,
+  "2000194": {
     "sku_name": "envelope_large",
     "product": "other",
     "sku_photo": "",
@@ -32,8 +29,7 @@
       "code": "envelope_large"
     }
   },
-  {
-    "sku_id": 2000195,
+  "2000195": {
     "sku_name": "box_set (crdbrdbx_sml + ppr_ctd + stkr_ppr)",
     "product": "other",
     "sku_photo": "",
@@ -43,8 +39,7 @@
       "code": "box_set (crdbrdbx_sml + ppr_ctd + stkr_ppr)"
     }
   },
-  {
-    "sku_id": 2000196,
+  "2000196": {
     "sku_name": "sticker_vinyl",
     "product": "other",
     "sku_photo": "",
@@ -54,8 +49,7 @@
       "code": "sticker_vinyl"
     }
   },
-  {
-    "sku_id": 2000197,
+  "2000197": {
     "sku_name": "bolt_m6x30_sst",
     "product": "other",
     "sku_photo": "",
@@ -65,8 +59,7 @@
       "code": "bolt_m6x30_sst"
     }
   },
-  {
-    "sku_id": 2000198,
+  "2000198": {
     "sku_name": "bolt_m6x30_cst",
     "product": "other",
     "sku_photo": "",
@@ -76,8 +69,7 @@
       "code": "bolt_m6x30_cst"
     }
   },
-  {
-    "sku_id": 2000199,
+  "2000199": {
     "sku_name": "cage_wing_set (2x m5x12_hex + 2x m5)",
     "product": "other",
     "sku_photo": "",
@@ -87,8 +79,7 @@
       "code": "cage_wing_set (2x m5x12_hex + 2x m5)"
     }
   },
-  {
-    "sku_id": 2000201,
+  "2000201": {
     "sku_name": "bolt_m6x30_ti_black",
     "product": "other",
     "sku_photo": "",
@@ -98,8 +89,7 @@
       "code": "bolt_m6x30_ti_black"
     }
   },
-  {
-    "sku_id": 2000206,
+  "2000206": {
     "sku_name": "cap_bolt_set(sst+cst)",
     "product": "other",
     "sku_photo": "",
@@ -109,8 +99,7 @@
       "code": "cap_bolt_set(sst+cst)"
     }
   },
-  {
-    "sku_id": 2000209,
+  "2000209": {
     "sku_name": "full_cap_sst_cst_set(1box+1ppr+1stckr_p+1stckr_v+1sst+1cst)",
     "product": "other",
     "sku_photo": "",
@@ -120,8 +109,7 @@
       "code": "full_cap_sst_cst_set(1box+1ppr+1stckr_p+1stckr_v+1sst+1cst)"
     }
   },
-  {
-    "sku_id": 2000222,
+  "2000222": {
     "sku_name": "full_cap_ti_set(1box+1ppr+1stckr_p+1stckr_v+1ti)",
     "product": "other",
     "sku_photo": "",
@@ -131,8 +119,7 @@
       "code": "full_cap_ti_set(1box+1ppr+1stckr_p+1stckr_v+1ti)"
     }
   },
-  {
-    "sku_id": 2000349,
+  "2000349": {
     "sku_name": "bolt_m6x30_ti_raw",
     "product": "other",
     "sku_photo": "",
@@ -142,4 +129,4 @@
       "code": "bolt_m6x30_ti_raw"
     }
   }
-]
+}

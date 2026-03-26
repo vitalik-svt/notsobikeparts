@@ -1,6 +1,5 @@
-[
-  {
-    "sku_id": 2000111,
+{
+  "2000111": {
     "sku_name": "chainbreaker",
     "product": "chainbreaker",
     "sku_photo": "",
@@ -13,4 +12,4 @@
       "kit": "chainbreaker"
     }
   }
-]
+}

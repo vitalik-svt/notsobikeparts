@@ -51,8 +51,8 @@ export async function POST(request: NextRequest) {
       process.env.RESEND_FROM ??
       'notsobikeparts <noreply@notsobikeparts.com>';
 
-    // HTML для таблицы товаров
-    const itemsHtml = items
+    // HTML для таблицы товаров в письме покупателю
+    const customerItemsHtml = items
       .map(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (item: any) => `
@@ -123,7 +123,7 @@ export async function POST(request: NextRequest) {
             </tr>
           </thead>
           <tbody>
-            ${itemsHtml}
+            ${customerItemsHtml}
           </tbody>
         </table>
         

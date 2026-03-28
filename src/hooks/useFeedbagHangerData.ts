@@ -2,21 +2,17 @@ import { productPrices } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { Locales } from "@/types/locales";
+import { warehouse, toSkuMeta } from "@/utils/warehouse";
 import { useTranslation } from "react-i18next";
 
 export function useFeedbagHangerData() {
     const { t } = useTranslation('feedbagHanger');
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
+    const { skuId, skuName } = toSkuMeta(warehouse.feedbagHanger[0]);
 
     const feedbagHanger = {
         name: t(`feedbagHanger.name`),
-        images: [
-            "/images/feedbag-hanger/product-pic-1.avif",
-            "/images/feedbag-hanger/product-pic-2.avif",
-            "/images/feedbag-hanger/product-pic-3.avif",
-            "/images/feedbag-hanger/product-pic-4.avif",
-            "/images/feedbag-hanger/product-pic-5.avif",
-        ],
+        images: warehouse.feedbagHanger[0]?.photos ?? [],
         description: t(`feedbagHanger.description`),
         colorOptions: [],
         price: productPrices.feedbagHanger["one-price"][locale],
@@ -26,7 +22,9 @@ export function useFeedbagHangerData() {
             t(`feedbagHanger.features.3`),
             t(`feedbagHanger.features.4`),
         ],
-        characteristics: []
+        characteristics: [],
+        skuId,
+        skuName,
     }
 
     return feedbagHanger;

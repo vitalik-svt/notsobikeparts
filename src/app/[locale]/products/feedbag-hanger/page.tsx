@@ -28,7 +28,7 @@ export default function FeedbagHangerPage() {
 
     const addToCart = () => {
         addItem({
-            skuId: 'feedbag-hanger',
+            skuId: feedbagHangerData.skuId,
             quantity: quantity ?? 1,
             imageUrl: feedbagHangerData.images[0],
             productSection: `feedbagHanger`,

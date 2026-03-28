@@ -29,11 +29,12 @@ export default function VoileStrapPage() {
     const { t: tCommon } = useTranslation('common');
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const [currentOption, setCurrentOption] = useState<ProductVoileType>('nine-black');
+    const selectedOption = voile.skuByOption[currentOption];
     const { addItem } = cartStore();
 
     const addToCart = () => {
         addItem({
-            skuId: `voile-${currentOption}`,
+            skuId: selectedOption.skuId,
             quantity: quantity ?? 1,
             imageUrl: voile.images[0],
             productSection: 'voile',

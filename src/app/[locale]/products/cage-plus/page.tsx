@@ -26,13 +26,14 @@ export default function CagePlusPage() {
     const [quantity, setQuantity] = useState<number | undefined>(1);
     const [colorOption, setColorOption] = useState<CagePlusColor>('black');
     const cages = useCagesProductData();
+    const selectedColorOption = cages.plus.colorOptionsByValue[colorOption] ?? cages.plus.colorOptions[0];
     const { t: tCommon } = useTranslation('common');
     const { t: tCages } = useTranslation('cages');
     const { addItem } = cartStore();
 
     const addToCart = () => {
         addItem({
-            skuId: `cage-plus-${colorOption}`,
+            skuId: selectedColorOption.skuId,
             imageUrl: cages.plus.images[0],
             productSection: 'cage',
             productKey: 'plus',

@@ -1,44 +1,4 @@
 {
-  "2000192": {
-    "sku_name": "envelope_small",
-    "product": "other",
-    "sku_photo": "",
-    "photos": [],
-    "properties": {
-      "component": "envelope",
-      "code": "envelope_small"
-    }
-  },
-  "2000193": {
-    "sku_name": "envelope_medium",
-    "product": "other",
-    "sku_photo": "",
-    "photos": [],
-    "properties": {
-      "component": "envelope",
-      "code": "envelope_medium"
-    }
-  },
-  "2000194": {
-    "sku_name": "envelope_large",
-    "product": "other",
-    "sku_photo": "",
-    "photos": [],
-    "properties": {
-      "component": "envelope",
-      "code": "envelope_large"
-    }
-  },
-  "2000195": {
-    "sku_name": "box_set (crdbrdbx_sml + ppr_ctd + stkr_ppr)",
-    "product": "other",
-    "sku_photo": "",
-    "photos": [],
-    "properties": {
-      "component": "cardboardbox",
-      "code": "box_set (crdbrdbx_sml + ppr_ctd + stkr_ppr)"
-    }
-  },
   "2000196": {
     "product": "other",
     "sku_photo": "",
@@ -66,16 +26,6 @@
       "code": "bolt_m6x30_cst"
     }
   },
-  "2000199": {
-    "sku_name": "cage_wing_set (2x m5x12_hex + 2x m5)",
-    "product": "other",
-    "sku_photo": "",
-    "photos": [],
-    "properties": {
-      "component": "bolt",
-      "code": "cage_wing_set (2x m5x12_hex + 2x m5)"
-    }
-  },
   "2000201": {
     "product": "other",
     "sku_photo": "",
@@ -83,36 +33,6 @@
     "properties": {
       "component": "bolt",
       "code": "bolt_m6x30_ti_black"
-    }
-  },
-  "2000206": {
-    "sku_name": "cap_bolt_set(sst+cst)",
-    "product": "other",
-    "sku_photo": "",
-    "photos": [],
-    "properties": {
-      "component": "bolt",
-      "code": "cap_bolt_set(sst+cst)"
-    }
-  },
-  "2000209": {
-    "sku_name": "full_cap_sst_cst_set(1box+1ppr+1stckr_p+1stckr_v+1sst+1cst)",
-    "product": "other",
-    "sku_photo": "",
-    "photos": [],
-    "properties": {
-      "component": "bolt",
-      "code": "full_cap_sst_cst_set(1box+1ppr+1stckr_p+1stckr_v+1sst+1cst)"
-    }
-  },
-  "2000222": {
-    "sku_name": "full_cap_ti_set(1box+1ppr+1stckr_p+1stckr_v+1ti)",
-    "product": "other",
-    "sku_photo": "",
-    "photos": [],
-    "properties": {
-      "component": "bolt",
-      "code": "full_cap_ti_set(1box+1ppr+1stckr_p+1stckr_v+1ti)"
     }
   },
   "2000349": {

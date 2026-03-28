@@ -58,7 +58,7 @@ export const useCagesProductData = () => {
         },
         {
             label: t(`front.color_options.2`),
-            value: 'aluminum',
+            value: 'silver',
             ...getSkuMeta(warehouse.cageFront, (sku) => sku.properties.color === 'silver'),
         },
     ];
@@ -71,7 +71,7 @@ export const useCagesProductData = () => {
         },
         {
             label: t(`volume.color_options.2`),
-            value: 'aluminum',
+            value: 'silver',
             ...getSkuMeta(warehouse.cageVolume, (sku) => sku.properties.color === 'silver'),
         },
     ];
@@ -84,17 +84,17 @@ export const useCagesProductData = () => {
         },
         {
             label: t(`plus.color_options.2`),
-            value: 'transparent',
+            value: 'silver',
             ...getSkuMeta(warehouse.cagePlus, (sku) => sku.properties.color === 'silver'),
         },
         {
             label: t(`plus.color_options.3`),
-            value: 'light-green',
+            value: 'green',
             ...getSkuMeta(warehouse.cagePlus, (sku) => sku.properties.color === 'green'),
         },
         {
             label: t(`plus.color_options.4`),
-            value: 'light-brown',
+            value: 'brown',
             ...getSkuMeta(warehouse.cagePlus, (sku) => sku.properties.color === 'brown'),
         },
     ];

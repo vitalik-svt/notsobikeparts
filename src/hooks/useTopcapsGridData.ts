@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { toSkuMeta, warehouse } from "@/utils/warehouse";
+import { getTopcapSkuByPhoto } from "@/utils/topcapSkuByPhoto";
 
 interface TopcapItemRaw {
     description: string;
@@ -29,11 +29,7 @@ const baseUrl = `/images/topcaps/serial/items`;
 
 export const useTopcapsGridData = () => {
     const { t } = useTranslation('topcaps');
-    const skuByPhoto = new Map(
-        warehouse.topCap
-            .filter((sku) => Boolean(sku.sku_photo) && sku.sku_photo !== 'XXX')
-            .map((sku) => [sku.sku_photo, toSkuMeta(sku)]),
-    );
+    const skuByPhoto = getTopcapSkuByPhoto();
 
     const topcapsRaw: TopcapCategoryItemRaw[] = [
         {

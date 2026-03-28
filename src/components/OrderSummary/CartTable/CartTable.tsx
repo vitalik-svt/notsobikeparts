@@ -1,7 +1,7 @@
 'use client';
 
 import InputNumber from "@/components/InputNumber/InputNumber";
-import { CartItem, cartStore } from "@/stores/cartStore";
+import { CartItem, cartStore, getCartLineKey } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
@@ -42,7 +42,7 @@ export default function CartTable({ items }: Props) {
                     const price = getProductPrice(productData, item, locale);
 
                     return (
-                        <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={item.skuId}>
+                        <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={getCartLineKey(item)}>
                             <td className="block p-4 pt-10 border-b md:w-32 md:pt-4 md:table-cell md:border-b-2">
                                 <Link href={item.productLink} aria-label={`${productSectionData?.title} — открыть товар`} className="block w-full h-full">
                                     <div className="flex justify-center">
@@ -78,7 +78,7 @@ export default function CartTable({ items }: Props) {
                                     <span className="font-bold md:hidden">{t("cart.tablet.quantity_label")}:</span>
                                     <InputNumber
                                         value={item.quantity}
-                                        onChange={(value) => changeQuantity(item.skuId, isNaN(Number(value)) ? 0 : Number(value))}
+                                        onChange={(value) => changeQuantity(item, isNaN(Number(value)) ? 0 : Number(value))}
                                     />
                                 </p>
                             </td>
@@ -92,7 +92,7 @@ export default function CartTable({ items }: Props) {
                                 <p className="flex justify-center items-center">
                                     <button
                                         className="bg-transparent border-none p-0 m-0 cursor-pointer w-10 h-10 flex items-center justify-center"
-                                        onClick={() => removeItem(item.skuId)}
+                                        onClick={() => removeItem(item)}
                                     >
                                         <Image src="/icons/bin.webp" alt="Remove" width={24} height={24} />
                                     </button>

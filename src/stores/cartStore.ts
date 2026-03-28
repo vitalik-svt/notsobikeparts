@@ -53,22 +53,37 @@ export interface CartItem {
 	productParams?: ProductParams;
 }
 
+export type CartLineIdentity = Pick<CartItem, 'skuId' | 'productSection' | 'productKey' | 'productParams'>;
+
 interface Store {
 	totalCount: number;
 	userFormData: CheckoutForm | null;
 	isHydrated: boolean;
 	setUserFormData: (form: CheckoutForm) => void;
 	addItem: (item: CartItem) => void;
-	removeItem: (skuId: string) => void;
-	changeQuantity: (skuId: string, quantity: number) => void;
+	removeItem: (item: CartLineIdentity) => void;
+	changeQuantity: (item: CartLineIdentity, quantity: number) => void;
 	finalizeOrder: VoidFunction;
 	items: CartItem[];
 }
 
 const calcTotalCount = (items: CartItem[]) => items.reduce((acc, item) => acc + item.quantity, 0);
 
+const toParamsKey = (params?: ProductParams) => JSON.stringify(params ?? {});
+
+export const getCartLineKey = (item: CartLineIdentity) => {
+	const baseKey = `${item.productSection}:${item.productKey}:${toParamsKey(item.productParams)}`;
+
+	if (item.productSection === 'topcap' && item.productKey === 'custom') {
+		return baseKey;
+	}
+
+	return `${item.skuId}:${baseKey}`;
+};
+
 const upsertItem = (items: CartItem[], incoming: CartItem) => {
-	const idx = items.findIndex(i => i.skuId === incoming.skuId);
+	const incomingKey = getCartLineKey(incoming);
+	const idx = items.findIndex(i => getCartLineKey(i) === incomingKey);
 
 	if (idx >= 0) {
 		const copy = items.slice();
@@ -80,8 +95,9 @@ const upsertItem = (items: CartItem[], incoming: CartItem) => {
 	return [...items, incoming];
 }
 
-const replaceQuantity = (items: CartItem[], skuId: string, quantity: number) => {
-	const matcher = (item: CartItem) => item.skuId === skuId;
+const replaceQuantity = (items: CartItem[], cartLine: CartLineIdentity, quantity: number) => {
+	const cartLineKey = getCartLineKey(cartLine);
+	const matcher = (item: CartItem) => getCartLineKey(item) === cartLineKey;
 
 	if (quantity < 0) {
 		return items.filter(i => !matcher(i));
@@ -104,16 +120,17 @@ export const cartStore = create<Store>()(
 					totalCount: calcTotalCount(items),
 				};
 			}),
-			removeItem: (skuId: string) => set((state) => {
-				const items = state.items.filter(item => item.skuId !== skuId);
+			removeItem: (cartLine: CartLineIdentity) => set((state) => {
+				const cartLineKey = getCartLineKey(cartLine);
+				const items = state.items.filter(item => getCartLineKey(item) !== cartLineKey);
 
 				return {
 					items,
 					totalCount: calcTotalCount(items),
 				};
 			}),
-			changeQuantity: (skuId: string, quantity: number) => set((state) => {
-				const items = replaceQuantity(state.items, skuId, quantity);
+			changeQuantity: (cartLine: CartLineIdentity, quantity: number) => set((state) => {
+				const items = replaceQuantity(state.items, cartLine, quantity);
 
 				return {
 					items,

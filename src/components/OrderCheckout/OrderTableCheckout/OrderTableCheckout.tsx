@@ -2,7 +2,7 @@ import ProductOptionParams from "@/components/OrderSummary/CartTable/ProductOpti
 import { useProductData } from "@/hooks/useProductData";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
-import { CartItem } from "@/stores/cartStore";
+import { CartItem, getCartLineKey } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { formatPrice } from "@/utils/formatPrice";
 import { getProductPrice } from "@/utils/getProductPrice";
@@ -33,7 +33,7 @@ export default function OrderTableCheckout({ items }: Props) {
                     const price = getProductPrice(productData, item, locale);
 
                     return (
-                        <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={item.skuId}>
+                        <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={getCartLineKey(item)}>
                             <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
                                 <div className="flex flex-col gap-2">
                                     <p className="flex justify-between items-center">

@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 export function useMerchData() {
     const { t } = useTranslation('merch');
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
-    const { skuId, skuName } = toSkuMeta(warehouse.merch[0]);
+    const { skuId } = toSkuMeta(warehouse.merch[0]);
 
     const merchData = {
         name: t(`merch.name`),
@@ -22,7 +22,6 @@ export function useMerchData() {
         ],
         characteristics: [],
         skuId,
-        skuName,
     }
 
     return merchData;

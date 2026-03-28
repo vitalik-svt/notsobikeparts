@@ -1,7 +1,7 @@
 {
   "2000188": {
     "sku_name": "cage_front_black",
-    "product": "cagefront",
+    "product": "cage_front",
     "sku_photo": "",
     "photos": [
       "/images/cages/front/product-pic-1.avif",
@@ -19,7 +19,7 @@
   },
   "2000189": {
     "sku_name": "cage_front_silver",
-    "product": "cagefront",
+    "product": "cage_front",
     "sku_photo": "",
     "photos": [
       "/images/cages/front/product-pic-1.avif",

@@ -109,8 +109,11 @@ export default function OrderCheckout() {
                 items: items.map(item => {
                     const price = getProductPrice(productData, item);
                     const productInfo = getProductSectionData(productData, item);
+                    const skuId = item.productSection === 'topcap' && item.productKey === 'custom' ? '' : item.skuId;
+
                     return {
                         ...item,
+                        skuId,
                         name: productInfo?.name || `${item.productSection} - ${item.productKey}`,
                         price: price ? formatPrice(price) : '—',
                         subtotal: price ? formatPrice({ ...price, amount: price.amount * item.quantity }) : '—',

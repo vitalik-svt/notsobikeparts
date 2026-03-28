@@ -18,7 +18,7 @@ export default function ItchyAndScratchyPage() {
     const productLink = usePathname();
     const { t: tCommon } = useTranslation();
     const { t: tCages } = useTranslation(`cages`);
-    const itchyAndScratchy  = useItchyAndScratchyData();
+    const itchyAndScratchy = useItchyAndScratchyData();
     const optionDictionary = useProductOptionDictionary();
     const { addItem } = cartStore();
     const { setNotification } = useNotifications();
@@ -29,15 +29,18 @@ export default function ItchyAndScratchyPage() {
         powder: tCages('plus.color.painted'),
     };
 
-    const addToCart = ({ imageUrl, productParams }: {
+    const addToCart = ({ imageUrl, skuId, skuName, productParams }: {
         imageUrl: string;
+        skuId: string;
+        skuName: string;
         productParams: {
             cageColor: CageColor | CagePlusColor;
             paintedType: CoatingType;
         };
     }) => {
         addItem({
-            id: `itchy-and-scratchy-${productParams.cageColor}-${productParams.paintedType}`,
+            skuId,
+            skuName,
             imageUrl,
             productSection: `itchyAndScratchy`,
             productKey: `one-price`,
@@ -69,6 +72,8 @@ export default function ItchyAndScratchyPage() {
                             url={item.images[0]}
                             selectProduct={() => addToCart({
                                 imageUrl: item.images[0],
+                                skuId: item.skuId,
+                                skuName: item.skuName,
                                 productParams: item.productParams,
                             })}
                             title={item.name}

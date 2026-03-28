@@ -25,15 +25,17 @@ export default function VoileStrapPage() {
     const pathname = usePathname();
     const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState<number | undefined>(1);
-    const voile  = useVoileProductData();
+    const voile = useVoileProductData();
     const { t: tCommon } = useTranslation('common');
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const [currentOption, setCurrentOption] = useState<ProductVoileType>('nine-black');
+    const selectedOption = voile.skuByOption[currentOption];
     const { addItem } = cartStore();
 
     const addToCart = () => {
         addItem({
-            id: `voile-${currentOption}`,
+            skuId: selectedOption.skuId,
+            skuName: selectedOption.skuName,
             quantity: quantity ?? 1,
             imageUrl: voile.images[0],
             productSection: 'voile',
@@ -41,7 +43,7 @@ export default function VoileStrapPage() {
             productParams: {
                 voileType: currentOption,
             },
-            productLink: pathname,  
+            productLink: pathname,
         });
         setNotification(voile.name);
     };

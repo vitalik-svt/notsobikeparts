@@ -1,7 +1,7 @@
 {
   "2000186": {
     "sku_name": "cage_volume_black",
-    "product": "cagevolume",
+    "product": "cage_volume",
     "sku_photo": "",
     "photos": [
       "/images/cages/volume/product-pic-1.avif",
@@ -16,7 +16,7 @@
   },
   "2000187": {
     "sku_name": "cage_volume_silver",
-    "product": "cagevolume",
+    "product": "cage_volume",
     "sku_photo": "",
     "photos": [
       "/images/cages/volume/product-pic-1.avif",

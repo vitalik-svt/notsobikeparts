@@ -4,12 +4,13 @@ import { useLocale } from "@/providers/I18nProvider";
 import { CageColor, CagePlusColor } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { findSku, SkuMeta, toSkuMeta, warehouse } from "@/utils/warehouse";
+import { cagePlusColorToWarehouse } from "@/utils/colorMapping";
 import { useTranslation } from "react-i18next";
 
 export type CoatingType = 'anodized' | 'powder';
 
 export interface ItchyAndScratchyColorMap {
-    cageColor: CageColor | CagePlusColor;
+    cageColor: CagePlusColor;
     paintedType: CoatingType;
 }
 
@@ -35,7 +36,8 @@ export function useItchyAndScratchyData() {
     const cagePlusImages = warehouse.cagePlus[0]?.photos ?? [];
 
     const getSkuForParams = (params: ItchyAndScratchyColorMap): SkuMeta => {
-        const color = params.cageColor;
+        const uiColor = params.cageColor;
+        const warehouseColor = cagePlusColorToWarehouse[uiColor];
         const finishCandidates = params.paintedType === 'powder'
             ? ['painted', 'anodized']
             : ['anodized'];
@@ -43,7 +45,7 @@ export function useItchyAndScratchyData() {
         const sku = finishCandidates
             .map((finish) => findSku(
                 warehouse.cagePlus,
-                (sku) => sku.properties.color === color && sku.properties.finish === finish,
+                (sku) => sku.properties.color === warehouseColor && sku.properties.finish === finish,
             ))
             .find(Boolean) ?? null;
 
@@ -80,10 +82,10 @@ export function useItchyAndScratchyData() {
                 ],
                 price: productPrices.itchyAndScratchy["plus-anodized"][locale],
                 productParams: {
-                    cageColor: `silver`,
+                    cageColor: `transparent`,
                     paintedType: `anodized`,
                 },
-                ...getSkuForParams({ cageColor: 'silver', paintedType: 'anodized' }),
+                ...getSkuForParams({ cageColor: 'transparent', paintedType: 'anodized' }),
             },
             {
                 images: cagePlusImages,
@@ -94,10 +96,10 @@ export function useItchyAndScratchyData() {
                 ],
                 price: productPrices.itchyAndScratchy["plus-anodized"][locale],
                 productParams: {
-                    cageColor: `brown`,
+                    cageColor: `light-brown`,
                     paintedType: `anodized`,
                 },
-                ...getSkuForParams({ cageColor: 'brown', paintedType: 'anodized' }),
+                ...getSkuForParams({ cageColor: 'light-brown', paintedType: 'anodized' }),
             },
             {
                 images: cagePlusImages,
@@ -108,10 +110,10 @@ export function useItchyAndScratchyData() {
                 ],
                 price: productPrices.itchyAndScratchy["plus-anodized"][locale],
                 productParams: {
-                    cageColor: `green`,
+                    cageColor: `light-green`,
                     paintedType: `anodized`,
                 },
-                ...getSkuForParams({ cageColor: 'green', paintedType: 'anodized' }),
+                ...getSkuForParams({ cageColor: 'light-green', paintedType: 'anodized' }),
             },
         ],
     }

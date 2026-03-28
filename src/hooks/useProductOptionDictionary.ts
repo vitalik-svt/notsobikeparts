@@ -16,20 +16,21 @@ export default function useProductOptionDictionary() {
         'titanium': t(`product.topcap.option.titanium`),
         'steel': t(`product.topcap.option.steel`),
         'custom-color': t(`product.topcap.option.custom-color`),
-        'black': t(`product.topcap.bolt.color.black`),
+        'black': tTopcaps(`topcaps.custom.color.1`), // black is uniquely identified by context
         'light': t(`product.topcap.bolt.color.light`),
-        'silver': tCages(`front.color_options.2`),
+        'aluminum': tTopcaps(`topcaps.custom.color.2`), // cage color 'aluminum' and topcap 'aluminum' both map here
         'nine-black': tVoile(`voile.options.1`),
         'twelve-black': tVoile(`voile.options.2`),
         'twenty-black-w-logo': tVoile(`voile.options.3`),
         'twenty-five-black-w-logo': tVoile(`voile.options.4`),
-        'brown': tCages(`plus.color_options.4`),
+        'transparent': tCages(`plus.color_options.2`), // cage plus transparent
+        'light-green': tCages(`plus.color_options.3`), // cage plus green
+        'light-brown': tCages(`plus.color_options.4`), // cage plus brown
         'red': tTopcaps(`topcaps.custom.color.3`),
         'blue': tTopcaps(`topcaps.custom.color.4`),
-        'green': tTopcaps(`topcaps.custom.color.5`),
+        'green': tTopcaps(`topcaps.custom.color.5`), // topcap green (no collision now)
         'purple': tTopcaps(`topcaps.custom.color.6`),
         'gold': tTopcaps(`topcaps.custom.color.7`),
-        'aluminum': tTopcaps(`topcaps.custom.color.2`),
         'thin': tTopcaps(`topcaps.custom.thickness.1`),
         'thick': tTopcaps(`topcaps.custom.thickness.2`),
     };

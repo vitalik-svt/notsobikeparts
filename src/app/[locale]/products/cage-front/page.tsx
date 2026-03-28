@@ -33,7 +33,7 @@ export default function FrontCagePage() {
 
 	const addToCart = () => {
 		addItem({
-			id: `cage-front-${colorOption}`,
+			skuId: `cage-front-${colorOption}`,
 			imageUrl: cages.front.images[0],
 			productSection: `cage`,
 			productKey: `front`,

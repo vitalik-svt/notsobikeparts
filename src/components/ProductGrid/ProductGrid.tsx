@@ -46,6 +46,7 @@ export default function ProductGrid({ items, price, title, additionalPriceOption
             <ProductGridCardContent
                 title={title}
                 imageUrl={allProducts[startIndex].image}
+                skuId={allProducts[startIndex].id}
                 price={price}
                 additionalPriceOptions={additionalPriceOptions}
                 goToPrev={() => {

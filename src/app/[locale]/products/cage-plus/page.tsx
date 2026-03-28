@@ -20,7 +20,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-export default function CagePlusPage() {    
+export default function CagePlusPage() {
     const pathname = usePathname();
     const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState<number | undefined>(1);
@@ -32,7 +32,7 @@ export default function CagePlusPage() {
 
     const addToCart = () => {
         addItem({
-            id: `cage-plus-${colorOption}`,
+            skuId: `cage-plus-${colorOption}`,
             imageUrl: cages.plus.images[0],
             productSection: 'cage',
             productKey: 'plus',

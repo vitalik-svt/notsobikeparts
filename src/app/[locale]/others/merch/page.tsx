@@ -25,11 +25,11 @@ export default function MerchPage() {
     const merch = useMerchData();
     const { addItem } = cartStore();
     const { setNotification } = useNotifications();
-    
+
 
     const addToCart = () => {
         addItem({
-            id: 'merch',
+            skuId: 'merch',
             quantity: quantity ?? 1,
             imageUrl: merch.images[0],
             productSection: `merch`,

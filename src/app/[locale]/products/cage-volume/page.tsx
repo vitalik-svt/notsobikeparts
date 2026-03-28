@@ -31,7 +31,7 @@ export default function CageVolumePage() {
 
     const addToCart = () => {
         addItem({
-            id: `cage-volume-${colorOption}`,
+            skuId: `cage-volume-${colorOption}`,
             imageUrl: cages.volume.images[0],
             productSection: `cage`,
             productKey: `volume`,

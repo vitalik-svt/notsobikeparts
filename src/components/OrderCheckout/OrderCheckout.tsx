@@ -105,6 +105,7 @@ export default function OrderCheckout() {
         try {
             // Подготовка данных заказа
             const orderData = {
+                locale,
                 userFormData: data,
                 items: items.map(item => {
                     const price = getProductPrice(productData, item);

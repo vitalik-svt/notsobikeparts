@@ -2,6 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { createOrderSuccessToken, ORDER_SUCCESS_COOKIE } from '@/utils/orderSuccessToken';
+import { loadSkuNamesDictionary, resolveSkuName } from './skuNames';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -35,7 +36,8 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { userFormData, items, totalPrice } = body;
+    const { userFormData, items, totalPrice, locale } = body;
+    const skuNamesDictionary = loadSkuNamesDictionary(locale);
 
     // Валидация данных
     if (!userFormData?.email || !userFormData?.name) {
@@ -55,7 +57,7 @@ export async function POST(request: NextRequest) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (item: any) => `
       <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">${item.name || item.productSection}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${item.name || item.productSection}. ${resolveSkuName(skuNamesDictionary, item.skuId)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${item.quantity}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.price}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.subtotal}</td>
@@ -64,8 +66,24 @@ export async function POST(request: NextRequest) {
       )
       .join('');
 
-    // Общий HTML блок с деталями заказа
-    const orderDetailsHtml = `
+    // HTML для таблицы товаров в письме администратору
+    const adminItemsHtml = items
+      .map(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (item: any) => `
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">${item.skuId || '—'}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${resolveSkuName(skuNamesDictionary, item.skuId)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${item.quantity}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.price}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.subtotal}</td>
+      </tr>
+    `
+      )
+      .join('');
+
+    // Общий HTML блок с деталями заказа для покупателя
+    const customerOrderDetailsHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
         <h3 style="color: #555; border-bottom: 2px solid #eee; padding-bottom: 10px;">Данные покупателя</h3>
         <table style="width: 100%; margin-bottom: 20px;">
@@ -115,6 +133,58 @@ export async function POST(request: NextRequest) {
       </div>
     `;
 
+    // Общий HTML блок с деталями заказа для администратора
+    const adminOrderDetailsHtml = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+        <h3 style="color: #555; border-bottom: 2px solid #eee; padding-bottom: 10px;">Данные покупателя</h3>
+        <table style="width: 100%; margin-bottom: 20px;">
+          <tr>
+            <td style="padding: 8px; font-weight: bold; width: 150px;">Имя:</td>
+            <td style="padding: 8px;">${userFormData.name}</td>
+          </tr>
+          <tr style="background-color: #f9f9f9;">
+            <td style="padding: 8px; font-weight: bold;">Email:</td>
+            <td style="padding: 8px;">${userFormData.email}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; font-weight: bold;">Телефон:</td>
+            <td style="padding: 8px;">${userFormData.phone}</td>
+          </tr>
+          <tr style="background-color: #f9f9f9;">
+            <td style="padding: 8px; font-weight: bold;">Способ доставки:</td>
+            <td style="padding: 8px;">${userFormData.deliveryMethod}</td>
+          </tr>
+          ${userFormData.comment
+        ? `<tr>
+            <td style="padding: 8px; font-weight: bold;">Комментарий:</td>
+            <td style="padding: 8px;">${userFormData.comment}</td>
+          </tr>`
+        : ''
+      }
+        </table>
+
+        <h3 style="color: #555; border-bottom: 2px solid #eee; padding-bottom: 10px;">Товары</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+          <thead>
+            <tr style="background-color: #f2f2f2;">
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">SKU ID</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">SKU имя</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: center;">Кол-во</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: right;">Цена</th>
+              <th style="border: 1px solid #ddd; padding: 10px; text-align: right;">Сумма</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${adminItemsHtml}
+          </tbody>
+        </table>
+
+        <div style="text-align: right; font-size: 18px; font-weight: bold; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
+          Итого без учета доставки: ${totalPrice}
+        </div>
+      </div>
+    `;
+
     // HTML письма для покупателя
     const customerEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -127,7 +197,7 @@ export async function POST(request: NextRequest) {
           <p style="font-size: 16px; line-height: 1.6;">Здравствуйте, ${userFormData.name}!</p>
           <p style="font-size: 16px; line-height: 1.6;">Мы получили ваш заказ и скоро свяжемся с вами для подтверждения деталей.</p>
           
-          ${orderDetailsHtml}
+          ${customerOrderDetailsHtml}
           
           <p style="color: #666; margin-top: 30px; font-size: 14px; line-height: 1.6;">
             С уважением, Виталик из notsobikeparts<br/>
@@ -148,7 +218,7 @@ export async function POST(request: NextRequest) {
         </div>
         
         <div style="padding: 30px 20px;">
-          ${orderDetailsHtml}
+          ${adminOrderDetailsHtml}
         </div>
       </div>
     `;

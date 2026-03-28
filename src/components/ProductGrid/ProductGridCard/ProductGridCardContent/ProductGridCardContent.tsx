@@ -19,6 +19,7 @@ import { usePathname } from 'next/navigation';
 interface Props {
     imageUrl: string;
     title: string;
+    skuId: string;
     price: ProductPriceSettings;
     additionalPriceOptions: AdditionalPriceOption[];
     goToPrev: VoidFunction;
@@ -26,7 +27,7 @@ interface Props {
     close: VoidFunction;
 }
 
-export default function ProductGridCardContent({ imageUrl, price, title, additionalPriceOptions, goToPrev, goToNext, close }: Props) {
+export default function ProductGridCardContent({ imageUrl, price, title, skuId, additionalPriceOptions, goToPrev, goToNext, close }: Props) {
     const pathname = usePathname();
 
     const { t } = useTranslation();
@@ -59,7 +60,7 @@ export default function ProductGridCardContent({ imageUrl, price, title, additio
 
     const addToCart = () => {
         addItem({
-            id: `topcap-${productParams.boltsMaterial}-${productParams.boltColor}-${productParams.hasBox}`,
+            skuId,
             quantity: 1,
             imageUrl,
             productSection: 'topcap',

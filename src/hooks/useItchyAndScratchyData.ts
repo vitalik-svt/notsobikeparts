@@ -17,6 +17,7 @@ interface ItchyAndScratchyData {
     images: string[];
     description: string[];
     products: {
+        skuId: string;
         images: string[];
         name: string;
         description: string[];
@@ -42,6 +43,7 @@ export function useItchyAndScratchyData() {
         ],
         products: [
             {
+                skuId: '2000082',
                 images: [
                     "/images/cages/plus/product-pic-1.avif",
                 ],
@@ -54,6 +56,7 @@ export function useItchyAndScratchyData() {
                 },
             },
             {
+                skuId: '2000185',
                 images: [
                     "/images/cages/plus/product-pic-1.avif",
                 ],
@@ -68,6 +71,7 @@ export function useItchyAndScratchyData() {
                 },
             },
             {
+                skuId: '2000212',
                 images: [
                     "/images/cages/plus/product-pic-1.avif",
                 ],
@@ -83,6 +87,7 @@ export function useItchyAndScratchyData() {
                 },
             },
             {
+                skuId: '2000213',
                 images: [
                     "/images/cages/plus/product-pic-1.avif",
                 ],

@@ -38,17 +38,22 @@ export function useItchyAndScratchyData() {
     const getSkuForParams = (params: ItchyAndScratchyColorMap): SkuMeta => {
         const uiColor = params.cageColor;
         const warehouseColor = mapCageColorToWarehouse(uiColor);
-        const finishCandidates = params.paintedType === 'powder'
-            ? ['painted', 'anodized']
-            : ['anodized'];
 
-        const sku = finishCandidates
-            .map((finish) => findSku(
-                warehouse.cagePlus,
-                (sku) => sku.properties.color === warehouseColor && sku.properties.finish === finish,
-            ))
-            .find(Boolean) ?? null;
+        // Map UI coating type to the actual `finish` value used in the warehouse data.
+        // Currently, all cagePlus SKUs use "anodized" as their finish, even for powder-coated variants.
+        const warehouseFinishByCoating: Record<CoatingType, string> = {
+            anodized: "anodized",
+            powder: "anodized",
+        };
 
+        const warehouseFinish = warehouseFinishByCoating[params.paintedType];
+
+        const sku = findSku(
+            warehouse.cagePlus,
+            (sku) =>
+                sku.properties.color === warehouseColor &&
+                sku.properties.finish === warehouseFinish,
+        ) ?? null;
         return toSkuMeta(sku);
     };
 

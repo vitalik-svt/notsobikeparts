@@ -31,10 +31,9 @@ export default function OrderTableCheckout({ items }: Props) {
                 {items.map(item => {
                     const productSectionData = getProductSectionData(productData, item);
                     const price = getProductPrice(productData, item, locale);
-                    const itemIdentityKey = `${item.skuId}-${JSON.stringify(item.productParams ?? {})}`;
 
                     return (
-                        <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={itemIdentityKey}>
+                        <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={item.skuId}>
                             <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
                                 <div className="flex flex-col gap-2">
                                     <p className="flex justify-between items-center">

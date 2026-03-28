@@ -59,25 +59,16 @@ interface Store {
 	isHydrated: boolean;
 	setUserFormData: (form: CheckoutForm) => void;
 	addItem: (item: CartItem) => void;
-	removeItem: (skuId: string, productParams?: ProductParams) => void;
-	changeQuantity: (skuId: string, quantity: number, productParams?: ProductParams) => void;
+	removeItem: (skuId: string) => void;
+	changeQuantity: (skuId: string, quantity: number) => void;
 	finalizeOrder: VoidFunction;
 	items: CartItem[];
 }
 
 const calcTotalCount = (items: CartItem[]) => items.reduce((acc, item) => acc + item.quantity, 0);
 
-const toParamsKey = (params?: ProductParams) => JSON.stringify(params ?? {});
-
-const isSameCartLine = (a: CartItem, b: CartItem) => (
-	a.skuId === b.skuId
-	&& a.productSection === b.productSection
-	&& a.productKey === b.productKey
-	&& toParamsKey(a.productParams) === toParamsKey(b.productParams)
-);
-
 const upsertItem = (items: CartItem[], incoming: CartItem) => {
-	const idx = items.findIndex(i => isSameCartLine(i, incoming));
+	const idx = items.findIndex(i => i.skuId === incoming.skuId);
 
 	if (idx >= 0) {
 		const copy = items.slice();
@@ -89,9 +80,8 @@ const upsertItem = (items: CartItem[], incoming: CartItem) => {
 	return [...items, incoming];
 }
 
-const replaceQuantity = (items: CartItem[], skuId: string, quantity: number, productParams?: ProductParams) => {
-	const paramsKey = toParamsKey(productParams);
-	const matcher = (item: CartItem) => item.skuId === skuId && toParamsKey(item.productParams) === paramsKey;
+const replaceQuantity = (items: CartItem[], skuId: string, quantity: number) => {
+	const matcher = (item: CartItem) => item.skuId === skuId;
 
 	if (quantity < 0) {
 		return items.filter(i => !matcher(i));
@@ -114,17 +104,16 @@ export const cartStore = create<Store>()(
 					totalCount: calcTotalCount(items),
 				};
 			}),
-			removeItem: (skuId: string, productParams?: ProductParams) => set((state) => {
-				const paramsKey = toParamsKey(productParams);
-				const items = state.items.filter(item => !(item.skuId === skuId && toParamsKey(item.productParams) === paramsKey));
+			removeItem: (skuId: string) => set((state) => {
+				const items = state.items.filter(item => item.skuId !== skuId);
 
 				return {
 					items,
 					totalCount: calcTotalCount(items),
 				};
 			}),
-			changeQuantity: (skuId: string, quantity: number, productParams?: ProductParams) => set((state) => {
-				const items = replaceQuantity(state.items, skuId, quantity, productParams);
+			changeQuantity: (skuId: string, quantity: number) => set((state) => {
+				const items = replaceQuantity(state.items, skuId, quantity);
 
 				return {
 					items,

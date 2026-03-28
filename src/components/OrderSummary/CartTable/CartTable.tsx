@@ -40,10 +40,9 @@ export default function CartTable({ items }: Props) {
                 {items.map(item => {
                     const productSectionData = getProductSectionData(productData, item);
                     const price = getProductPrice(productData, item, locale);
-                    const itemIdentityKey = `${item.skuId}-${JSON.stringify(item.productParams ?? {})}`;
 
                     return (
-                        <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={itemIdentityKey}>
+                        <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={item.skuId}>
                             <td className="block p-4 pt-10 border-b md:w-32 md:pt-4 md:table-cell md:border-b-2">
                                 <Link href={item.productLink} aria-label={`${productSectionData?.title} — открыть товар`} className="block w-full h-full">
                                     <div className="flex justify-center">
@@ -79,7 +78,7 @@ export default function CartTable({ items }: Props) {
                                     <span className="font-bold md:hidden">{t("cart.tablet.quantity_label")}:</span>
                                     <InputNumber
                                         value={item.quantity}
-                                        onChange={(value) => changeQuantity(item.skuId, isNaN(Number(value)) ? 0 : Number(value), item.productParams)}
+                                        onChange={(value) => changeQuantity(item.skuId, isNaN(Number(value)) ? 0 : Number(value))}
                                     />
                                 </p>
                             </td>
@@ -93,7 +92,7 @@ export default function CartTable({ items }: Props) {
                                 <p className="flex justify-center items-center">
                                     <button
                                         className="bg-transparent border-none p-0 m-0 cursor-pointer w-10 h-10 flex items-center justify-center"
-                                        onClick={() => removeItem(item.skuId, item.productParams)}
+                                        onClick={() => removeItem(item.skuId)}
                                     >
                                         <Image src="/icons/bin.webp" alt="Remove" width={24} height={24} />
                                     </button>

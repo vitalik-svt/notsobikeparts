@@ -10,7 +10,7 @@ export function useMerchData() {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { skuId, skuName } = toSkuMeta(warehouse.merch[0]);
 
-    const feedbagHanger = {
+    const merchData = {
         name: t(`merch.name`),
         images: warehouse.merch[0]?.photos ?? [],
         description: t(`merch.description`),
@@ -25,5 +25,5 @@ export function useMerchData() {
         skuName,
     }
 
-    return feedbagHanger;
+    return merchData;
 }

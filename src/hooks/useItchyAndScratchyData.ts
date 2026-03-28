@@ -4,13 +4,13 @@ import { useLocale } from "@/providers/I18nProvider";
 import { CageColor, CagePlusColor } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { findSku, SkuMeta, toSkuMeta, warehouse } from "@/utils/warehouse";
-import { cagePlusColorToWarehouse } from "@/utils/colorMapping";
+import { mapCageColorToWarehouse } from "@/utils/colorMapping";
 import { useTranslation } from "react-i18next";
 
 export type CoatingType = 'anodized' | 'powder';
 
 export interface ItchyAndScratchyColorMap {
-    cageColor: CagePlusColor;
+    cageColor: CageColor | CagePlusColor;
     paintedType: CoatingType;
 }
 
@@ -37,7 +37,7 @@ export function useItchyAndScratchyData() {
 
     const getSkuForParams = (params: ItchyAndScratchyColorMap): SkuMeta => {
         const uiColor = params.cageColor;
-        const warehouseColor = cagePlusColorToWarehouse[uiColor];
+        const warehouseColor = mapCageColorToWarehouse(uiColor);
         const finishCandidates = params.paintedType === 'powder'
             ? ['painted', 'anodized']
             : ['anodized'];

@@ -2,7 +2,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { createOrderSuccessToken, ORDER_SUCCESS_COOKIE } from '@/utils/orderSuccessToken';
-import { loadSkuNamesDictionary, resolveSkuName } from './skuNames';
+import { resolveOrderItemName } from '@/utils/orderItemName';
+import { loadSkuNamesDictionary, loadTopcapsDictionary } from './skuNames';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -38,6 +39,14 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { userFormData, items, totalPrice, locale } = body;
     const skuNamesDictionary = loadSkuNamesDictionary(locale);
+    const topcapsDictionary = loadTopcapsDictionary(locale);
+    const resolveDisplayName = (item: { skuId?: string; productSection: string; productKey: string; }) => resolveOrderItemName({
+      skuId: item.skuId,
+      productSection: item.productSection as never,
+      productKey: item.productKey as never,
+      skuName: item.skuId ? skuNamesDictionary[item.skuId] : undefined,
+      fallbackName: item.productSection === 'topcap' && item.productKey === 'custom' ? topcapsDictionary['topcaps.custom.name'] : undefined,
+    });
 
     // Валидация данных
     if (!userFormData?.email || !userFormData?.name) {
@@ -57,7 +66,7 @@ export async function POST(request: NextRequest) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (item: any) => `
       <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">${resolveSkuName(skuNamesDictionary, item.skuId)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${resolveDisplayName(item)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${item.quantity}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.price}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.subtotal}</td>
@@ -73,7 +82,7 @@ export async function POST(request: NextRequest) {
         (item: any) => `
       <tr>
         <td style="border: 1px solid #ddd; padding: 8px;">${item.skuId || '—'}</td>
-        <td style="border: 1px solid #ddd; padding: 8px;">${resolveSkuName(skuNamesDictionary, item.skuId)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${resolveDisplayName(item)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${item.quantity}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.price}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.subtotal}</td>

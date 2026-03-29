@@ -27,6 +27,20 @@ test('can add custom topcap to cart', async ({ page }) => {
     await expectCartSnapshot(page, { totalCount: 1, itemsCount: 1 });
 });
 
+test("custom topcap shows localized name in cart and checkout UI", async ({ page }) => {
+    await resetCartStorage(page);
+    await page.goto("/" + locale + "/products/topcaps-custom");
+    await addViaDefaultAddButton(page);
+
+    await page.goto("/" + locale + "/cart");
+    await expect(page.getByText("Топкэпы на заказ").first()).toBeVisible();
+    await expect(page.locator("text=topcap-custom-")).toHaveCount(0);
+
+    await page.goto("/" + locale + "/checkout");
+    await expect(page.getByText("Топкэпы на заказ").first()).toBeVisible();
+    await expect(page.locator("text=topcap-custom-")).toHaveCount(0);
+});
+
 const boltCases: BoltMaterial[] = ['none', 'titanium', 'steel'];
 const boxCases = [false, true];
 

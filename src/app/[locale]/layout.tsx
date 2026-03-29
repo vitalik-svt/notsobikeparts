@@ -7,6 +7,11 @@ import I18nProvider from "@/providers/I18nProvider";
 import { PopupProvider } from "@/providers/PopupProvider";
 import { NotificationsProvider } from "@/providers/NotificationsProvider";
 import { ensureLocale } from "@/utils/ensureLocale";
+import { i18n } from "@/i18n/settings";
+
+export function generateStaticParams() {
+    return i18n.locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const baseUrl = "https://example.com";

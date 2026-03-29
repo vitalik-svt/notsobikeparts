@@ -6,7 +6,6 @@ import { CartItem, getCartLineKey } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { formatPrice } from "@/utils/formatPrice";
 import { getProductPrice } from "@/utils/getProductPrice";
-import { getProductSectionData } from "@/utils/getProductSectionData";
 import { useTranslation } from "react-i18next";
 
 
@@ -17,6 +16,8 @@ interface Props {
 export default function OrderTableCheckout({ items }: Props) {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t } = useTranslation();
+    const { t: tSkuNames } = useTranslation(`skuNames`);
+
     const productData = useProductData();
 
     return (
@@ -29,7 +30,6 @@ export default function OrderTableCheckout({ items }: Props) {
             </thead>
             <tbody>
                 {items.map(item => {
-                    const productSectionData = getProductSectionData(productData, item);
                     const price = getProductPrice(productData, item, locale);
 
                     return (
@@ -38,7 +38,7 @@ export default function OrderTableCheckout({ items }: Props) {
                                 <div className="flex flex-col gap-2">
                                     <p className="flex justify-between items-center">
                                         <span className="font-bold md:hidden">{t("cart.tablet.product_label")}:</span>
-                                        <span>{productSectionData?.name} <span className="text-sm">[{item.quantity} {t("cart.unit_label")}]</span></span>
+                                        <span>{tSkuNames(item.skuId)} <span className="text-sm">[{item.quantity} {t("cart.unit_label")}]</span></span>
                                     </p>
                                     {item.productParams && <ProductOptionParams productParams={item.productParams} />}
                                 </div>

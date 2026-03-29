@@ -33,13 +33,6 @@ export default function ProductOptionParams({ productParams }: { productParams: 
                     value={productParams.hasBox ? t(`cart.yes_label`) : t(`cart.no_label`)}
                 />
             )}
-            {productParams.cageColor && (
-                <OptionRow
-                    label={t("cart.color_label")}
-                    value={optionDictionary[productParams.cageColor]}
-                />
-            )}
-            {productParams.voileType && <OptionRow value={optionDictionary[productParams.voileType]} />}
         </div>
     );
 }

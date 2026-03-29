@@ -12,7 +12,6 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useProductData } from "@/hooks/useProductData";
 import { getProductPrice } from "@/utils/getProductPrice";
-import { getProductSectionData } from "@/utils/getProductSectionData";
 import { formatPrice } from "@/utils/formatPrice";
 import { useParams, useRouter } from "next/navigation";
 import { ensureLocale } from "@/utils/ensureLocale";
@@ -20,7 +19,8 @@ import { ROUTES } from "@/constants/routes";
 
 export default function OrderCheckout() {
     const { items, userFormData, setUserFormData, finalizeOrder, isHydrated } = cartStore();
-    const { t } = useTranslation();
+    const { t: tCommon } = useTranslation();
+    const { t: tSkuNames } = useTranslation();
     const router = useRouter();
     const params = useParams();
     const locale = ensureLocale(params.locale);
@@ -37,14 +37,14 @@ export default function OrderCheckout() {
     }, [isHydrated, items.length, locale, router]);
 
     const schema = useMemo(() => z.object({
-        name: z.string().min(1, t('form.required')),
-        email: z.email(t('form.email_invalid')),
+        name: z.string().min(1, tCommon('form.required')),
+        email: z.email(tCommon('form.email_invalid')),
         phone: z.string()
-            .min(1, t('form.required'))
-            .regex(/^\+?[0-9\s\-()]{7,15}$/, t('form.phone_invalid')),
-        deliveryMethod: z.string().min(1, t('form.required')),
+            .min(1, tCommon('form.required'))
+            .regex(/^\+?[0-9\s\-()]{7,15}$/, tCommon('form.phone_invalid')),
+        deliveryMethod: z.string().min(1, tCommon('form.required')),
         comment: z.string().optional(),
-    }), [t]);
+    }), [tCommon]);
 
     type FormData = z.infer<typeof schema>;
 
@@ -109,13 +109,12 @@ export default function OrderCheckout() {
                 userFormData: data,
                 items: items.map(item => {
                     const price = getProductPrice(productData, item);
-                    const productInfo = getProductSectionData(productData, item);
                     const skuId = item.productSection === 'topcap' && item.productKey === 'custom' ? '' : item.skuId;
 
                     return {
                         ...item,
                         skuId,
-                        name: productInfo?.name || `${item.productSection} - ${item.productKey}`,
+                        name: tSkuNames(skuId),
                         price: price ? formatPrice(price) : '—',
                         subtotal: price ? formatPrice({ ...price, amount: price.amount * item.quantity }) : '—',
                     };
@@ -161,7 +160,7 @@ export default function OrderCheckout() {
             setSubmitError(
                 error instanceof Error
                     ? error.message
-                    : t('cart.error_sending_order') || 'Failed to send order'
+                    : tCommon('cart.error_sending_order') || 'Failed to send order'
             );
         } finally {
             isSubmittingOrderRef.current = false;
@@ -177,7 +176,7 @@ export default function OrderCheckout() {
         <>
             <div className="flex flex-col gap-10 md:flex-row md:gap-10">
                 <section className="md:w-full">
-                    <h2 className="text-2xl font-bold mb-4 md:mb-10">{t("cart.title.details")}</h2>
+                    <h2 className="text-2xl font-bold mb-4 md:mb-10">{tCommon("cart.title.details")}</h2>
                     <FormCheckout
                         onSubmit={onSubmit}
                         register={register}
@@ -188,7 +187,7 @@ export default function OrderCheckout() {
                 </section>
 
                 <section className="md:w-full">
-                    <h2 className="text-2xl font-bold mb-4">{t("cart.title.order")}</h2>
+                    <h2 className="text-2xl font-bold mb-4">{tCommon("cart.title.order")}</h2>
                     <OrderTableCheckout items={items} />
                 </section>
             </div>
@@ -217,7 +216,7 @@ export default function OrderCheckout() {
                                 variant="secondary"
                                 fluid
                             >
-                                {t('cart.edit')}
+                                {tCommon('cart.edit')}
                             </Button>
                             <Button
                                 type="submit"
@@ -228,10 +227,10 @@ export default function OrderCheckout() {
                                 {isSubmitting ? (
                                     <>
                                         <span className="inline-block animate-spin mr-2">⏳</span>
-                                        {t('cart.sending')}
+                                        {tCommon('cart.sending')}
                                     </>
                                 ) : (
-                                    t('cart.checkout')
+                                    tCommon('cart.checkout')
                                 )}
                             </Button>
                         </div>

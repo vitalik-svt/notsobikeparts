@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (item: any) => `
       <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">${item.name || item.productSection}. ${resolveSkuName(skuNamesDictionary, item.skuId)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${resolveSkuName(skuNamesDictionary, item.skuId)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${item.quantity}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.price}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.subtotal}</td>

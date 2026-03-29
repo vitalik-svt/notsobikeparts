@@ -20,7 +20,7 @@ import { ROUTES } from "@/constants/routes";
 export default function OrderCheckout() {
     const { items, userFormData, setUserFormData, finalizeOrder, isHydrated } = cartStore();
     const { t: tCommon } = useTranslation();
-    const { t: tSkuNames } = useTranslation();
+    const { t: tSkuNames } = useTranslation(`skuNames`);
     const router = useRouter();
     const params = useParams();
     const locale = ensureLocale(params.locale);

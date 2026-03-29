@@ -68,6 +68,7 @@ export default function ItchyAndScratchyPage() {
                         <ProductGridCard
                             description={item.description.join(' ')}
                             url={item.images[0]}
+                            skuId={item.skuId}
                             selectProduct={() => addToCart({
                                 imageUrl: item.images[0],
                                 skuId: item.skuId,

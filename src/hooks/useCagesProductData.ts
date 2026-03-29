@@ -34,6 +34,9 @@ export interface CageSettings {
 export const useCagesProductData = () => {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t } = useTranslation('cages');
+    const { t: tSkuNames } = useTranslation('skuNames');
+
+    const resolveSkuName = (skuId: string) => (skuId ? tSkuNames(skuId, { defaultValue: skuId }) : '');
 
     const getSkuMeta = (skus: typeof warehouse.cageFront, uiColor: CageColor | CagePlusColor) => {
         const warehouseColor = uiColor === 'black' || uiColor === 'aluminum'
@@ -51,7 +54,7 @@ export const useCagesProductData = () => {
 
     const toCageSkuMeta = (sku = toSkuMeta()): Pick<CageColorOption, 'skuId' | 'skuName'> => ({
         skuId: sku.skuId,
-        skuName: sku.skuName,
+        skuName: resolveSkuName(sku.skuId),
     });
 
     const littleSku = toSkuMeta(warehouse.cageLittle[0]);
@@ -173,7 +176,7 @@ export const useCagesProductData = () => {
                 t(`little.characteristics.5`),
             ],
             skuId: littleSku.skuId,
-            skuName: littleSku.skuName,
+            skuName: resolveSkuName(littleSku.skuId),
         },
         plus: {
             name: t(`plus.name`),

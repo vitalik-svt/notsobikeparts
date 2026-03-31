@@ -7,6 +7,15 @@ import { loadSkuNamesDictionary, loadTopcapsDictionary } from './skuNames';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function escapeHtml(value: unknown): string {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export async function POST(request: NextRequest) {
   try {
     if (!process.env.RESEND_API_KEY) {
@@ -47,6 +56,12 @@ export async function POST(request: NextRequest) {
       skuName: item.skuId ? skuNamesDictionary[item.skuId] : undefined,
       fallbackName: item.productSection === 'topcap' && item.productKey === 'custom' ? topcapsDictionary['topcaps.custom.name'] : undefined,
     });
+    const escapedName = escapeHtml(userFormData?.name);
+    const escapedEmail = escapeHtml(userFormData?.email);
+    const escapedPhone = escapeHtml(userFormData?.phone);
+    const escapedDeliveryMethod = escapeHtml(userFormData?.deliveryMethod);
+    const escapedComment = userFormData?.comment ? escapeHtml(userFormData.comment) : '';
+    const escapedTotalPrice = escapeHtml(totalPrice);
 
     // Валидация данных
     if (!userFormData?.email || !userFormData?.name) {
@@ -66,10 +81,10 @@ export async function POST(request: NextRequest) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (item: any) => `
       <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">${resolveDisplayName(item)}</td>
-        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${item.quantity}</td>
-        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.price}</td>
-        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.subtotal}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(resolveDisplayName(item))}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${escapeHtml(item.quantity)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.price)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.subtotal)}</td>
       </tr>
     `
       )
@@ -81,11 +96,11 @@ export async function POST(request: NextRequest) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (item: any) => `
       <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">${item.skuId || '—'}</td>
-        <td style="border: 1px solid #ddd; padding: 8px;">${resolveDisplayName(item)}</td>
-        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${item.quantity}</td>
-        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.price}</td>
-        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${item.subtotal}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(item.skuId || '—')}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(resolveDisplayName(item))}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${escapeHtml(item.quantity)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.price)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.subtotal)}</td>
       </tr>
     `
       )
@@ -98,24 +113,24 @@ export async function POST(request: NextRequest) {
         <table style="width: 100%; margin-bottom: 20px;">
           <tr>
             <td style="padding: 8px; font-weight: bold; width: 150px;">Имя:</td>
-            <td style="padding: 8px;">${userFormData.name}</td>
+            <td style="padding: 8px;">${escapedName}</td>
           </tr>
           <tr style="background-color: #f9f9f9;">
             <td style="padding: 8px; font-weight: bold;">Email:</td>
-            <td style="padding: 8px;">${userFormData.email}</td>
+            <td style="padding: 8px;">${escapedEmail}</td>
           </tr>
           <tr>
             <td style="padding: 8px; font-weight: bold;">Телефон:</td>
-            <td style="padding: 8px;">${userFormData.phone}</td>
+            <td style="padding: 8px;">${escapedPhone}</td>
           </tr>
           <tr style="background-color: #f9f9f9;">
             <td style="padding: 8px; font-weight: bold;">Способ доставки:</td>
-            <td style="padding: 8px;">${userFormData.deliveryMethod}</td>
+            <td style="padding: 8px;">${escapedDeliveryMethod}</td>
           </tr>
           ${userFormData.comment
         ? `<tr>
             <td style="padding: 8px; font-weight: bold;">Комментарий:</td>
-            <td style="padding: 8px;">${userFormData.comment}</td>
+            <td style="padding: 8px;">${escapedComment}</td>
           </tr>`
         : ''
       }
@@ -137,7 +152,7 @@ export async function POST(request: NextRequest) {
         </table>
         
         <div style="text-align: right; font-size: 18px; font-weight: bold; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
-          Итого без учета доставки: ${totalPrice}
+          Итого без учета доставки: ${escapedTotalPrice}
         </div>
       </div>
     `;
@@ -149,24 +164,24 @@ export async function POST(request: NextRequest) {
         <table style="width: 100%; margin-bottom: 20px;">
           <tr>
             <td style="padding: 8px; font-weight: bold; width: 150px;">Имя:</td>
-            <td style="padding: 8px;">${userFormData.name}</td>
+            <td style="padding: 8px;">${escapedName}</td>
           </tr>
           <tr style="background-color: #f9f9f9;">
             <td style="padding: 8px; font-weight: bold;">Email:</td>
-            <td style="padding: 8px;">${userFormData.email}</td>
+            <td style="padding: 8px;">${escapedEmail}</td>
           </tr>
           <tr>
             <td style="padding: 8px; font-weight: bold;">Телефон:</td>
-            <td style="padding: 8px;">${userFormData.phone}</td>
+            <td style="padding: 8px;">${escapedPhone}</td>
           </tr>
           <tr style="background-color: #f9f9f9;">
             <td style="padding: 8px; font-weight: bold;">Способ доставки:</td>
-            <td style="padding: 8px;">${userFormData.deliveryMethod}</td>
+            <td style="padding: 8px;">${escapedDeliveryMethod}</td>
           </tr>
           ${userFormData.comment
         ? `<tr>
             <td style="padding: 8px; font-weight: bold;">Комментарий:</td>
-            <td style="padding: 8px;">${userFormData.comment}</td>
+            <td style="padding: 8px;">${escapedComment}</td>
           </tr>`
         : ''
       }
@@ -189,7 +204,7 @@ export async function POST(request: NextRequest) {
         </table>
 
         <div style="text-align: right; font-size: 18px; font-weight: bold; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
-          Итого без учета доставки: ${totalPrice}
+          Итого без учета доставки: ${escapedTotalPrice}
         </div>
       </div>
     `;
@@ -203,7 +218,7 @@ export async function POST(request: NextRequest) {
         
         <div style="padding: 30px 20px;">
           <h2 style="color: #333;">Спасибо за ваш заказ!</h2>
-          <p style="font-size: 16px; line-height: 1.6;">Здравствуйте, ${userFormData.name}!</p>
+          <p style="font-size: 16px; line-height: 1.6;">Здравствуйте, ${escapedName}!</p>
           <p style="font-size: 16px; line-height: 1.6;">Мы получили ваш заказ и скоро свяжемся с вами для подтверждения деталей.</p>
           
           ${customerOrderDetailsHtml}

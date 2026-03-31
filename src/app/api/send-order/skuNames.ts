@@ -3,14 +3,26 @@ import path from 'node:path';
 
 export type SkuNamesLocale = 'ru' | 'en';
 
+const localeDictionaryCache = new Map<string, Record<string, string>>();
+
 export function normalizeSkuNamesLocale(locale?: string): SkuNamesLocale {
     return locale === 'en' ? 'en' : 'ru';
 }
 
 function loadLocaleDictionary(locale: SkuNamesLocale, fileName: string): Record<string, string> {
-    const filePath = path.join(process.cwd(), 'public', 'locales', locale, fileName);
+    const cacheKey = `${locale}:${fileName}`;
+    const cachedDictionary = localeDictionaryCache.get(cacheKey);
 
-    return JSON.parse(fs.readFileSync(filePath, 'utf8')) as Record<string, string>;
+    if (cachedDictionary) {
+        return cachedDictionary;
+    }
+
+    const filePath = path.join(process.cwd(), 'public', 'locales', locale, fileName);
+    const dictionary = JSON.parse(fs.readFileSync(filePath, 'utf8')) as Record<string, string>;
+
+    localeDictionaryCache.set(cacheKey, dictionary);
+
+    return dictionary;
 }
 
 export function loadSkuNamesDictionary(locale?: string): Record<string, string> {

@@ -44,4 +44,11 @@ describe('skuNames resolver', () => {
 
         expect(dictionary['2000188']).toBeTruthy();
     });
+
+    test('reuses cached dictionary for repeated loads', () => {
+        const firstDictionary = loadSkuNamesDictionary('ru');
+        const secondDictionary = loadSkuNamesDictionary('ru');
+
+        expect(secondDictionary).toBe(firstDictionary);
+    });
 });

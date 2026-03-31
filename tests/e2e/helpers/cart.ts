@@ -18,8 +18,8 @@ const emptyCartStorage = {
     version: 0,
 };
 
-export async function resetCartStorage(page: Page) {
-    await page.goto(`/${locale}`);
+export async function resetCartStorage(page: Page, resetLocale: string = locale) {
+    await page.goto(`/${resetLocale}`);
     await page.evaluate((data) => {
         window.localStorage.setItem('cart-storage', JSON.stringify(data));
     }, emptyCartStorage);

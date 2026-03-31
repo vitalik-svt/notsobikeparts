@@ -1,18 +1,8 @@
 import { expect, test } from '@playwright/test';
+import { resetCartStorage } from '../helpers/cart';
 
 test('custom topcap shows localized name in EN cart and checkout UI', async ({ page }) => {
-    await page.goto('/en');
-    await page.evaluate(() => {
-        window.localStorage.setItem('cart-storage', JSON.stringify({
-            state: {
-                totalCount: 0,
-                isHydrated: true,
-                userFormData: null,
-                items: [],
-            },
-            version: 0,
-        }));
-    });
+    await resetCartStorage(page, 'en');
 
     await page.goto('/en/products/topcaps-custom');
     await page.getByRole('button', { name: /Add to cart/i }).first().click();

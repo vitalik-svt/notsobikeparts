@@ -26,7 +26,6 @@ export default function ChainBreakerPage() {
     const addToCart = () => {
         addItem({
             skuId: chainBreakerData.skuId,
-            skuName: chainBreakerData.skuName,
             quantity: quantity ?? 1,
             imageUrl: chainBreakerData.images[0],
             productSection: `chainBreaker`,

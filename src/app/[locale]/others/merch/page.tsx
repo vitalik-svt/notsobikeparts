@@ -30,7 +30,6 @@ export default function MerchPage() {
     const addToCart = () => {
         addItem({
             skuId: merch.skuId,
-            skuName: merch.skuName,
             quantity: quantity ?? 1,
             imageUrl: merch.images[0],
             productSection: `merch`,

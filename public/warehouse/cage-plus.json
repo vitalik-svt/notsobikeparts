@@ -1,6 +1,5 @@
 {
   "2000185": {
-    "sku_name": "cage_plus_silver",
     "product": "cage_plus",
     "sku_photo": "",
     "photos": [
@@ -18,7 +17,6 @@
     }
   },
   "2000204": {
-    "sku_name": "cage_plus_black",
     "product": "cage_plus",
     "sku_photo": "",
     "photos": [
@@ -36,7 +34,6 @@
     }
   },
   "2000212": {
-    "sku_name": "cage_plus_brown",
     "product": "cage_plus",
     "sku_photo": "",
     "photos": [
@@ -54,7 +51,6 @@
     }
   },
   "2000213": {
-    "sku_name": "cage_plus_green",
     "product": "cage_plus",
     "sku_photo": "",
     "photos": [

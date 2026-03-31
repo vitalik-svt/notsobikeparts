@@ -34,7 +34,6 @@ export default function CagePlusPage() {
     const addToCart = () => {
         addItem({
             skuId: selectedColorOption.skuId,
-            skuName: selectedColorOption.skuName,
             imageUrl: cages.plus.images[0],
             productSection: 'cage',
             productKey: 'plus',

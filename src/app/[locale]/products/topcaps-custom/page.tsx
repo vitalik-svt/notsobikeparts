@@ -60,7 +60,6 @@ export default function TopcapsCustomPage() {
     const addToCart = () => {
         addItem({
             skuId: createUniqueCustomSkuId(),
-            skuName: topcaps.custom.name,
             quantity: quantity ?? 1,
             imageUrl: topcaps.custom.images[0],
             productSection: 'topcap',

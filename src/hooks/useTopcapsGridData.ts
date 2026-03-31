@@ -29,6 +29,7 @@ const baseUrl = `/images/topcaps/serial/items`;
 
 export const useTopcapsGridData = () => {
     const { t } = useTranslation('topcaps');
+    const { t: tSkuNames } = useTranslation('skuNames');
     const skuByPhoto = getTopcapSkuByPhoto();
 
     const topcapsRaw: TopcapCategoryItemRaw[] = [
@@ -783,7 +784,7 @@ export const useTopcapsGridData = () => {
             ...item,
             id: getFileNameFromPath(item.image, `${index + 1}`),
             skuId: skuByPhoto.get(item.image)?.skuId ?? '',
-            skuName: skuByPhoto.get(item.image)?.skuName ?? '',
+            skuName: ((skuId) => (skuId ? tSkuNames(skuId, { defaultValue: skuId }) : ''))(skuByPhoto.get(item.image)?.skuId ?? ''),
         }))
     }));
 

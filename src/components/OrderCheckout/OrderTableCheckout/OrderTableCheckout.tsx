@@ -6,9 +6,8 @@ import { CartItem, getCartLineKey } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { formatPrice } from "@/utils/formatPrice";
 import { getProductPrice } from "@/utils/getProductPrice";
-import { getProductSectionData } from "@/utils/getProductSectionData";
+import { resolveOrderItemName } from "@/utils/orderItemName";
 import { useTranslation } from "react-i18next";
-
 
 interface Props {
     items: CartItem[];
@@ -17,6 +16,9 @@ interface Props {
 export default function OrderTableCheckout({ items }: Props) {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t } = useTranslation();
+    const { t: tSkuNames } = useTranslation(`skuNames`);
+    const { t: tTopcaps } = useTranslation(`topcaps`);
+
     const productData = useProductData();
 
     return (
@@ -29,8 +31,20 @@ export default function OrderTableCheckout({ items }: Props) {
             </thead>
             <tbody>
                 {items.map(item => {
-                    const productSectionData = getProductSectionData(productData, item);
                     const price = getProductPrice(productData, item, locale);
+                    const rawSkuName = item.skuId ? tSkuNames(item.skuId) : "";
+                    const skuName = rawSkuName !== item.skuId ? rawSkuName : undefined;
+                    const rawCustomTopcapName = tTopcaps("topcaps.custom.name");
+                    const fallbackName = item.productSection === "topcap" && item.productKey === "custom" && rawCustomTopcapName !== "topcaps.custom.name"
+                        ? rawCustomTopcapName
+                        : undefined;
+                    const displayName = resolveOrderItemName({
+                        skuId: item.skuId,
+                        productSection: item.productSection,
+                        productKey: item.productKey,
+                        skuName,
+                        fallbackName,
+                    });
 
                     return (
                         <tr className="block even:bg-gray-100 md:even:bg-transparent md:table-row" key={getCartLineKey(item)}>
@@ -38,7 +52,7 @@ export default function OrderTableCheckout({ items }: Props) {
                                 <div className="flex flex-col gap-2">
                                     <p className="flex justify-between items-center">
                                         <span className="font-bold md:hidden">{t("cart.tablet.product_label")}:</span>
-                                        <span>{productSectionData?.name} <span className="text-sm">[{item.quantity} {t("cart.unit_label")}]</span></span>
+                                        <span>{displayName} <span className="text-sm">[{item.quantity} {t("cart.unit_label")}]</span></span>
                                     </p>
                                     {item.productParams && <ProductOptionParams productParams={item.productParams} />}
                                 </div>
@@ -46,7 +60,7 @@ export default function OrderTableCheckout({ items }: Props) {
                             <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">
                                 <p className="flex justify-between items-center">
                                     <span className="font-bold md:hidden">{t("cart.tablet.subtotal_label")}:</span>
-                                    <span>{price ? formatPrice({ ...price, amount: price.amount * item.quantity }) : '—'}</span>
+                                    <span>{price ? formatPrice({ ...price, amount: price.amount * item.quantity }) : "—"}</span>
                                 </p>
                             </td>
                         </tr>

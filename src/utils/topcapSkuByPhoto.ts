@@ -1,7 +1,6 @@
 import topcapRaw from "../../public/warehouse/topcap.json";
 
 interface TopcapRawEntry {
-    sku_name?: string;
     sku_photo?: string;
 }
 
@@ -9,7 +8,6 @@ type TopcapRawMap = Record<string, TopcapRawEntry>;
 
 export interface TopcapSkuMeta {
     skuId: string;
-    skuName: string;
 }
 
 const topcapSkuByPhoto = (() => {
@@ -23,7 +21,6 @@ const topcapSkuByPhoto = (() => {
 
         map.set(sku.sku_photo, {
             skuId,
-            skuName: sku.sku_name ?? '',
         });
     }
 

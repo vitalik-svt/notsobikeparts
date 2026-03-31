@@ -8,10 +8,11 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { CONTACTS } from "@/constants/contacts";
 import { useTopcapsData } from "@/hooks/useTopcapsData";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 export default function TopcapsPage() {
     const topcaps = useTopcapsData();
+    const { t } = useTranslation();
 
     return (
         <ProductPage>
@@ -43,7 +44,7 @@ export default function TopcapsPage() {
             <ProductGrid
                 items={topcaps.serial.items}
                 price={topcaps.serial.price}
-                title={topcaps.serial.name}
+                title={t(`menu.topcap`)}
                 additionalPriceOptions={topcaps.serial["additional-price-options"]}
             />
         </ProductPage>

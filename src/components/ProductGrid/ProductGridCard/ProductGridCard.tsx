@@ -9,21 +9,23 @@ import { ReactNode } from 'react';
 interface Props {
     description: string;
     url: string;
+    skuId: string;
     isAvailable: boolean;
     selectProduct: VoidFunction;
     title?: string;
     addInfo?: ReactNode;
 }
 
-export default function ProductGridCard({ description, url, isAvailable, selectProduct, title, addInfo }: Props) {
-    const { t } = useTranslation();
+export default function ProductGridCard({ description, url, skuId, isAvailable, selectProduct, title, addInfo }: Props) {
+    const { t: tCommon } = useTranslation();
+    const { t: tSkuNames } = useTranslation(`skuNames`);
 
     return (
         <article className="flex flex-col gap-3 h-full justify-between relative items-center">
-            <div className={`flex flex-col gap-3 w-full ${isAvailable ? '' : 'blur-[0.5px] opacity-45'}`}>
+            <div className={`flex flex-col gap-3 w-full${isAvailable ? '' : ' blur-[0.5px] opacity-45'}`}>
                 <Image
                     src={url}
-                    alt=""
+                    alt={tSkuNames(skuId)}
                     width={300}
                     height={300}
                     className={`w-full object-cover`}
@@ -40,10 +42,10 @@ export default function ProductGridCard({ description, url, isAvailable, selectP
                     fluid
                     size="s"
                 >
-                    {t('product.select')}
+                    {tCommon('product.select')}
                 </Button>
             ) : (
-                <SoldOutLabel>{t('product.sold_out')}</SoldOutLabel>
+                <SoldOutLabel>{tCommon('product.sold_out')}</SoldOutLabel>
             )}
         </article>
     );

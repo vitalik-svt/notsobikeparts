@@ -7,8 +7,10 @@ import { useTranslation } from "react-i18next";
 
 export function useFeedbagHangerData() {
     const { t } = useTranslation('feedbagHanger');
+    const { t: tSkuNames } = useTranslation('skuNames');
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
-    const { skuId, skuName } = toSkuMeta(warehouse.feedbagHanger[0]);
+    const { skuId } = toSkuMeta(warehouse.feedbagHanger[0]);
+    const skuName = skuId ? tSkuNames(skuId, { defaultValue: skuId }) : '';
 
     const feedbagHanger = {
         name: t(`feedbagHanger.name`),

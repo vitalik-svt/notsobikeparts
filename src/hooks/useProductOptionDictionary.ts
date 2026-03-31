@@ -1,14 +1,12 @@
-import { ProductVoileType } from "@/constants/productPrices";
 import { BoltColor, BoltMaterial, CageColor, CagePlusColor, TopcapOptions } from "@/stores/cartStore";
 import { useTranslation } from "react-i18next";
 import { TopcapCustomColor, TopcapCustomThickness } from "./useTopcapsData";
 
-type OptionKeys = TopcapOptions | BoltMaterial | ProductVoileType | CagePlusColor | TopcapCustomColor | TopcapCustomThickness | Exclude<BoltColor, null> | CageColor
+type OptionKeys = TopcapOptions | BoltMaterial | CagePlusColor | TopcapCustomColor | TopcapCustomThickness | Exclude<BoltColor, null> | CageColor
 
 export default function useProductOptionDictionary() {
     const { t } = useTranslation();
-    const { t: tCages } = useTranslation(`cages`);
-    const { t: tVoile } = useTranslation(`voile`);
+    const { t: tCages } = useTranslation(`cages`);    
     const { t: tTopcaps } = useTranslation(`topcaps`);
 
     const optionDictionary: Record<OptionKeys, string> = {
@@ -18,11 +16,7 @@ export default function useProductOptionDictionary() {
         'custom-color': t(`product.topcap.option.custom-color`),
         'black': tTopcaps(`topcaps.custom.color.1`), // black is uniquely identified by context
         'light': t(`product.topcap.bolt.color.light`),
-        'aluminum': tTopcaps(`topcaps.custom.color.2`), // cage color 'aluminum' and topcap 'aluminum' both map here
-        'nine-black': tVoile(`voile.options.1`),
-        'twelve-black': tVoile(`voile.options.2`),
-        'twenty-black-w-logo': tVoile(`voile.options.3`),
-        'twenty-five-black-w-logo': tVoile(`voile.options.4`),
+        'aluminum': tTopcaps(`topcaps.custom.color.2`), // cage color 'aluminum' and topcap 'aluminum' both map here        
         'transparent': tCages(`plus.color_options.2`), // cage plus transparent
         'light-green': tCages(`plus.color_options.3`), // cage plus green
         'light-brown': tCages(`plus.color_options.4`), // cage plus brown

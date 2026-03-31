@@ -10,7 +10,6 @@ import topcapRaw from "../../public/warehouse/topcap.json";
 import voileRaw from "../../public/warehouse/voile.json";
 
 export interface WarehouseEntry {
-    sku_name: string;
     product: string;
     sku_photo: string;
     photos: string[];
@@ -23,10 +22,9 @@ export interface WarehouseSku extends WarehouseEntry {
 
 export interface SkuMeta {
     skuId: string;
-    skuName: string;
 }
 
-const NULL_SKU_META: SkuMeta = { skuId: '', skuName: '' };
+const NULL_SKU_META: SkuMeta = { skuId: '' };
 
 type RawWarehouseMap = Record<string, WarehouseEntry>;
 
@@ -61,7 +59,6 @@ export function toSkuMeta(sku?: WarehouseSku | null): SkuMeta {
 
     return {
         skuId: String(sku.sku_id),
-        skuName: sku.sku_name ?? '',
     };
 }
 

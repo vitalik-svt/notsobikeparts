@@ -28,7 +28,6 @@ export default function LittleCagePage() {
     const addToCart = () => {
         addItem({
             skuId: cages.little.skuId,
-            skuName: cages.little.skuName,
             imageUrl: cages.little.images[0],
             productSection: `cage`,
             productKey: `little`,

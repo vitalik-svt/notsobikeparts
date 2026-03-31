@@ -44,7 +44,6 @@ export type ProductKey = ProductVoileType | ProductCageType | TopcapProductKey |
 
 export interface CartItem {
 	skuId: string;
-	skuName: string;
 	quantity: number;
 	productSection: ProductSection;
 	productKey: ProductKey;

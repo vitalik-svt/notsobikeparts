@@ -47,7 +47,6 @@ export default function ProductGrid({ items, price, title, additionalPriceOption
                 title={title}
                 imageUrl={allProducts[startIndex].image}
                 skuId={allProducts[startIndex].skuId}
-                skuName={allProducts[startIndex].skuName}
                 price={price}
                 additionalPriceOptions={additionalPriceOptions}
                 goToPrev={() => {
@@ -78,6 +77,7 @@ export default function ProductGrid({ items, price, title, additionalPriceOption
                                     <li key={item.id} ref={el => { cardRefs.current[globalIndex] = el; }}>
                                         <ProductGridCard
                                             url={item.image}
+                                            skuId={item.skuId}
                                             description={item.description}
                                             isAvailable={item.isAvailable}
                                             selectProduct={() => openProductCard(globalIndex)}

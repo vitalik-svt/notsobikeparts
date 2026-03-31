@@ -12,6 +12,7 @@ import ruChainBreaker from "../../public/locales/ru/chainBreaker.json";
 import ruTestRide from "../../public/locales/ru/testRide.json";
 import ruTopcaps from "../../public/locales/ru/topcaps.json";
 import ruItchyAndScratchy from "../../public/locales/ru/itchy-and-scratchy.json";
+import ruSkuNames from "../../public/locales/ru/sku-names.json";
 import enCages from "../../public/locales/en/cages.json";
 import enCommon from "../../public/locales/en/common.json";
 import enVoile from "../../public/locales/en/voile.json";
@@ -21,6 +22,7 @@ import enChainBreaker from "../../public/locales/en/chainBreaker.json";
 import enTestRide from "../../public/locales/en/testRide.json";
 import enTopcaps from "../../public/locales/en/topcaps.json";
 import enItchyAndScratchy from "../../public/locales/en/itchy-and-scratchy.json";
+import enSkuNames from "../../public/locales/en/sku-names.json";
 import { i18n } from "./settings";
 
 if (!i18next.isInitialized) {
@@ -40,6 +42,7 @@ if (!i18next.isInitialized) {
 				testRide: ruTestRide,
 				topcaps: ruTopcaps,
 				itchyAndScratchy: ruItchyAndScratchy,
+				skuNames: ruSkuNames,
 			},
 			en: {
 				common: enCommon,
@@ -51,6 +54,7 @@ if (!i18next.isInitialized) {
 				testRide: enTestRide,
 				topcaps: enTopcaps,
 				itchyAndScratchy: enItchyAndScratchy,
+				skuNames: enSkuNames,
 			},
 		},
 		interpolation: { escapeValue: false },

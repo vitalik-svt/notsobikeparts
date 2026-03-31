@@ -35,7 +35,6 @@ export default function VoileStrapPage() {
     const addToCart = () => {
         addItem({
             skuId: selectedOption.skuId,
-            skuName: selectedOption.skuName,
             quantity: quantity ?? 1,
             imageUrl: voile.images[0],
             productSection: 'voile',

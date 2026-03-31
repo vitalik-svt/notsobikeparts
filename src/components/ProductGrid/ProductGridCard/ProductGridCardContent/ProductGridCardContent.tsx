@@ -20,7 +20,6 @@ interface Props {
     imageUrl: string;
     title: string;
     skuId: string;
-    skuName: string;
     price: ProductPriceSettings;
     additionalPriceOptions: AdditionalPriceOption[];
     goToPrev: VoidFunction;
@@ -28,10 +27,11 @@ interface Props {
     close: VoidFunction;
 }
 
-export default function ProductGridCardContent({ imageUrl, price, title, skuId, skuName, additionalPriceOptions, goToPrev, goToNext, close }: Props) {
+export default function ProductGridCardContent({ imageUrl, price, title, skuId, additionalPriceOptions, goToPrev, goToNext, close }: Props) {
     const pathname = usePathname();
 
-    const { t } = useTranslation();
+    const { t: tCommon } = useTranslation();
+    const { t: tSkuNames } = useTranslation(`skuNames`); 
     const { addItem } = cartStore();
     const { setNotification } = useNotifications();
 
@@ -62,7 +62,6 @@ export default function ProductGridCardContent({ imageUrl, price, title, skuId, 
     const addToCart = () => {
         addItem({
             skuId,
-            skuName,
             quantity: 1,
             imageUrl,
             productSection: 'topcap',
@@ -95,7 +94,7 @@ export default function ProductGridCardContent({ imageUrl, price, title, skuId, 
                 <Image
                     className={`w-full object-contain max-w-xl mx-auto`}
                     src={imageUrl}
-                    alt=""
+                    alt={tSkuNames(skuId)}
                     width={200}
                     height={200}
                 />
@@ -115,21 +114,21 @@ export default function ProductGridCardContent({ imageUrl, price, title, skuId, 
                             checked={productParams.hasBox}
                             onChange={(value) => setProductParams({ ...productParams, hasBox: value })}
                             name="hasBox"
-                            label={t('product.topcap.option.box.label')}
-                            subtext={t('product.topcap.option.box.description')}
+                            label={tCommon('product.topcap.option.box.label')}
+                            subtext={tCommon('product.topcap.option.box.description')}
                         />
                     </div>
                 </div>
 
                 <div className='flex gap-4 items-center lg:gap-10 2xl:gap-20'>
                     <p className='flex flex-col text-xl leading-none flex-shrink-0 xl:flex-row lg:gap-2'>
-                        <span>{t('product.total')}</span>
+                        <span>{tCommon('product.total')}</span>
                         <span className='font-bold'>{getTotalPrice()}</span>
                     </p>
                     <Button
                         onClick={addToCart}
                         fluid>
-                        {t('product.add_to_cart')}
+                        {tCommon('product.add_to_cart')}
                     </Button>
                 </div>
             </div>

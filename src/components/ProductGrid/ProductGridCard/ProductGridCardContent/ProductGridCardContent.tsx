@@ -20,7 +20,6 @@ interface Props {
     imageUrl: string;
     title: string;
     skuId: string;
-    skuName: string;
     price: ProductPriceSettings;
     additionalPriceOptions: AdditionalPriceOption[];
     goToPrev: VoidFunction;

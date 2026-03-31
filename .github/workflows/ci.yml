@@ -50,6 +50,7 @@ jobs:
   unit-tests:
     name: Unit & RTL Tests
     runs-on: ubuntu-latest
+    needs: [lint, typecheck]
     steps:
       - uses: actions/checkout@v4
 
@@ -70,6 +71,7 @@ jobs:
   e2e-tests:
     name: E2E Tests
     runs-on: ubuntu-latest
+    needs: [lint, typecheck]
     env:
       ORDER_SUCCESS_SECRET: ${{ secrets.ORDER_SUCCESS_SECRET }}
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}

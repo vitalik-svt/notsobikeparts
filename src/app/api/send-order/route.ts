@@ -1,9 +1,11 @@
 // src/app/api/send-order/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { formatPrice } from '@/utils/formatPrice';
 import { createOrderSuccessToken, ORDER_SUCCESS_COOKIE } from '@/utils/orderSuccessToken';
 import { resolveOrderItemName } from '@/utils/orderItemName';
 import { loadSkuNamesDictionary, loadTopcapsDictionary } from './skuNames';
+import { getServerPrice, orderRequestSchema, parseOrderIdentity, ParsedOrderItem } from './orderPayload';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -46,42 +48,89 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { userFormData, items, totalPrice, locale } = body;
+    const parsedBody = orderRequestSchema.safeParse(body);
+
+    if (!parsedBody.success) {
+      return NextResponse.json(
+        {
+          error: 'Invalid request payload',
+          details: parsedBody.error.flatten(),
+        },
+        { status: 400 }
+      );
+    }
+
+    const { userFormData, items, locale } = parsedBody.data;
+    if (items.some((item) => parseOrderIdentity(item) === null)) {
+      return NextResponse.json(
+        { error: 'Invalid order item identity' },
+        { status: 400 }
+      );
+    }
+
     const skuNamesDictionary = loadSkuNamesDictionary(locale);
     const topcapsDictionary = loadTopcapsDictionary(locale);
-    const resolveDisplayName = (item: { skuId?: string; productSection: string; productKey: string; }) => resolveOrderItemName({
-      skuId: item.skuId,
-      productSection: item.productSection as never,
-      productKey: item.productKey as never,
-      skuName: item.skuId ? skuNamesDictionary[item.skuId] : undefined,
-      fallbackName: item.productSection === 'topcap' && item.productKey === 'custom' ? topcapsDictionary['topcaps.custom.name'] : undefined,
+    const resolveDisplayName = (item: ParsedOrderItem) => {
+      const normalizedItem = parseOrderIdentity(item)!;
+
+      return resolveOrderItemName({
+        skuId: normalizedItem.skuId,
+        productSection: normalizedItem.productSection,
+        productKey: normalizedItem.productKey,
+        skuName: normalizedItem.skuId ? skuNamesDictionary[normalizedItem.skuId] : undefined,
+        fallbackName: normalizedItem.productSection === 'topcap' && normalizedItem.productKey === 'custom' ? topcapsDictionary['topcaps.custom.name'] : undefined,
+      });
+    };
+    const pricedItems = items.map((item) => {
+      const priceSettings = getServerPrice(item, locale);
+
+      if (!priceSettings) {
+        return null;
+      }
+
+      const subtotalSettings = {
+        ...priceSettings,
+        amount: priceSettings.amount * item.quantity,
+      };
+
+      return {
+        ...item,
+        name: resolveDisplayName(item),
+        price: formatPrice(priceSettings),
+        subtotal: formatPrice(subtotalSettings),
+        priceSettings,
+      };
     });
+    if (pricedItems.some((item) => item === null)) {
+      return NextResponse.json(
+        { error: 'Invalid order item price configuration' },
+        { status: 400 }
+      );
+    }
+
+    const validPricedItems = pricedItems.filter((item) => item !== null);
+    const totalAmount = validPricedItems.reduce((sum, item) => sum + item.priceSettings.amount * item.quantity, 0);
+    const totalPriceSettings = {
+      ...validPricedItems[0].priceSettings,
+      amount: totalAmount,
+    };
     const escapedName = escapeHtml(userFormData?.name);
     const escapedEmail = escapeHtml(userFormData?.email);
     const escapedPhone = escapeHtml(userFormData?.phone);
     const escapedDeliveryMethod = escapeHtml(userFormData?.deliveryMethod);
     const escapedComment = userFormData?.comment ? escapeHtml(userFormData.comment) : '';
-    const escapedTotalPrice = escapeHtml(totalPrice);
-
-    // Валидация данных
-    if (!userFormData?.email || !userFormData?.name) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
-    }
+    const escapedTotalPrice = escapeHtml(formatPrice(totalPriceSettings));
 
     const from =
       process.env.RESEND_FROM ??
       'notsobikeparts <noreply@notsobikeparts.com>';
 
     // HTML для таблицы товаров в письме покупателю
-    const customerItemsHtml = items
+    const customerItemsHtml = validPricedItems
       .map(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (item: any) => `
+        (item) => `
       <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(resolveDisplayName(item))}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(item.name)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${escapeHtml(item.quantity)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.price)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.subtotal)}</td>
@@ -91,13 +140,12 @@ export async function POST(request: NextRequest) {
       .join('');
 
     // HTML для таблицы товаров в письме администратору
-    const adminItemsHtml = items
+    const adminItemsHtml = validPricedItems
       .map(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (item: any) => `
+        (item) => `
       <tr>
         <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(item.skuId || '—')}</td>
-        <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(resolveDisplayName(item))}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(item.name)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${escapeHtml(item.quantity)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.price)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.subtotal)}</td>

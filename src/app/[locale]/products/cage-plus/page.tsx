@@ -1,5 +1,9 @@
 'use client';
 
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import Button from "@/components/Button/Button";
 import Gallery from "@/components/Gallery/Gallery";
 import InputNumber from "@/components/InputNumber/InputNumber";
@@ -16,27 +20,24 @@ import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { CagePlusColor, cartStore } from "@/stores/cartStore";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 export default function CagePlusPage() {
     const pathname = usePathname();
     const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState<number | undefined>(1);
-    const [colorOption, setColorOption] = useState<CagePlusColor>('black');
+    const [colorOption, setColorOption] = useState<CagePlusColor>(`black`);
     const cages = useCagesProductData();
     const selectedColorOption = cages.plus.colorOptionsByValue[colorOption] ?? cages.plus.colorOptions[0];
-    const { t: tCommon } = useTranslation('common');
-    const { t: tCages } = useTranslation('cages');
+    const { t: tCommon } = useTranslation(`common`);
+    const { t: tCages } = useTranslation(`cages`);
     const { addItem } = cartStore();
 
     const addToCart = () => {
         addItem({
             skuId: selectedColorOption.skuId,
             imageUrl: cages.plus.images[0],
-            productSection: 'cage',
-            productKey: 'plus',
+            productSection: `cage`,
+            productKey: `plus`,
             quantity: quantity ?? 1,
             productParams: { cageColor: colorOption },
             productLink: pathname,
@@ -54,7 +55,7 @@ export default function CagePlusPage() {
                     description={cages.plus.description}
                 >
                     <p>{tCages(`plus.description.2`)}</p>
-                    <SectionInfoBlock title={tCages("features.title")}>
+                    <SectionInfoBlock title={tCages(`features.title`)}>
                         <List items={cages.plus.features} />
                     </SectionInfoBlock>
 
@@ -75,14 +76,14 @@ export default function CagePlusPage() {
                                 disabled={!quantity || quantity <= 0}
                                 fluid
                             >
-                                {tCommon("product.add_to_cart")}
+                                {tCommon(`product.add_to_cart`)}
                             </Button>
                         </RowWrapper>
                     </OptionsCountBlock>
                 </ProductMainInfo>
             </ProductMain>
             <ProductCharacteristics
-                title={tCommon("product.characteristics_title")}
+                title={tCommon(`product.characteristics_title`)}
                 options={cages.plus.characteristics}
             />
         </ProductPage>

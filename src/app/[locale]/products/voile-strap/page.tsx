@@ -1,5 +1,9 @@
 'use client';
 
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import Button from "@/components/Button/Button";
 import Gallery from "@/components/Gallery/Gallery";
 import InputNumber from "@/components/InputNumber/InputNumber";
@@ -17,18 +21,15 @@ import { useLocale } from "@/providers/I18nProvider";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 export default function VoileStrapPage() {
     const pathname = usePathname();
     const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState<number | undefined>(1);
     const voile = useVoileProductData();
-    const { t: tCommon } = useTranslation('common');
+    const { t: tCommon } = useTranslation(`common`);
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
-    const [currentOption, setCurrentOption] = useState<ProductVoileType>('nine-black');
+    const [currentOption, setCurrentOption] = useState<ProductVoileType>(`nine-black`);
     const selectedOption = voile.skuByOption[currentOption];
     const { addItem } = cartStore();
 
@@ -37,7 +38,7 @@ export default function VoileStrapPage() {
             skuId: selectedOption.skuId,
             quantity: quantity ?? 1,
             imageUrl: voile.images[0],
-            productSection: 'voile',
+            productSection: `voile`,
             productKey: currentOption,
             productParams: {
                 voileType: currentOption,
@@ -68,13 +69,13 @@ export default function VoileStrapPage() {
                                 onClick={addToCart}
                                 disabled={!quantity || quantity <= 0}
                                 fluid
-                            >{tCommon("product.add_to_cart")}</Button>
+                            >{tCommon(`product.add_to_cart`)}</Button>
                         </RowWrapper>
                     </OptionsCountBlock>
                 </ProductMainInfo>
             </ProductMain>
             <ProductCharacteristics
-                title={tCommon("product.characteristics_title")}
+                title={tCommon(`product.characteristics_title`)}
                 options={voile.characteristics.map((item) => (
                     <span className="flex flex-col py-1" key={item.title}>
                         <span className="font-semibold">{item.title}</span>

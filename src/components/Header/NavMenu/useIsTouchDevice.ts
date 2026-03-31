@@ -6,13 +6,13 @@ export function useIsTouchDevice() {
     useEffect(() => {
         const check = () => {
             setIsTouch(
-                "ontouchstart" in window ||
+                `ontouchstart` in window ||
                 navigator.maxTouchPoints > 0
             );
         };
         check();
-        window.addEventListener("resize", check);
-        return () => window.removeEventListener("resize", check);
+        window.addEventListener(`resize`, check);
+        return () => window.removeEventListener(`resize`, check);
     }, []);
 
     return isTouch;

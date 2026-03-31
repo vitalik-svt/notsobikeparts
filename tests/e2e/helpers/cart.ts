@@ -1,7 +1,8 @@
 import { expect, Page } from '@playwright/test';
+
 import type { BoltMaterial, CartItem } from '@/stores/cartStore';
 
-export const locale = 'ru';
+export const locale = `ru`;
 
 export type CartStateSnapshot = {
     totalCount: number;
@@ -21,13 +22,13 @@ const emptyCartStorage = {
 export async function resetCartStorage(page: Page, resetLocale: string = locale) {
     await page.goto(`/${resetLocale}`);
     await page.evaluate((data) => {
-        window.localStorage.setItem('cart-storage', JSON.stringify(data));
+        window.localStorage.setItem(`cart-storage`, JSON.stringify(data));
     }, emptyCartStorage);
 }
 
 export async function readCartSnapshot(page: Page): Promise<CartStateSnapshot> {
     return page.evaluate(() => {
-        const raw = window.localStorage.getItem('cart-storage');
+        const raw = window.localStorage.getItem(`cart-storage`);
 
         if (!raw) {
             return { totalCount: 0, itemsCount: 0 };
@@ -53,7 +54,7 @@ export async function readCartSnapshot(page: Page): Promise<CartStateSnapshot> {
 
 export async function readCartItems(page: Page): Promise<CartItem[]> {
     return page.evaluate(() => {
-        const raw = window.localStorage.getItem('cart-storage');
+        const raw = window.localStorage.getItem(`cart-storage`);
 
         if (!raw) {
             return [];
@@ -78,20 +79,20 @@ export async function expectCartSnapshot(page: Page, expected: CartStateSnapshot
 }
 
 export async function addViaDefaultAddButton(page: Page) {
-    await page.getByRole('button', { name: 'В корзину' }).first().click();
+    await page.getByRole(`button`, { name: `В корзину` }).first().click();
 }
 
 export async function addViaSelectButton(page: Page) {
-    await page.getByRole('button', { name: 'Выбрать' }).first().click();
+    await page.getByRole(`button`, { name: `Выбрать` }).first().click();
 }
 
 export async function addViaSecondSelectButton(page: Page) {
-    await page.getByRole('button', { name: 'Выбрать' }).nth(1).click();
+    await page.getByRole(`button`, { name: `Выбрать` }).nth(1).click();
 }
 
 export async function addViaTopcapsSerialFlow(page: Page) {
-    await page.getByRole('button', { name: 'Выбрать' }).first().click();
-    await page.getByRole('button', { name: 'В корзину' }).first().click();
+    await page.getByRole(`button`, { name: `Выбрать` }).first().click();
+    await page.getByRole(`button`, { name: `В корзину` }).first().click();
 }
 
 export async function setTopcapBoltsMaterial(page: Page, material: BoltMaterial) {
@@ -105,7 +106,7 @@ export async function setTopcapBoltsMaterial(page: Page, material: BoltMaterial)
 }
 
 export async function setTopcapHasBox(page: Page, hasBox: boolean) {
-    const checkbox = page.locator('input[name="hasBox"]').first();
+    const checkbox = page.locator(`input[name="hasBox"]`).first();
 
     await checkbox.evaluate((element, expectedChecked) => {
         const input = element as HTMLInputElement;

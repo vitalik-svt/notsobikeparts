@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect } from "react";
+
 import i18n from "@/i18n/client";
 
 export const I18nContext = createContext<string | undefined>(undefined);

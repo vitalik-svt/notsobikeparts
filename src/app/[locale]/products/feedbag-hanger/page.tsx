@@ -1,5 +1,9 @@
 'use client';
 
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import Button from "@/components/Button/Button";
 import Gallery from "@/components/Gallery/Gallery";
 import InputNumber from "@/components/InputNumber/InputNumber";
@@ -13,17 +17,14 @@ import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { useFeedbagHangerData } from "@/hooks/useFeedbagHangerData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 export default function FeedbagHangerPage() {
     const pathname = usePathname();
     const { setNotification } = useNotifications();
     const [quantity, setQuantity] = useState<number | undefined>(1);
     const { addItem } = cartStore();
-    const { t: tCommon } = useTranslation('common');
-    const { t: tFeedbagHanger } = useTranslation('feedbagHanger');
+    const { t: tCommon } = useTranslation(`common`);
+    const { t: tFeedbagHanger } = useTranslation(`feedbagHanger`);
     const feedbagHangerData = useFeedbagHangerData();
 
     const addToCart = () => {
@@ -47,7 +48,7 @@ export default function FeedbagHangerPage() {
                     price={feedbagHangerData.price}
                     description={feedbagHangerData.description}
                 >
-                    <SectionInfoBlock title={tFeedbagHanger("features.title")}>
+                    <SectionInfoBlock title={tFeedbagHanger(`features.title`)}>
                         <List items={feedbagHangerData.features} />
                     </SectionInfoBlock>
 
@@ -59,7 +60,7 @@ export default function FeedbagHangerPage() {
                                 disabled={!quantity || quantity <= 0}
                                 fluid
                             >
-                                {tCommon("product.add_to_cart")}
+                                {tCommon(`product.add_to_cart`)}
                             </Button>
                         </RowWrapper>
                     </OptionsCountBlock>

@@ -1,8 +1,10 @@
-import { MenuItem } from '@/types/menu';
-import NavMenuItem from './Menu/NavMenuItem/NavMenuItem';
 import { useState } from 'react';
-import { useIsTouchDevice } from './useIsTouchDevice';
+
 import { useClickOutside } from '@/hooks/useClickOutside';
+import { MenuItem } from '@/types/menu';
+
+import NavMenuItem from './Menu/NavMenuItem/NavMenuItem';
+import { useIsTouchDevice } from './useIsTouchDevice';
 
 interface Props {
     items: MenuItem[];

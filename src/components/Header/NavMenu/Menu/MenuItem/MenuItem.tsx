@@ -1,10 +1,11 @@
 'use client';
 
+import Image from "next/image";
+import Link from "next/link";
+
 import { cartStore } from "@/stores/cartStore";
 import { menuStore } from "@/stores/menuStore";
 import { MenuItem } from "@/types/menu";
-import Image from "next/image";
-import Link from "next/link";
 
 interface Props {
     item: MenuItem;
@@ -36,7 +37,7 @@ export default function MenuItemControl({ item, collapsed, onClick, labelClassNa
             <span className={`block w-full text-left ps-5 py-2 hover:text-gray-500 md:ps-10 ${labelClassName}`}>{item.label}</span>
             <span className="flex items-center border-s shrink-0 px-4 md:!border-0">
                 <Image
-                    className={`transition-transform ${collapsed ? "rotate-180" : ""} md:group-hover:rotate-180`}
+                    className={`transition-transform ${collapsed ? `rotate-180` : ``} md:group-hover:rotate-180`}
                     src="/icons/arrow-down.webp"
                     alt="Icon"
                     width={28}

@@ -1,15 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import Logo from "./Logo/Logo";
-import NavMenu from "./NavMenu/NavMenu";
-import { ROUTES } from "@/constants/routes";
-import { useEffect } from "react";
-import BurgerButton from "./BurgerButton/BurgerButton";
-import { useHeaderMenuOptions } from "./useHeaderMenuOptions";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+
+import { ROUTES } from "@/constants/routes";
 import { menuStore } from "@/stores/menuStore";
 import { Locales } from "@/types/locales";
+
+import BurgerButton from "./BurgerButton/BurgerButton";
+import Logo from "./Logo/Logo";
+import NavMenu from "./NavMenu/NavMenu";
+import { useHeaderMenuOptions } from "./useHeaderMenuOptions";
 
 export default function Header({ locale }: { locale: Locales }) {
     const { menuOpen, setMenuOpen } = menuStore();
@@ -32,7 +34,7 @@ export default function Header({ locale }: { locale: Locales }) {
                 onClick={() => setMenuOpen(!menuOpen)}
             />
             <NavMenu
-                classNames={`${menuOpen ? 'block z-1' : 'hidden'} md:block`}
+                classNames={`${menuOpen ? `block z-1` : `hidden`} md:block`}
                 items={menuOptions}
             />
         </header>

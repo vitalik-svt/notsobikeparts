@@ -1,8 +1,10 @@
-import Link from "next/link";
 import Image from "next/image";
-import { MenuItem } from "@/types/menu";
-import { useIsTouchDevice } from "../../../useIsTouchDevice";
+import Link from "next/link";
+
 import { menuStore } from "@/stores/menuStore";
+import { MenuItem } from "@/types/menu";
+
+import { useIsTouchDevice } from "../../../useIsTouchDevice";
 
 interface Props {
     subitem: MenuItem;
@@ -26,10 +28,10 @@ export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
             className={`group/sub text-lg md:w-[25%] ${subitem.submenu
                 ? isTouch
                     ? isOpen
-                        ? "md:pb-65"
-                        : ""
-                    : "md:hover:pb-65"
-                : ""
+                        ? `md:pb-65`
+                        : ``
+                    : `md:hover:pb-65`
+                : ``
                 }`}
         >
             {!subitem.submenu ? (
@@ -43,7 +45,7 @@ export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
             ) : (
                 <>
                     <button
-                        className={`flex justify-between items-stretch lowercase w-full ${isOpen ? "border-b" : ""} md:border-0 relative before:absolute before:top-0 before:left-0 before:w-5 before:h-full before:bg-black before:content-[''] md:before:hidden md:justify-start`}
+                        className={`flex justify-between items-stretch lowercase w-full ${isOpen ? `border-b` : ``} md:border-0 relative before:absolute before:top-0 before:left-0 before:w-5 before:h-full before:bg-black before:content-[''] md:before:hidden md:justify-start`}
                         onClick={onHandleClick}
                     >
                         <span className={`block w-full text-left ps-10 py-2 md:!px-2 md:w-auto`}>
@@ -52,7 +54,7 @@ export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
                         {subitem.submenu && (
                             <span className="flex items-center border-s shrink-0 px-4 md:!border-0 md:px-0">
                                 <Image
-                                    className={`transition-transform ${isTouch ? (isOpen ? "rotate-180" : "") : ""} md:w-[20px] md:h-[20px] md:group-hover/sub:rotate-180`}
+                                    className={`transition-transform ${isTouch ? (isOpen ? `rotate-180` : ``) : ``} md:w-[20px] md:h-[20px] md:group-hover/sub:rotate-180`}
                                     src="/icons/arrow-down.webp"
                                     alt="Icon"
                                     width={28}
@@ -63,7 +65,7 @@ export default function SubMenuitem({ subitem, isOpen, onClick }: Props) {
                     </button>
 
                     <ul
-                        className={`flex-col items-start text-center divide-y md:divide-y-0 md:mt-2 md:flex-row md:absolute md:w-[925px] md:left-5 md:gap-4 ${isTouch ? (isOpen ? "flex" : "hidden") : "hidden md:group-hover/sub:flex"
+                        className={`flex-col items-start text-center divide-y md:divide-y-0 md:mt-2 md:flex-row md:absolute md:w-[925px] md:left-5 md:gap-4 ${isTouch ? (isOpen ? `flex` : `hidden`) : `hidden md:group-hover/sub:flex`
                             }`}
                     >
                         {subitem.submenu?.map(grandchild => (

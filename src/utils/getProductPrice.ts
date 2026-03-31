@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // utils/getProductPrice.ts
-import type { ProductSectionData } from "@/hooks/useProductData";
-import type { CartItem, TopcapParams } from "@/stores/cartStore";
 import type { ProductPriceSettings, ProductVoileType } from "@/constants/productPrices";
+import { SINGLE_PRODUCT_SECTIONS } from "@/constants/singleProductSections";
+import type { ProductSectionData } from "@/hooks/useProductData";
 import { AdditionalPriceOption, TopcapCustomColor, TopcapCustomThickness } from "@/hooks/useTopcapsData";
 import { i18n } from "@/i18n/settings";
+import type { CartItem, TopcapParams } from "@/stores/cartStore";
 import type { Locales } from "@/types/locales";
-import { SINGLE_PRODUCT_SECTIONS } from "@/constants/singleProductSections";
 
 export function getProductPrice(
     productData: ProductSectionData,
@@ -22,13 +22,13 @@ export function getProductPrice(
     }
 
     // Особая логика для voile — цена находится в voile.price[productKey][locale]
-    if (item.productSection === 'voile') {
+    if (item.productSection === `voile`) {
         const voilePrice = (section as any).price?.[item.productKey as ProductVoileType]?.[currentLocale];
         return voilePrice ?? null;
     }
 
     // ItchyAndScratchy: section contains products[] each with its own price
-    if (item.productSection === 'itchyAndScratchy') {
+    if (item.productSection === `itchyAndScratchy`) {
         const sec: any = section;
         if (Array.isArray(sec.products) && sec.products.length > 0) {
             // try find by id/productKey
@@ -73,30 +73,30 @@ export function getProductPrice(
     }
 
     // Логика для topcap (custom и serial) — пересчёт на основе productParams
-    if (item.productSection === 'topcap' && item.productParams) {
-        const additionalOptions = product["additional-price-options"] || [];
+    if (item.productSection === `topcap` && item.productParams) {
+        const additionalOptions = product[`additional-price-options`] || [];
         let total = product.price.amount;
 
         // Титановый болт
-        if (item.productParams.boltsMaterial === 'titanium') {
-            const titaniumOption = additionalOptions.find((opt: AdditionalPriceOption) => opt.type === 'titanium');
+        if (item.productParams.boltsMaterial === `titanium`) {
+            const titaniumOption = additionalOptions.find((opt: AdditionalPriceOption) => opt.type === `titanium`);
             total += titaniumOption?.price.amount || 0;
         }
 
         // Для custom: толщина и цвет
-        if (item.productKey === 'custom') {
+        if (item.productKey === `custom`) {
             const params = item.productParams as TopcapParams & {
                 colorOption?: TopcapCustomColor;
                 customThickness?: TopcapCustomThickness
             };
 
-            if (params.customThickness === 'thick') {
-                const thickOption = additionalOptions.find((opt: AdditionalPriceOption) => opt.type === 'thick');
+            if (params.customThickness === `thick`) {
+                const thickOption = additionalOptions.find((opt: AdditionalPriceOption) => opt.type === `thick`);
                 total += thickOption?.price.amount || 0;
             }
 
-            if (params.colorOption && params.colorOption !== 'black') {
-                const colorOption = additionalOptions.find((opt: AdditionalPriceOption) => opt.type === 'custom-color');
+            if (params.colorOption && params.colorOption !== `black`) {
+                const colorOption = additionalOptions.find((opt: AdditionalPriceOption) => opt.type === `custom-color`);
                 total += colorOption?.price.amount || 0;
             }
         }

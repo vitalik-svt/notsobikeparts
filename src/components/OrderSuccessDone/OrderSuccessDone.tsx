@@ -1,9 +1,10 @@
 'use client';
 
-import { CONTACTS } from '@/constants/contacts';
-import { renderEmailWithLink } from '@/utils/renderEmailWithLink';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
+
+import { CONTACTS } from '@/constants/contacts';
+import { renderEmailWithLink } from '@/utils/renderEmailWithLink';
 
 export default function OrderSuccessDone() {
     const { t } = useTranslation();
@@ -17,8 +18,8 @@ export default function OrderSuccessDone() {
                 height={150}
                 className="mb-4"
             />
-            <h2 className="text-3xl font-bold">{t('success.title')}</h2>
-            <p className="text-center text-lg">{renderEmailWithLink(t("success.description", { email: CONTACTS.EMAIL }), CONTACTS.EMAIL)}</p>
+            <h2 className="text-3xl font-bold">{t(`success.title`)}</h2>
+            <p className="text-center text-lg">{renderEmailWithLink(t(`success.description`, { email: CONTACTS.EMAIL }), CONTACTS.EMAIL)}</p>
         </section>
     );
 }

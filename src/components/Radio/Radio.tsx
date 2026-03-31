@@ -9,7 +9,7 @@ export default function Radio<T extends string | null>({
     options,
     onChange,
     value,
-    name = 'radio',
+    name = `radio`,
 }: Props<T>) {
     return (
         <ul className="flex flex-col gap-2">
@@ -24,7 +24,7 @@ export default function Radio<T extends string | null>({
                             onChange={() => onChange(option.value)}
                         />
                         <span className="w-8 h-8 border-2 rounded-full flex items-center justify-center">
-                            <span className={`w-5 h-5 rounded-full ${value === option.value ? 'bg-black' : 'bg-transparent'} block`} />
+                            <span className={`w-5 h-5 rounded-full ${value === option.value ? `bg-black` : `bg-transparent`} block`} />
                         </span>
 
                         <span>

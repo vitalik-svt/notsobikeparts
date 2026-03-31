@@ -1,5 +1,6 @@
-import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+
 import { i18n } from "./i18n/settings";
 
 const PUBLIC_FILE = /\.(.*)$/;
@@ -8,8 +9,8 @@ export function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;
 
 	if (
-		pathname.startsWith("/_next") ||
-		pathname.startsWith("/api") ||
+		pathname.startsWith(`/_next`) ||
+		pathname.startsWith(`/api`) ||
 		PUBLIC_FILE.test(pathname)
 	) {
 		return;
@@ -25,5 +26,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-	matcher: ["/((?!_next|api|.*\\..*).*)"],
+	matcher: [`/((?!_next|api|.*\\..*).*)`],
 };

@@ -1,20 +1,22 @@
-import ProductPrice from '@/components/ProductPrice/ProductPrice';
-import { ProductPriceSettings } from '@/constants/productPrices';
 import Image from 'next/image';
-import ProductTitle from '../../ProductTitle/ProductTitle';
+import { usePathname } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import useFormattedPrice from '@/hooks/useFormattedPrice';
-import Checkbox from '@/components/Checkbox/Checkbox';
-import Button from '@/components/Button/Button';
-import { formatPrice } from '@/utils/formatPrice';
-import CardNavButton from './CardNavButton/CardNavButton';
-import { useKeyPress } from '@/hooks/useKeyPress';
-import { cartStore, TopcapParams } from '@/stores/cartStore';
-import { AdditionalPriceOption } from '@/hooks/useTopcapsData';
+
 import { BoltParamsControl } from '@/components/BoltParamsControl/BoltParamsControl';
+import Button from '@/components/Button/Button';
+import Checkbox from '@/components/Checkbox/Checkbox';
+import ProductPrice from '@/components/ProductPrice/ProductPrice';
+import { ProductPriceSettings } from '@/constants/productPrices';
+import useFormattedPrice from '@/hooks/useFormattedPrice';
+import { useKeyPress } from '@/hooks/useKeyPress';
+import { AdditionalPriceOption } from '@/hooks/useTopcapsData';
 import { useNotifications } from '@/providers/NotificationsProvider';
-import { usePathname } from 'next/navigation';
+import { cartStore, TopcapParams } from '@/stores/cartStore';
+import { formatPrice } from '@/utils/formatPrice';
+
+import ProductTitle from '../../ProductTitle/ProductTitle';
+import CardNavButton from './CardNavButton/CardNavButton';
 
 interface Props {
     imageUrl: string;
@@ -35,23 +37,23 @@ export default function ProductGridCardContent({ imageUrl, price, title, skuId, 
     const { addItem } = cartStore();
     const { setNotification } = useNotifications();
 
-    const titaniumBoltPrice = useFormattedPrice(additionalPriceOptions.find(option => option.type === 'titanium')?.price);
+    const titaniumBoltPrice = useFormattedPrice(additionalPriceOptions.find(option => option.type === `titanium`)?.price);
 
     const [productParams, setProductParams] = useState<TopcapParams>({
-        boltsMaterial: 'none',
+        boltsMaterial: `none`,
         boltColor: null,
         hasBox: false,
     });
 
-    useKeyPress("ArrowLeft", goToPrev);
-    useKeyPress("ArrowRight", goToNext);
+    useKeyPress(`ArrowLeft`, goToPrev);
+    useKeyPress(`ArrowRight`, goToNext);
 
     const getTotalPrice = useCallback(
         () => {
             let total = price.amount;
 
-            if (productParams.boltsMaterial === 'titanium') {
-                total += additionalPriceOptions.find(option => option.type === 'titanium')?.price.amount || 0;
+            if (productParams.boltsMaterial === `titanium`) {
+                total += additionalPriceOptions.find(option => option.type === `titanium`)?.price.amount || 0;
             }
 
             return formatPrice({ amount: total, currency: price.currency, locale: price.locale });
@@ -64,7 +66,7 @@ export default function ProductGridCardContent({ imageUrl, price, title, skuId, 
             skuId,
             quantity: 1,
             imageUrl,
-            productSection: 'topcap',
+            productSection: `topcap`,
             productKey: `serial`,
             productLink: pathname,
             productParams
@@ -75,12 +77,12 @@ export default function ProductGridCardContent({ imageUrl, price, title, skuId, 
     }
 
     const onSetProductParams = (params: Partial<TopcapParams>) => {
-        const hasBoltsMaterialValue = 'boltsMaterial' in params && params.boltsMaterial !== undefined;
+        const hasBoltsMaterialValue = `boltsMaterial` in params && params.boltsMaterial !== undefined;
 
         setProductParams(prev => {
             // If boltsMaterial is being set to something other than 'none' and boltColor is null, set boltColor to 'black'
-            if (hasBoltsMaterialValue && params.boltsMaterial !== 'none' && prev.boltColor === null) {
-                return { ...prev, ...params, boltColor: 'black' };
+            if (hasBoltsMaterialValue && params.boltsMaterial !== `none` && prev.boltColor === null) {
+                return { ...prev, ...params, boltColor: `black` };
             }
             return { ...prev, ...params };
         });
@@ -114,21 +116,21 @@ export default function ProductGridCardContent({ imageUrl, price, title, skuId, 
                             checked={productParams.hasBox}
                             onChange={(value) => setProductParams({ ...productParams, hasBox: value })}
                             name="hasBox"
-                            label={tCommon('product.topcap.option.box.label')}
-                            subtext={tCommon('product.topcap.option.box.description')}
+                            label={tCommon(`product.topcap.option.box.label`)}
+                            subtext={tCommon(`product.topcap.option.box.description`)}
                         />
                     </div>
                 </div>
 
                 <div className='flex gap-4 items-center lg:gap-10 2xl:gap-20'>
                     <p className='flex flex-col text-xl leading-none flex-shrink-0 xl:flex-row lg:gap-2'>
-                        <span>{tCommon('product.total')}</span>
+                        <span>{tCommon(`product.total`)}</span>
                         <span className='font-bold'>{getTotalPrice()}</span>
                     </p>
                     <Button
                         onClick={addToCart}
                         fluid>
-                        {tCommon('product.add_to_cart')}
+                        {tCommon(`product.add_to_cart`)}
                     </Button>
                 </div>
             </div>

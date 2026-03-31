@@ -1,20 +1,21 @@
 import { z } from 'zod';
-import { productPrices, ProductCageType, ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
-import { ProductKey, ProductParams } from '@/stores/cartStore';
-import { ProductSection } from '@/types/productSection';
-import { Locales } from '@/types/locales';
 
-const PRODUCT_SECTIONS: ProductSection[] = ['cage', 'topcap', 'voile', 'itchyAndScratchy', 'feedbagHanger', 'merch', 'chainBreaker'];
-const PRODUCT_KEYS: ProductKey[] = ['front', 'little', 'volume', 'plus', 'serial', 'custom', 'nine-black', 'twelve-black', 'twenty-black-w-logo', 'twenty-five-black-w-logo', 'one-price'];
-const LOCALES: Locales[] = ['ru', 'en'];
-const CAGE_KEYS: ProductCageType[] = ['front', 'little', 'volume', 'plus'];
-const VOILE_KEYS: ProductVoileType[] = ['nine-black', 'twelve-black', 'twenty-black-w-logo', 'twenty-five-black-w-logo'];
-const TOPCAP_COLOR_OPTIONS = ['black', 'aluminum', 'red', 'blue', 'green', 'purple', 'gold'] as const;
-const TOPCAP_THICKNESS = ['thin', 'thick'] as const;
-const BOLT_MATERIALS = ['none', 'titanium', 'steel'] as const;
-const BOLT_COLORS = ['black', 'light'] as const;
-const ITCHY_COATINGS = ['anodized', 'powder'] as const;
-const CAGE_COLORS = ['black', 'aluminum', 'transparent', 'light-green', 'light-brown'] as const;
+import { ProductCageType, productPrices, ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
+import { ProductKey, ProductParams } from '@/stores/cartStore';
+import { Locales } from '@/types/locales';
+import { ProductSection } from '@/types/productSection';
+
+const PRODUCT_SECTIONS: ProductSection[] = [`cage`, `topcap`, `voile`, `itchyAndScratchy`, `feedbagHanger`, `merch`, `chainBreaker`];
+const PRODUCT_KEYS: ProductKey[] = [`front`, `little`, `volume`, `plus`, `serial`, `custom`, `nine-black`, `twelve-black`, `twenty-black-w-logo`, `twenty-five-black-w-logo`, `one-price`];
+const LOCALES: Locales[] = [`ru`, `en`];
+const CAGE_KEYS: ProductCageType[] = [`front`, `little`, `volume`, `plus`];
+const VOILE_KEYS: ProductVoileType[] = [`nine-black`, `twelve-black`, `twenty-black-w-logo`, `twenty-five-black-w-logo`];
+const TOPCAP_COLOR_OPTIONS = [`black`, `aluminum`, `red`, `blue`, `green`, `purple`, `gold`] as const;
+const TOPCAP_THICKNESS = [`thin`, `thick`] as const;
+const BOLT_MATERIALS = [`none`, `titanium`, `steel`] as const;
+const BOLT_COLORS = [`black`, `light`] as const;
+const ITCHY_COATINGS = [`anodized`, `powder`] as const;
+const CAGE_COLORS = [`black`, `aluminum`, `transparent`, `light-green`, `light-brown`] as const;
 
 export const productParamsSchema = z.object({
   boltsMaterial: z.enum(BOLT_MATERIALS).optional(),
@@ -36,7 +37,7 @@ export const orderRequestItemSchema = z.object({
 });
 
 export const orderRequestSchema = z.object({
-  locale: z.enum(LOCALES).default('ru'),
+  locale: z.enum(LOCALES).default(`ru`),
   userFormData: z.object({
     name: z.string().min(1),
     email: z.string().email(),
@@ -49,7 +50,7 @@ export const orderRequestSchema = z.object({
 });
 
 export type ParsedOrderRequest = z.infer<typeof orderRequestSchema>;
-export type ParsedOrderItem = ParsedOrderRequest['items'][number];
+export type ParsedOrderItem = ParsedOrderRequest[`items`][number];
 
 export interface OrderRequestItem {
   skuId?: string;
@@ -67,7 +68,7 @@ export function isProductKey(value: string): value is ProductKey {
   return PRODUCT_KEYS.includes(value as ProductKey);
 }
 
-export function parseOrderIdentity(item: OrderRequestItem): (Pick<OrderRequestItem, 'skuId'> & { productSection: ProductSection; productKey: ProductKey }) | null {
+export function parseOrderIdentity(item: OrderRequestItem): (Pick<OrderRequestItem, `skuId`> & { productSection: ProductSection; productKey: ProductKey }) | null {
   if (!isProductSection(item.productSection) || !isProductKey(item.productKey)) {
     return null;
   }
@@ -94,7 +95,7 @@ export function getServerPrice(item: ParsedOrderItem, locale: Locales): ProductP
     return null;
   }
 
-  if (identity.productSection === 'cage') {
+  if (identity.productSection === `cage`) {
     if (!isCageKey(identity.productKey)) {
       return null;
     }
@@ -102,7 +103,7 @@ export function getServerPrice(item: ParsedOrderItem, locale: Locales): ProductP
     return productPrices.cages[identity.productKey][locale];
   }
 
-  if (identity.productSection === 'voile') {
+  if (identity.productSection === `voile`) {
     const key = item.productParams?.voileType ?? identity.productKey;
 
     if (!isVoileKey(key)) {
@@ -112,49 +113,49 @@ export function getServerPrice(item: ParsedOrderItem, locale: Locales): ProductP
     return productPrices.voile[key][locale];
   }
 
-  if (identity.productSection === 'feedbagHanger') {
-    return productPrices.feedbagHanger['one-price'][locale];
+  if (identity.productSection === `feedbagHanger`) {
+    return productPrices.feedbagHanger[`one-price`][locale];
   }
 
-  if (identity.productSection === 'merch') {
-    return productPrices.merch['one-price'][locale];
+  if (identity.productSection === `merch`) {
+    return productPrices.merch[`one-price`][locale];
   }
 
-  if (identity.productSection === 'chainBreaker') {
-    return productPrices.chainBreaker['one-price'][locale];
+  if (identity.productSection === `chainBreaker`) {
+    return productPrices.chainBreaker[`one-price`][locale];
   }
 
-  if (identity.productSection === 'itchyAndScratchy') {
+  if (identity.productSection === `itchyAndScratchy`) {
     const paintedType = item.productParams?.paintedType;
 
     if (!paintedType) {
       return null;
     }
 
-    const itchyKey = paintedType === 'powder' ? 'plus-powder' : 'plus-anodized';
+    const itchyKey = paintedType === `powder` ? `plus-powder` : `plus-anodized`;
 
     return productPrices.itchyAndScratchy[itchyKey][locale];
   }
 
-  if (identity.productSection !== 'topcap') {
+  if (identity.productSection !== `topcap`) {
     return null;
   }
 
-  const basePrice = productPrices.topcaps[identity.productKey === 'custom' ? 'custom' : 'serial'][locale];
+  const basePrice = productPrices.topcaps[identity.productKey === `custom` ? `custom` : `serial`][locale];
   const params = item.productParams;
   let amount = basePrice.amount;
 
-  if (params?.boltsMaterial === 'titanium') {
-    amount += productPrices.topcaps['titanium-bolt'][locale].amount;
+  if (params?.boltsMaterial === `titanium`) {
+    amount += productPrices.topcaps[`titanium-bolt`][locale].amount;
   }
 
-  if (identity.productKey === 'custom') {
-    if (params?.customThickness === 'thick') {
+  if (identity.productKey === `custom`) {
+    if (params?.customThickness === `thick`) {
       amount += productPrices.topcaps.thick[locale].amount;
     }
 
-    if (params?.colorOption && params.colorOption !== 'black') {
-      amount += productPrices.topcaps['custom-color'][locale].amount;
+    if (params?.colorOption && params.colorOption !== `black`) {
+      amount += productPrices.topcaps[`custom-color`][locale].amount;
     }
   }
 

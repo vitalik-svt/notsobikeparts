@@ -11,10 +11,10 @@ const InputNumber: FC<Props> = ({ value, onChange }) => (
         min={0}
         step={1}
         inputMode="numeric"
-        value={value ?? ''}
+        value={value ?? ``}
         onChange={(e) => {
             const v = e.target.value;
-            if (v === '') {
+            if (v === ``) {
                 onChange(undefined); 
                 return;
             }

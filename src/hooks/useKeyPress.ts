@@ -13,8 +13,8 @@ export function useKeyPress(targetKey: string, callback: () => void) {
             }
         }
 
-        window.addEventListener("keydown", handleKeyDown);
+        window.addEventListener(`keydown`, handleKeyDown);
 
-        return () => window.removeEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener(`keydown`, handleKeyDown);
     }, [targetKey]);
 }

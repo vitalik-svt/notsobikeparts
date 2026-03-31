@@ -1,7 +1,9 @@
-import ProductPrice from "../../../ProductPrice/ProductPrice";
 import { ReactNode } from "react";
-import { ProductPriceSettings } from "@/constants/productPrices";
+
 import ProductTitle from "@/components/ProductGrid/ProductTitle/ProductTitle";
+import { ProductPriceSettings } from "@/constants/productPrices";
+
+import ProductPrice from "../../../ProductPrice/ProductPrice";
 
 interface Props {
     title: string;

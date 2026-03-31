@@ -1,8 +1,10 @@
-import { BoltColor, BoltMaterial } from "@/stores/cartStore";
-import SegmentedControl from "../SegmentedControl/SegmentedControl";
 import { useTranslation } from "react-i18next";
-import Subtext from "../Subtext/Subtext";
+
+import { BoltColor, BoltMaterial } from "@/stores/cartStore";
+
 import Radio from "../Radio/Radio";
+import SegmentedControl from "../SegmentedControl/SegmentedControl";
+import Subtext from "../Subtext/Subtext";
 
 type BoltParamsUpdate =
   | { boltsMaterial: BoltMaterial }
@@ -19,14 +21,14 @@ export const BoltParamsControl = ({ boltPrice, boltsMaterial, boltColor, setProd
     const { t } = useTranslation();
     
     const options: { label: string; value: BoltMaterial }[] = [
-        { label: t(`product.topcap.option.none`), value: 'none' },
-        { label: `${t(`product.topcap.option.titanium`)} (+${boltPrice})`, value: 'titanium' },
-        { label: t(`product.topcap.option.steel`), value: 'steel' },
+        { label: t(`product.topcap.option.none`), value: `none` },
+        { label: `${t(`product.topcap.option.titanium`)} (+${boltPrice})`, value: `titanium` },
+        { label: t(`product.topcap.option.steel`), value: `steel` },
     ];
 
     const radioOptions: { label: string; value: BoltColor }[] = [
-        { label: t('product.topcap.bolt.color.black'), value: 'black' },
-        { label: t('product.topcap.bolt.color.light'), value: 'light' },
+        { label: t(`product.topcap.bolt.color.black`), value: `black` },
+        { label: t(`product.topcap.bolt.color.light`), value: `light` },
     ];
 
     return (
@@ -37,8 +39,8 @@ export const BoltParamsControl = ({ boltPrice, boltsMaterial, boltColor, setProd
                 value={boltsMaterial}
             />
 
-            {boltsMaterial === 'none' ? (
-                <Subtext>{t('product.topcap.annotation')}</Subtext>
+            {boltsMaterial === `none` ? (
+                <Subtext>{t(`product.topcap.annotation`)}</Subtext>
             ) : (
                 <div className='pt-1 pb-3 xl:pt-2 xl:pb-4'>
                     <Radio

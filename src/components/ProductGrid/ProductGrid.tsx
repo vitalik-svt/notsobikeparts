@@ -1,13 +1,15 @@
 'use client';
 
-import ProductGridCard from "./ProductGridCard/ProductGridCard";
-import SectionInfoBlock from "../SectionInfoBlock/SectionInfoBlock";
+import { useMemo, useRef } from "react";
+
+import { ProductPriceSettings } from "@/constants/productPrices";
+import { AdditionalPriceOption } from "@/hooks/useTopcapsData";
 import { TopcapCategoryItem } from "@/hooks/useTopcapsGridData";
 import { usePopup } from "@/providers/PopupProvider";
+
+import SectionInfoBlock from "../SectionInfoBlock/SectionInfoBlock";
+import ProductGridCard from "./ProductGridCard/ProductGridCard";
 import ProductGridCardContent from "./ProductGridCard/ProductGridCardContent/ProductGridCardContent";
-import { ProductPriceSettings } from "@/constants/productPrices";
-import { useMemo, useRef } from "react";
-import { AdditionalPriceOption } from "@/hooks/useTopcapsData";
 
 interface Props {
     items: TopcapCategoryItem[];
@@ -34,7 +36,7 @@ export default function ProductGrid({ items, price, title, additionalPriceOption
                 ) {
                     window.scrollTo({
                         top: window.scrollY + cardRect.top - 140,
-                        behavior: "smooth",
+                        behavior: `smooth`,
                     });
                 }
             }

@@ -2,7 +2,7 @@
 
 import { CSSProperties, ReactNode } from "react";
 
-type SelectVariant = 'default' | 'text';
+type SelectVariant = `default` | `text`;
 
 interface SelectOptions {
     label: string;
@@ -20,11 +20,11 @@ interface Props {
     fluid?: boolean;
 }
 
-export default function Select({ options, onChange, icon, style, className = "", value, variant = 'default', fluid = false }: Props) {
-    const defaultClassNames = variant === 'default' ? "border-2 w-75 h-12 rounded px-4 lowercase" : "border-0";
+export default function Select({ options, onChange, icon, style, className = ``, value, variant = `default`, fluid = false }: Props) {
+    const defaultClassNames = variant === `default` ? `border-2 w-75 h-12 rounded px-4 lowercase` : `border-0`;
 
     return (
-        <div className={`flex items-center gap-2 ${fluid ? "w-full" : ""}`}>
+        <div className={`flex items-center gap-2 ${fluid ? `w-full` : ``}`}>
             {icon}
             <select
                 style={style}

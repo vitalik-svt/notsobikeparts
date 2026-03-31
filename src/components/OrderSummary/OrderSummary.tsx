@@ -1,11 +1,13 @@
 "use client";
 
-import { cartStore } from "@/stores/cartStore";
-import CartTable from "./CartTable/CartTable";
+import Image from "next/image";
 import { useTranslation } from "react-i18next";
+
+import { cartStore } from "@/stores/cartStore";
+
 import Button from "../Button/Button";
 import TotalPriceWithAction from "../TotalPriceWithAction/TotalPriceWithAction";
-import Image from "next/image";
+import CartTable from "./CartTable/CartTable";
 
 export default function OrderSummary({ onClick }: { onClick: VoidFunction }) {
     const { t } = useTranslation();
@@ -21,19 +23,19 @@ export default function OrderSummary({ onClick }: { onClick: VoidFunction }) {
                     height={70}
                     className="mb-4 opacity-80"
                 />
-                <p className="flex min-h-10 items-center justify-center grow ">{t("cart.empty")}</p>
+                <p className="flex min-h-10 items-center justify-center grow ">{t(`cart.empty`)}</p>
             </div>
         );
     }
 
     return (
         <section>
-            <h2 className="text-2xl font-bold mb-5">{t("cart.title.order")}</h2>
+            <h2 className="text-2xl font-bold mb-5">{t(`cart.title.order`)}</h2>
             <CartTable items={items} />
             <TotalPriceWithAction
                 className="md:w-4/12"
                 items={items}
-                actionButton={<Button onClick={onClick} fluid>{t("cart.checkout")}</Button>}
+                actionButton={<Button onClick={onClick} fluid>{t(`cart.checkout`)}</Button>}
             />
         </section>
     );

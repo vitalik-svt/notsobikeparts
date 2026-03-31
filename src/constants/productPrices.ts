@@ -1,10 +1,10 @@
 import { Locales } from '@/types/locales';
 
-export type ProductCageType = 'front' | 'little' | 'volume' | 'plus';
-export type ProductTopcapsType = 'serial' | 'custom' | 'titanium-bolt' | 'custom-color' | 'thick' | 'steel-bolt' | 'none-bolt' | 'box';
-export type ProductVoileType = 'nine-black' | 'twelve-black' | 'twenty-black-w-logo' | 'twenty-five-black-w-logo';
-export type ProductWithOnePrice = 'one-price';
-export type ProductItchyAndScratchyType = 'plus-anodized' | 'plus-powder';
+export type ProductCageType = `front` | `little` | `volume` | `plus`;
+export type ProductTopcapsType = `serial` | `custom` | `titanium-bolt` | `custom-color` | `thick` | `steel-bolt` | `none-bolt` | `box`;
+export type ProductVoileType = `nine-black` | `twelve-black` | `twenty-black-w-logo` | `twenty-five-black-w-logo`;
+export type ProductWithOnePrice = `one-price`;
+export type ProductItchyAndScratchyType = `plus-anodized` | `plus-powder`;
 
 export interface ProductPriceSettings {
     currency: string;
@@ -72,8 +72,8 @@ const productPriceSettings: RawProductPrices = {
 };
 
 const localeCurrencyMap: Record<Locales, { currency: string; locale: string }> = {
-    ru: { currency: 'RUB', locale: 'ru-RU' },
-    en: { currency: 'USD', locale: 'en-US' },
+    ru: { currency: `RUB`, locale: `ru-RU` },
+    en: { currency: `USD`, locale: `en-US` },
 };
 
 function convertProductPriceSettings(settings: typeof productPriceSettings): ProductPrices {
@@ -92,8 +92,8 @@ function convertProductPriceSettings(settings: typeof productPriceSettings): Pro
             Object.entries(section).map(([type, prices]) => [
                 type,
                 {
-                    ru: getSettings(prices.ru, 'ru'),
-                    en: getSettings(prices.en, 'en'),
+                    ru: getSettings(prices.ru, `ru`),
+                    en: getSettings(prices.en, `en`),
                 },
             ])
         ) as Record<keyof T, Record<Locales, ProductPriceSettings>>;

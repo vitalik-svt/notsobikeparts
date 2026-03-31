@@ -1,5 +1,9 @@
 'use client';
 
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
+
 import { BoltParamsControl } from "@/components/BoltParamsControl/BoltParamsControl";
 import Button from "@/components/Button/Button";
 import Checkbox from "@/components/Checkbox/Checkbox";
@@ -18,12 +22,9 @@ import { useTopcapCustomPrice } from "@/hooks/useTopcapCustomPrice";
 import { TopcapCustomColor, TopcapCustomThickness, useTopcapsData } from "@/hooks/useTopcapsData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore, TopcapParams } from "@/stores/cartStore";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Trans, useTranslation } from "react-i18next";
 
 const createUniqueCustomSkuId = () => {
-    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    if (typeof crypto !== `undefined` && typeof crypto.randomUUID === `function`) {
         return `topcap-custom-${crypto.randomUUID()}`;
     }
 
@@ -41,17 +42,17 @@ export default function TopcapsCustomPage() {
     const { t: tTopcap } = useTranslation(`topcaps`);
     const { addItem } = cartStore();
 
-    const titaniumBoltPrice = useFormattedPrice(topcaps.custom["additional-price-options"].find((option) => option.type === 'titanium')?.price);
+    const titaniumBoltPrice = useFormattedPrice(topcaps.custom[`additional-price-options`].find((option) => option.type === `titanium`)?.price);
 
     const [productParams, setProductParams] = useState<TopcapParams>({
-        boltsMaterial: 'none',
+        boltsMaterial: `none`,
         boltColor: null,
         hasBox: false,
     });
 
     const totalPrice = useTopcapCustomPrice({
         basePrice: topcaps.custom.price,
-        additionalPriceOptions: topcaps.custom["additional-price-options"],
+        additionalPriceOptions: topcaps.custom[`additional-price-options`],
         productParams,
         thickness,
         colorOption,
@@ -62,8 +63,8 @@ export default function TopcapsCustomPage() {
             skuId: createUniqueCustomSkuId(),
             quantity: quantity ?? 1,
             imageUrl: topcaps.custom.images[0],
-            productSection: 'topcap',
-            productKey: 'custom',
+            productSection: `topcap`,
+            productKey: `custom`,
             productParams: {
                 ...productParams,
                 colorOption: colorOption,
@@ -77,11 +78,11 @@ export default function TopcapsCustomPage() {
 
     const onSetProductParams = (params: Partial<TopcapParams>) => {
         setProductParams(prev => {
-            const hasBoltsMaterialValue = 'boltsMaterial' in params && params.boltsMaterial !== undefined;
+            const hasBoltsMaterialValue = `boltsMaterial` in params && params.boltsMaterial !== undefined;
             const nextParams = { ...prev, ...params };
 
-            if (hasBoltsMaterialValue && params.boltsMaterial !== 'none' && prev.boltColor === null) {
-                nextParams.boltColor = 'black';
+            if (hasBoltsMaterialValue && params.boltsMaterial !== `none` && prev.boltColor === null) {
+                nextParams.boltColor = `black`;
             }
 
             return nextParams;
@@ -119,8 +120,8 @@ export default function TopcapsCustomPage() {
                             checked={productParams.hasBox}
                             onChange={(value) => setProductParams({ ...productParams, hasBox: value })}
                             name="hasBox"
-                            label={tCommon('product.topcap.option.box.label')}
-                            subtext={tCommon('product.topcap.option.box.description')}
+                            label={tCommon(`product.topcap.option.box.label`)}
+                            subtext={tCommon(`product.topcap.option.box.description`)}
                         />
                         <RowWrapper>
                             <InputNumber
@@ -132,7 +133,7 @@ export default function TopcapsCustomPage() {
                                 disabled={!quantity || quantity <= 0}
                                 fluid
                             >
-                                {tCommon("product.add_to_cart")}
+                                {tCommon(`product.add_to_cart`)}
                             </Button>
                         </RowWrapper>
                     </OptionsCountBlock>

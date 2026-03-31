@@ -1,11 +1,13 @@
 "use client";
 
+import { useKeenSlider } from "keen-slider/react";
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
-import { useKeenSlider } from "keen-slider/react";
-import NavButton from './NavButton/NavButton';
-import CloseButton from '../CloseButton/CloseButton';
+
 import { useKeyPress } from '@/hooks/useKeyPress';
+
+import CloseButton from '../CloseButton/CloseButton';
+import NavButton from './NavButton/NavButton';
 
 interface Props {
     images: string[];
@@ -26,7 +28,7 @@ export default function Gallery({ images }: Props) {
     const [thumbsRef, thumbsInstanceRef] = useKeenSlider({
         initial: 0,
         slides: { perView: images.length <= 9 ? 9 : images.length },
-        mode: "snap",
+        mode: `snap`,
         rubberband: false,
         loop: true,
     });
@@ -42,11 +44,11 @@ export default function Gallery({ images }: Props) {
             thumbsInstanceRef.current?.update();
         };
 
-        window.addEventListener("resize", handleResize);
+        window.addEventListener(`resize`, handleResize);
 
         return () => {
             cancelAnimationFrame(rafId);
-            window.removeEventListener("resize", handleResize);
+            window.removeEventListener(`resize`, handleResize);
         };
     }, [instanceRef, thumbsInstanceRef]);
 
@@ -57,20 +59,20 @@ export default function Gallery({ images }: Props) {
     };
 
     const mainContentWrapperClasses = isSlideShowModeOn
-        ? "fixed inset-0 bg-black bg-opacity-90 z-50 flex flex-col justify-center items-center p-8"
-        : "w-[568px] max-w-[320px] lg:max-w-none mx-auto";
+        ? `fixed inset-0 bg-black bg-opacity-90 z-50 flex flex-col justify-center items-center p-8`
+        : `w-[568px] max-w-[320px] lg:max-w-none mx-auto`;
 
     const mainSliderClasses = isSlideShowModeOn
-        ? "keen-slider max-h-[90vh] w-auto max-w-none rounded"
-        : "keen-slider h-[368px] w-full max-w-lg shrink-0 bg-gray-700 rounded mx-auto";
+        ? `keen-slider max-h-[90vh] w-auto max-w-none rounded`
+        : `keen-slider h-[368px] w-full max-w-lg shrink-0 bg-gray-700 rounded mx-auto`;
 
     const mainSliderImageClasses = isSlideShowModeOn
-        ? "keen-slider__slide h-full object-contain"
-        : "keen-slider__slide w-[568px] h-full object-cover cursor-zoom-in";
+        ? `keen-slider__slide h-full object-contain`
+        : `keen-slider__slide w-[568px] h-full object-cover cursor-zoom-in`;
 
     const thumbsSliderClasses = isSlideShowModeOn
-        ? "hidden"
-        : "keen-slider mt-4 flex gap-2 justify-center flex-wrap";
+        ? `hidden`
+        : `keen-slider mt-4 flex gap-2 justify-center flex-wrap`;
 
     const openSlideShowMode = () => {
         setIsSlideShowModeOn(true);
@@ -106,9 +108,9 @@ export default function Gallery({ images }: Props) {
         if (isSlideShowModeOn && hasMultipleImages) goToNextSlide();
     }, [isSlideShowModeOn, hasMultipleImages, goToNextSlide]);
 
-    useKeyPress("Escape", handleEscape);
-    useKeyPress("ArrowLeft", handleArrowLeft);
-    useKeyPress("ArrowRight", handleArrowRight);
+    useKeyPress(`Escape`, handleEscape);
+    useKeyPress(`ArrowLeft`, handleArrowLeft);
+    useKeyPress(`ArrowRight`, handleArrowRight);
 
     return (
         <div className={mainContentWrapperClasses}>
@@ -145,7 +147,7 @@ export default function Gallery({ images }: Props) {
                         {images.map((src, idx) => (
                             <button
                                 key={idx}
-                                className={`keen-slider__slide border-2 w-40 ${currentSlide === idx ? "border-black" : "border-transparent opacity-50"} rounded flex-shrink-0`}
+                                className={`keen-slider__slide border-2 w-40 ${currentSlide === idx ? `border-black` : `border-transparent opacity-50`} rounded flex-shrink-0`}
                                 onClick={() => handleThumbClick(idx)}
                                 tabIndex={0}
                                 type="button"
@@ -160,7 +162,7 @@ export default function Gallery({ images }: Props) {
                             </button>
                         ))}
                     </div>
-                    <div className={isSlideShowModeOn ? 'text-white pt-5 text-xl' : 'hidden'}>
+                    <div className={isSlideShowModeOn ? `text-white pt-5 text-xl` : `hidden`}>
                         {currentSlide + 1} / {images.length}
                     </div>
                 </>

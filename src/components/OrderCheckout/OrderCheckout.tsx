@@ -1,22 +1,24 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
+
+import Button from '@/components/Button/Button';
+import { ROUTES } from "@/constants/routes";
+import { useProductData } from "@/hooks/useProductData";
+import { cartStore } from "@/stores/cartStore";
+import { ensureLocale } from "@/utils/ensureLocale";
+import { formatPrice } from "@/utils/formatPrice";
+import { getProductPrice } from "@/utils/getProductPrice";
+import { resolveOrderItemName } from "@/utils/orderItemName";
+
+import TotalPriceWithAction from "../TotalPriceWithAction/TotalPriceWithAction";
 import FormCheckout, { CheckoutForm } from "./FormCheckout/FormCheckout";
 import OrderTableCheckout from "./OrderTableCheckout/OrderTableCheckout";
-import TotalPriceWithAction from "../TotalPriceWithAction/TotalPriceWithAction";
-import { cartStore } from "@/stores/cartStore";
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import Button from '@/components/Button/Button';
-import { useTranslation } from 'react-i18next';
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useProductData } from "@/hooks/useProductData";
-import { getProductPrice } from "@/utils/getProductPrice";
-import { formatPrice } from "@/utils/formatPrice";
-import { resolveOrderItemName } from "@/utils/orderItemName";
-import { useParams, useRouter } from "next/navigation";
-import { ensureLocale } from "@/utils/ensureLocale";
-import { ROUTES } from "@/constants/routes";
 
 export default function OrderCheckout() {
     const { items, userFormData, setUserFormData, finalizeOrder, isHydrated } = cartStore();
@@ -30,7 +32,7 @@ export default function OrderCheckout() {
     const [submitError, setSubmitError] = useState<string | null>(null);
     const isCompletingOrderRef = useRef(false);
     const isSubmittingOrderRef = useRef(false);
-    const checkoutFormId = 'checkout-form';
+    const checkoutFormId = `checkout-form`;
 
     useEffect(() => {
         if (isHydrated && items.length === 0 && !isCompletingOrderRef.current) {
@@ -39,12 +41,12 @@ export default function OrderCheckout() {
     }, [isHydrated, items.length, locale, router]);
 
     const schema = useMemo(() => z.object({
-        name: z.string().min(1, tCommon('form.required')),
-        email: z.email(tCommon('form.email_invalid')),
+        name: z.string().min(1, tCommon(`form.required`)),
+        email: z.email(tCommon(`form.email_invalid`)),
         phone: z.string()
-            .min(1, tCommon('form.required'))
-            .regex(/^\+?[0-9\s\-()]{7,15}$/, tCommon('form.phone_invalid')),
-        deliveryMethod: z.string().min(1, tCommon('form.required')),
+            .min(1, tCommon(`form.required`))
+            .regex(/^\+?[0-9\s\-()]{7,15}$/, tCommon(`form.phone_invalid`)),
+        deliveryMethod: z.string().min(1, tCommon(`form.required`)),
         comment: z.string().optional(),
     }), [tCommon]);
 
@@ -53,13 +55,13 @@ export default function OrderCheckout() {
     const { register, handleSubmit, formState: { errors, isSubmitting }, reset, watch } = useForm<FormData>({
         resolver: zodResolver(schema),
         defaultValues: userFormData || {
-            name: '',
-            email: '',
-            phone: '',
-            deliveryMethod: '',
-            comment: '',
+            name: ``,
+            email: ``,
+            phone: ``,
+            deliveryMethod: ``,
+            comment: ``,
         },
-        mode: 'onTouched',
+        mode: `onTouched`,
     });
 
     useEffect(() => {
@@ -89,7 +91,7 @@ export default function OrderCheckout() {
         });
 
         return () => {
-            if (typeof subscription?.unsubscribe === 'function') {
+            if (typeof subscription?.unsubscribe === `function`) {
                 subscription.unsubscribe();
             }
             if (timer.current) window.clearTimeout(timer.current);
@@ -111,16 +113,16 @@ export default function OrderCheckout() {
                 userFormData: data,
                 items: items.map(item => {
                     const price = getProductPrice(productData, item);
-                    const skuId = item.productSection === 'topcap' && item.productKey === 'custom' ? '' : item.skuId;
+                    const skuId = item.productSection === `topcap` && item.productKey === `custom` ? `` : item.skuId;
 
                     return {
                         ...item,
                         skuId,
                         name: (() => {
-                            const rawSkuName = skuId ? tSkuNames(skuId) : '';
+                            const rawSkuName = skuId ? tSkuNames(skuId) : ``;
                             const skuName = rawSkuName !== skuId ? rawSkuName : undefined;
-                            const rawCustomTopcapName = tTopcaps('topcaps.custom.name');
-                            const fallbackName = item.productSection === 'topcap' && item.productKey === 'custom' && rawCustomTopcapName !== 'topcaps.custom.name'
+                            const rawCustomTopcapName = tTopcaps(`topcaps.custom.name`);
+                            const fallbackName = item.productSection === `topcap` && item.productKey === `custom` && rawCustomTopcapName !== `topcaps.custom.name`
                                 ? rawCustomTopcapName
                                 : undefined;
 
@@ -132,8 +134,8 @@ export default function OrderCheckout() {
                                 fallbackName,
                             });
                         })(),
-                        price: price ? formatPrice(price) : '—',
-                        subtotal: price ? formatPrice({ ...price, amount: price.amount * item.quantity }) : '—',
+                        price: price ? formatPrice(price) : `—`,
+                        subtotal: price ? formatPrice({ ...price, amount: price.amount * item.quantity }) : `—`,
                     };
                 }),
                 totalPrice: (() => {
@@ -144,28 +146,28 @@ export default function OrderCheckout() {
                     const firstPrice = getProductPrice(productData, items[0]);
                     return formatPrice({
                         amount: total,
-                        currency: firstPrice?.currency || 'RUB',
-                        locale: firstPrice?.locale || 'ru-RU'
+                        currency: firstPrice?.currency || `RUB`,
+                        locale: firstPrice?.locale || `ru-RU`
                     });
                 })(),
             };
 
-            console.log('Отправка заказа:', orderData);
+            console.log(`Отправка заказа:`, orderData);
 
             // Отправка на API endpoint
-            const response = await fetch('/api/send-order', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+            const response = await fetch(`/api/send-order`, {
+                method: `POST`,
+                headers: { 'Content-Type': `application/json` },
                 body: JSON.stringify(orderData),
             });
 
             const result = await response.json();
 
             if (!response.ok) {
-                throw new Error(result.details || result.error || 'Failed to send order');
+                throw new Error(result.details || result.error || `Failed to send order`);
             }
 
-            console.log('Заказ успешно отправлен:', result);
+            console.log(`Заказ успешно отправлен:`, result);
 
             // Успех - очищаем корзину и переходим на страницу thank you.
             isCompletingOrderRef.current = true;
@@ -173,11 +175,11 @@ export default function OrderCheckout() {
             router.replace(`/${locale}${ROUTES.THANKYOU}`);
 
         } catch (error) {
-            console.error('Ошибка отправки заказа:', error);
+            console.error(`Ошибка отправки заказа:`, error);
             setSubmitError(
                 error instanceof Error
                     ? error.message
-                    : tCommon('cart.error_sending_order') || 'Failed to send order'
+                    : tCommon(`cart.error_sending_order`) || `Failed to send order`
             );
         } finally {
             isSubmittingOrderRef.current = false;
@@ -193,7 +195,7 @@ export default function OrderCheckout() {
         <>
             <div className="flex flex-col gap-10 md:flex-row md:gap-10">
                 <section className="md:w-full">
-                    <h2 className="text-2xl font-bold mb-4 md:mb-10">{tCommon("cart.title.details")}</h2>
+                    <h2 className="text-2xl font-bold mb-4 md:mb-10">{tCommon(`cart.title.details`)}</h2>
                     <FormCheckout
                         onSubmit={onSubmit}
                         register={register}
@@ -204,7 +206,7 @@ export default function OrderCheckout() {
                 </section>
 
                 <section className="md:w-full">
-                    <h2 className="text-2xl font-bold mb-4">{tCommon("cart.title.order")}</h2>
+                    <h2 className="text-2xl font-bold mb-4">{tCommon(`cart.title.order`)}</h2>
                     <OrderTableCheckout items={items} />
                 </section>
             </div>
@@ -233,7 +235,7 @@ export default function OrderCheckout() {
                                 variant="secondary"
                                 fluid
                             >
-                                {tCommon('cart.edit')}
+                                {tCommon(`cart.edit`)}
                             </Button>
                             <Button
                                 type="submit"
@@ -244,10 +246,10 @@ export default function OrderCheckout() {
                                 {isSubmitting ? (
                                     <>
                                         <span className="inline-block animate-spin mr-2">⏳</span>
-                                        {tCommon('cart.sending')}
+                                        {tCommon(`cart.sending`)}
                                     </>
                                 ) : (
-                                    tCommon('cart.checkout')
+                                    tCommon(`cart.checkout`)
                                 )}
                             </Button>
                         </div>

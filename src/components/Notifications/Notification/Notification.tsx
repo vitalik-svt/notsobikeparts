@@ -43,10 +43,10 @@ export default function Notification({ itemTitle, durationMs }: Props) {
     }, [durationMs]);
 
     const transformClasses = isClosing
-        ? "-translate-y-[120%] opacity-0 duration-500"
+        ? `-translate-y-[120%] opacity-0 duration-500`
         : isVisible
-            ? "translate-x-0 opacity-100 duration-300"
-            : "translate-x-full opacity-0 duration-300";
+            ? `translate-x-0 opacity-100 duration-300`
+            : `translate-x-full opacity-0 duration-300`;
 
     return (
         <article className={`flex gap-3 items-center border-2 px-5 py-4 rounded-sm bg-white relative min-w-[350px] max-w-sm shadow-md overflow-hidden transform transition-all ${transformClasses}`}>

@@ -1,9 +1,9 @@
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 
-export const ORDER_SUCCESS_COOKIE = 'order_success_token';
+export const ORDER_SUCCESS_COOKIE = `order_success_token`;
 
 const TOKEN_TTL_MS = 15 * 60 * 1000;
-const SECRET_FALLBACK = 'dev-only-order-success-secret';
+const SECRET_FALLBACK = `dev-only-order-success-secret`;
 
 function getSecret() {
     const secretFromEnv = process.env.ORDER_SUCCESS_SECRET;
@@ -12,10 +12,10 @@ function getSecret() {
         return secretFromEnv;
     }
 
-    const isProduction = process.env.NODE_ENV === 'production';
+    const isProduction = process.env.NODE_ENV === `production`;
 
     if (isProduction) {
-        throw new Error('ORDER_SUCCESS_SECRET must be set in production');
+        throw new Error(`ORDER_SUCCESS_SECRET must be set in production`);
     }
 
     // In non-production environments, fall back to a fixed, dev-only secret.
@@ -23,7 +23,7 @@ function getSecret() {
 }
 
 function sign(value: string) {
-    return createHmac('sha256', getSecret()).update(value).digest('hex');
+    return createHmac(`sha256`, getSecret()).update(value).digest(`hex`);
 }
 
 function safeEqual(a: string, b: string) {
@@ -40,10 +40,10 @@ function safeEqual(a: string, b: string) {
 export function createOrderSuccessToken() {
     const payload = JSON.stringify({
         ts: Date.now(),
-        nonce: randomBytes(12).toString('hex'),
+        nonce: randomBytes(12).toString(`hex`),
     });
 
-    const encoded = Buffer.from(payload).toString('base64url');
+    const encoded = Buffer.from(payload).toString(`base64url`);
     const signature = sign(encoded);
 
     return `${encoded}.${signature}`;
@@ -54,7 +54,7 @@ export function verifyOrderSuccessToken(token: string | undefined) {
         return false;
     }
 
-    const [encoded, providedSignature] = token.split('.');
+    const [encoded, providedSignature] = token.split(`.`);
 
     if (!encoded || !providedSignature) {
         return false;
@@ -67,7 +67,7 @@ export function verifyOrderSuccessToken(token: string | undefined) {
     }
 
     try {
-        const payloadRaw = Buffer.from(encoded, 'base64url').toString('utf8');
+        const payloadRaw = Buffer.from(encoded, `base64url`).toString(`utf8`);
         const payload = JSON.parse(payloadRaw) as { ts?: number };
 
         if (!payload.ts || Number.isNaN(payload.ts)) {

@@ -1,6 +1,8 @@
-import { MenuItem } from "@/types/menu";
-import SubMenuitem from "./SubMenuitem/SubMenuitem";
 import { useState } from "react";
+
+import { MenuItem } from "@/types/menu";
+
+import SubMenuitem from "./SubMenuitem/SubMenuitem";
 
 
 interface Props {

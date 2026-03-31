@@ -1,9 +1,10 @@
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
 import OrderSuccessDone from '@/components/OrderSuccessDone/OrderSuccessDone';
 import { ROUTES } from '@/constants/routes';
 import { ensureLocale } from '@/utils/ensureLocale';
 import { ORDER_SUCCESS_COOKIE, verifyOrderSuccessToken } from '@/utils/orderSuccessToken';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 interface Props {
     params: Promise<{ locale: string }>;

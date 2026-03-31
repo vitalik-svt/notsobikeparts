@@ -1,5 +1,8 @@
 'use client';
 
+import { usePathname } from "next/navigation";
+import { useTranslation } from "react-i18next";
+
 import Gallery from "@/components/Gallery/Gallery";
 import OptionRow from "@/components/OrderSummary/CartTable/ProductOptionParams/OptionRow/OptionRow";
 import ProductGridCard from "@/components/ProductGrid/ProductGridCard/ProductGridCard";
@@ -11,8 +14,6 @@ import useProductOptionDictionary from "@/hooks/useProductOptionDictionary";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { CageColor, CagePlusColor, cartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
-import { usePathname } from "next/navigation";
-import { useTranslation } from "react-i18next";
 
 export default function ItchyAndScratchyPage() {
     const productLink = usePathname();
@@ -25,8 +26,8 @@ export default function ItchyAndScratchyPage() {
 
 
     const paintedTypeLabel: Record<CoatingType, string> = {
-        anodized: tCages('plus.color.anodized'),
-        powder: tCages('plus.color.painted'),
+        anodized: tCages(`plus.color.anodized`),
+        powder: tCages(`plus.color.painted`),
     };
 
     const addToCart = ({ imageUrl, skuId, productParams }: {
@@ -66,7 +67,7 @@ export default function ItchyAndScratchyPage() {
                 {itchyAndScratchy.products.map((item, index) => (
                     <li key={index}>
                         <ProductGridCard
-                            description={item.description.join(' ')}
+                            description={item.description.join(` `)}
                             url={item.images[0]}
                             skuId={item.skuId}
                             selectProduct={() => addToCart({
@@ -80,10 +81,10 @@ export default function ItchyAndScratchyPage() {
                                     <p className="font-bold">{formatPrice(item.price)}</p>
                                     <div className="lowercase text-sm">
                                         <OptionRow
-                                            label={tCommon("cart.color_label")}
+                                            label={tCommon(`cart.color_label`)}
                                             value={optionDictionary[item.productParams.cageColor]} />
                                         <OptionRow
-                                            label={tCommon("coatingTypeLabel")}
+                                            label={tCommon(`coatingTypeLabel`)}
                                             value={paintedTypeLabel[item.productParams.paintedType]} />
                                     </div>
                                 </>

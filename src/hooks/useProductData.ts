@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CageSettings, useCagesProductData } from "./useCagesProductData";
 import { ProductCageType } from "@/constants/productPrices";
-import { useTopcapsData, UseTopcapsDataResult } from "./useTopcapsData";
-import { useVoileProductData } from "./useVoileProductData";
-import { useFeedbagHangerData } from "./useFeedbagHangerData";
+
+import { CageSettings, useCagesProductData } from "./useCagesProductData";
 import { useChainBreakerData } from "./useChainBreakerData";
+import { useFeedbagHangerData } from "./useFeedbagHangerData";
 import { useItchyAndScratchyData } from "./useItchyAndScratchyData";
 import { useMerchData } from "./useMerchData";
+import { useTopcapsData, UseTopcapsDataResult } from "./useTopcapsData";
+import { useVoileProductData } from "./useVoileProductData";
 
 export type ProductSectionData = {
     cage: Record<ProductCageType, CageSettings>;

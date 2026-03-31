@@ -1,5 +1,9 @@
 'use client';
 
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import Button from "@/components/Button/Button";
 import Gallery from "@/components/Gallery/Gallery";
 import InputNumber from "@/components/InputNumber/InputNumber";
@@ -13,9 +17,6 @@ import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 export default function LittleCagePage() {
     const pathname = usePathname();
@@ -23,7 +24,7 @@ export default function LittleCagePage() {
     const [quantity, setQuantity] = useState<number | undefined>(1);
     const cages = useCagesProductData();
     const { addItem } = cartStore();
-    const { t: tCommon } = useTranslation('common');
+    const { t: tCommon } = useTranslation(`common`);
 
     const addToCart = () => {
         addItem({
@@ -54,14 +55,14 @@ export default function LittleCagePage() {
                                 disabled={!quantity || quantity <= 0}
                                 fluid
                             >
-                                {tCommon("product.add_to_cart")}
+                                {tCommon(`product.add_to_cart`)}
                             </Button>
                         </RowWrapper>
                     </OptionsCountBlock>
                 </ProductMainInfo>
             </ProductMain>
             <ProductCharacteristics
-                title={tCommon("product.characteristics_title")}
+                title={tCommon(`product.characteristics_title`)}
                 options={cages.little.characteristics}
             />
         </ProductPage>

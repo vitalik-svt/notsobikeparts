@@ -1,7 +1,8 @@
 import { expect, test } from '@playwright/test';
+
 import { createOrderSuccessToken, ORDER_SUCCESS_COOKIE } from '@/utils/orderSuccessToken';
 
-const locale = 'ru';
+const locale = `ru`;
 
 type CartStoragePayload = {
     state: {
@@ -27,17 +28,19 @@ type CartStoragePayload = {
     version: number;
 };
 
-async function seedCartStorage(page: import('@playwright/test').Page, payload: CartStoragePayload) {
+// eslint-disable-next-line quotes
+async function seedCartStorage(page: import("@playwright/test").Page, payload: CartStoragePayload) {
     await page.addInitScript((data) => {
-        window.localStorage.setItem('cart-storage', JSON.stringify(data));
+        window.localStorage.setItem(`cart-storage`, JSON.stringify(data));
     }, payload);
 }
 
-function submitOrderButton(page: import('@playwright/test').Page) {
-    return page.locator('button[type="submit"][form="checkout-form"]').first();
+// eslint-disable-next-line quotes
+function submitOrderButton(page: import("@playwright/test").Page) {
+    return page.locator(`button[type="submit"][form="checkout-form"]`).first();
 }
 
-test('checkout with empty cart routes back to cart flow', async ({ page }) => {
+test(`checkout with empty cart routes back to cart flow`, async ({ page }) => {
     await seedCartStorage(page, {
         state: {
             totalCount: 0,
@@ -52,18 +55,18 @@ test('checkout with empty cart routes back to cart flow', async ({ page }) => {
     await expect(page).toHaveURL(new RegExp(`/${locale}/cart$`));
 });
 
-test('direct thankyou access without success cookie redirects to cart', async ({ page }) => {
+test(`direct thankyou access without success cookie redirects to cart`, async ({ page }) => {
     await page.goto(`/${locale}/thankyou`);
     await expect(page).toHaveURL(new RegExp(`/${locale}/cart$`));
 });
 
-test('happy path: submit checkout and open thankyou page', async ({ page }) => {
+test(`happy path: submit checkout and open thankyou page`, async ({ page }) => {
     const token = createOrderSuccessToken();
 
-    await page.route('**/api/send-order', async (route) => {
+    await page.route(`**/api/send-order`, async (route) => {
         await route.fulfill({
             status: 200,
-            contentType: 'application/json',
+            contentType: `application/json`,
             headers: {
                 'set-cookie': `${ORDER_SUCCESS_COOKIE}=${token}; Path=/; HttpOnly; SameSite=Lax`,
             },
@@ -76,19 +79,19 @@ test('happy path: submit checkout and open thankyou page', async ({ page }) => {
             totalCount: 1,
             isHydrated: true,
             userFormData: {
-                name: 'Test User',
-                email: 'test@example.com',
-                phone: '+79990000000',
-                deliveryMethod: 'CDEK',
-                comment: 'autotest',
+                name: `Test User`,
+                email: `test@example.com`,
+                phone: `+79990000000`,
+                deliveryMethod: `CDEK`,
+                comment: `autotest`,
             },
             items: [
                 {
-                    id: 'merch',
+                    id: `merch`,
                     quantity: 1,
-                    imageUrl: '/images/merch/product-pic-1.avif',
-                    productSection: 'merch',
-                    productKey: 'one-price',
+                    imageUrl: `/images/merch/product-pic-1.avif`,
+                    productSection: `merch`,
+                    productKey: `one-price`,
                     productLink: `/${locale}/others/merch`,
                 },
             ],
@@ -103,7 +106,7 @@ test('happy path: submit checkout and open thankyou page', async ({ page }) => {
     await expect(page).toHaveURL(new RegExp(`/${locale}/thankyou$`));
 
     await expect.poll(async () => page.evaluate(() => {
-        const raw = window.localStorage.getItem('cart-storage');
+        const raw = window.localStorage.getItem(`cart-storage`);
 
         if (!raw) {
             return null;
@@ -127,12 +130,12 @@ test('happy path: submit checkout and open thankyou page', async ({ page }) => {
     })).toEqual({ itemsCount: 0, totalCount: 0 });
 });
 
-test('checkout submit with API error shows message and stays on checkout', async ({ page }) => {
-    await page.route('**/api/send-order', async (route) => {
+test(`checkout submit with API error shows message and stays on checkout`, async ({ page }) => {
+    await page.route(`**/api/send-order`, async (route) => {
         await route.fulfill({
             status: 500,
-            contentType: 'application/json',
-            body: JSON.stringify({ error: 'Mock send failure' }),
+            contentType: `application/json`,
+            body: JSON.stringify({ error: `Mock send failure` }),
         });
     });
 
@@ -141,19 +144,19 @@ test('checkout submit with API error shows message and stays on checkout', async
             totalCount: 1,
             isHydrated: true,
             userFormData: {
-                name: 'Test User',
-                email: 'test@example.com',
-                phone: '+79990000000',
-                deliveryMethod: 'CDEK',
-                comment: 'autotest',
+                name: `Test User`,
+                email: `test@example.com`,
+                phone: `+79990000000`,
+                deliveryMethod: `CDEK`,
+                comment: `autotest`,
             },
             items: [
                 {
-                    id: 'merch',
+                    id: `merch`,
                     quantity: 1,
-                    imageUrl: '/images/merch/product-pic-1.avif',
-                    productSection: 'merch',
-                    productKey: 'one-price',
+                    imageUrl: `/images/merch/product-pic-1.avif`,
+                    productSection: `merch`,
+                    productKey: `one-price`,
                     productLink: `/${locale}/others/merch`,
                 },
             ],
@@ -167,14 +170,14 @@ test('checkout submit with API error shows message and stays on checkout', async
     await submitOrderButton(page).click();
 
     await expect(page).toHaveURL(new RegExp(`/${locale}/checkout$`));
-    await expect(page.getByText('Mock send failure')).toBeVisible();
+    await expect(page.getByText(`Mock send failure`)).toBeVisible();
 });
 
-test('successful API response without success cookie cannot keep thankyou access', async ({ page }) => {
-    await page.route('**/api/send-order', async (route) => {
+test(`successful API response without success cookie cannot keep thankyou access`, async ({ page }) => {
+    await page.route(`**/api/send-order`, async (route) => {
         await route.fulfill({
             status: 200,
-            contentType: 'application/json',
+            contentType: `application/json`,
             body: JSON.stringify({ success: true }),
         });
     });
@@ -184,19 +187,19 @@ test('successful API response without success cookie cannot keep thankyou access
             totalCount: 1,
             isHydrated: true,
             userFormData: {
-                name: 'Test User',
-                email: 'test@example.com',
-                phone: '+79990000000',
-                deliveryMethod: 'CDEK',
-                comment: 'autotest',
+                name: `Test User`,
+                email: `test@example.com`,
+                phone: `+79990000000`,
+                deliveryMethod: `CDEK`,
+                comment: `autotest`,
             },
             items: [
                 {
-                    id: 'merch',
+                    id: `merch`,
                     quantity: 1,
-                    imageUrl: '/images/merch/product-pic-1.avif',
-                    productSection: 'merch',
-                    productKey: 'one-price',
+                    imageUrl: `/images/merch/product-pic-1.avif`,
+                    productSection: `merch`,
+                    productKey: `one-price`,
                     productLink: `/${locale}/others/merch`,
                 },
             ],
@@ -211,15 +214,15 @@ test('successful API response without success cookie cannot keep thankyou access
     await expect(page).toHaveURL(new RegExp(`/${locale}/cart$`));
 });
 
-test('double-click submit sends order request only once', async ({ page }) => {
+test(`double-click submit sends order request only once`, async ({ page }) => {
     const token = createOrderSuccessToken();
     let sendOrderCalls = 0;
 
-    await page.route('**/api/send-order', async (route) => {
+    await page.route(`**/api/send-order`, async (route) => {
         sendOrderCalls += 1;
         await route.fulfill({
             status: 200,
-            contentType: 'application/json',
+            contentType: `application/json`,
             headers: {
                 'set-cookie': `${ORDER_SUCCESS_COOKIE}=${token}; Path=/; HttpOnly; SameSite=Lax`,
             },
@@ -232,19 +235,19 @@ test('double-click submit sends order request only once', async ({ page }) => {
             totalCount: 1,
             isHydrated: true,
             userFormData: {
-                name: 'Test User',
-                email: 'test@example.com',
-                phone: '+79990000000',
-                deliveryMethod: 'CDEK',
-                comment: 'autotest',
+                name: `Test User`,
+                email: `test@example.com`,
+                phone: `+79990000000`,
+                deliveryMethod: `CDEK`,
+                comment: `autotest`,
             },
             items: [
                 {
-                    id: 'merch',
+                    id: `merch`,
                     quantity: 1,
-                    imageUrl: '/images/merch/product-pic-1.avif',
-                    productSection: 'merch',
-                    productKey: 'one-price',
+                    imageUrl: `/images/merch/product-pic-1.avif`,
+                    productSection: `merch`,
+                    productKey: `one-price`,
                     productLink: `/${locale}/others/merch`,
                 },
             ],

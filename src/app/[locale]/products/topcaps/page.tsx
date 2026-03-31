@@ -1,5 +1,7 @@
 'use client';
 
+import { Trans, useTranslation } from "react-i18next";
+
 import Gallery from "@/components/Gallery/Gallery";
 import ProductGrid from "@/components/ProductGrid/ProductGrid";
 import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
@@ -8,7 +10,6 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { CONTACTS } from "@/constants/contacts";
 import { useTopcapsData } from "@/hooks/useTopcapsData";
-import { Trans, useTranslation } from "react-i18next";
 
 export default function TopcapsPage() {
     const topcaps = useTopcapsData();
@@ -45,7 +46,7 @@ export default function TopcapsPage() {
                 items={topcaps.serial.items}
                 price={topcaps.serial.price}
                 title={t(`menu.topcap`)}
-                additionalPriceOptions={topcaps.serial["additional-price-options"]}
+                additionalPriceOptions={topcaps.serial[`additional-price-options`]}
             />
         </ProductPage>
     );

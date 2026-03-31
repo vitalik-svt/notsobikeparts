@@ -4,32 +4,32 @@
  * Warehouse names are the actual values in the warehouse JSON (cage-plus.json, etc.).
  */
 
-export type CageUIColor = 'black' | 'aluminum';
-export type CagePlusUIColor = 'black' | 'transparent' | 'light-green' | 'light-brown';
-export type TopcapCustomUIColor = 'black' | 'aluminum' | 'red' | 'blue' | 'green' | 'purple' | 'gold';
+export type CageUIColor = `black` | `aluminum`;
+export type CagePlusUIColor = `black` | `transparent` | `light-green` | `light-brown`;
+export type TopcapCustomUIColor = `black` | `aluminum` | `red` | `blue` | `green` | `purple` | `gold`;
 
-export type WarehouseColor = 'black' | 'silver' | 'green' | 'brown' | 'red' | 'blue' | 'purple' | 'gold';
+export type WarehouseColor = `black` | `silver` | `green` | `brown` | `red` | `blue` | `purple` | `gold`;
 
 export const cageColorToWarehouse: Record<CageUIColor, WarehouseColor> = {
-    'black': 'black',
-    'aluminum': 'silver',
+    'black': `black`,
+    'aluminum': `silver`,
 };
 
 export const cagePlusColorToWarehouse: Record<CagePlusUIColor, WarehouseColor> = {
-    'black': 'black',
-    'transparent': 'silver',
-    'light-green': 'green',
-    'light-brown': 'brown',
+    'black': `black`,
+    'transparent': `silver`,
+    'light-green': `green`,
+    'light-brown': `brown`,
 };
 
 export const topcapCustomColorToWarehouse: Record<TopcapCustomUIColor, WarehouseColor> = {
-    'black': 'black',
-    'aluminum': 'silver',
-    'red': 'red',
-    'blue': 'blue',
-    'green': 'green',
-    'purple': 'purple',
-    'gold': 'gold',
+    'black': `black`,
+    'aluminum': `silver`,
+    'red': `red`,
+    'blue': `blue`,
+    'green': `green`,
+    'purple': `purple`,
+    'gold': `gold`,
 };
 
 /**

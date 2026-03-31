@@ -1,5 +1,9 @@
 'use client';
 
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import Button from "@/components/Button/Button";
 import Gallery from "@/components/Gallery/Gallery";
 import InputNumber from "@/components/InputNumber/InputNumber";
@@ -15,9 +19,6 @@ import Select from "@/components/Select";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { CageColor, cartStore } from "@/stores/cartStore";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 export default function CageVolumePage() {
     const pathname = usePathname();
@@ -26,8 +27,8 @@ export default function CageVolumePage() {
     const cages = useCagesProductData();
     const [colorOption, setColorOption] = useState<CageColor>(cages.volume.colorOptions[0].value as CageColor);
     const selectedColorOption = cages.volume.colorOptionsByValue[colorOption] ?? cages.volume.colorOptions[0];
-    const { t: tCommon } = useTranslation('common');
-    const { t: tCages } = useTranslation('cages');
+    const { t: tCommon } = useTranslation(`common`);
+    const { t: tCages } = useTranslation(`cages`);
     const { addItem } = cartStore();
 
     const addToCart = () => {
@@ -54,8 +55,8 @@ export default function CageVolumePage() {
                     price={cages.volume.price}
                     description={cages.volume.description}
                 >
-                    <p>{tCages("volume.description.2")}</p>
-                    <SectionInfoBlock title={tCages("features.title")}>
+                    <p>{tCages(`volume.description.2`)}</p>
+                    <SectionInfoBlock title={tCages(`features.title`)}>
                         <List items={cages.volume.features} />
                     </SectionInfoBlock>
 
@@ -76,14 +77,14 @@ export default function CageVolumePage() {
                                 disabled={!quantity || quantity <= 0}
                                 fluid
                             >
-                                {tCommon("product.add_to_cart")}
+                                {tCommon(`product.add_to_cart`)}
                             </Button>
                         </RowWrapper>
                     </OptionsCountBlock>
                 </ProductMainInfo>
             </ProductMain>
             <ProductCharacteristics
-                title={tCommon("product.characteristics_title")}
+                title={tCommon(`product.characteristics_title`)}
                 options={cages.volume.characteristics}
             />
         </ProductPage>

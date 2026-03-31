@@ -1,14 +1,15 @@
 'use client';
 
+import { createContext, ReactNode, useContext, useEffect,useState } from "react";
+import { createPortal } from "react-dom";
+
 import CloseButton from "@/components/CloseButton/CloseButton";
 import { useKeyPress } from "@/hooks/useKeyPress";
-import { createContext, useContext, useState, ReactNode, useEffect } from "react";
-import { createPortal } from "react-dom";
 
 function Popup({ children, onClose }: { children: ReactNode; onClose: () => void }) {
     const [mounted, setMounted] = useState(false);
 
-    useKeyPress("Escape", onClose);
+    useKeyPress(`Escape`, onClose);
 
     useEffect(() => {
         setMounted(true);
@@ -42,7 +43,7 @@ const PopupContext = createContext<PopupContextType | undefined>(undefined);
 
 export function usePopup() {
     const ctx = useContext(PopupContext);
-    if (!ctx) throw new Error("usePopup must be used within PopupProvider");
+    if (!ctx) throw new Error(`usePopup must be used within PopupProvider`);
     return ctx;
 }
 

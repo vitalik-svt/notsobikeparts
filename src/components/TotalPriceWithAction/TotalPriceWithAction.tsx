@@ -1,9 +1,10 @@
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+
 import { useProductData } from "@/hooks/useProductData";
 import { CartItem } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
 import { getProductPrice } from "@/utils/getProductPrice";
-import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
 
 interface Props {
     items: CartItem[];
@@ -24,7 +25,7 @@ export default function TotalPriceWithAction({ items, actionButton, className = 
     }, [items, productData]);
 
     const priceForFormatting = useMemo(() => {
-        const fallbackPrice = { amount: 0, currency: "USD", locale: "en-US" };
+        const fallbackPrice = { amount: 0, currency: `USD`, locale: `en-US` };
 
         if (!items[0]) {
             return { ...fallbackPrice, amount: totalPrice };
@@ -42,9 +43,9 @@ export default function TotalPriceWithAction({ items, actionButton, className = 
     return (
         <div className={`flex flex-col gap-2 text-right items-end ms-auto pt-7 ${className}`}>
             <p className="uppercase font-bold">
-                {t("cart.total_price", { priceWithCurrency: formatPrice(priceForFormatting) })}
+                {t(`cart.total_price`, { priceWithCurrency: formatPrice(priceForFormatting) })}
             </p>
-            <p className="max-w-[580px] leading-5 py-2">{t("cart.delivery_cost")}</p>
+            <p className="max-w-[580px] leading-5 py-2">{t(`cart.delivery_cost`)}</p>
             {actionButton}
         </div>
     );

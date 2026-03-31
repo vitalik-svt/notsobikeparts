@@ -1,28 +1,29 @@
-import { initI18n } from "@/i18n";
 import type { Metadata } from "next";
+
+import Footer from "@/components/Footer";
 import Header from "@/components/Header/Header";
 import Main from "@/components/Main";
-import Footer from "@/components/Footer";
-import I18nProvider from "@/providers/I18nProvider";
-import { PopupProvider } from "@/providers/PopupProvider";
-import { NotificationsProvider } from "@/providers/NotificationsProvider";
-import { ensureLocale } from "@/utils/ensureLocale";
+import { initI18n } from "@/i18n";
 import { i18n } from "@/i18n/settings";
+import I18nProvider from "@/providers/I18nProvider";
+import { NotificationsProvider } from "@/providers/NotificationsProvider";
+import { PopupProvider } from "@/providers/PopupProvider";
+import { ensureLocale } from "@/utils/ensureLocale";
 
 export function generateStaticParams() {
     return i18n.locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-    const baseUrl = "https://example.com";
+    const baseUrl = `https://example.com`;
     const { locale } = await params;
 
     return {
-        title: locale === "ru" ? "notsobikeparts | велоаксессуары" : "notsobikeparts | bike accessories",
+        title: locale === `ru` ? `notsobikeparts | велоаксессуары` : `notsobikeparts | bike accessories`,
         description:
-            locale === "ru"
-                ? "Компоненты и аксессуары для велосипедов, туризма и байкпакинга."
-                : "Bike parts and accessories for commuting, touring, and bikepacking.",
+            locale === `ru`
+                ? `Компоненты и аксессуары для велосипедов, туризма и байкпакинга.`
+                : `Bike parts and accessories for commuting, touring, and bikepacking.`,
         alternates: {
             canonical: `${baseUrl}/${locale}`,
             languages: {

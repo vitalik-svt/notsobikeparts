@@ -1,18 +1,20 @@
 'use client';
 
-import InputNumber from "@/components/InputNumber/InputNumber";
-import { CartItem, cartStore, getCartLineKey } from "@/stores/cartStore";
-import { formatPrice } from "@/utils/formatPrice";
 import Image from "next/image";
-import { useTranslation } from "react-i18next";
-import ProductOptionParams from "./ProductOptionParams/ProductOptionParams";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
+
+import InputNumber from "@/components/InputNumber/InputNumber";
 import { useProductData } from "@/hooks/useProductData";
-import { getProductPrice } from "@/utils/getProductPrice";
-import { resolveOrderItemName } from "@/utils/orderItemName";
-import { Locales } from "@/types/locales";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
+import { CartItem, cartStore, getCartLineKey } from "@/stores/cartStore";
+import { Locales } from "@/types/locales";
+import { formatPrice } from "@/utils/formatPrice";
+import { getProductPrice } from "@/utils/getProductPrice";
+import { resolveOrderItemName } from "@/utils/orderItemName";
+
+import ProductOptionParams from "./ProductOptionParams/ProductOptionParams";
 
 interface Props {
     items: CartItem[]
@@ -31,20 +33,20 @@ export default function CartTable({ items }: Props) {
             <thead className="hidden md:table-header-group">
                 <tr>
                     <th className="border-b-2 p-4 w-32"></th>
-                    <th className="border-b-2 p-4 w-full">{tCommon("cart.tablet.product_label")}</th>
-                    <th className="border-b-2 p-4 w-24 lg:w-32">{tCommon("cart.tablet.price_label")}</th>
-                    <th className="border-b-2 p-4 w-32">{tCommon("cart.tablet.quantity_label")}</th>
-                    <th className="border-b-2 p-4 w-24 lg:w-32">{tCommon("cart.tablet.subtotal_label")}</th>
+                    <th className="border-b-2 p-4 w-full">{tCommon(`cart.tablet.product_label`)}</th>
+                    <th className="border-b-2 p-4 w-24 lg:w-32">{tCommon(`cart.tablet.price_label`)}</th>
+                    <th className="border-b-2 p-4 w-32">{tCommon(`cart.tablet.quantity_label`)}</th>
+                    <th className="border-b-2 p-4 w-24 lg:w-32">{tCommon(`cart.tablet.subtotal_label`)}</th>
                     <th className="border-b-2 p-4 w-16"></th>
                 </tr>
             </thead>
             <tbody>
                 {items.map(item => {
                     const price = getProductPrice(productData, item, locale);
-                    const rawSkuName = item.skuId ? tSkuNames(item.skuId) : "";
+                    const rawSkuName = item.skuId ? tSkuNames(item.skuId) : ``;
                     const skuName = rawSkuName !== item.skuId ? rawSkuName : undefined;
-                    const rawCustomTopcapName = tTopcaps("topcaps.custom.name");
-                    const fallbackName = item.productSection === "topcap" && item.productKey === "custom" && rawCustomTopcapName !== "topcaps.custom.name"
+                    const rawCustomTopcapName = tTopcaps(`topcaps.custom.name`);
+                    const fallbackName = item.productSection === `topcap` && item.productKey === `custom` && rawCustomTopcapName !== `topcaps.custom.name`
                         ? rawCustomTopcapName
                         : undefined;
                     const displayName = resolveOrderItemName({
@@ -74,7 +76,7 @@ export default function CartTable({ items }: Props) {
                                 <Link href={item.productLink} aria-label={`${displayName} — открыть товар`} className="block w-full h-full">
                                     <div className="flex flex-col gap-2">
                                         <p className="flex justify-between items-center">
-                                            <span className="font-bold md:hidden">{tCommon("cart.tablet.product_label")}:</span>
+                                            <span className="font-bold md:hidden">{tCommon(`cart.tablet.product_label`)}:</span>
                                             <span>{displayName}</span>
                                         </p>
                                         {item.productParams && <ProductOptionParams productParams={item.productParams} />}
@@ -83,13 +85,13 @@ export default function CartTable({ items }: Props) {
                             </td>
                             <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">
                                 <p className="flex justify-between items-center">
-                                    <span className="font-bold md:hidden">{tCommon("cart.tablet.price_label")}:</span>
-                                    <span>{price ? formatPrice(price) : '—'}</span>
+                                    <span className="font-bold md:hidden">{tCommon(`cart.tablet.price_label`)}:</span>
+                                    <span>{price ? formatPrice(price) : `—`}</span>
                                 </p>
                             </td>
                             <td className="block p-4 border-b md:w-32 md:table-cell md:border-b-2">
                                 <p className="flex justify-between items-center">
-                                    <span className="font-bold md:hidden">{tCommon("cart.tablet.quantity_label")}:</span>
+                                    <span className="font-bold md:hidden">{tCommon(`cart.tablet.quantity_label`)}:</span>
                                     <InputNumber
                                         value={item.quantity}
                                         onChange={(value) => changeQuantity(item, isNaN(Number(value)) ? 0 : Number(value))}
@@ -98,8 +100,8 @@ export default function CartTable({ items }: Props) {
                             </td>
                             <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">
                                 <p className="flex justify-between items-center">
-                                    <span className="font-bold md:hidden">{tCommon("cart.tablet.subtotal_label")}:</span>
-                                    <span>{price ? formatPrice({ ...price, amount: price.amount * item.quantity }) : '—'}</span>
+                                    <span className="font-bold md:hidden">{tCommon(`cart.tablet.subtotal_label`)}:</span>
+                                    <span>{price ? formatPrice({ ...price, amount: price.amount * item.quantity }) : `—`}</span>
                                 </p>
                             </td>
                             <td className="block p-4 border-b-3 md:w-16 md:table-cell md:border-b-2">

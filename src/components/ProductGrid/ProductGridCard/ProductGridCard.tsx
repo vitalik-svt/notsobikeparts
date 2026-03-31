@@ -1,10 +1,12 @@
 'use client';
 
-import Button from '@/components/Button/Button';
 import Image from 'next/image';
-import { useTranslation } from 'react-i18next';
-import SoldOutLabel from './SoldOutLabel/SoldOutLabel';
 import { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import Button from '@/components/Button/Button';
+
+import SoldOutLabel from './SoldOutLabel/SoldOutLabel';
 
 interface Props {
     description: string;
@@ -22,7 +24,7 @@ export default function ProductGridCard({ description, url, skuId, isAvailable, 
 
     return (
         <article className="flex flex-col gap-3 h-full justify-between relative items-center">
-            <div className={`flex flex-col gap-3 w-full${isAvailable ? '' : ' blur-[0.5px] opacity-45'}`}>
+            <div className={`flex flex-col gap-3 w-full${isAvailable ? `` : ` blur-[0.5px] opacity-45`}`}>
                 <Image
                     src={url}
                     alt={tSkuNames(skuId)}
@@ -42,10 +44,10 @@ export default function ProductGridCard({ description, url, skuId, isAvailable, 
                     fluid
                     size="s"
                 >
-                    {tCommon('product.select')}
+                    {tCommon(`product.select`)}
                 </Button>
             ) : (
-                <SoldOutLabel>{tCommon('product.sold_out')}</SoldOutLabel>
+                <SoldOutLabel>{tCommon(`product.sold_out`)}</SoldOutLabel>
             )}
         </article>
     );

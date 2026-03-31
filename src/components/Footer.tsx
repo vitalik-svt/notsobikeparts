@@ -1,13 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import Select from "./Select";
 import Image from "next/image";
-import { CONTACTS } from "@/constants/contacts";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+
+import { CONTACTS } from "@/constants/contacts";
 import { i18n } from "@/i18n/settings";
 import { Locales } from "@/types/locales";
+
+import Select from "./Select";
 
 const year = new Date().getFullYear();
 
@@ -20,7 +22,7 @@ export default function Footer({ locale }: Props) {
     const pathname = usePathname();
     const { t } = useTranslation();
 
-    const localePattern = `^/(${i18n.locales.join("|")})`;
+    const localePattern = `^/(${i18n.locales.join(`|`)})`;
     const localeRegex = new RegExp(localePattern);
 
     const handleChange = (newLocale: string) => {
@@ -33,10 +35,10 @@ export default function Footer({ locale }: Props) {
             <p>notsobikeparts, {year}</p>
             <p className="flex gap-5 items-center">
                 <Link href={CONTACTS.INSTAGRAM} target="_blank" rel="noopener noreferrer">
-                    <Image className="invert-100" src="/icons/insta.webp" alt={t("footer.instagram")} width={28} height={28} />
+                    <Image className="invert-100" src="/icons/insta.webp" alt={t(`footer.instagram`)} width={28} height={28} />
                 </Link>
                 <Link href={`mailto:${CONTACTS.EMAIL}`}>
-                    <Image className="invert-100" src="/icons/email.webp" alt={t("footer.email")} width={36} height={36} />
+                    <Image className="invert-100" src="/icons/email.webp" alt={t(`footer.email`)} width={36} height={36} />
                 </Link>
             </p>
             <Select
@@ -45,8 +47,8 @@ export default function Footer({ locale }: Props) {
                 className="uppercase text-base"
                 onChange={handleChange}
                 options={[
-                    { label: "русский", value: "ru" },
-                    { label: "english", value: "en" },
+                    { label: `русский`, value: `ru` },
+                    { label: `english`, value: `en` },
                 ]}
                 value={locale}
             />

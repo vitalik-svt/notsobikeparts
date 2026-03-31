@@ -1,34 +1,36 @@
 // src/app/api/send-order/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+
 import { formatPrice } from '@/utils/formatPrice';
-import { createOrderSuccessToken, ORDER_SUCCESS_COOKIE } from '@/utils/orderSuccessToken';
 import { resolveOrderItemName } from '@/utils/orderItemName';
+import { createOrderSuccessToken, ORDER_SUCCESS_COOKIE } from '@/utils/orderSuccessToken';
+
+import { getServerPrice, orderRequestSchema, ParsedOrderItem,parseOrderIdentity } from './orderPayload';
 import { loadSkuNamesDictionary, loadTopcapsDictionary } from './skuNames';
-import { getServerPrice, orderRequestSchema, parseOrderIdentity, ParsedOrderItem } from './orderPayload';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 function escapeHtml(value: unknown): string {
-  return String(value ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+  return String(value ?? ``)
+    .replace(/&/g, `&amp;`)
+    .replace(/</g, `&lt;`)
+    .replace(/>/g, `&gt;`)
+    .replace(/"/g, `&quot;`)
+    .replace(/'/g, `&#39;`);
 }
 
 export async function POST(request: NextRequest) {
   try {
     if (!process.env.RESEND_API_KEY) {
       return NextResponse.json(
-        { error: 'RESEND_API_KEY is not set on the server' },
+        { error: `RESEND_API_KEY is not set on the server` },
         { status: 500 }
       );
     }
     if (!process.env.ADMIN_EMAIL) {
       return NextResponse.json(
-        { error: 'ADMIN_EMAIL is not set on the server' },
+        { error: `ADMIN_EMAIL is not set on the server` },
         { status: 500 }
       );
     }
@@ -40,8 +42,8 @@ export async function POST(request: NextRequest) {
     } catch (error) {
       return NextResponse.json(
         {
-          error: 'ORDER_SUCCESS_SECRET is not set on the server',
-          details: error instanceof Error ? error.message : 'Unknown token error',
+          error: `ORDER_SUCCESS_SECRET is not set on the server`,
+          details: error instanceof Error ? error.message : `Unknown token error`,
         },
         { status: 500 }
       );
@@ -53,7 +55,7 @@ export async function POST(request: NextRequest) {
     if (!parsedBody.success) {
       return NextResponse.json(
         {
-          error: 'Invalid request payload',
+          error: `Invalid request payload`,
           details: parsedBody.error.flatten(),
         },
         { status: 400 }
@@ -63,7 +65,7 @@ export async function POST(request: NextRequest) {
     const { userFormData, items, locale } = parsedBody.data;
     if (items.some((item) => parseOrderIdentity(item) === null)) {
       return NextResponse.json(
-        { error: 'Invalid order item identity' },
+        { error: `Invalid order item identity` },
         { status: 400 }
       );
     }
@@ -78,7 +80,7 @@ export async function POST(request: NextRequest) {
         productSection: normalizedItem.productSection,
         productKey: normalizedItem.productKey,
         skuName: normalizedItem.skuId ? skuNamesDictionary[normalizedItem.skuId] : undefined,
-        fallbackName: normalizedItem.productSection === 'topcap' && normalizedItem.productKey === 'custom' ? topcapsDictionary['topcaps.custom.name'] : undefined,
+        fallbackName: normalizedItem.productSection === `topcap` && normalizedItem.productKey === `custom` ? topcapsDictionary[`topcaps.custom.name`] : undefined,
       });
     };
     const pricedItems = items.map((item) => {
@@ -103,7 +105,7 @@ export async function POST(request: NextRequest) {
     });
     if (pricedItems.some((item) => item === null)) {
       return NextResponse.json(
-        { error: 'Invalid order item price configuration' },
+        { error: `Invalid order item price configuration` },
         { status: 400 }
       );
     }
@@ -118,12 +120,12 @@ export async function POST(request: NextRequest) {
     const escapedEmail = escapeHtml(userFormData?.email);
     const escapedPhone = escapeHtml(userFormData?.phone);
     const escapedDeliveryMethod = escapeHtml(userFormData?.deliveryMethod);
-    const escapedComment = userFormData?.comment ? escapeHtml(userFormData.comment) : '';
+    const escapedComment = userFormData?.comment ? escapeHtml(userFormData.comment) : ``;
     const escapedTotalPrice = escapeHtml(formatPrice(totalPriceSettings));
 
     const from =
       process.env.RESEND_FROM ??
-      'notsobikeparts <noreply@notsobikeparts.com>';
+      `notsobikeparts <noreply@notsobikeparts.com>`;
 
     // HTML для таблицы товаров в письме покупателю
     const customerItemsHtml = validPricedItems
@@ -137,14 +139,14 @@ export async function POST(request: NextRequest) {
       </tr>
     `
       )
-      .join('');
+      .join(``);
 
     // HTML для таблицы товаров в письме администратору
     const adminItemsHtml = validPricedItems
       .map(
         (item) => `
       <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(item.skuId || '—')}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(item.skuId || `—`)}</td>
         <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(item.name)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${escapeHtml(item.quantity)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.price)}</td>
@@ -152,7 +154,7 @@ export async function POST(request: NextRequest) {
       </tr>
     `
       )
-      .join('');
+      .join(``);
 
     // Общий HTML блок с деталями заказа для покупателя
     const customerOrderDetailsHtml = `
@@ -180,7 +182,7 @@ export async function POST(request: NextRequest) {
             <td style="padding: 8px; font-weight: bold;">Комментарий:</td>
             <td style="padding: 8px;">${escapedComment}</td>
           </tr>`
-        : ''
+        : ``
       }
         </table>
         
@@ -231,7 +233,7 @@ export async function POST(request: NextRequest) {
             <td style="padding: 8px; font-weight: bold;">Комментарий:</td>
             <td style="padding: 8px;">${escapedComment}</td>
           </tr>`
-        : ''
+        : ``
       }
         </table>
 
@@ -300,12 +302,12 @@ export async function POST(request: NextRequest) {
       from,
       to: userFormData.email,
       replyTo: process.env.ADMIN_EMAIL,
-      subject: 'Подтверждение заказа из notsobikeparts',
+      subject: `Подтверждение заказа из notsobikeparts`,
       html: customerEmailHtml,
     });
     if (customerEmail.error) {
       return NextResponse.json(
-        { error: 'Resend (customer)', details: customerEmail.error },
+        { error: `Resend (customer)`, details: customerEmail.error },
         { status: 502 }
       );
     }
@@ -320,12 +322,12 @@ export async function POST(request: NextRequest) {
     });
     if (adminEmail.error) {
       return NextResponse.json(
-        { error: 'Resend (admin)', details: adminEmail.error },
+        { error: `Resend (admin)`, details: adminEmail.error },
         { status: 502 }
       );
     }
 
-    console.log('Emails sent:', { customerEmail, adminEmail });
+    console.log(`Emails sent:`, { customerEmail, adminEmail });
 
     const response = NextResponse.json({
       success: true,
@@ -335,21 +337,21 @@ export async function POST(request: NextRequest) {
 
     response.cookies.set(ORDER_SUCCESS_COOKIE, orderSuccessToken, {
       httpOnly: true,
-      sameSite: 'lax',
-      secure: process.env.NODE_ENV === 'production',
-      path: '/',
+      sameSite: `lax`,
+      secure: process.env.NODE_ENV === `production`,
+      path: `/`,
       maxAge: 15 * 60,
     });
 
     return response;
 
   } catch (error) {
-    console.error('Email send error:', error);
+    console.error(`Email send error:`, error);
 
     return NextResponse.json(
       {
-        error: 'Failed to send email',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        error: `Failed to send email`,
+        details: error instanceof Error ? error.message : `Unknown error`
       },
       { status: 500 }
     );

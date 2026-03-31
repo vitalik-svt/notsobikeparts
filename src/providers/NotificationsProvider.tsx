@@ -1,7 +1,8 @@
 'use client';
 
-import Notifications from "@/components/Notifications/Notifications";
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
+
+import Notifications from "@/components/Notifications/Notifications";
 
 interface NotificationsContextType {
     setNotification: (content: string) => void;
@@ -15,7 +16,7 @@ export function useNotifications() {
     const ctx = useContext(NotificationsContext);
 
     if (!ctx) {
-        throw new Error("useNotifications must be used within NotificationsProvider");
+        throw new Error(`useNotifications must be used within NotificationsProvider`);
     }
 
     return ctx;

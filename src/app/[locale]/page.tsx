@@ -16,7 +16,7 @@ export default function HomePage() {
 				priority
 			/>
 			<p className="text-center text-lg sm:text-xl max-w-[600px]">
-				{t("main.greeting")}
+				{t(`main.greeting`)}
 			</p>
 		</div>
 	);

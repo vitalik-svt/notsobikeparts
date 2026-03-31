@@ -1,5 +1,9 @@
 'use client';
 
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import Button from "@/components/Button/Button";
 import Gallery from "@/components/Gallery/Gallery";
 import InputNumber from "@/components/InputNumber/InputNumber";
@@ -13,15 +17,12 @@ import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import { useMerchData } from "@/hooks/useMerchData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 export default function MerchPage() {
     const pathname = usePathname();
     const [quantity, setQuantity] = useState<number | undefined>(1);
-    const { t: tCommon } = useTranslation('common');
-    const { t: tMerch } = useTranslation('merch');
+    const { t: tCommon } = useTranslation(`common`);
+    const { t: tMerch } = useTranslation(`merch`);
     const merch = useMerchData();
     const { addItem } = cartStore();
     const { setNotification } = useNotifications();
@@ -48,7 +49,7 @@ export default function MerchPage() {
                     price={merch.price}
                     description={merch.description}
                 >
-                    <SectionInfoBlock title={tMerch("merch.features_title")}>
+                    <SectionInfoBlock title={tMerch(`merch.features_title`)}>
                         <List items={merch.features} />
                     </SectionInfoBlock>
 
@@ -60,7 +61,7 @@ export default function MerchPage() {
                                 disabled={!quantity || quantity <= 0}
                                 fluid
                             >
-                                {tCommon("product.add_to_cart")}
+                                {tCommon(`product.add_to_cart`)}
                             </Button>
                         </RowWrapper>
                     </OptionsCountBlock>

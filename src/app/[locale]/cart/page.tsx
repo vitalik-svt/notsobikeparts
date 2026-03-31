@@ -1,10 +1,11 @@
 'use client';
 
+import { useParams, useRouter } from "next/navigation";
+
 import OrderSummary from "@/components/OrderSummary/OrderSummary";
 import ProductPage from "@/components/ProductPage/ProductPage";
-import { useParams, useRouter } from "next/navigation";
-import { ensureLocale } from "@/utils/ensureLocale";
 import { ROUTES } from "@/constants/routes";
+import { ensureLocale } from "@/utils/ensureLocale";
 
 export default function CartPage() {
     const router = useRouter();

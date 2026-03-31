@@ -1,5 +1,9 @@
 'use client';
 
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import Button from "@/components/Button/Button";
 import Gallery from "@/components/Gallery/Gallery";
 import InputNumber from "@/components/InputNumber/InputNumber";
@@ -16,9 +20,6 @@ import { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { CageColor, cartStore } from "@/stores/cartStore";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 
 export default function FrontCagePage() {
@@ -29,8 +30,8 @@ export default function FrontCagePage() {
 	const [quantity, setQuantity] = useState<number | undefined>(1);
 	const { skuId } = cages.front.colorOptionsByValue[colorOption] ?? cages.front.colorOptions[0];
 	const { addItem } = cartStore();
-	const { t: tCommon } = useTranslation('common');
-	const { t: tCages } = useTranslation('cages');
+	const { t: tCommon } = useTranslation(`common`);
+	const { t: tCages } = useTranslation(`cages`);
 
 	const addToCart = () => {
 		addItem({
@@ -56,7 +57,7 @@ export default function FrontCagePage() {
 					price={cages.front.price as ProductPriceSettings}
 					description={cages.front.description}
 				>
-					<SectionInfoBlock title={tCages("features.title")}>
+					<SectionInfoBlock title={tCages(`features.title`)}>
 						<List items={cages.front.features} />
 					</SectionInfoBlock>
 
@@ -77,14 +78,14 @@ export default function FrontCagePage() {
 								disabled={!quantity || quantity <= 0}
 								fluid
 							>
-								{tCommon("product.add_to_cart")}
+								{tCommon(`product.add_to_cart`)}
 							</Button>
 						</RowWrapper>
 					</OptionsCountBlock>
 				</ProductMainInfo>
 			</ProductMain>
 			<ProductCharacteristics
-				title={tCommon("product.characteristics_title")}
+				title={tCommon(`product.characteristics_title`)}
 				options={cages.front.characteristics}
 			/>
 		</ProductPage>

@@ -1,18 +1,19 @@
+import { create } from 'zustand'
+import { createJSONStorage,persist } from 'zustand/middleware';
+
 import { CheckoutForm } from '@/components/OrderCheckout/FormCheckout/FormCheckout';
 import { ProductCageType, ProductVoileType } from '@/constants/productPrices';
 import { ProductLink } from '@/constants/routes';
 import { ItchyAndScratchyColorMap } from '@/hooks/useItchyAndScratchyData';
 import { TopcapCustomColor, TopcapCustomThickness, TopcapProductKey } from '@/hooks/useTopcapsData';
 import { ProductSection } from '@/types/productSection';
-import { create } from 'zustand'
-import { persist, createJSONStorage } from 'zustand/middleware';
 
 
-export type BoltMaterial = 'none' | 'titanium' | 'steel';
-export type TopcapOptions = 'custom-color' | 'thick';
-export type BoltColor = 'black' | 'light' | null;
-export type CageColor = 'black' | 'aluminum';
-export type CagePlusColor = 'black' | 'transparent' | 'light-green' | 'light-brown';
+export type BoltMaterial = `none` | `titanium` | `steel`;
+export type TopcapOptions = `custom-color` | `thick`;
+export type BoltColor = `black` | `light` | null;
+export type CageColor = `black` | `aluminum`;
+export type CagePlusColor = `black` | `transparent` | `light-green` | `light-brown`;
 
 export interface TopcapParams {
 	boltsMaterial: BoltMaterial;
@@ -40,7 +41,7 @@ export type ProductParams = Partial<
 	TopcapCustomParams &
 	ItchyAndScratchyColorMap
 >;
-export type ProductKey = ProductVoileType | ProductCageType | TopcapProductKey | 'one-price';
+export type ProductKey = ProductVoileType | ProductCageType | TopcapProductKey | `one-price`;
 
 export interface CartItem {
 	skuId: string;
@@ -52,7 +53,7 @@ export interface CartItem {
 	productParams?: ProductParams;
 }
 
-export type CartLineIdentity = Pick<CartItem, 'skuId' | 'productSection' | 'productKey' | 'productParams'>;
+export type CartLineIdentity = Pick<CartItem, `skuId` | `productSection` | `productKey` | `productParams`>;
 
 interface Store {
 	totalCount: number;
@@ -73,7 +74,7 @@ const toParamsKey = (params?: ProductParams) => JSON.stringify(params ?? {});
 export const getCartLineKey = (item: CartLineIdentity) => {
 	const baseKey = `${item.productSection}:${item.productKey}:${toParamsKey(item.productParams)}`;
 
-	if (item.productSection === 'topcap' && item.productKey === 'custom') {
+	if (item.productSection === `topcap` && item.productKey === `custom`) {
 		return baseKey;
 	}
 
@@ -141,7 +142,7 @@ export const cartStore = create<Store>()(
 			userFormData: null,
 		}),
 		{
-			name: 'cart-storage',
+			name: `cart-storage`,
 			storage: createJSONStorage(() => localStorage),
 			onRehydrateStorage: () => (state) => {
 				if (state) {

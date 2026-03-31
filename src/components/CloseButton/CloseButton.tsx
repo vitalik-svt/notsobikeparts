@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 interface Props {
     onClick: VoidFunction;
     withLabel?: boolean;
-    color?: 'white' | 'black';
+    color?: `white` | `black`;
 }
 
 export default function CloseButton({ onClick, withLabel = true, color = `black` }: Props) {
@@ -14,7 +14,7 @@ export default function CloseButton({ onClick, withLabel = true, color = `black`
     return (
         <button
             className={`absolute top-0 right-0 p-5 z-51 cursor-pointer uppercase flex gap-2 items-center ${
-                color === 'black' ? 'text-black' : 'text-white'
+                color === `black` ? `text-black` : `text-white`
             }`}
             onClick={onClick}
             aria-label={t(`product.close_label`)}

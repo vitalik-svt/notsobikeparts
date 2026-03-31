@@ -1,7 +1,9 @@
 import { useMemo } from "react";
-import type { TopcapParams } from "@/stores/cartStore";
-import type { TopcapCustomColor, TopcapCustomThickness } from "./useTopcapsData";
+
 import type { ProductPriceSettings } from "@/constants/productPrices";
+import type { TopcapParams } from "@/stores/cartStore";
+
+import type { TopcapCustomColor, TopcapCustomThickness } from "./useTopcapsData";
 
 interface UseTopcapCustomPriceParams {
     basePrice: ProductPriceSettings;
@@ -21,18 +23,18 @@ export function useTopcapCustomPrice({
     return useMemo(() => {
         let total = basePrice.amount;
 
-        if (productParams.boltsMaterial === 'titanium') {
-            const titaniumOption = additionalPriceOptions.find((option) => option.type === 'titanium');
+        if (productParams.boltsMaterial === `titanium`) {
+            const titaniumOption = additionalPriceOptions.find((option) => option.type === `titanium`);
             total += titaniumOption?.price.amount || 0;
         }
 
-        if (thickness === 'thick') {
-            const thickOption = additionalPriceOptions.find((option) => option.type === 'thick');
+        if (thickness === `thick`) {
+            const thickOption = additionalPriceOptions.find((option) => option.type === `thick`);
             total += thickOption?.price.amount || 0;
         }
 
-        if (colorOption !== 'black') {
-            const colorPriceOption = additionalPriceOptions.find((option) => option.type === 'custom-color');
+        if (colorOption !== `black`) {
+            const colorPriceOption = additionalPriceOptions.find((option) => option.type === `custom-color`);
             total += colorPriceOption?.price.amount || 0;
         }
 

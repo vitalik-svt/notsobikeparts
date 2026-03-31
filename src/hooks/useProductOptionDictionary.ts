@@ -1,5 +1,7 @@
-import { BoltColor, BoltMaterial, CageColor, CagePlusColor, TopcapOptions } from "@/stores/cartStore";
 import { useTranslation } from "react-i18next";
+
+import { BoltColor, BoltMaterial, CageColor, CagePlusColor, TopcapOptions } from "@/stores/cartStore";
+
 import { TopcapCustomColor, TopcapCustomThickness } from "./useTopcapsData";
 
 type OptionKeys = TopcapOptions | BoltMaterial | CagePlusColor | TopcapCustomColor | TopcapCustomThickness | Exclude<BoltColor, null> | CageColor

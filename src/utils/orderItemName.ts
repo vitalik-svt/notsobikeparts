@@ -9,8 +9,8 @@ export interface OrderItemNameInput {
     fallbackName?: string;
 }
 
-function isCustomTopcap({ productSection, productKey }: Pick<OrderItemNameInput, "productSection" | "productKey">) {
-    return productSection === "topcap" && productKey === "custom";
+function isCustomTopcap({ productSection, productKey }: Pick<OrderItemNameInput, `productSection` | `productKey`>) {
+    return productSection === `topcap` && productKey === `custom`;
 }
 
 export function resolveOrderItemName({

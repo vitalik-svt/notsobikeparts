@@ -1,5 +1,5 @@
-import cageLittleRaw from "../../public/warehouse/cage-little.json";
 import cageFrontRaw from "../../public/warehouse/cage-front.json";
+import cageLittleRaw from "../../public/warehouse/cage-little.json";
 import cagePlusRaw from "../../public/warehouse/cage-plus.json";
 import cageVolumeRaw from "../../public/warehouse/cage-volume.json";
 import chainBreakerRaw from "../../public/warehouse/chain-breaker.json";
@@ -24,7 +24,7 @@ export interface SkuMeta {
     skuId: string;
 }
 
-const NULL_SKU_META: SkuMeta = { skuId: '' };
+const NULL_SKU_META: SkuMeta = { skuId: `` };
 
 type RawWarehouseMap = Record<string, WarehouseEntry>;
 

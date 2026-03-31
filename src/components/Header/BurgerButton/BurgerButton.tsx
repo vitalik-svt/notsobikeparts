@@ -12,8 +12,8 @@ export default function BurgerButton({ onClick, isOpen }: Props) {
             onClick={onClick}
         >
             <Image
-                src={isOpen ? "/icons/cross.webp" : "/icons/menu.webp"}
-                alt={isOpen ? "Close menu" : "Open menu"}
+                src={isOpen ? `/icons/cross.webp` : `/icons/menu.webp`}
+                alt={isOpen ? `Close menu` : `Open menu`}
                 width={28}
                 height={28}
             />

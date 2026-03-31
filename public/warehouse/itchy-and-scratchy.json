@@ -1,0 +1,70 @@
+{
+	"0000082": {
+		"product": "itchy_and_scratchy",
+		"sku_photo": "",
+		"photos": [
+			"/images/cages/plus/product-pic-1.avif",
+			"/images/cages/plus/product-pic-2.avif",
+			"/images/cages/plus/product-pic-3.avif",
+			"/images/cages/plus/product-pic-4.avif",
+			"/images/cages/plus/product-pic-5.avif",
+			"/images/cages/plus/product-pic-6.avif",
+			"/images/cages/plus/product-pic-7.avif"
+		],
+		"properties": {
+			"cageColor": "black",
+			"paintedType": "powder"
+		}
+	},
+	"0000185": {
+		"product": "itchy_and_scratchy",
+		"sku_photo": "",
+		"photos": [
+			"/images/cages/plus/product-pic-1.avif",
+			"/images/cages/plus/product-pic-2.avif",
+			"/images/cages/plus/product-pic-3.avif",
+			"/images/cages/plus/product-pic-4.avif",
+			"/images/cages/plus/product-pic-5.avif",
+			"/images/cages/plus/product-pic-6.avif",
+			"/images/cages/plus/product-pic-7.avif"
+		],
+		"properties": {
+			"cageColor": "transparent",
+			"paintedType": "anodized"
+		}
+	},
+	"0000212": {
+		"product": "itchy_and_scratchy",
+		"sku_photo": "",
+		"photos": [
+			"/images/cages/plus/product-pic-1.avif",
+			"/images/cages/plus/product-pic-2.avif",
+			"/images/cages/plus/product-pic-3.avif",
+			"/images/cages/plus/product-pic-4.avif",
+			"/images/cages/plus/product-pic-5.avif",
+			"/images/cages/plus/product-pic-6.avif",
+			"/images/cages/plus/product-pic-7.avif"
+		],
+		"properties": {
+			"cageColor": "light-brown",
+			"paintedType": "anodized"
+		}
+	},
+	"0000213": {
+		"product": "itchy_and_scratchy",
+		"sku_photo": "",
+		"photos": [
+			"/images/cages/plus/product-pic-1.avif",
+			"/images/cages/plus/product-pic-2.avif",
+			"/images/cages/plus/product-pic-3.avif",
+			"/images/cages/plus/product-pic-4.avif",
+			"/images/cages/plus/product-pic-5.avif",
+			"/images/cages/plus/product-pic-6.avif",
+			"/images/cages/plus/product-pic-7.avif"
+		],
+		"properties": {
+			"cageColor": "light-green",
+			"paintedType": "anodized"
+		}
+	}
+}

@@ -29,7 +29,7 @@
 			"/images/cages/plus/product-pic-7.avif"
 		],
 		"properties": {
-			"cageColor": "transparent",
+			"cageColor": "aluminum",
 			"paintedType": "anodized"
 		}
 	},
@@ -46,7 +46,7 @@
 			"/images/cages/plus/product-pic-7.avif"
 		],
 		"properties": {
-			"cageColor": "light-brown",
+			"cageColor": "brown",
 			"paintedType": "anodized"
 		}
 	},
@@ -63,7 +63,7 @@
 			"/images/cages/plus/product-pic-7.avif"
 		],
 		"properties": {
-			"cageColor": "light-green",
+			"cageColor": "green",
 			"paintedType": "anodized"
 		}
 	}

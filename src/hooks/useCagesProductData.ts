@@ -13,7 +13,6 @@ export type CageColorOption = {
     label: string;
     value: CageColor | CagePlusColor;
     skuId: string;
-    skuName: string;
 };
 
 type CageColorOptionMap = Partial<Record<CageColor | CagePlusColor, CageColorOption>>;
@@ -29,15 +28,11 @@ export interface CageSettings {
     features: string[];
     characteristics: string[];
     skuId: string;
-    skuName: string;
 }
 
 export const useCagesProductData = () => {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t: tCages } = useTranslation(`cages`);
-    const { t: tSkuNames } = useTranslation(`skuNames`);
-
-    const resolveSkuName = (skuId: string) => (skuId ? tSkuNames(skuId, { defaultValue: skuId }) : ``);
 
     const getSkuMeta = (skus: typeof warehouse.cageFront, uiColor: CageColor | CagePlusColor) => {
         const warehouseColor = uiColor === `black` || uiColor === `aluminum`
@@ -53,9 +48,8 @@ export const useCagesProductData = () => {
         Object.fromEntries(options.map((option) => [option.value, option])) as CageColorOptionMap
     );
 
-    const toCageSkuMeta = (sku = toSkuMeta()): Pick<CageColorOption, `skuId` | `skuName`> => ({
+    const toCageSkuMeta = (sku = toSkuMeta()): Pick<CageColorOption, `skuId`> => ({
         skuId: sku.skuId,
-        skuName: resolveSkuName(sku.skuId),
     });
 
     const littleSku = toSkuMeta(warehouse.cageLittle[0]);
@@ -94,18 +88,18 @@ export const useCagesProductData = () => {
         },
         {
             label: tCages(`plus.color_options.2`),
-            value: `transparent`,
-            ...getSkuMeta(warehouse.cagePlus, `transparent`),
+            value: `aluminum`,
+            ...getSkuMeta(warehouse.cagePlus, `aluminum`),
         },
         {
             label: tCages(`plus.color_options.3`),
-            value: `light-green`,
-            ...getSkuMeta(warehouse.cagePlus, `light-green`),
+            value: `green`,
+            ...getSkuMeta(warehouse.cagePlus, `green`),
         },
         {
             label: tCages(`plus.color_options.4`),
-            value: `light-brown`,
-            ...getSkuMeta(warehouse.cagePlus, `light-brown`),
+            value: `brown`,
+            ...getSkuMeta(warehouse.cagePlus, `brown`),
         },
     ];
 
@@ -133,7 +127,6 @@ export const useCagesProductData = () => {
                 tCages(`front.characteristics.8`),
             ],
             skuId: ``,
-            skuName: ``,
         },
         volume: {
             name: tCages(`volume.name`),
@@ -158,7 +151,6 @@ export const useCagesProductData = () => {
                 tCages(`volume.characteristics.8`),
             ],
             skuId: ``,
-            skuName: ``,
         },
         little: {
             productSection: `cage`,
@@ -177,7 +169,6 @@ export const useCagesProductData = () => {
                 tCages(`little.characteristics.5`),
             ],
             skuId: littleSku.skuId,
-            skuName: resolveSkuName(littleSku.skuId),
         },
         plus: {
             name: tCages(`plus.name`),
@@ -200,7 +191,6 @@ export const useCagesProductData = () => {
                 tCages(`plus.characteristics.6`),
             ],
             skuId: ``,
-            skuName: ``,
         },
     }
 

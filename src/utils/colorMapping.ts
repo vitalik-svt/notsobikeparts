@@ -5,7 +5,7 @@
  */
 
 export type CageUIColor = `black` | `aluminum`;
-export type CagePlusUIColor = `black` | `transparent` | `light-green` | `light-brown`;
+export type CagePlusUIColor = `black` | `aluminum` | `green` | `brown`;
 export type TopcapCustomUIColor = `black` | `aluminum` | `red` | `blue` | `green` | `purple` | `gold`;
 
 export type WarehouseColor = `black` | `silver` | `green` | `brown` | `red` | `blue` | `purple` | `gold`;
@@ -17,9 +17,9 @@ export const cageColorToWarehouse: Record<CageUIColor, WarehouseColor> = {
 
 export const cagePlusColorToWarehouse: Record<CagePlusUIColor, WarehouseColor> = {
     'black': `black`,
-    'transparent': `silver`,
-    'light-green': `green`,
-    'light-brown': `brown`,
+    'aluminum': `silver`,
+    'green': `green`,
+    'brown': `brown`,
 };
 
 export const topcapCustomColorToWarehouse: Record<TopcapCustomUIColor, WarehouseColor> = {

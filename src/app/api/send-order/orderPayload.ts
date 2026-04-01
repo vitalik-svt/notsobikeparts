@@ -15,7 +15,7 @@ const TOPCAP_THICKNESS = [`thin`, `thick`] as const;
 const BOLT_MATERIALS = [`none`, `titanium`, `steel`] as const;
 const BOLT_COLORS = [`black`, `light`] as const;
 const ITCHY_COATINGS = [`anodized`, `powder`] as const;
-const CAGE_COLORS = [`black`, `aluminum`, `transparent`, `light-green`, `light-brown`] as const;
+const CAGE_COLORS = [`black`, `aluminum`, `green`, `brown`] as const;
 
 export const productParamsSchema = z.object({
   boltsMaterial: z.enum(BOLT_MATERIALS).optional(),

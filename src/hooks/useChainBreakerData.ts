@@ -8,10 +8,8 @@ import { toSkuMeta,warehouse } from "@/utils/warehouse";
 
 export const useChainBreakerData = () => {
     const { t } = useTranslation(`chainBreaker`);
-    const { t: tSkuNames } = useTranslation(`skuNames`);
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { skuId } = toSkuMeta(warehouse.chainBreaker[0]);
-    const skuName = skuId ? tSkuNames(skuId, { defaultValue: skuId }) : ``;
 
     const chainBreaker = {
         name: t(`chainBreaker.name`),
@@ -26,7 +24,6 @@ export const useChainBreakerData = () => {
             t(`chainBreaker.characteristics.3`),
         ],
         skuId,
-        skuName,
     }
 
     return chainBreaker;

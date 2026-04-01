@@ -4,6 +4,7 @@ import cagePlusRaw from "../../public/warehouse/cage-plus.json";
 import cageVolumeRaw from "../../public/warehouse/cage-volume.json";
 import chainBreakerRaw from "../../public/warehouse/chain-breaker.json";
 import feedbagHangerRaw from "../../public/warehouse/feedbag-hanger.json";
+import itchyAndScratchyRaw from "../../public/warehouse/itchy-and-scratchy.json";
 import merchRaw from "../../public/warehouse/merch.json";
 import otherRaw from "../../public/warehouse/other.json";
 import topcapRaw from "../../public/warehouse/topcap.json";
@@ -46,6 +47,7 @@ export const warehouse = {
     cageVolume: withSkuIds(toRawWarehouseMap(cageVolumeRaw)),
     chainBreaker: withSkuIds(toRawWarehouseMap(chainBreakerRaw)),
     feedbagHanger: withSkuIds(toRawWarehouseMap(feedbagHangerRaw)),
+    itchyAndScratchy: withSkuIds(toRawWarehouseMap(itchyAndScratchyRaw)),
     merch: withSkuIds(toRawWarehouseMap(merchRaw)),
     other: withSkuIds(toRawWarehouseMap(otherRaw)),
     topCap: withSkuIds(toRawWarehouseMap(topcapRaw)),

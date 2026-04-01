@@ -5,7 +5,6 @@ import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { CageColor, CagePlusColor } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
-import { mapCageColorToWarehouse } from "@/utils/colorMapping";
 import { findSku, warehouse } from "@/utils/warehouse";
 
 export type CoatingType = `anodized` | `powder`;
@@ -38,19 +37,22 @@ export function useItchyAndScratchyData() {
     const cagePlusImages = warehouse.cagePlus[0]?.photos ?? [];
 
     const getSkuNameForParams = (params: ItchyAndScratchyColorMap): string => {
-        const warehouseColor = mapCageColorToWarehouse(params.cageColor);
-
-        // UI coating values map to warehouse finish values.
-        const warehouseFinishByCoating: Record<CoatingType, string> = {
-            anodized: `anodized`,
-            powder: `painted`,
+        // UI cageColor values → warehouse cageColor values.
+        // TODO: migrate to a single contract across UI and warehouse.
+        const warehouseCageColorByUiColor: Partial<Record<CageColor | CagePlusColor, string>> = {
+            black: `black`,
+            transparent: `aluminum`,
+            "light-brown": `brown`,
+            "light-green": `green`,
         };
 
+        const warehouseCageColor = warehouseCageColorByUiColor[params.cageColor] ?? params.cageColor;
+
         const sku = findSku(
-            warehouse.cagePlus,
+            warehouse.itchyAndScratchy,
             (item) =>
-                item.properties.color === warehouseColor &&
-                item.properties.finish === warehouseFinishByCoating[params.paintedType],
+                item.properties.cageColor === warehouseCageColor &&
+                item.properties.paintedType === params.paintedType,
         );
 
         return sku ? tSkuNames(String(sku.sku_id), { defaultValue: String(sku.sku_id) }) : ``;
@@ -66,7 +68,7 @@ export function useItchyAndScratchyData() {
         ],
         products: [
             {
-                skuId: `2000082`,
+                skuId: `2999999`,
                 images: cagePlusImages,
                 name: tCages(`plus.name`),
                 description: [],
@@ -78,7 +80,7 @@ export function useItchyAndScratchyData() {
                 skuName: getSkuNameForParams({ cageColor: `black`, paintedType: `powder` }),
             },
             {
-                skuId: `2000185`,
+                skuId: `2999998`,
                 images: cagePlusImages,
                 name: tCages(`plus.name`),
                 description: [tItchyAndScratchy(`itchy_scratchy.defect.product.1`)],
@@ -90,7 +92,7 @@ export function useItchyAndScratchyData() {
                 skuName: getSkuNameForParams({ cageColor: `transparent`, paintedType: `anodized` }),
             },
             {
-                skuId: `2000212`,
+                skuId: `2999997`,
                 images: cagePlusImages,
                 name: tCages(`plus.name`),
                 description: [
@@ -105,7 +107,7 @@ export function useItchyAndScratchyData() {
                 skuName: getSkuNameForParams({ cageColor: `light-brown`, paintedType: `anodized` }),
             },
             {
-                skuId: `2000213`,
+                skuId: `2999996`,
                 images: cagePlusImages,
                 name: tCages(`plus.name`),
                 description: [

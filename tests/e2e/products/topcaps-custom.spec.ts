@@ -4,6 +4,7 @@ import { BoltMaterial } from '@/stores/cartStore';
 
 import {
     addViaDefaultAddButton,
+    addViaSecondSelectButton,
     expectCartSnapshot,
     locale,
     readCartItems,
@@ -105,7 +106,7 @@ test(`silver label stays contextual in cart UI`, async ({ page }) => {
     await resetCartStorage(page);
 
     await page.goto(`/${locale}/products/topcaps-custom`);
-    await page.locator(`select`).selectOption(`silver`);
+    await page.getByRole(`main`).getByRole(`combobox`).selectOption(`silver`);
     await addViaDefaultAddButton(page);
 
     await page.goto(`/${locale}/others/itchy-and-scratchy`);

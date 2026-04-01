@@ -6,7 +6,6 @@ import { useLocale } from "@/providers/I18nProvider";
 import { CageColor, CagePlusColor } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { ProductSection } from "@/types/productSection";
-import { cageColorToWarehouse, cagePlusColorToWarehouse } from "@/utils/colorMapping";
 import { toSkuMeta, warehouse } from "@/utils/warehouse";
 
 export type CageColorOption = {
@@ -35,11 +34,7 @@ export const useCagesProductData = () => {
     const { t: tCages } = useTranslation(`cages`);
 
     const getSkuMeta = (skus: typeof warehouse.cageFront, uiColor: CageColor | CagePlusColor) => {
-        const warehouseColor = uiColor === `black` || uiColor === `aluminum`
-            ? cageColorToWarehouse[uiColor as CageColor]
-            : cagePlusColorToWarehouse[uiColor as CagePlusColor];
-
-        return toCageSkuMeta(toSkuMeta(skus.find(sku => sku.properties.color === warehouseColor)));
+        return toCageSkuMeta(toSkuMeta(skus.find(sku => sku.properties.color === uiColor)));
     };
 
     const getProductImages = (skus: { photos: string[] }[]) => skus[0]?.photos ?? [];
@@ -62,8 +57,8 @@ export const useCagesProductData = () => {
         },
         {
             label: tCages(`front.color_options.2`),
-            value: `aluminum`,
-            ...getSkuMeta(warehouse.cageFront, `aluminum`),
+            value: `silver`,
+            ...getSkuMeta(warehouse.cageFront, `silver`),
         },
     ];
 
@@ -75,8 +70,8 @@ export const useCagesProductData = () => {
         },
         {
             label: tCages(`volume.color_options.2`),
-            value: `aluminum`,
-            ...getSkuMeta(warehouse.cageVolume, `aluminum`),
+            value: `silver`,
+            ...getSkuMeta(warehouse.cageVolume, `silver`),
         },
     ];
 
@@ -88,8 +83,8 @@ export const useCagesProductData = () => {
         },
         {
             label: tCages(`plus.color_options.2`),
-            value: `aluminum`,
-            ...getSkuMeta(warehouse.cagePlus, `aluminum`),
+            value: `silver`,
+            ...getSkuMeta(warehouse.cagePlus, `silver`),
         },
         {
             label: tCages(`plus.color_options.3`),

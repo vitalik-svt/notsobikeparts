@@ -100,3 +100,19 @@ test(`custom topcap keeps separate cart lines for different params`, async ({ pa
     expect(items.map((item) => item.productParams?.boltsMaterial)).toEqual([`none`, `steel`]);
     expect(items.map((item) => item.productParams?.hasBox)).toEqual([false, true]);
 });
+
+test(`silver label stays contextual in cart UI`, async ({ page }) => {
+    await resetCartStorage(page);
+
+    await page.goto(`/${locale}/products/topcaps-custom`);
+    await page.locator(`select`).selectOption(`silver`);
+    await addViaDefaultAddButton(page);
+
+    await page.goto(`/${locale}/others/itchy-and-scratchy`);
+    await addViaSecondSelectButton(page);
+
+    await page.goto(`/${locale}/cart`);
+
+    await expect(page.getByText(`Светлый (алюминий)`).first()).toBeVisible();
+    await expect(page.getByText(`Алюминий (прозрачное анодирование)`).first()).toBeVisible();
+});

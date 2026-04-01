@@ -46,7 +46,7 @@ test(`itchy-and-scratchy products have valid productParams and images`, async ({
             expect(itchyAndScratchyItem).toBeDefined();
             expect(itchyAndScratchyItem?.productParams).toBeDefined();
             expect(itchyAndScratchyItem?.productParams?.cageColor).toMatch(
-                /black|aluminum|green|brown/,
+                /black|silver|green|brown/,
             );
             expect(itchyAndScratchyItem?.productParams?.paintedType).toMatch(
                 /anodized|powder/,

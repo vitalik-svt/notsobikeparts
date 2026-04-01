@@ -18,7 +18,7 @@ export default function useProductOptionDictionary() {
         'custom-color': t(`product.topcap.option.custom-color`),
         'black': tTopcaps(`topcaps.custom.color.1`),
         'light': t(`product.topcap.bolt.color.light`),
-        'aluminum': tCages(`plus.color_options.2`), // shared by cage-plus, itchy-and-scratchy, and topcap custom
+        'silver': tTopcaps(`topcaps.custom.color.2`),
         'green': tCages(`plus.color_options.3`),    // shared by cage-plus, itchy-and-scratchy, and topcap custom
         'brown': tCages(`plus.color_options.4`),
         'red': tTopcaps(`topcaps.custom.color.3`),

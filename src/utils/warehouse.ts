@@ -33,7 +33,7 @@ type RawWarehouseMap = Record<string, WarehouseEntry>;
 
 // Zod schema for itchy-and-scratchy properties validation
 export const itchyAndScratchyPropertiesSchema = z.object({
-    cageColor: z.enum([`black`, `aluminum`, `green`, `brown`]),
+    cageColor: z.enum([`black`, `silver`, `green`, `brown`]),
     paintedType: z.enum([`anodized`, `powder`]),
 });
 

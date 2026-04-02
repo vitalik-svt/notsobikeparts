@@ -17,9 +17,20 @@ function item(overrides: Record<string, unknown>) {
 }
 
 describe(`getProductPrice`, () => {
+    let warnSpy: ReturnType<typeof vi.spyOn>;
+
+    beforeEach(() => {
+        warnSpy = vi.spyOn(console, `warn`).mockImplementation(() => {});
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
+    });
+
     describe(`section not found`, () => {
         test(`returns null when section is missing`, () => {
             expect(getProductPrice({} as any, item({ productSection: `cage` }))).toBeNull();
+            expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining(`Section not found`));
         });
     });
 
@@ -176,6 +187,7 @@ describe(`getProductPrice`, () => {
         test(`returns null when productKey not found`, () => {
             expect(getProductPrice(productData, item({ productSection: `cage`, productKey: `little` })))
                 .toBeNull();
+            expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining(`Product not found`), expect.any(Object));
         });
 
         test(`uses default locale when none provided`, () => {
@@ -188,6 +200,7 @@ describe(`getProductPrice`, () => {
             const dataNoPrice = { cage: { front: {} } } as any;
             expect(getProductPrice(dataNoPrice, item({ productSection: `cage`, productKey: `front` })))
                 .toBeNull();
+            expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining(`Price not found`));
         });
     });
 });

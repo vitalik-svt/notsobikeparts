@@ -13,6 +13,11 @@ function signedToken(payloadStr: string) {
     return `${encoded}.${sig}`;
 }
 
+function signedEncodedToken(encoded: string) {
+  const sig = createHmac(`sha256`, DEV_SECRET).update(encoded).digest(`hex`);
+  return `${encoded}.${sig}`;
+}
+
 describe(`orderSuccessToken`, () => {
   test(`creates token that verifies as valid`, () => {
     const token = createOrderSuccessToken();
@@ -34,9 +39,9 @@ describe(`orderSuccessToken`, () => {
     expect(verifyOrderSuccessToken(tampered)).toBe(false);
   });
 
-  test(`rejects token with invalid base64 payload`, () => {
-    // valid structure but garbage base64
-    expect(verifyOrderSuccessToken(`!!invalid_base64!!.somesig`)).toBe(false);
+  test(`rejects token when encoded payload is invalid`, () => {
+    const token = signedEncodedToken(`!!invalid_base64!!`);
+    expect(verifyOrderSuccessToken(token)).toBe(false);
   });
 
   test(`rejects expired token`, () => {

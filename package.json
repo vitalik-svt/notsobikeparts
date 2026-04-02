@@ -10,6 +10,7 @@
     "lint": "eslint",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "vitest run",
+    "test:unit:coverage": "vitest run --coverage",
     "test:unit:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"
@@ -39,6 +40,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "2.1.8",
     "eslint": "^9",
     "eslint-config-next": "15.5.9",
     "eslint-plugin-simple-import-sort": "^12.1.1",

@@ -5,20 +5,24 @@ import {
   verifyOrderSuccessToken,
 } from '@/utils/orderSuccessToken';
 
-const DEV_SECRET = `dev-only-order-success-secret`;
+const TEST_SECRET = `test-secret-known-to-tests-only`;
 
 function signedToken(payloadStr: string) {
     const encoded = Buffer.from(payloadStr).toString(`base64url`);
-    const sig = createHmac(`sha256`, DEV_SECRET).update(encoded).digest(`hex`);
+    const sig = createHmac(`sha256`, TEST_SECRET).update(encoded).digest(`hex`);
     return `${encoded}.${sig}`;
 }
 
 function signedEncodedToken(encoded: string) {
-  const sig = createHmac(`sha256`, DEV_SECRET).update(encoded).digest(`hex`);
+  const sig = createHmac(`sha256`, TEST_SECRET).update(encoded).digest(`hex`);
   return `${encoded}.${sig}`;
 }
 
 describe(`orderSuccessToken`, () => {
+  beforeEach(() => {
+    vi.stubEnv(`ORDER_SUCCESS_SECRET`, TEST_SECRET);
+  });
+
   afterEach(() => {
     vi.unstubAllEnvs();
     vi.restoreAllMocks();

@@ -1,27 +1,13 @@
 import { expect, test } from '@playwright/test';
 
-import { addProductAndExpectOneItem, addViaSecondSelectButton } from '../helpers/cart';
+import { addProductAndExpectOneItem, addViaSecondSelectButton, readCartItems, resetCartStorage } from '../helpers/cart';
 
 test(`can add itchy and scratchy to cart`, async ({ page }) => {
     await addProductAndExpectOneItem(page, `/others/itchy-and-scratchy`, addViaSecondSelectButton);
 });
 
 test(`itchy-and-scratchy products have valid productParams and images`, async ({ page }) => {
-    type CartStorageShape = {
-        items?: Array<{
-            productSection?: string;
-            productParams?: {
-                cageColor?: string;
-                paintedType?: string;
-            };
-        }>;
-    };
-
-    const getStorageItem = async (): Promise<CartStorageShape | null> => {
-        const localStorageStr = await page.evaluate(() => localStorage.getItem(`cart`));
-        return localStorageStr ? (JSON.parse(localStorageStr) as CartStorageShape) : null;
-    };
-
+    await resetCartStorage(page);
     await page.goto(`/others/itchy-and-scratchy`);
 
     // Verify page loaded and we can see images
@@ -29,28 +15,19 @@ test(`itchy-and-scratchy products have valid productParams and images`, async ({
     const imageCount = await images.count();
     expect(imageCount).toBeGreaterThan(0);
 
-    // Click to add a product to cart and check productParams
-    const addButtons = page.locator(`button`).filter({ hasText: /Add|Додати/ });
-    if ((await addButtons.count()) > 0) {
-        await addButtons.first().click();
+    // Add one itchy-and-scratchy product and assert persisted cart payload.
+    await addViaSecondSelectButton(page);
 
-        // Check that cart has the item with valid productParams
-        await page.waitForTimeout(100);
-        const cartState = await getStorageItem();
+    const items = await readCartItems(page);
+    expect(items).toHaveLength(1);
 
-        if (cartState?.items) {
-            const itchyAndScratchyItem = cartState.items.find(
-                (item) => item.productSection === `itchyAndScratchy`,
-            );
-
-            expect(itchyAndScratchyItem).toBeDefined();
-            expect(itchyAndScratchyItem?.productParams).toBeDefined();
-            expect(itchyAndScratchyItem?.productParams?.cageColor).toMatch(
-                /black|silver|green|brown/,
-            );
-            expect(itchyAndScratchyItem?.productParams?.paintedType).toMatch(
-                /anodized|powder/,
-            );
-        }
-    }
+    const itchyAndScratchyItem = items[0];
+    expect(itchyAndScratchyItem?.productSection).toBe(`itchyAndScratchy`);
+    expect(itchyAndScratchyItem?.productParams).toBeDefined();
+    expect(itchyAndScratchyItem?.productParams?.cageColor).toMatch(
+        /black|silver|green|brown/,
+    );
+    expect(itchyAndScratchyItem?.productParams?.paintedType).toMatch(
+        /anodized|powder/,
+    );
 });

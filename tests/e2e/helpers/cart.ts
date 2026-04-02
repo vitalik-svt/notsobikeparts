@@ -155,7 +155,7 @@ export async function setTopcapCustomThickness(page: Page, thickness: `thin` | `
 }
 
 export async function addViaItchyAndScratchyByColor(page: Page, colorLabel: string) {
-    // Select itchy-and-scratchy product deterministically by its color label text
-    const productCard = page.locator(`li`).filter({ hasText: colorLabel }).first();
+    // Scope to <main> to avoid matching nav/footer <li> elements with the same color text
+    const productCard = page.getByRole(`main`).locator(`li`).filter({ hasText: colorLabel }).first();
     await productCard.getByRole(`button`, { name: `Выбрать` }).click();
 }

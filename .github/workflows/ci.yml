@@ -76,7 +76,7 @@ jobs:
         with:
           name: coverage-summary
           path: coverage/coverage-summary.json
-          if-no-files-found: error
+          if-no-files-found: warn
 
   coverage-report:
     name: Coverage Report

@@ -19,6 +19,11 @@ function signedEncodedToken(encoded: string) {
 }
 
 describe(`orderSuccessToken`, () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.restoreAllMocks();
+  });
+
   test(`creates token that verifies as valid`, () => {
     const token = createOrderSuccessToken();
     expect(verifyOrderSuccessToken(token)).toBe(true);
@@ -46,19 +51,18 @@ describe(`orderSuccessToken`, () => {
 
   test(`rejects expired token`, () => {
     // Mock Date.now to simulate token created 16 minutes ago
-    const past = Date.now() - 16 * 60 * 1000;
-    vi.spyOn(Date, `now`).mockReturnValueOnce(past).mockReturnValueOnce(past);
+    const now = Date.now();
+    const past = now - 16 * 60 * 1000;
+    vi.spyOn(Date, `now`).mockReturnValueOnce(past).mockReturnValueOnce(now);
     const token = createOrderSuccessToken();
-    vi.restoreAllMocks();
 
     expect(verifyOrderSuccessToken(token)).toBe(false);
   });
 
   test(`uses ORDER_SUCCESS_SECRET from env when set`, () => {
-    process.env.ORDER_SUCCESS_SECRET = `my-test-secret`;
+    vi.stubEnv(`ORDER_SUCCESS_SECRET`, `my-test-secret`);
     const token = createOrderSuccessToken();
     expect(verifyOrderSuccessToken(token)).toBe(true);
-    delete process.env.ORDER_SUCCESS_SECRET;
   });
 
   test(`throws in production when ORDER_SUCCESS_SECRET is missing`, () => {
@@ -66,8 +70,6 @@ describe(`orderSuccessToken`, () => {
     vi.stubEnv(`ORDER_SUCCESS_SECRET`, ``);
 
     expect(() => createOrderSuccessToken()).toThrow(`ORDER_SUCCESS_SECRET must be set in production`);
-
-    vi.unstubAllEnvs();
   });
 
   test(`rejects token with valid signature but missing ts in payload`, () => {

@@ -27,6 +27,7 @@ export default defineConfig({
         `src/stores/**`,
         `src/constants/contacts.ts`,
         `src/constants/routes.ts`,
+        `src/constants/singleProductSections.ts`,
       ],
     },
   },

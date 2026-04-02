@@ -36,4 +36,12 @@ describe(`order item name resolver`, () => {
             fallbackName: `Merch`,
         })).toBe(`Merch`);
     });
+
+    test(`falls back to productSection-productKey when no skuId and no fallbackName`, () => {
+        expect(resolveOrderItemName({
+            skuId: ``,
+            productSection: `merch`,
+            productKey: `one-price`,
+        })).toBe(`merch-one-price`);
+    });
 });

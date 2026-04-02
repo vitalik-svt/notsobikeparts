@@ -1,12 +1,13 @@
 import { useTranslation } from "react-i18next";
 
+import { CAGE_SKU_IDS } from "@/constants/cageSkuIds";
 import { ProductCageType, productPrices, ProductPriceSettings } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { CageColor, CagePlusColor } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
 import { ProductSection } from "@/types/productSection";
-import { toSkuMeta, warehouse } from "@/utils/warehouse";
+import { findSku, toSkuMeta, warehouse } from "@/utils/warehouse";
 
 export type CageColorOption = {
     label: string;
@@ -33,32 +34,35 @@ export const useCagesProductData = () => {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t: tCages } = useTranslation(`cages`);
 
-    const getSkuMeta = (skus: typeof warehouse.cageFront, uiColor: CageColor | CagePlusColor) => {
-        return toCageSkuMeta(toSkuMeta(skus.find(sku => sku.properties.color === uiColor)));
-    };
+    const skuById = (skus: typeof warehouse.cageFront, id: string) =>
+        findSku(skus, (item) => String(item.sku_id) === id);
 
-    const getProductImages = (skus: { photos: string[] }[]) => skus[0]?.photos ?? [];
+    const getProductImages = (photos: string[]) => photos ?? [];
 
     const toColorOptionsByValue = (options: CageColorOption[]): CageColorOptionMap => (
         Object.fromEntries(options.map((option) => [option.value, option])) as CageColorOptionMap
     );
 
-    const toCageSkuMeta = (sku = toSkuMeta()): Pick<CageColorOption, `skuId`> => ({
-        skuId: sku.skuId,
-    });
-
-    const littleSku = toSkuMeta(warehouse.cageLittle[0]);
+    const frontBlackSku = skuById(warehouse.cageFront, CAGE_SKU_IDS.front.black);
+    const frontSilverSku = skuById(warehouse.cageFront, CAGE_SKU_IDS.front.silver);
+    const volumeBlackSku = skuById(warehouse.cageVolume, CAGE_SKU_IDS.volume.black);
+    const volumeSilverSku = skuById(warehouse.cageVolume, CAGE_SKU_IDS.volume.silver);
+    const plusSilverSku = skuById(warehouse.cagePlus, CAGE_SKU_IDS.plus.silver);
+    const plusBlackSku = skuById(warehouse.cagePlus, CAGE_SKU_IDS.plus.black);
+    const plusBrownSku = skuById(warehouse.cagePlus, CAGE_SKU_IDS.plus.brown);
+    const plusGreenSku = skuById(warehouse.cagePlus, CAGE_SKU_IDS.plus.green);
+    const littleSku = skuById(warehouse.cageLittle, CAGE_SKU_IDS.little.black);
 
     const frontColorOptions: CageColorOption[] = [
         {
             label: tCages(`front.color_options.1`),
             value: `black`,
-            ...getSkuMeta(warehouse.cageFront, `black`),
+            skuId: toSkuMeta(frontBlackSku).skuId,
         },
         {
             label: tCages(`front.color_options.2`),
             value: `silver`,
-            ...getSkuMeta(warehouse.cageFront, `silver`),
+            skuId: toSkuMeta(frontSilverSku).skuId,
         },
     ];
 
@@ -66,12 +70,12 @@ export const useCagesProductData = () => {
         {
             label: tCages(`volume.color_options.1`),
             value: `black`,
-            ...getSkuMeta(warehouse.cageVolume, `black`),
+            skuId: toSkuMeta(volumeBlackSku).skuId,
         },
         {
             label: tCages(`volume.color_options.2`),
             value: `silver`,
-            ...getSkuMeta(warehouse.cageVolume, `silver`),
+            skuId: toSkuMeta(volumeSilverSku).skuId,
         },
     ];
 
@@ -79,22 +83,22 @@ export const useCagesProductData = () => {
         {
             label: tCages(`plus.color_options.1`),
             value: `black`,
-            ...getSkuMeta(warehouse.cagePlus, `black`),
+            skuId: toSkuMeta(plusBlackSku).skuId,
         },
         {
             label: tCages(`plus.color_options.2`),
             value: `silver`,
-            ...getSkuMeta(warehouse.cagePlus, `silver`),
+            skuId: toSkuMeta(plusSilverSku).skuId,
         },
         {
             label: tCages(`plus.color_options.3`),
             value: `green`,
-            ...getSkuMeta(warehouse.cagePlus, `green`),
+            skuId: toSkuMeta(plusGreenSku).skuId,
         },
         {
             label: tCages(`plus.color_options.4`),
             value: `brown`,
-            ...getSkuMeta(warehouse.cagePlus, `brown`),
+            skuId: toSkuMeta(plusBrownSku).skuId,
         },
     ];
 
@@ -102,7 +106,7 @@ export const useCagesProductData = () => {
         front: {
             name: tCages(`front.name`),
             productSection: `cage`,
-            images: getProductImages(warehouse.cageFront),
+            images: getProductImages(frontBlackSku.photos),
             description: tCages(`front.description`),
             colorOptions: frontColorOptions,
             colorOptionsByValue: toColorOptionsByValue(frontColorOptions),
@@ -126,7 +130,7 @@ export const useCagesProductData = () => {
         volume: {
             name: tCages(`volume.name`),
             productSection: `cage`,
-            images: getProductImages(warehouse.cageVolume),
+            images: getProductImages(volumeBlackSku.photos),
             description: tCages(`volume.description.1`),
             colorOptions: volumeColorOptions,
             colorOptionsByValue: toColorOptionsByValue(volumeColorOptions),
@@ -149,7 +153,7 @@ export const useCagesProductData = () => {
         },
         little: {
             productSection: `cage`,
-            images: getProductImages(warehouse.cageLittle),
+            images: getProductImages(littleSku.photos),
             name: tCages(`little.name`),
             description: tCages(`little.description`),
             colorOptions: [],
@@ -163,12 +167,12 @@ export const useCagesProductData = () => {
                 tCages(`little.characteristics.4`),
                 tCages(`little.characteristics.5`),
             ],
-            skuId: littleSku.skuId,
+            skuId: toSkuMeta(littleSku).skuId,
         },
         plus: {
             name: tCages(`plus.name`),
             productSection: `cage`,
-            images: getProductImages(warehouse.cagePlus),
+            images: getProductImages(plusBlackSku.photos),
             description: tCages(`plus.description.1`),
             colorOptions: plusColorOptions,
             colorOptionsByValue: toColorOptionsByValue(plusColorOptions),

@@ -10,7 +10,6 @@ import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
 import { CoatingType, useItchyAndScratchyData } from "@/hooks/useItchyAndScratchyData";
-import useProductOptionDictionary from "@/hooks/useProductOptionDictionary";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { CageColor, CagePlusColor, cartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
@@ -20,9 +19,15 @@ export default function ItchyAndScratchyPage() {
     const { t: tCommon } = useTranslation();
     const { t: tCages } = useTranslation(`cages`);
     const itchyAndScratchy = useItchyAndScratchyData();
-    const optionDictionary = useProductOptionDictionary();
     const { addItem } = cartStore();
     const { setNotification } = useNotifications();
+
+    const cageColorLabel: Record<CageColor | CagePlusColor, string> = {
+        black: tCages(`plus.color_options.1`),
+        silver: tCages(`plus.color_options.2`),
+        green: tCages(`plus.color_options.3`),
+        brown: tCages(`plus.color_options.4`),
+    };
 
 
     const paintedTypeLabel: Record<CoatingType, string> = {
@@ -82,7 +87,7 @@ export default function ItchyAndScratchyPage() {
                                     <div className="lowercase text-sm">
                                         <OptionRow
                                             label={tCommon(`cart.color_label`)}
-                                            value={optionDictionary[item.productParams.cageColor]} />
+                                            value={cageColorLabel[item.productParams.cageColor]} />
                                         <OptionRow
                                             label={tCommon(`coatingTypeLabel`)}
                                             value={paintedTypeLabel[item.productParams.paintedType]} />

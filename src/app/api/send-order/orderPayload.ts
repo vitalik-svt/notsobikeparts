@@ -10,12 +10,12 @@ const PRODUCT_KEYS: ProductKey[] = [`front`, `little`, `volume`, `plus`, `serial
 const LOCALES: Locales[] = [`ru`, `en`];
 const CAGE_KEYS: ProductCageType[] = [`front`, `little`, `volume`, `plus`];
 const VOILE_KEYS: ProductVoileType[] = [`nine-black`, `twelve-black`, `twenty-black-w-logo`, `twenty-five-black-w-logo`];
-const TOPCAP_COLOR_OPTIONS = [`black`, `aluminum`, `red`, `blue`, `green`, `purple`, `gold`] as const;
+const TOPCAP_COLOR_OPTIONS = [`black`, `silver`, `red`, `blue`, `green`, `purple`, `gold`] as const;
 const TOPCAP_THICKNESS = [`thin`, `thick`] as const;
 const BOLT_MATERIALS = [`none`, `titanium`, `steel`] as const;
 const BOLT_COLORS = [`black`, `light`] as const;
 const ITCHY_COATINGS = [`anodized`, `powder`] as const;
-const CAGE_COLORS = [`black`, `aluminum`, `transparent`, `light-green`, `light-brown`] as const;
+const CAGE_COLORS = [`black`, `silver`, `green`, `brown`] as const;
 
 export const productParamsSchema = z.object({
   boltsMaterial: z.enum(BOLT_MATERIALS).optional(),

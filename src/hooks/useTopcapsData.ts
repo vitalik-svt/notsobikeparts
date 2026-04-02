@@ -32,7 +32,7 @@ interface TopcapsSerial {
     items: TopcapCategoryItem[];
 }
 
-export type TopcapCustomColor = `black` | `aluminum` | `red` | `blue` | `green` | `purple` | `gold`;
+export type TopcapCustomColor = `black` | `silver` | `red` | `blue` | `green` | `purple` | `gold`;
 export type TopcapCustomThickness = `thin` | `thick`;
 
 interface TopcapsCustom {
@@ -132,7 +132,7 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
             ],
             colorOptions: [
                 { label: t(`topcaps.custom.color.1`), value: `black` },
-                { label: `${t(`topcaps.custom.color.2`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `aluminum` },
+                { label: `${t(`topcaps.custom.color.2`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `silver` },
                 { label: `${t(`topcaps.custom.color.3`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `red` },
                 { label: `${t(`topcaps.custom.color.4`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `blue` },
                 { label: `${t(`topcaps.custom.color.5`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `green` },

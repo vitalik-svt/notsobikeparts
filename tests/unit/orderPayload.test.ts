@@ -87,6 +87,82 @@ describe(`send-order payload helpers`, () => {
         expect(price?.amount).toBe(4200);
     });
 
+    test(`accepts silver for cageColor and topcap colorOption`, () => {
+        const result = orderRequestSchema.safeParse({
+            locale: `ru`,
+            userFormData: {
+                name: `Demid`,
+                email: `demid@example.com`,
+                phone: `+1234567890`,
+                deliveryMethod: `post`,
+                comment: `test`,
+            },
+            items: [
+                {
+                    skuId: `2000188`,
+                    productSection: `cage`,
+                    productKey: `front`,
+                    quantity: 1,
+                    productParams: {
+                        cageColor: `silver`,
+                    },
+                },
+                {
+                    skuId: `topcap-custom`,
+                    productSection: `topcap`,
+                    productKey: `custom`,
+                    quantity: 1,
+                    productParams: {
+                        colorOption: `silver`,
+                        customThickness: `thin`,
+                        boltsMaterial: `none`,
+                        hasBox: false,
+                    },
+                },
+            ],
+        });
+
+        expect(result.success).toBe(true);
+    });
+
+    test(`rejects legacy aluminum for cageColor and topcap colorOption`, () => {
+        const result = orderRequestSchema.safeParse({
+            locale: `ru`,
+            userFormData: {
+                name: `Demid`,
+                email: `demid@example.com`,
+                phone: `+1234567890`,
+                deliveryMethod: `post`,
+                comment: `test`,
+            },
+            items: [
+                {
+                    skuId: `2000188`,
+                    productSection: `cage`,
+                    productKey: `front`,
+                    quantity: 1,
+                    productParams: {
+                        cageColor: `aluminum`,
+                    },
+                },
+                {
+                    skuId: `topcap-custom`,
+                    productSection: `topcap`,
+                    productKey: `custom`,
+                    quantity: 1,
+                    productParams: {
+                        colorOption: `aluminum`,
+                        customThickness: `thin`,
+                        boltsMaterial: `none`,
+                        hasBox: false,
+                    },
+                },
+            ],
+        });
+
+        expect(result.success).toBe(false);
+    });
+
     test(`calculates itchy-and-scratchy powder price on server`, () => {
         const price = getServerPrice({
             skuId: `2000082`,

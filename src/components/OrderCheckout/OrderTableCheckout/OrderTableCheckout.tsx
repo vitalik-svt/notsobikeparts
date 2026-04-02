@@ -55,7 +55,13 @@ export default function OrderTableCheckout({ items }: Props) {
                                         <span className="font-bold md:hidden">{t(`cart.tablet.product_label`)}:</span>
                                         <span>{displayName} <span className="text-sm">[{item.quantity} {t(`cart.unit_label`)}]</span></span>
                                     </p>
-                                    {item.productParams && <ProductOptionParams productParams={item.productParams} />}
+                                    {item.productParams && (
+                                        <ProductOptionParams
+                                            productParams={item.productParams}
+                                            productSection={item.productSection}
+                                            productKey={item.productKey}
+                                        />
+                                    )}
                                 </div>
                             </td>
                             <td className="block p-4 border-b md:w-24 md:table-cell md:border-b-2 lg:w-32">

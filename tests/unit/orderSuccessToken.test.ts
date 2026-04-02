@@ -1,8 +1,9 @@
+import { createHmac } from 'node:crypto';
+
 import {
   createOrderSuccessToken,
   verifyOrderSuccessToken,
 } from '@/utils/orderSuccessToken';
-import { createHmac } from 'node:crypto';
 
 const DEV_SECRET = `dev-only-order-success-secret`;
 
@@ -40,7 +41,6 @@ describe(`orderSuccessToken`, () => {
 
   test(`rejects expired token`, () => {
     // Mock Date.now to simulate token created 16 minutes ago
-    const realNow = Date.now;
     const past = Date.now() - 16 * 60 * 1000;
     vi.spyOn(Date, `now`).mockReturnValueOnce(past).mockReturnValueOnce(past);
     const token = createOrderSuccessToken();

@@ -117,6 +117,21 @@ export async function setTopcapHasBox(page: Page, hasBox: boolean) {
     }, hasBox);
 }
 
+export async function setTopcapCustomColor(page: Page, color: string) {
+    const selectElement = page.getByRole(`main`).getByRole(`combobox`).first();
+    
+    // Wait for the select element to be visible and ready
+    await selectElement.waitFor({ state: `visible` });
+    
+    // Use evaluate to explicitly set the value and trigger change event
+    await selectElement.evaluate((element, colorValue) => {
+        const select = element as HTMLSelectElement;
+        select.value = colorValue;
+        const event = new Event(`change`, { bubbles: true });
+        select.dispatchEvent(event);
+    }, color);
+}
+
 export async function addProductAndExpectOneItem(
     page: Page,
     route: string,

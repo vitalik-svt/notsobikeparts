@@ -10,6 +10,7 @@ import {
     readCartItems,
     resetCartStorage,
     setTopcapBoltsMaterial,
+    setTopcapCustomColor,
     setTopcapHasBox,
 } from '../helpers/cart';
 
@@ -106,7 +107,7 @@ test(`silver label stays contextual in cart UI`, async ({ page }) => {
     await resetCartStorage(page);
 
     await page.goto(`/${locale}/products/topcaps-custom`);
-    await page.getByRole(`main`).getByRole(`combobox`).selectOption(`silver`);
+    await setTopcapCustomColor(page, `silver`);
     await addViaDefaultAddButton(page);
 
     await page.goto(`/${locale}/others/itchy-and-scratchy`);

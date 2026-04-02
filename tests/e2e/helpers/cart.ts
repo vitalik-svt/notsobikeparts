@@ -87,7 +87,8 @@ export async function addViaSelectButton(page: Page) {
 }
 
 export async function addViaSecondSelectButton(page: Page) {
-    await page.getByRole(`button`, { name: `Выбрать` }).nth(1).click();
+    // Select first available "Выбрать" button (used for products in grids)
+    await page.getByRole(`button`, { name: `Выбрать` }).first().click();
 }
 
 export async function addViaTopcapsSerialFlow(page: Page) {
@@ -156,4 +157,10 @@ export async function setCageColor(page: Page, color: string) {
 export async function setTopcapCustomThickness(page: Page, thickness: `thin` | `thick`) {
     const regex = thickness === `thick` ? /^Толстый/ : /^Тонкий/;
     await page.getByRole(`main`).getByText(regex).first().click();
+}
+
+export async function addViaItchyAndScratchyByColor(page: Page, colorLabel: string) {
+    // Select itchy-and-scratchy product deterministically by its color label text
+    const productCard = page.locator(`li`).filter({ hasText: colorLabel }).first();
+    await productCard.getByRole(`button`, { name: `Выбрать` }).click();
 }

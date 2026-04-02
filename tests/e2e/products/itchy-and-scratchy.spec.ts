@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { addProductAndExpectOneItem, addViaSecondSelectButton, locale, readCartItems, resetCartStorage } from '../helpers/cart';
+import { addProductAndExpectOneItem, addViaItchyAndScratchyByColor, addViaSecondSelectButton, locale, readCartItems, resetCartStorage } from '../helpers/cart';
 
 test(`can add itchy and scratchy to cart`, async ({ page }) => {
     await addProductAndExpectOneItem(page, `/others/itchy-and-scratchy`, addViaSecondSelectButton);
@@ -15,9 +15,8 @@ test(`itchy-and-scratchy products have valid productParams and images`, async ({
     const imageCount = await images.count();
     expect(imageCount).toBeGreaterThan(0);
 
-    // Add one itchy-and-scratchy product and assert persisted cart payload.
-    await expect(page.getByRole(`button`, { name: `Выбрать` }).nth(1)).toBeVisible();
-    await addViaSecondSelectButton(page);
+    // Add first itchy-and-scratchy product and assert persisted cart payload
+    await addViaItchyAndScratchyByColor(page, `Черный`);
 
     await expect.poll(async () => {
         const items = await readCartItems(page);
@@ -38,19 +37,21 @@ test(`itchy-and-scratchy products have valid productParams and images`, async ({
     );
 });
 
-// Products in order: 2999999 (black/powder), 2999998 (silver/anodized), 2999997 (brown/anodized), 2999996 (green/anodized)
-const itchyProductCases: Array<{ buttonIndex: number; expectedColor: string }> = [
-    { buttonIndex: 0, expectedColor: `Черный` },
-    { buttonIndex: 1, expectedColor: `Алюминий (прозрачное анодирование)` },
-    { buttonIndex: 2, expectedColor: `Светло-коричневый` },
-    { buttonIndex: 3, expectedColor: `Светло-зелёный` },
+// Products by SKU: 2999999 (black/powder), 2999998 (silver/anodized), 2999997 (brown/anodized), 2999996 (green/anodized)
+const itchyProductCases: Array<{ skuId: string; expectedColor: string }> = [
+    { skuId: `2999999`, expectedColor: `Черный` },
+    { skuId: `2999998`, expectedColor: `Алюминий (прозрачное анодирование)` },
+    { skuId: `2999997`, expectedColor: `Светло-коричневый` },
+    { skuId: `2999996`, expectedColor: `Светло-зелёный` },
 ];
 
-for (const { buttonIndex, expectedColor } of itchyProductCases) {
-    test(`shows cage color label for product at index ${buttonIndex} in cart UI`, async ({ page }) => {
+for (const { skuId, expectedColor } of itchyProductCases) {
+    test(`shows cage color label for product ${skuId} (${expectedColor}) in cart UI`, async ({ page }) => {
         await resetCartStorage(page);
         await page.goto(`/${locale}/others/itchy-and-scratchy`);
-        await page.getByRole(`button`, { name: `Выбрать` }).nth(buttonIndex).click();
+        // Select the specific product card by its color label, then click its button
+        const productCard = page.locator(`li`).filter({ hasText: expectedColor }).first();
+        await productCard.getByRole(`button`, { name: `Выбрать` }).click();
         await page.goto(`/${locale}/cart`);
         await expect(page.getByText(expectedColor).first()).toBeVisible();
     });

@@ -4,7 +4,7 @@ import { BoltMaterial } from '@/stores/cartStore';
 
 import {
     addViaDefaultAddButton,
-    addViaSecondSelectButton,
+    addViaItchyAndScratchyByColor,
     expectCartSnapshot,
     locale,
     readCartItems,
@@ -112,7 +112,8 @@ test(`silver label stays contextual in cart UI`, async ({ page }) => {
     await addViaDefaultAddButton(page);
 
     await page.goto(`/${locale}/others/itchy-and-scratchy`);
-    await addViaSecondSelectButton(page);
+    // Add the silver/aluminum itchy-and-scratchy product by its color label
+    await addViaItchyAndScratchyByColor(page, `Алюминий (прозрачное анодирование)`);
 
     await page.goto(`/${locale}/cart`);
 

@@ -66,7 +66,7 @@ describe(`findSku`, () => {
     });
 
     test(`throws when sku not found`, () => {
-        expect(() => findSku(skus, sku => sku.sku_id === 999)).toThrow(`SKU not found`);
+        expect(() => findSku(skus, sku => sku.sku_id === 999)).toThrow(/SKU not found/);
     });
 });
 

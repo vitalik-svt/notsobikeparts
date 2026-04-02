@@ -1,3 +1,5 @@
+import { getTopcapSkuByPhoto } from "@/utils/topcapSkuByPhoto";
+
 vi.mock(`../../public/warehouse/topcap.json`, () => ({
     default: {
         "1000001": { sku_photo: `/images/photo-a.avif` },
@@ -6,8 +8,6 @@ vi.mock(`../../public/warehouse/topcap.json`, () => ({
         "1000004": { sku_photo: `/images/photo-b.avif` },
     },
 }));
-
-import { getTopcapSkuByPhoto } from "@/utils/topcapSkuByPhoto";
 
 describe(`getTopcapSkuByPhoto`, () => {
     test(`includes entries with valid sku_photo`, () => {

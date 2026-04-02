@@ -49,9 +49,7 @@ for (const { skuId, expectedColor } of itchyProductCases) {
     test(`shows cage color label for product ${skuId} (${expectedColor}) in cart UI`, async ({ page }) => {
         await resetCartStorage(page);
         await page.goto(`/${locale}/others/itchy-and-scratchy`);
-        // Select the specific product card by its color label, then click its button
-        const productCard = page.locator(`li`).filter({ hasText: expectedColor }).first();
-        await productCard.getByRole(`button`, { name: `Выбрать` }).click();
+        await addViaItchyAndScratchyByColor(page, expectedColor);
         await page.goto(`/${locale}/cart`);
         await expect(page.getByText(expectedColor).first()).toBeVisible();
     });

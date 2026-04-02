@@ -79,7 +79,13 @@ export default function CartTable({ items }: Props) {
                                             <span className="font-bold md:hidden">{tCommon(`cart.tablet.product_label`)}:</span>
                                             <span>{displayName}</span>
                                         </p>
-                                        {item.productParams && <ProductOptionParams productParams={item.productParams} />}
+                                        {item.productParams && (
+                                            <ProductOptionParams
+                                                productParams={item.productParams}
+                                                productSection={item.productSection}
+                                                productKey={item.productKey}
+                                            />
+                                        )}
                                     </div>
                                 </Link>
                             </td>

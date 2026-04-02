@@ -16,18 +16,24 @@ test(`itchy-and-scratchy products have valid productParams and images`, async ({
     expect(imageCount).toBeGreaterThan(0);
 
     // Add one itchy-and-scratchy product and assert persisted cart payload.
+    await expect(page.getByRole(`button`, { name: `Выбрать` }).nth(1)).toBeVisible();
     await addViaSecondSelectButton(page);
+
+    await expect.poll(async () => {
+        const items = await readCartItems(page);
+        return items.find((item) => item.productSection === `itchyAndScratchy`) ?? null;
+    }).not.toBeNull();
 
     const items = await readCartItems(page);
     expect(items).toHaveLength(1);
 
-    const itchyAndScratchyItem = items[0];
-    expect(itchyAndScratchyItem?.productSection).toBe(`itchyAndScratchy`);
-    expect(itchyAndScratchyItem?.productParams).toBeDefined();
-    expect(itchyAndScratchyItem?.productParams?.cageColor).toMatch(
+    const item = items[0];
+    expect(item?.productSection).toBe(`itchyAndScratchy`);
+    expect(item?.productParams).toBeDefined();
+    expect(item?.productParams?.cageColor).toMatch(
         /black|silver|green|brown/,
     );
-    expect(itchyAndScratchyItem?.productParams?.paintedType).toMatch(
+    expect(item?.productParams?.paintedType).toMatch(
         /anodized|powder/,
     );
 });

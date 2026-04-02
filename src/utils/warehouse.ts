@@ -88,6 +88,12 @@ export function toSkuMeta(sku?: WarehouseSku | null): SkuMeta {
 export function findSku(
     skus: WarehouseSku[],
     predicate: (sku: WarehouseSku) => boolean,
-): WarehouseSku | null {
-    return skus.find(predicate) ?? null;
+): WarehouseSku {
+    const found = skus.find(predicate);
+
+    if (!found) {
+        throw new Error(`SKU not found for provided predicate`);
+    }
+
+    return found;
 }

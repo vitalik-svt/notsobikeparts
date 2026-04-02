@@ -86,11 +86,6 @@ export async function addViaSelectButton(page: Page) {
     await page.getByRole(`button`, { name: `Выбрать` }).first().click();
 }
 
-export async function addViaSecondSelectButton(page: Page) {
-    // Select first available "Выбрать" button (used for products in grids)
-    await page.getByRole(`button`, { name: `Выбрать` }).first().click();
-}
-
 export async function addViaTopcapsSerialFlow(page: Page) {
     await page.getByRole(`button`, { name: `Выбрать` }).first().click();
     await page.getByRole(`button`, { name: `В корзину` }).first().click();

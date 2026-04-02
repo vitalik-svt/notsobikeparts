@@ -1,9 +1,10 @@
 import { expect, test } from '@playwright/test';
 
-import { addProductAndExpectOneItem, addViaItchyAndScratchyByColor, addViaSecondSelectButton, locale, readCartItems, resetCartStorage } from '../helpers/cart';
+import { addProductAndExpectOneItem, addViaItchyAndScratchyByColor, locale, readCartItems, resetCartStorage } from '../helpers/cart';
 
 test(`can add itchy and scratchy to cart`, async ({ page }) => {
-    await addProductAndExpectOneItem(page, `/others/itchy-and-scratchy`, addViaSecondSelectButton);
+    await addProductAndExpectOneItem(page, `/others/itchy-and-scratchy`, (p) =>
+        addViaItchyAndScratchyByColor(p, `Черный`));
 });
 
 test(`itchy-and-scratchy products have valid productParams and images`, async ({ page }) => {

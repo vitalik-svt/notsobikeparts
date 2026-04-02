@@ -142,3 +142,18 @@ export async function addProductAndExpectOneItem(
     await action(page);
     await expectCartSnapshot(page, { totalCount: 1, itemsCount: 1 });
 }
+
+export async function setCageColor(page: Page, color: string) {
+    const selectElement = page.getByRole(`main`).getByRole(`combobox`).first();
+    await selectElement.waitFor({ state: `visible` });
+    await selectElement.evaluate((element, value) => {
+        const select = element as HTMLSelectElement;
+        select.value = value;
+        select.dispatchEvent(new Event(`change`, { bubbles: true }));
+    }, color);
+}
+
+export async function setTopcapCustomThickness(page: Page, thickness: `thin` | `thick`) {
+    const regex = thickness === `thick` ? /^Толстый/ : /^Тонкий/;
+    await page.getByRole(`main`).getByText(regex).first().click();
+}

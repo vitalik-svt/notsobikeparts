@@ -88,3 +88,60 @@ test(`serial topcap keeps separate cart lines for different params`, async ({ pa
     expect(items.map((item) => item.productParams?.boltsMaterial)).toEqual([`none`, `steel`]);
     expect(items.map((item) => item.productParams?.hasBox)).toEqual([false, true]);
 });
+
+const serialBoltMaterialCases: Array<{ material: BoltMaterial; expected: string }> = [
+    { material: `none`, expected: `Без болтов` },
+    { material: `titanium`, expected: `Титановый` },
+    { material: `steel`, expected: `Стальной` },
+];
+
+for (const { material, expected } of serialBoltMaterialCases) {
+    test(`shows ${material} bolt material label in cart UI`, async ({ page }) => {
+        await resetCartStorage(page);
+        await page.goto(`/${locale}/products/topcaps`);
+        await page.getByRole(`button`, { name: `Выбрать` }).first().click();
+        await setTopcapBoltsMaterial(page, material);
+        await page.getByRole(`button`, { name: `В корзину` }).first().click();
+        await page.goto(`/${locale}/cart`);
+        await expect(page.getByText(expected).first()).toBeVisible();
+    });
+}
+
+test(`shows black bolt color label in cart UI`, async ({ page }) => {
+    await resetCartStorage(page);
+    await page.goto(`/${locale}/products/topcaps`);
+    await page.getByRole(`button`, { name: `Выбрать` }).first().click();
+    await setTopcapBoltsMaterial(page, `titanium`);
+    await page.getByRole(`button`, { name: `В корзину` }).first().click();
+    await page.goto(`/${locale}/cart`);
+    await expect(page.getByText(`Цвет болта`).first()).toBeVisible();
+    await expect(page.getByText(`Черный`).first()).toBeVisible();
+});
+
+test(`shows light bolt color label in cart UI`, async ({ page }) => {
+    await resetCartStorage(page);
+    await page.goto(`/${locale}/products/topcaps`);
+    await page.getByRole(`button`, { name: `Выбрать` }).first().click();
+    await setTopcapBoltsMaterial(page, `titanium`);
+    await page.getByText(`Светлый`).first().click();
+    await page.getByRole(`button`, { name: `В корзину` }).first().click();
+    await page.goto(`/${locale}/cart`);
+    await expect(page.getByText(`Светлый`).first()).toBeVisible();
+});
+
+const serialHasBoxCases: Array<{ hasBox: boolean; expected: string }> = [
+    { hasBox: false, expected: `Нет` },
+    { hasBox: true, expected: `Да` },
+];
+
+for (const { hasBox, expected } of serialHasBoxCases) {
+    test(`shows has box=${hasBox} label in cart UI`, async ({ page }) => {
+        await resetCartStorage(page);
+        await page.goto(`/${locale}/products/topcaps`);
+        await page.getByRole(`button`, { name: `Выбрать` }).first().click();
+        await setTopcapHasBox(page, hasBox);
+        await page.getByRole(`button`, { name: `В корзину` }).first().click();
+        await page.goto(`/${locale}/cart`);
+        await expect(page.getByText(expected).first()).toBeVisible();
+    });
+}

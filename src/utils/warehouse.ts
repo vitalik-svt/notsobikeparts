@@ -97,3 +97,7 @@ export function findSku(
 
     return found;
 }
+
+export function findSkuById(skus: WarehouseSku[], id: string): WarehouseSku {
+    return findSku(skus, (item) => String(item.sku_id) === id);
+}

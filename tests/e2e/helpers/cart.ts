@@ -92,13 +92,13 @@ export async function addViaTopcapsSerialFlow(page: Page) {
 }
 
 export async function setTopcapBoltsMaterial(page: Page, material: BoltMaterial) {
-    const labels: Record<BoltMaterial, RegExp> = {
-        none: /^Без болтов/i,
-        titanium: /^Титановый/i,
-        steel: /^Стальной/i,
-    };
+    const optionLabel = page
+        .locator(`label`)
+        .filter({ has: page.locator(`input[name="segmented-control"][value="${material}"]`) })
+        .last();
 
-    await page.getByText(labels[material]).first().click();
+    await optionLabel.waitFor({ state: `visible` });
+    await optionLabel.click();
 }
 
 export async function setTopcapHasBox(page: Page, hasBox: boolean) {

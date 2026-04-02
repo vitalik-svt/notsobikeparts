@@ -1,5 +1,6 @@
 import {
     findSku,
+    findSkuById,
     parseItchyAndScratchyProperties,
     toSkuMeta,
     warehouse,
@@ -67,6 +68,21 @@ describe(`findSku`, () => {
 
     test(`throws when sku not found`, () => {
         expect(() => findSku(skus, sku => sku.sku_id === 999)).toThrow(/SKU not found/);
+    });
+});
+
+describe(`findSkuById`, () => {
+    const skus = [
+        { sku_id: 1, product: `cage`, sku_photo: ``, photos: [], properties: { color: `black` } },
+        { sku_id: 2, product: `cage`, sku_photo: ``, photos: [], properties: { color: `silver` } },
+    ];
+
+    test(`returns matching sku by string id`, () => {
+        expect(findSkuById(skus, `2`)).toBe(skus[1]);
+    });
+
+    test(`throws when sku id not found`, () => {
+        expect(() => findSkuById(skus, `999`)).toThrow(/SKU not found/);
     });
 });
 

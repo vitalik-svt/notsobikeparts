@@ -6,7 +6,7 @@ import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { CageColor, CagePlusColor } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
-import { findSku, parseItchyAndScratchyProperties, warehouse } from "@/utils/warehouse";
+import { findSkuById, parseItchyAndScratchyProperties, warehouse } from "@/utils/warehouse";
 
 export type CoatingType = `anodized` | `powder`;
 
@@ -33,13 +33,21 @@ export function useItchyAndScratchyData() {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t: tCages } = useTranslation(`cages`);
     const { t: tItchyAndScratchy } = useTranslation(`itchyAndScratchy`);
-    const skuById = (id: string) =>
-        findSku(warehouse.itchyAndScratchy, (item) => String(item.sku_id) === id);
 
-    const sku2999999 = skuById(ITCHY_AND_SCRATCHY_SKU_IDS.plusPowderBlack);
-    const sku2999998 = skuById(ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedSilver);
-    const sku2999997 = skuById(ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedBrown);
-    const sku2999996 = skuById(ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedGreen);
+    const sku2999999 = findSkuById(warehouse.itchyAndScratchy, ITCHY_AND_SCRATCHY_SKU_IDS.plusPowderBlack);
+    const sku2999998 = findSkuById(warehouse.itchyAndScratchy, ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedSilver);
+    const sku2999997 = findSkuById(warehouse.itchyAndScratchy, ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedBrown);
+    const sku2999996 = findSkuById(warehouse.itchyAndScratchy, ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedGreen);
+
+    const getParsedProperties = (skuId: string, properties: Record<string, string | number | boolean>) => {
+        const parsed = parseItchyAndScratchyProperties(properties);
+
+        if (!parsed) {
+            throw new Error(`Invalid itchy-and-scratchy properties for sku_id=${skuId}`);
+        }
+
+        return parsed;
+    };
 
     const data: ItchyAndScratchyData = {
         name: tItchyAndScratchy(`itchy_scratchy.name`),
@@ -56,7 +64,7 @@ export function useItchyAndScratchyData() {
                 name: tCages(`plus.name`),
                 description: [],
                 price: productPrices.itchyAndScratchy[`plus-powder`][locale],
-                productParams: parseItchyAndScratchyProperties(sku2999999.properties)!,
+                productParams: getParsedProperties(ITCHY_AND_SCRATCHY_SKU_IDS.plusPowderBlack, sku2999999.properties),
             },
             {
                 skuId: ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedSilver,
@@ -64,7 +72,7 @@ export function useItchyAndScratchyData() {
                 name: tCages(`plus.name`),
                 description: [tItchyAndScratchy(`itchy_scratchy.defect.product.1`)],
                 price: productPrices.itchyAndScratchy[`plus-anodized`][locale],
-                productParams: parseItchyAndScratchyProperties(sku2999998.properties)!,
+                productParams: getParsedProperties(ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedSilver, sku2999998.properties),
             },
             {
                 skuId: ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedBrown,
@@ -75,7 +83,7 @@ export function useItchyAndScratchyData() {
                     tItchyAndScratchy(`itchy_scratchy.defect.product.2`),
                 ],
                 price: productPrices.itchyAndScratchy[`plus-anodized`][locale],
-                productParams: parseItchyAndScratchyProperties(sku2999997.properties)!,
+                productParams: getParsedProperties(ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedBrown, sku2999997.properties),
             },
             {
                 skuId: ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedGreen,
@@ -86,7 +94,7 @@ export function useItchyAndScratchyData() {
                     tItchyAndScratchy(`itchy_scratchy.defect.product.2`),
                 ],
                 price: productPrices.itchyAndScratchy[`plus-anodized`][locale],
-                productParams: parseItchyAndScratchyProperties(sku2999996.properties)!,
+                productParams: getParsedProperties(ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedGreen, sku2999996.properties),
             },
         ],
     };

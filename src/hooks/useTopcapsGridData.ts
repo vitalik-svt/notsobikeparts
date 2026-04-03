@@ -26,6 +26,12 @@ const categoryConfigs = [
     { nameKey: `topcaps.category.graphics`, skuIds: TOPCAP_SKU_IDS.graphics },
 ] as const;
 
+const topcapSkuMap = new Map(warehouse.topCap.map((sku) => [String(sku.sku_id), sku]));
+
+function warnTopcapSkuRenderIssue(skuId: string, reason: `missing sku` | `placeholder photo`) {
+    console.warn(`[useTopcapsGridData] Skipping topcap skuId=${skuId}: ${reason}`);
+}
+
 export const useTopcapsGridData = () => {
     const { t } = useTranslation(`topcaps`);
 
@@ -39,15 +45,18 @@ export const useTopcapsGridData = () => {
     };
 
     const topcaps: TopcapCategoryItem[] = categoryConfigs.map((category) => {
-        // Build lookup map for O(1) access, indexed by sku_id
-        const skuMap = new Map(warehouse.topCap.map((sku) => [String(sku.sku_id), sku]));
-
         return {
             categoryName: t(category.nameKey),
             items: category.skuIds.reduce<TopcapItem[]>((acc, skuId) => {
-                // Gracefully skip if SKU is not found in warehouse (catches drift in TOPCAP_SKU_IDS)
-                const sku = skuMap.get(skuId);
-                if (!sku || sku.sku_photo === `XXX`) {
+                const sku = topcapSkuMap.get(skuId);
+
+                if (!sku) {
+                    warnTopcapSkuRenderIssue(skuId, `missing sku`);
+                    return acc;
+                }
+
+                if (sku.sku_photo === `XXX`) {
+                    warnTopcapSkuRenderIssue(skuId, `placeholder photo`);
                     return acc;
                 }
 

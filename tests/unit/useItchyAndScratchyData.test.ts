@@ -13,6 +13,10 @@ vi.mock(`@/providers/I18nProvider`, () => ({
 }));
 
 describe(`useItchyAndScratchyData`, () => {
+    afterEach(() => {
+        vi.restoreAllMocks();
+    });
+
     test(`throws clear error when sku properties are invalid`, () => {
         const parseSpy = vi.spyOn(warehouseModule, `parseItchyAndScratchyProperties`);
         parseSpy

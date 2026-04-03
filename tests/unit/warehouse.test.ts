@@ -1,5 +1,6 @@
 import {
     findSku,
+    findSkuById,
     parseItchyAndScratchyProperties,
     toSkuMeta,
     warehouse,
@@ -40,6 +41,7 @@ describe(`toSkuMeta`, () => {
         sku_photo: `/photo.avif`,
         photos: [],
         properties: {},
+        available: true,
     };
 
     test(`converts sku_id number to string skuId`, () => {
@@ -57,8 +59,8 @@ describe(`toSkuMeta`, () => {
 
 describe(`findSku`, () => {
     const skus = [
-        { sku_id: 1, product: `cage`, sku_photo: ``, photos: [], properties: { color: `black` } },
-        { sku_id: 2, product: `cage`, sku_photo: ``, photos: [], properties: { color: `silver` } },
+        { sku_id: 1, product: `cage`, sku_photo: ``, photos: [], properties: { color: `black` }, available: true },
+        { sku_id: 2, product: `cage`, sku_photo: ``, photos: [], properties: { color: `silver` }, available: true },
     ];
 
     test(`returns matching sku`, () => {
@@ -70,12 +72,28 @@ describe(`findSku`, () => {
     });
 });
 
+describe(`findSkuById`, () => {
+    const skus = [
+        { sku_id: 1, product: `cage`, sku_photo: ``, photos: [], properties: { color: `black` }, available: true },
+        { sku_id: 2, product: `cage`, sku_photo: ``, photos: [], properties: { color: `silver` }, available: true },
+    ];
+
+    test(`returns matching sku by string id`, () => {
+        expect(findSkuById(skus, `2`)).toBe(skus[1]);
+    });
+
+    test(`throws when sku id not found`, () => {
+        expect(() => findSkuById(skus, `999`)).toThrow(/SKU not found/);
+    });
+});
+
 describe(`warehouse`, () => {
     test(`each warehouse entry has numeric sku_id`, () => {
         for (const skus of Object.values(warehouse)) {
             for (const sku of skus) {
                 expect(typeof sku.sku_id).toBe(`number`);
                 expect(Number.isFinite(sku.sku_id)).toBe(true);
+                expect(typeof sku.available).toBe(`boolean`);
             }
         }
     });

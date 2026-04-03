@@ -1,19 +1,21 @@
 import { useTranslation } from "react-i18next";
 
 import { productPrices } from "@/constants/productPrices";
+import { SINGLE_PRODUCT_SKU_IDS } from "@/constants/singleProductSkuIds";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { Locales } from "@/types/locales";
-import { toSkuMeta,warehouse } from "@/utils/warehouse";
+import { findSkuById, toSkuMeta, warehouse } from "@/utils/warehouse";
 
 export function useMerchData() {
     const { t } = useTranslation(`merch`);
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
-    const { skuId } = toSkuMeta(warehouse.merch[0]);
+    const merchSku = findSkuById(warehouse.merch, SINGLE_PRODUCT_SKU_IDS.merch);
+    const { skuId } = toSkuMeta(merchSku);
 
     const merchData = {
         name: t(`merch.name`),
-        images: warehouse.merch[0]?.photos ?? [],
+        images: merchSku.photos,
         description: t(`merch.description`),
         colorOptions: [],
         price: productPrices.merch[`one-price`][locale],

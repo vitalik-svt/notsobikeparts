@@ -14,7 +14,8 @@
     ],
     "properties": {
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000189": {
     "product": "cage_front",
@@ -31,6 +32,7 @@
     ],
     "properties": {
       "color": "silver"
-    }
+    },
+    "available": true
   }
 }

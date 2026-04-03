@@ -15,6 +15,7 @@ import voileRaw from "../../public/warehouse/voile.json";
 export interface WarehouseEntry {
     product: string;
     sku_photo: string;
+    available: boolean;
     photos: string[];
     properties: Record<string, string | number | boolean>;
 }
@@ -96,4 +97,8 @@ export function findSku(
     }
 
     return found;
+}
+
+export function findSkuById(skus: WarehouseSku[], id: string): WarehouseSku {
+    return findSku(skus, (item) => String(item.sku_id) === id);
 }

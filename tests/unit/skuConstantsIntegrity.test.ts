@@ -1,6 +1,7 @@
 import { CAGE_SKU_IDS } from "@/constants/cageSkuIds";
 import { ITCHY_AND_SCRATCHY_SKU_IDS } from "@/constants/itchyAndScratchySkuIds";
 import { SINGLE_PRODUCT_SKU_IDS } from "@/constants/singleProductSkuIds";
+import { TOPCAP_SKU_IDS } from "@/constants/topcapSkuIds";
 import { VOILE_SKU_IDS } from "@/constants/voileSkuIds";
 import { findSkuById, warehouse } from "@/utils/warehouse";
 
@@ -43,6 +44,20 @@ describe(`sku constants integrity`, () => {
     test(`all voile sku ids exist in warehouse`, () => {
         for (const id of Object.values(VOILE_SKU_IDS)) {
             expect(findSkuById(warehouse.voile, id).sku_id).toBe(Number(id));
+        }
+    });
+
+    test(`all topcap sku ids exist in warehouse`, () => {
+        for (const id of TOPCAP_SKU_IDS.cyrillic) {
+            expect(findSkuById(warehouse.topCap, id).sku_id).toBe(Number(id));
+        }
+
+        for (const id of TOPCAP_SKU_IDS.latin) {
+            expect(findSkuById(warehouse.topCap, id).sku_id).toBe(Number(id));
+        }
+
+        for (const id of TOPCAP_SKU_IDS.graphics) {
+            expect(findSkuById(warehouse.topCap, id).sku_id).toBe(Number(id));
         }
     });
 });

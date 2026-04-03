@@ -11,7 +11,8 @@
     ],
     "properties": {
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000187": {
     "product": "cage_volume",
@@ -25,6 +26,7 @@
     ],
     "properties": {
       "color": "silver"
-    }
+    },
+    "available": true
   }
 }

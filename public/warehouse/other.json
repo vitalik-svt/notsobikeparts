@@ -6,7 +6,8 @@
     "properties": {
       "component": "sticker_vinyl",
       "code": "sticker_vinyl"
-    }
+    },
+    "available": true
   },
   "2000197": {
     "product": "other",
@@ -15,7 +16,8 @@
     "properties": {
       "component": "bolt",
       "code": "bolt_m6x30_sst"
-    }
+    },
+    "available": true
   },
   "2000198": {
     "product": "other",
@@ -24,7 +26,8 @@
     "properties": {
       "component": "bolt",
       "code": "bolt_m6x30_cst"
-    }
+    },
+    "available": true
   },
   "2000201": {
     "product": "other",
@@ -33,7 +36,8 @@
     "properties": {
       "component": "bolt",
       "code": "bolt_m6x30_ti_black"
-    }
+    },
+    "available": true
   },
   "2000349": {
     "product": "other",
@@ -42,6 +46,7 @@
     "properties": {
       "component": "bolt",
       "code": "bolt_m6x30_ti_raw"
-    }
+    },
+    "available": true
   }
 }

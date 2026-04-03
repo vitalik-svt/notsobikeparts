@@ -20,7 +20,7 @@ interface Props {
 
 export default function ProductGrid({ items, price, title, additionalPriceOptions }: Props) {
     const { open, close } = usePopup();
-    const allProducts = useMemo(() => items.flatMap(category => category.items).filter(item => item.isAvailable), [items]);
+    const allProducts = useMemo(() => items.flatMap(category => category.items).filter(item => item.available), [items]);
     const cardRefs = useRef<Record<number, HTMLLIElement | null>>({});
 
     const scrollToCard = (index: number | null) => {
@@ -81,7 +81,7 @@ export default function ProductGrid({ items, price, title, additionalPriceOption
                                             url={item.image}
                                             skuId={item.skuId}
                                             description={item.description}
-                                            isAvailable={item.isAvailable}
+                                            isAvailable={item.available}
                                             selectProduct={() => openProductCard(globalIndex)}
                                         />
                                     </li>

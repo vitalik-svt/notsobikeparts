@@ -12,6 +12,7 @@
     "properties": {
       "rail": "1_s-section",
       "color": "black"
-    }
+    },
+    "available": true
   }
 }

@@ -15,6 +15,7 @@ import voileRaw from "../../public/warehouse/voile.json";
 export interface WarehouseEntry {
     product: string;
     sku_photo: string;
+    available: boolean;
     photos: string[];
     properties: Record<string, string | number | boolean>;
 }

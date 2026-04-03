@@ -10,6 +10,7 @@
     "properties": {
       "size": "large",
       "color": "black"
-    }
+    },
+    "available": true
   }
 }

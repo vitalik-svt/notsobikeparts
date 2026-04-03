@@ -12,6 +12,7 @@
     "properties": {
       "series": "lil",
       "color": "black"
-    }
+    },
+    "available": true
   }
 }

@@ -6,7 +6,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000003": {
     "product": "topcap",
@@ -15,7 +16,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000004": {
     "product": "topcap",
@@ -24,7 +26,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000005": {
     "product": "topcap",
@@ -33,7 +36,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000006": {
     "product": "topcap",
@@ -42,7 +46,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000007": {
     "product": "topcap",
@@ -51,7 +56,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000008": {
     "product": "topcap",
@@ -60,7 +66,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000009": {
     "product": "topcap",
@@ -69,7 +76,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000010": {
     "product": "topcap",
@@ -78,7 +86,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000011": {
     "product": "topcap",
@@ -87,7 +96,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000012": {
     "product": "topcap",
@@ -96,7 +106,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000013": {
     "product": "topcap",
@@ -105,7 +116,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000014": {
     "product": "topcap",
@@ -114,7 +126,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000015": {
     "product": "topcap",
@@ -123,7 +136,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000016": {
     "product": "topcap",
@@ -132,7 +146,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000018": {
     "product": "topcap",
@@ -141,7 +156,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000019": {
     "product": "topcap",
@@ -150,7 +166,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000020": {
     "product": "topcap",
@@ -159,7 +176,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000021": {
     "product": "topcap",
@@ -168,7 +186,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000022": {
     "product": "topcap",
@@ -177,7 +196,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000023": {
     "product": "topcap",
@@ -186,7 +206,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000024": {
     "product": "topcap",
@@ -195,7 +216,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000025": {
     "product": "topcap",
@@ -204,7 +226,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000026": {
     "product": "topcap",
@@ -213,7 +236,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000029": {
     "product": "topcap",
@@ -222,7 +246,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000030": {
     "product": "topcap",
@@ -231,7 +256,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000031": {
     "product": "topcap",
@@ -240,7 +266,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000032": {
     "product": "topcap",
@@ -249,7 +276,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000033": {
     "product": "topcap",
@@ -258,7 +286,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000034": {
     "product": "topcap",
@@ -267,7 +296,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000035": {
     "product": "topcap",
@@ -276,7 +306,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000036": {
     "product": "topcap",
@@ -285,7 +316,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000037": {
     "product": "topcap",
@@ -294,7 +326,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000040": {
     "product": "topcap",
@@ -303,7 +336,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000041": {
     "product": "topcap",
@@ -312,7 +346,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000042": {
     "product": "topcap",
@@ -321,7 +356,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000043": {
     "product": "topcap",
@@ -330,7 +366,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000045": {
     "product": "topcap",
@@ -339,7 +376,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000046": {
     "product": "topcap",
@@ -348,7 +386,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000048": {
     "product": "topcap",
@@ -357,7 +396,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000049": {
     "product": "topcap",
@@ -366,7 +406,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000052": {
     "product": "topcap",
@@ -375,7 +416,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000053": {
     "product": "topcap",
@@ -384,7 +426,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000054": {
     "product": "topcap",
@@ -393,7 +436,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000055": {
     "product": "topcap",
@@ -402,7 +446,8 @@
     "properties": {
       "thickness": "slim",
       "color": "silver"
-    }
+    },
+    "available": false
   },
   "2000056": {
     "product": "topcap",
@@ -411,7 +456,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000057": {
     "product": "topcap",
@@ -420,7 +466,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000058": {
     "product": "topcap",
@@ -429,7 +476,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000059": {
     "product": "topcap",
@@ -438,7 +486,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000060": {
     "product": "topcap",
@@ -447,7 +496,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000062": {
     "product": "topcap",
@@ -456,7 +506,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000063": {
     "product": "topcap",
@@ -465,7 +516,8 @@
     "properties": {
       "thickness": "slim",
       "color": "silver"
-    }
+    },
+    "available": true
   },
   "2000064": {
     "product": "topcap",
@@ -474,7 +526,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000065": {
     "product": "topcap",
@@ -483,7 +536,8 @@
     "properties": {
       "thickness": "slim",
       "color": "red"
-    }
+    },
+    "available": true
   },
   "2000066": {
     "product": "topcap",
@@ -492,7 +546,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000067": {
     "product": "topcap",
@@ -501,7 +556,8 @@
     "properties": {
       "thickness": "slim",
       "color": "silver"
-    }
+    },
+    "available": false
   },
   "2000068": {
     "product": "topcap",
@@ -510,7 +566,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000076": {
     "product": "topcap",
@@ -519,7 +576,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000077": {
     "product": "topcap",
@@ -528,7 +586,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000078": {
     "product": "topcap",
@@ -537,7 +596,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000079": {
     "product": "topcap",
@@ -546,7 +606,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000080": {
     "product": "topcap",
@@ -555,7 +616,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000081": {
     "product": "topcap",
@@ -564,7 +626,8 @@
     "properties": {
       "thickness": "slim",
       "color": "brown"
-    }
+    },
+    "available": false
   },
   "2000085": {
     "product": "topcap",
@@ -573,7 +636,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000086": {
     "product": "topcap",
@@ -582,7 +646,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000087": {
     "product": "topcap",
@@ -591,7 +656,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000088": {
     "product": "topcap",
@@ -600,7 +666,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000089": {
     "product": "topcap",
@@ -609,7 +676,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000090": {
     "product": "topcap",
@@ -618,7 +686,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000095": {
     "product": "topcap",
@@ -627,7 +696,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000096": {
     "product": "topcap",
@@ -636,7 +706,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000097": {
     "product": "topcap",
@@ -645,7 +716,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000098": {
     "product": "topcap",
@@ -654,7 +726,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000099": {
     "product": "topcap",
@@ -663,7 +736,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000100": {
     "product": "topcap",
@@ -672,7 +746,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000104": {
     "product": "topcap",
@@ -681,7 +756,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000105": {
     "product": "topcap",
@@ -690,7 +766,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000106": {
     "product": "topcap",
@@ -699,7 +776,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000107": {
     "product": "topcap",
@@ -708,7 +786,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000108": {
     "product": "topcap",
@@ -717,7 +796,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000109": {
     "product": "topcap",
@@ -726,7 +806,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000110": {
     "product": "topcap",
@@ -735,7 +816,8 @@
     "properties": {
       "thickness": "slim",
       "color": "silver"
-    }
+    },
+    "available": false
   },
   "2000117": {
     "product": "topcap",
@@ -744,7 +826,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000118": {
     "product": "topcap",
@@ -753,7 +836,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000119": {
     "product": "topcap",
@@ -762,7 +846,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000120": {
     "product": "topcap",
@@ -771,7 +856,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000122": {
     "product": "topcap",
@@ -780,7 +866,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000123": {
     "product": "topcap",
@@ -789,7 +876,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000125": {
     "product": "topcap",
@@ -798,7 +886,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000126": {
     "product": "topcap",
@@ -807,7 +896,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000128": {
     "product": "topcap",
@@ -816,7 +906,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000129": {
     "product": "topcap",
@@ -825,7 +916,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000131": {
     "product": "topcap",
@@ -834,7 +926,8 @@
     "properties": {
       "thickness": "slim",
       "color": "gold"
-    }
+    },
+    "available": true
   },
   "2000132": {
     "product": "topcap",
@@ -843,7 +936,8 @@
     "properties": {
       "thickness": "slim",
       "color": "brown"
-    }
+    },
+    "available": true
   },
   "2000133": {
     "product": "topcap",
@@ -852,7 +946,8 @@
     "properties": {
       "thickness": "slim",
       "color": "red"
-    }
+    },
+    "available": false
   },
   "2000136": {
     "product": "topcap",
@@ -861,7 +956,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000137": {
     "product": "topcap",
@@ -870,7 +966,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000138": {
     "product": "topcap",
@@ -879,7 +976,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000141": {
     "product": "topcap",
@@ -888,7 +986,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000142": {
     "product": "topcap",
@@ -897,7 +996,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000143": {
     "product": "topcap",
@@ -906,7 +1006,8 @@
     "properties": {
       "thickness": "slim",
       "color": "silver"
-    }
+    },
+    "available": true
   },
   "2000144": {
     "product": "topcap",
@@ -915,7 +1016,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000145": {
     "product": "topcap",
@@ -924,7 +1026,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000146": {
     "product": "topcap",
@@ -933,7 +1036,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000147": {
     "product": "topcap",
@@ -942,7 +1046,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000148": {
     "product": "topcap",
@@ -951,7 +1056,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000149": {
     "product": "topcap",
@@ -960,7 +1066,8 @@
     "properties": {
       "thickness": "slim",
       "color": "red"
-    }
+    },
+    "available": true
   },
   "2000151": {
     "product": "topcap",
@@ -969,7 +1076,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000152": {
     "product": "topcap",
@@ -978,7 +1086,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000153": {
     "product": "topcap",
@@ -987,7 +1096,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000154": {
     "product": "topcap",
@@ -996,7 +1106,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000155": {
     "product": "topcap",
@@ -1005,7 +1116,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000156": {
     "product": "topcap",
@@ -1014,7 +1126,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000157": {
     "product": "topcap",
@@ -1023,7 +1136,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000158": {
     "product": "topcap",
@@ -1032,7 +1146,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000159": {
     "product": "topcap",
@@ -1041,7 +1156,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000160": {
     "product": "topcap",
@@ -1050,7 +1166,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000161": {
     "product": "topcap",
@@ -1059,7 +1176,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000162": {
     "product": "topcap",
@@ -1068,7 +1186,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000163": {
     "product": "topcap",
@@ -1077,7 +1196,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000164": {
     "product": "topcap",
@@ -1086,7 +1206,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000165": {
     "product": "topcap",
@@ -1095,7 +1216,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000167": {
     "product": "topcap",
@@ -1104,7 +1226,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000180": {
     "product": "topcap",
@@ -1113,7 +1236,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000181": {
     "product": "topcap",
@@ -1122,7 +1246,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000182": {
     "product": "topcap",
@@ -1131,7 +1256,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000208": {
     "product": "topcap",
@@ -1140,7 +1266,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000223": {
     "product": "topcap",
@@ -1149,7 +1276,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000224": {
     "product": "topcap",
@@ -1158,7 +1286,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000225": {
     "product": "topcap",
@@ -1167,7 +1296,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000226": {
     "product": "topcap",
@@ -1176,7 +1306,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000227": {
     "product": "topcap",
@@ -1185,7 +1316,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000228": {
     "product": "topcap",
@@ -1194,7 +1326,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000236": {
     "product": "topcap",
@@ -1203,7 +1336,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000237": {
     "product": "topcap",
@@ -1212,7 +1346,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000238": {
     "product": "topcap",
@@ -1221,7 +1356,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000239": {
     "product": "topcap",
@@ -1230,7 +1366,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000242": {
     "product": "topcap",
@@ -1239,7 +1376,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000243": {
     "product": "topcap",
@@ -1248,7 +1386,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000244": {
     "product": "topcap",
@@ -1257,7 +1396,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000245": {
     "product": "topcap",
@@ -1266,7 +1406,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000249": {
     "product": "topcap",
@@ -1275,7 +1416,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000250": {
     "product": "topcap",
@@ -1284,7 +1426,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000251": {
     "product": "topcap",
@@ -1293,7 +1436,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000252": {
     "product": "topcap",
@@ -1302,7 +1446,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000253": {
     "product": "topcap",
@@ -1311,7 +1456,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000254": {
     "product": "topcap",
@@ -1320,7 +1466,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000255": {
     "product": "topcap",
@@ -1329,7 +1476,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000256": {
     "product": "topcap",
@@ -1338,7 +1486,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000260": {
     "product": "topcap",
@@ -1347,7 +1496,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000261": {
     "product": "topcap",
@@ -1356,7 +1506,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000262": {
     "product": "topcap",
@@ -1365,7 +1516,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000263": {
     "product": "topcap",
@@ -1374,7 +1526,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000264": {
     "product": "topcap",
@@ -1383,7 +1536,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000266": {
     "product": "topcap",
@@ -1392,7 +1546,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000267": {
     "product": "topcap",
@@ -1401,7 +1556,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000268": {
     "product": "topcap",
@@ -1410,7 +1566,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000269": {
     "product": "topcap",
@@ -1419,7 +1576,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000270": {
     "product": "topcap",
@@ -1428,7 +1586,8 @@
     "properties": {
       "thickness": "slim",
       "color": "red"
-    }
+    },
+    "available": false
   },
   "2000271": {
     "product": "topcap",
@@ -1437,7 +1596,8 @@
     "properties": {
       "thickness": "slim",
       "color": "blue"
-    }
+    },
+    "available": false
   },
   "2000272": {
     "product": "topcap",
@@ -1446,7 +1606,8 @@
     "properties": {
       "thickness": "slim",
       "color": "silver"
-    }
+    },
+    "available": false
   },
   "2000273": {
     "product": "topcap",
@@ -1455,7 +1616,8 @@
     "properties": {
       "thickness": "slim",
       "color": "gold"
-    }
+    },
+    "available": false
   },
   "2000276": {
     "product": "topcap",
@@ -1464,7 +1626,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000277": {
     "product": "topcap",
@@ -1473,7 +1636,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000278": {
     "product": "topcap",
@@ -1482,7 +1646,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000279": {
     "product": "topcap",
@@ -1491,7 +1656,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000280": {
     "product": "topcap",
@@ -1500,7 +1666,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000281": {
     "product": "topcap",
@@ -1509,7 +1676,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000282": {
     "product": "topcap",
@@ -1518,7 +1686,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000286": {
     "product": "topcap",
@@ -1527,7 +1696,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000287": {
     "product": "topcap",
@@ -1536,7 +1706,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000288": {
     "product": "topcap",
@@ -1545,7 +1716,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000289": {
     "product": "topcap",
@@ -1554,7 +1726,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000292": {
     "product": "topcap",
@@ -1563,7 +1736,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000295": {
     "product": "topcap",
@@ -1572,7 +1746,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000296": {
     "product": "topcap",
@@ -1581,7 +1756,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000297": {
     "product": "topcap",
@@ -1590,7 +1766,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000298": {
     "product": "topcap",
@@ -1599,7 +1776,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000300": {
     "product": "topcap",
@@ -1608,7 +1786,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000301": {
     "product": "topcap",
@@ -1617,7 +1796,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000302": {
     "product": "topcap",
@@ -1626,7 +1806,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000303": {
     "product": "topcap",
@@ -1635,7 +1816,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000304": {
     "product": "topcap",
@@ -1644,7 +1826,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": true
   },
   "2000305": {
     "product": "topcap",
@@ -1653,7 +1836,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000308": {
     "product": "topcap",
@@ -1662,7 +1846,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000309": {
     "product": "topcap",
@@ -1671,7 +1856,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000310": {
     "product": "topcap",
@@ -1680,7 +1866,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000351": {
     "product": "topcap",
@@ -1689,7 +1876,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000352": {
     "product": "topcap",
@@ -1698,7 +1886,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000353": {
     "product": "topcap",
@@ -1707,7 +1896,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000354": {
     "product": "topcap",
@@ -1716,7 +1906,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000355": {
     "product": "topcap",
@@ -1725,7 +1916,8 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   },
   "2000356": {
     "product": "topcap",
@@ -1734,6 +1926,7 @@
     "properties": {
       "thickness": "slim",
       "color": "black"
-    }
+    },
+    "available": false
   }
 }

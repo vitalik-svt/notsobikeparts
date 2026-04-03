@@ -92,6 +92,7 @@ describe(`warehouse`, () => {
             for (const sku of skus) {
                 expect(typeof sku.sku_id).toBe(`number`);
                 expect(Number.isFinite(sku.sku_id)).toBe(true);
+                expect(typeof sku.available).toBe(`boolean`);
             }
         }
     });

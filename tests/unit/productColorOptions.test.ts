@@ -5,8 +5,8 @@ import {
 
 describe(`createProductColorOptions`, () => {
     const skus = [
-        { sku_id: 10, product: `cage`, sku_photo: ``, photos: [], properties: { color: `black` } },
-        { sku_id: 11, product: `cage`, sku_photo: ``, photos: [], properties: { color: `silver` } },
+        { sku_id: 10, product: `cage`, sku_photo: ``, photos: [], properties: { color: `black` }, available: true },
+        { sku_id: 11, product: `cage`, sku_photo: ``, photos: [], properties: { color: `silver` }, available: true },
     ];
 
     test(`maps config to translated options with sku ids`, () => {

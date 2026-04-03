@@ -1,6 +1,5 @@
 // Ordered SKU ID lists per topcap category; order defines the display order in the grid.
 // Source of truth: public/warehouse/topcap.json
-// Items absent from that JSON (e.g. pic-33, 44, 56, 64, 1023, 1024) are simply omitted.
 export const TOPCAP_SKU_IDS = {
     cyrillic: [
         `2000031`, // pic-1
@@ -35,7 +34,7 @@ export const TOPCAP_SKU_IDS = {
         `2000161`, // pic-30
         `2000162`, // pic-31
         `2000023`, // pic-32
-        // pic-33: absent from topcap.json
+        `2000117`, // pic-33
         `2000249`, // pic-34
         `2000251`, // pic-35
         `2000263`, // pic-36
@@ -46,7 +45,7 @@ export const TOPCAP_SKU_IDS = {
         `2000237`, // pic-41
         `2000239`, // pic-42
         `2000236`, // pic-43
-        // pic-44: absent from topcap.json
+        `2000225`, // pic-44
         `2000132`, // pic-45
         `2000147`, // pic-46
         `2000181`, // pic-47
@@ -58,7 +57,7 @@ export const TOPCAP_SKU_IDS = {
         `2000122`, // pic-53
         `2000056`, // pic-54
         `2000159`, // pic-55
-        // pic-56: absent from topcap.json
+        `2000118`, // pic-56
         `2000128`, // pic-57
         `2000158`, // pic-58
         `2000163`, // pic-59
@@ -66,7 +65,7 @@ export const TOPCAP_SKU_IDS = {
         `2000137`, // pic-61
         `2000076`, // pic-62
         `2000208`, // pic-63
-        // pic-64: absent from topcap.json
+        `2000119`, // pic-64
         `2000157`, // pic-65
         `2000025`, // pic-66
         `2000126`, // pic-67
@@ -146,8 +145,8 @@ export const TOPCAP_SKU_IDS = {
         `2000146`, // pic-1020
         `2000035`, // pic-1021
         `2000077`, // pic-1022
-        // pic-1023: absent from topcap.json
-        // pic-1024: absent from topcap.json
+        `2000049`, // pic-1023
+        `2000141`, // pic-1024
         `2000143`, // pic-1025
     ],
 } as const;

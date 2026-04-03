@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 import { TOPCAP_SKU_IDS } from "@/constants/topcapSkuIds";
-import { findSkuById, warehouse } from "@/utils/warehouse";
+import { warehouse } from "@/utils/warehouse";
 
 interface TopcapItem {
     description: string;
@@ -38,26 +38,31 @@ export const useTopcapsGridData = () => {
         [`2000065`]: t(`topcaps.description.black`),  // pic-1015
     };
 
-    const topcaps: TopcapCategoryItem[] = categoryConfigs.map((category) => ({
-        categoryName: t(category.nameKey),
-        items: category.skuIds.reduce<TopcapItem[]>((acc, skuId) => {
-            const sku = findSkuById(warehouse.topCap, skuId);
+    const topcaps: TopcapCategoryItem[] = categoryConfigs.map((category) => {
+        // Build lookup map for O(1) access, indexed by sku_id
+        const skuMap = new Map(warehouse.topCap.map((sku) => [String(sku.sku_id), sku]));
 
-            if (!sku || sku.sku_photo === `XXX`) {
+        return {
+            categoryName: t(category.nameKey),
+            items: category.skuIds.reduce<TopcapItem[]>((acc, skuId) => {
+                // Gracefully skip if SKU is not found in warehouse (catches drift in TOPCAP_SKU_IDS)
+                const sku = skuMap.get(skuId);
+                if (!sku || sku.sku_photo === `XXX`) {
+                    return acc;
+                }
+
+                acc.push({
+                    description: descriptions[skuId] ?? ``,
+                    image: sku.sku_photo,
+                    id: getFileNameFromPath(sku.sku_photo, skuId),
+                    available: Boolean(sku.available),
+                    skuId,
+                });
+
                 return acc;
-            }
-
-            acc.push({
-                description: descriptions[skuId] ?? ``,
-                image: sku.sku_photo,
-                id: getFileNameFromPath(sku.sku_photo, skuId),
-                available: Boolean(sku.available),
-                skuId,
-            });
-
-            return acc;
-        }, []),
-    }));
+            }, []),
+        };
+    });
 
     return topcaps;
 };

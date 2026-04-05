@@ -1,7 +1,7 @@
 {
   "2000002": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-11.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000002.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -11,7 +11,7 @@
   },
   "2000003": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-24.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000003.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -21,7 +21,7 @@
   },
   "2000004": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-311.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000004.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -31,7 +31,7 @@
   },
   "2000005": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-12.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000005.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -41,7 +41,7 @@
   },
   "2000006": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-16.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000006.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -51,7 +51,7 @@
   },
   "2000007": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-321.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000007.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -61,7 +61,7 @@
   },
   "2000008": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-329.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000008.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -71,7 +71,7 @@
   },
   "2000009": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-333.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000009.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -81,7 +81,7 @@
   },
   "2000010": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-313.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000010.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -91,7 +91,7 @@
   },
   "2000011": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-309.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000011.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -101,7 +101,7 @@
   },
   "2000012": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-301.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000012.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -111,7 +111,7 @@
   },
   "2000013": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-9.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000013.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -121,7 +121,7 @@
   },
   "2000014": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-335.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000014.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -131,7 +131,7 @@
   },
   "2000015": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-317.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000015.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -151,7 +151,7 @@
   },
   "2000018": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-316.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000018.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -161,7 +161,7 @@
   },
   "2000019": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-318.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000019.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -171,7 +171,7 @@
   },
   "2000020": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-328.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000020.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -181,7 +181,7 @@
   },
   "2000021": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-50.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000021.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -201,7 +201,7 @@
   },
   "2000023": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-32.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000023.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -211,7 +211,7 @@
   },
   "2000024": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-325.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000024.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -221,7 +221,7 @@
   },
   "2000025": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-66.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000025.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -231,7 +231,7 @@
   },
   "2000026": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-315.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000026.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -241,7 +241,7 @@
   },
   "2000029": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-20.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000029.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -251,7 +251,7 @@
   },
   "2000030": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-327.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000030.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -261,7 +261,7 @@
   },
   "2000031": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000031.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -271,7 +271,7 @@
   },
   "2000032": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1018.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000032.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -281,7 +281,7 @@
   },
   "2000033": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1017.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000033.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -291,7 +291,7 @@
   },
   "2000034": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-49.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000034.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -301,7 +301,7 @@
   },
   "2000035": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1021.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000035.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -311,7 +311,7 @@
   },
   "2000036": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-302.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000036.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -321,7 +321,7 @@
   },
   "2000037": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-51.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000037.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -341,7 +341,7 @@
   },
   "2000041": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-312.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000041.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -381,7 +381,7 @@
   },
   "2000046": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-8.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000046.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -391,7 +391,7 @@
   },
   "2000048": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-324.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000048.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -401,7 +401,7 @@
   },
   "2000049": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1023.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000049.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -411,7 +411,7 @@
   },
   "2000052": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-6.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000052.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -421,7 +421,7 @@
   },
   "2000053": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-27.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000053.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -451,7 +451,7 @@
   },
   "2000056": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-54.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000056.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -471,7 +471,7 @@
   },
   "2000058": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-14.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000058.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -481,7 +481,7 @@
   },
   "2000059": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-19.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000059.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -491,7 +491,7 @@
   },
   "2000060": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-307.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000060.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -511,7 +511,7 @@
   },
   "2000063": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1016.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000063.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -531,7 +531,7 @@
   },
   "2000065": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1015.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000065.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -541,7 +541,7 @@
   },
   "2000066": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1013.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000066.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -561,7 +561,7 @@
   },
   "2000068": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1007.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000068.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -571,7 +571,7 @@
   },
   "2000076": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-62.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000076.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -581,7 +581,7 @@
   },
   "2000077": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1022.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000077.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -591,7 +591,7 @@
   },
   "2000078": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1009.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000078.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -611,7 +611,7 @@
   },
   "2000080": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-322.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000080.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -631,7 +631,7 @@
   },
   "2000085": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1014.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000085.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -641,7 +641,7 @@
   },
   "2000086": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-332.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000086.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -651,7 +651,7 @@
   },
   "2000087": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-29.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000087.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -661,7 +661,7 @@
   },
   "2000088": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-18.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000088.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -671,7 +671,7 @@
   },
   "2000089": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-17.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000089.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -681,7 +681,7 @@
   },
   "2000090": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-7.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000090.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -691,7 +691,7 @@
   },
   "2000095": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-326.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000095.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -701,7 +701,7 @@
   },
   "2000096": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-21.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000096.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -711,7 +711,7 @@
   },
   "2000097": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-3.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000097.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -721,7 +721,7 @@
   },
   "2000098": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-303.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000098.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -731,7 +731,7 @@
   },
   "2000099": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-319.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000099.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -741,7 +741,7 @@
   },
   "2000100": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-23.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000100.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -751,7 +751,7 @@
   },
   "2000104": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-28.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000104.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -761,7 +761,7 @@
   },
   "2000105": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-334.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000105.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -781,7 +781,7 @@
   },
   "2000107": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-305.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000107.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -791,7 +791,7 @@
   },
   "2000108": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-22.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000108.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -821,7 +821,7 @@
   },
   "2000117": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-33.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000117.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -831,7 +831,7 @@
   },
   "2000118": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-56.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000118.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -841,7 +841,7 @@
   },
   "2000119": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-64.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000119.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -851,7 +851,7 @@
   },
   "2000120": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-48.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000120.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -861,7 +861,7 @@
   },
   "2000122": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-53.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000122.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -871,7 +871,7 @@
   },
   "2000123": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-26.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000123.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -881,7 +881,7 @@
   },
   "2000125": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-5.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000125.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -891,7 +891,7 @@
   },
   "2000126": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-67.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000126.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -901,7 +901,7 @@
   },
   "2000128": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-57.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000128.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -911,7 +911,7 @@
   },
   "2000129": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-306.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000129.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -921,7 +921,7 @@
   },
   "2000131": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-13.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000131.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -931,7 +931,7 @@
   },
   "2000132": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-45.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000132.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -941,7 +941,7 @@
   },
   "2000133": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-2.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000133.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -951,7 +951,7 @@
   },
   "2000136": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-4.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000136.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -961,7 +961,7 @@
   },
   "2000137": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-61.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000137.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -971,7 +971,7 @@
   },
   "2000138": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1019.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000138.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -981,7 +981,7 @@
   },
   "2000141": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1024.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000141.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -991,7 +991,7 @@
   },
   "2000142": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-323.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000142.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1001,7 +1001,7 @@
   },
   "2000143": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1025.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000143.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1011,7 +1011,7 @@
   },
   "2000144": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-330.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000144.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1031,7 +1031,7 @@
   },
   "2000146": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1020.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000146.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1041,7 +1041,7 @@
   },
   "2000147": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-46.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000147.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1051,7 +1051,7 @@
   },
   "2000148": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-52.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000148.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1061,7 +1061,7 @@
   },
   "2000149": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-310.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000149.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1071,7 +1071,7 @@
   },
   "2000151": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-331.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000151.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1091,7 +1091,7 @@
   },
   "2000153": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-10.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000153.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1101,7 +1101,7 @@
   },
   "2000154": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-314.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000154.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1111,7 +1111,7 @@
   },
   "2000155": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-308.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000155.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1121,7 +1121,7 @@
   },
   "2000156": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-60.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000156.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1131,7 +1131,7 @@
   },
   "2000157": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-65.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000157.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1141,7 +1141,7 @@
   },
   "2000158": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-58.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000158.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1151,7 +1151,7 @@
   },
   "2000159": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-55.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000159.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1161,7 +1161,7 @@
   },
   "2000160": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-304.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000160.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1171,7 +1171,7 @@
   },
   "2000161": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-30.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000161.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1181,7 +1181,7 @@
   },
   "2000162": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-31.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000162.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1191,7 +1191,7 @@
   },
   "2000163": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-59.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000163.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1201,7 +1201,7 @@
   },
   "2000164": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1010.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000164.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1211,7 +1211,7 @@
   },
   "2000165": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1008.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000165.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1221,7 +1221,7 @@
   },
   "2000167": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-15.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000167.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1231,7 +1231,7 @@
   },
   "2000180": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-320.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000180.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1241,7 +1241,7 @@
   },
   "2000181": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-47.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000181.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1251,7 +1251,7 @@
   },
   "2000182": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-25.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000182.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1261,7 +1261,7 @@
   },
   "2000208": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-63.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000208.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1271,7 +1271,7 @@
   },
   "2000223": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-338.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000223.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1281,7 +1281,7 @@
   },
   "2000224": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1012.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000224.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1291,7 +1291,7 @@
   },
   "2000225": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-44.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000225.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1311,7 +1311,7 @@
   },
   "2000227": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-340.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000227.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1321,7 +1321,7 @@
   },
   "2000228": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-339.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000228.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1331,7 +1331,7 @@
   },
   "2000236": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-43.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000236.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1341,7 +1341,7 @@
   },
   "2000237": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-41.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000237.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1351,7 +1351,7 @@
   },
   "2000238": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-337.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000238.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1361,7 +1361,7 @@
   },
   "2000239": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-42.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000239.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1381,7 +1381,7 @@
   },
   "2000243": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1011.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000243.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1391,7 +1391,7 @@
   },
   "2000244": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-71.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000244.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1401,7 +1401,7 @@
   },
   "2000245": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-40.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000245.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1411,7 +1411,7 @@
   },
   "2000249": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-34.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000249.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1421,7 +1421,7 @@
   },
   "2000250": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-37.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000250.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1431,7 +1431,7 @@
   },
   "2000251": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-35.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000251.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1441,7 +1441,7 @@
   },
   "2000252": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-39.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000252.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1451,7 +1451,7 @@
   },
   "2000253": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1004.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000253.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1461,7 +1461,7 @@
   },
   "2000254": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1001.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000254.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1471,7 +1471,7 @@
   },
   "2000255": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1003.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000255.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1481,7 +1481,7 @@
   },
   "2000256": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1002.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000256.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1491,7 +1491,7 @@
   },
   "2000260": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-38.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000260.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1501,7 +1501,7 @@
   },
   "2000261": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-72.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000261.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1511,7 +1511,7 @@
   },
   "2000262": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-336.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000262.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1521,7 +1521,7 @@
   },
   "2000263": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-36.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000263.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1531,7 +1531,7 @@
   },
   "2000264": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1005.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000264.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1541,7 +1541,7 @@
   },
   "2000266": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-70.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000266.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1551,7 +1551,7 @@
   },
   "2000267": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-69.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000267.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1561,7 +1561,7 @@
   },
   "2000268": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-68.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000268.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1621,7 +1621,7 @@
   },
   "2000276": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-1006.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000276.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1691,7 +1691,7 @@
   },
   "2000286": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-73.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000286.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1701,7 +1701,7 @@
   },
   "2000287": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-75.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000287.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1721,7 +1721,7 @@
   },
   "2000289": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-74.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000289.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1811,7 +1811,7 @@
   },
   "2000303": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-77.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000303.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1821,7 +1821,7 @@
   },
   "2000304": {
     "product": "topcap",
-    "sku_photo": "/images/topcaps/serial/items/product-pic-76.avif",
+    "sku_photo": "/images/topcaps/serial/items/2000304.avif",
     "photos": [],
     "properties": {
       "thickness": "slim",

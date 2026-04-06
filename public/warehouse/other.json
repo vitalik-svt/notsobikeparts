@@ -55,7 +55,7 @@
     "photos": [],
     "properties": {
       "component": "cardboardbox",
-      "code": "box_set (crdbrdbx_sml + ppr_ctd + stkr_ppr)"
+      "code": "box_set_small"
     },
     "available": true
   }

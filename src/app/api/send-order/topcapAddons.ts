@@ -11,9 +11,8 @@ const otherCodes = {
     steelBolt: `bolt_m6x30_cst`,
     titaniumBoltBlack: `bolt_m6x30_ti_black`,
     titaniumBoltLight: `bolt_m6x30_ti_raw`,
+    boxSetSmall: `box_set_small`,
 } as const;
-
-const TOPCAP_BOX_SKU_ID = `2000195`;
 
 function getSkuIdByOtherCode(code: string): string {
     const skuId = otherCodeToSkuId.get(code);
@@ -50,7 +49,7 @@ export function getTopcapAddonSkuId(kind: TopcapAddonKind): string {
         return getSkuIdByOtherCode(otherCodes.titaniumBoltLight);
     }
 
-    return TOPCAP_BOX_SKU_ID;
+    return getSkuIdByOtherCode(otherCodes.boxSetSmall);
 }
 
 export function expandOrderItemsWithTopcapAddons(items: ParsedOrderItem[]): ParsedOrderInternalItem[] {

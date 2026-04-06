@@ -6,6 +6,7 @@ import {
     addViaTopcapsSerialFlow,
     expectCartSnapshot,
     locale,
+    openCartInFreshPage,
     readCartItems,
     resetCartStorage,
     setTopcapBoltsMaterial,
@@ -102,8 +103,9 @@ for (const { material, expected } of serialBoltMaterialCases) {
         await page.getByRole(`button`, { name: `Выбрать` }).first().click();
         await setTopcapBoltsMaterial(page, material);
         await page.getByRole(`button`, { name: `В корзину` }).first().click();
-        await page.goto(`/${locale}/cart`);
-        await expect(page.getByText(expected).first()).toBeVisible();
+        const cartPage = await openCartInFreshPage(page);
+        await expect(cartPage.getByText(expected).first()).toBeVisible();
+        await cartPage.close();
     });
 }
 
@@ -113,9 +115,10 @@ test(`shows black bolt color label in cart UI`, async ({ page }) => {
     await page.getByRole(`button`, { name: `Выбрать` }).first().click();
     await setTopcapBoltsMaterial(page, `titanium`);
     await page.getByRole(`button`, { name: `В корзину` }).first().click();
-    await page.goto(`/${locale}/cart`);
-    await expect(page.getByText(`Цвет болта`).first()).toBeVisible();
-    await expect(page.getByText(`Черный`).first()).toBeVisible();
+    const cartPage = await openCartInFreshPage(page);
+    await expect(cartPage.getByText(`Цвет болта`).first()).toBeVisible();
+    await expect(cartPage.getByText(`Черный`).first()).toBeVisible();
+    await cartPage.close();
 });
 
 test(`shows light bolt color label in cart UI`, async ({ page }) => {
@@ -125,8 +128,9 @@ test(`shows light bolt color label in cart UI`, async ({ page }) => {
     await setTopcapBoltsMaterial(page, `titanium`);
     await page.getByText(`Светлый`).first().click();
     await page.getByRole(`button`, { name: `В корзину` }).first().click();
-    await page.goto(`/${locale}/cart`);
-    await expect(page.getByText(`Светлый`).first()).toBeVisible();
+    const cartPage = await openCartInFreshPage(page);
+    await expect(cartPage.getByText(`Светлый`).first()).toBeVisible();
+    await cartPage.close();
 });
 
 const serialHasBoxCases: Array<{ hasBox: boolean; expected: string }> = [
@@ -141,7 +145,8 @@ for (const { hasBox, expected } of serialHasBoxCases) {
         await page.getByRole(`button`, { name: `Выбрать` }).first().click();
         await setTopcapHasBox(page, hasBox);
         await page.getByRole(`button`, { name: `В корзину` }).first().click();
-        await page.goto(`/${locale}/cart`);
-        await expect(page.getByText(expected).first()).toBeVisible();
+        const cartPage = await openCartInFreshPage(page);
+        await expect(cartPage.getByText(expected).first()).toBeVisible();
+        await cartPage.close();
     });
 }

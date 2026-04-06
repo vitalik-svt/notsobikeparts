@@ -1,6 +1,6 @@
 import { findSku, getDefaultSku, warehouse } from "@/utils/warehouse";
 
-describe(`sku constants integrity`, () => {
+describe(`warehouse integrity`, () => {
     test(`all required cage variants can be resolved from properties`, () => {
         expect(findSku(warehouse.cageFront, (sku) => sku.properties.color === `black`).sku_id).toBeTypeOf(`number`);
         expect(findSku(warehouse.cageFront, (sku) => sku.properties.color === `silver`).sku_id).toBeTypeOf(`number`);

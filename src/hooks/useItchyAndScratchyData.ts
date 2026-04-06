@@ -46,6 +46,7 @@ export function useItchyAndScratchyData() {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t: tCages } = useTranslation(`cages`);
     const { t: tItchyAndScratchy } = useTranslation(`itchyAndScratchy`);
+    const defectDescriptions = tItchyAndScratchy(`itchy_scratchy.defect.product`, { returnObjects: true }) as string[];
 
     const getParsedProperties = (skuId: string, properties: Record<string, string | number | boolean>) => {
         const parsed = parseItchyAndScratchyProperties(properties);
@@ -63,13 +64,10 @@ export function useItchyAndScratchyData() {
         }
 
         if (productParams.cageColor === `silver`) {
-            return [tItchyAndScratchy(`itchy_scratchy.defect.product.1`)];
+            return defectDescriptions.slice(0, 1);
         }
 
-        return [
-            tItchyAndScratchy(`itchy_scratchy.defect.product.1`),
-            tItchyAndScratchy(`itchy_scratchy.defect.product.2`),
-        ];
+        return defectDescriptions;
     };
 
     const sortedSkus = [...warehouse.itchyAndScratchy].sort((left, right) => {

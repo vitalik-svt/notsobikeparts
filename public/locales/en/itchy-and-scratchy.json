@@ -5,6 +5,8 @@
     "Usually it's about the finish — chipped anodizing or some noticeable scratches. Occasionally the laser engraving might go a bit off. We also include items used for photoshoots or short test rides here.",
     "You can get these products at a discounted price."
   ],
-  "itchy_scratchy.defect.product.1": "Stripped thread on the bottle opener",
-  "itchy_scratchy.defect.product.2": "Minor flaws in anodizing"
+  "itchy_scratchy.defect.product": [
+    "Stripped thread on the bottle opener",
+    "Minor flaws in anodizing"
+  ]
 }

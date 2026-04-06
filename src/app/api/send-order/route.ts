@@ -8,6 +8,7 @@ import { createOrderSuccessToken, ORDER_SUCCESS_COOKIE } from '@/utils/orderSucc
 
 import { getServerPrice, orderRequestSchema, ParsedOrderItem,parseOrderIdentity } from './orderPayload';
 import { loadSkuNamesDictionary, loadTopcapsDictionary } from './skuNames';
+import { expandOrderItemsWithTopcapAddons } from './topcapAddons';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -83,7 +84,9 @@ export async function POST(request: NextRequest) {
         fallbackName: normalizedItem.productSection === `topcap` && normalizedItem.productKey === `custom` ? topcapsDictionary[`topcaps.custom.name`] : undefined,
       });
     };
-    const pricedItems = items.map((item) => {
+    const itemsWithAddons = expandOrderItemsWithTopcapAddons(items);
+
+    const pricedItems = itemsWithAddons.map((item) => {
       const priceSettings = getServerPrice(item, locale);
 
       if (!priceSettings) {
@@ -130,29 +133,45 @@ export async function POST(request: NextRequest) {
     // HTML для таблицы товаров в письме покупателю
     const customerItemsHtml = validPricedItems
       .map(
-        (item) => `
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(item.name)}</td>
+        (item) => {
+          const isAddon = Boolean(item.productParams?.topcapAddon);
+          const nameCell = isAddon
+            ? `&nbsp;&nbsp;&nbsp;└&nbsp;${escapeHtml(item.name)}`
+            : escapeHtml(item.name);
+          const rowStyle = isAddon ? ` style="background-color: #fafafa; font-size: 0.92em; color: #555;"` : ``;
+
+          return `
+      <tr${rowStyle}>
+        <td style="border: 1px solid #ddd; padding: 8px;">${nameCell}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${escapeHtml(item.quantity)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.price)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.subtotal)}</td>
       </tr>
-    `
+    `;
+        }
       )
       .join(``);
 
     // HTML для таблицы товаров в письме администратору
     const adminItemsHtml = validPricedItems
       .map(
-        (item) => `
-      <tr>
+        (item) => {
+          const isAddon = Boolean(item.productParams?.topcapAddon);
+          const nameCell = isAddon
+            ? `&nbsp;&nbsp;&nbsp;└&nbsp;${escapeHtml(item.name)}`
+            : escapeHtml(item.name);
+          const rowStyle = isAddon ? ` style="background-color: #fafafa; font-size: 0.92em; color: #555;"` : ``;
+
+          return `
+      <tr${rowStyle}>
         <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(item.skuId || `—`)}</td>
-        <td style="border: 1px solid #ddd; padding: 8px;">${escapeHtml(item.name)}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">${nameCell}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${escapeHtml(item.quantity)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.price)}</td>
         <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${escapeHtml(item.subtotal)}</td>
       </tr>
-    `
+    `;
+        }
       )
       .join(``);
 

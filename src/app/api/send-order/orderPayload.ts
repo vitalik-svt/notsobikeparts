@@ -16,11 +16,13 @@ const BOLT_MATERIALS = [`none`, `titanium`, `steel`] as const;
 const BOLT_COLORS = [`black`, `light`] as const;
 const ITCHY_COATINGS = [`anodized`, `powder`] as const;
 const CAGE_COLORS = [`black`, `silver`, `green`, `brown`] as const;
+const TOPCAP_ADDONS = [`steel-bolt`, `titanium-bolt-black`, `titanium-bolt-light`, `box`] as const;
 
 export const productParamsSchema = z.object({
   boltsMaterial: z.enum(BOLT_MATERIALS).optional(),
   boltColor: z.enum(BOLT_COLORS).nullable().optional(),
   hasBox: z.boolean().optional(),
+  topcapAddon: z.enum(TOPCAP_ADDONS).optional(),
   cageColor: z.enum(CAGE_COLORS).optional(),
   voileType: z.enum(VOILE_KEYS).optional(),
   colorOption: z.enum(TOPCAP_COLOR_OPTIONS).optional(),
@@ -141,13 +143,21 @@ export function getServerPrice(item: ParsedOrderItem, locale: Locales): ProductP
     return null;
   }
 
+  const topcapAddon = item.productParams?.topcapAddon;
+
+  if (topcapAddon) {
+    const addonPriceKey = topcapAddon === `box`
+      ? `box`
+      : topcapAddon === `steel-bolt`
+        ? `steel-bolt`
+        : `titanium-bolt`;
+
+    return productPrices.topcaps[addonPriceKey][locale];
+  }
+
   const basePrice = productPrices.topcaps[identity.productKey === `custom` ? `custom` : `serial`][locale];
   const params = item.productParams;
   let amount = basePrice.amount;
-
-  if (params?.boltsMaterial === `titanium`) {
-    amount += productPrices.topcaps[`titanium-bolt`][locale].amount;
-  }
 
   if (identity.productKey === `custom`) {
     if (params?.customThickness === `thick`) {

@@ -34,11 +34,16 @@ export interface TopcapCustomParams {
 	customThickness: TopcapCustomThickness;
 }
 
+export interface TopcapAddonParams {
+	topcapAddon: `steel-bolt` | `titanium-bolt-black` | `titanium-bolt-light` | `box`;
+}
+
 export type ProductParams = Partial<
 	TopcapParams &
 	CageParams &
 	VoileParams &
 	TopcapCustomParams &
+	TopcapAddonParams &
 	ItchyAndScratchyColorMap
 >;
 export type ProductKey = ProductVoileType | ProductCageType | TopcapProductKey | `one-price`;

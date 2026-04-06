@@ -155,6 +155,20 @@ describe(`send-order payload helpers`, () => {
         expect(price?.amount).toBe(0);
     });
 
+    test(`rejects forged topcap addon when skuId does not match addon identity`, () => {
+        const price = getServerPrice({
+            skuId: `2000002`,
+            productSection: `topcap`,
+            productKey: `serial`,
+            quantity: 1,
+            productParams: {
+                topcapAddon: `box`,
+            },
+        }, `ru`);
+
+        expect(price).toBeNull();
+    });
+
     test(`applies custom color surcharge for silver topcap`, () => {
         const price = getServerPrice({
             skuId: ``,

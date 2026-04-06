@@ -17,6 +17,12 @@ const BOLT_COLORS = [`black`, `light`] as const;
 const ITCHY_COATINGS = [`anodized`, `powder`] as const;
 const CAGE_COLORS = [`black`, `silver`, `green`, `brown`] as const;
 const TOPCAP_ADDONS = [`steel-bolt`, `titanium-bolt-black`, `titanium-bolt-light`, `box`] as const;
+const TOPCAP_ADDON_SKU_IDS = {
+  'steel-bolt': `2000198`,
+  'titanium-bolt-black': `2000201`,
+  'titanium-bolt-light': `2000349`,
+  box: `2000195`,
+} as const;
 
 export const productParamsSchema = z.object({
   boltsMaterial: z.enum(BOLT_MATERIALS).optional(),
@@ -146,6 +152,10 @@ export function getServerPrice(item: ParsedOrderItem, locale: Locales): ProductP
   const topcapAddon = item.productParams?.topcapAddon;
 
   if (topcapAddon) {
+    if (!item.skuId || item.skuId !== TOPCAP_ADDON_SKU_IDS[topcapAddon]) {
+      return null;
+    }
+
     const addonPriceKey = topcapAddon === `box`
       ? `box`
       : topcapAddon === `steel-bolt`

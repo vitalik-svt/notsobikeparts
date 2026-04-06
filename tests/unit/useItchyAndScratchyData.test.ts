@@ -3,7 +3,24 @@ import * as warehouseModule from "@/utils/warehouse";
 
 vi.mock(`react-i18next`, () => ({
     useTranslation: () => ({
-        t: (key: string) => key,
+        t: (key: string, options?: { returnObjects?: boolean }) => {
+            if (options?.returnObjects && key === `itchy_scratchy.description`) {
+                return [
+                    `itchy_scratchy.description.1`,
+                    `itchy_scratchy.description.2`,
+                    `itchy_scratchy.description.3`,
+                ];
+            }
+
+            if (options?.returnObjects && key === `itchy_scratchy.defect.product`) {
+                return [
+                    `itchy_scratchy.defect.product.1`,
+                    `itchy_scratchy.defect.product.2`,
+                ];
+            }
+
+            return key;
+        },
     }),
 }));
 
@@ -45,5 +62,33 @@ describe(`useItchyAndScratchyData`, () => {
 
         expect(() => useItchyAndScratchyData())
             .toThrow(`Invalid itchy-and-scratchy properties for sku_id=${expectedFailingSkuId}`);
+    });
+
+    test(`builds product descriptions by coating and color`, () => {
+        const data = useItchyAndScratchyData();
+
+        const powderProduct = data.products.find((product) => product.productParams.paintedType === `powder`);
+        const silverAnodizedProduct = data.products.find((product) => (
+            product.productParams.paintedType === `anodized`
+            && product.productParams.cageColor === `silver`
+        ));
+        const nonSilverAnodizedProduct = data.products.find((product) => (
+            product.productParams.paintedType === `anodized`
+            && product.productParams.cageColor !== `silver`
+        ));
+
+        expect(powderProduct).toBeDefined();
+        expect(powderProduct?.description).toEqual([]);
+
+        expect(silverAnodizedProduct).toBeDefined();
+        expect(silverAnodizedProduct?.description).toEqual([
+            `itchy_scratchy.defect.product.1`,
+        ]);
+
+        expect(nonSilverAnodizedProduct).toBeDefined();
+        expect(nonSilverAnodizedProduct?.description).toEqual([
+            `itchy_scratchy.defect.product.1`,
+            `itchy_scratchy.defect.product.2`,
+        ]);
     });
 });

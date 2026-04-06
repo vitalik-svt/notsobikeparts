@@ -59,6 +59,14 @@ describe(`send-order payload helpers`, () => {
         })).toBeNull();
     });
 
+    test(`returns null for invalid productKey with valid productSection`, () => {
+        expect(parseOrderIdentity({
+            skuId: `x`,
+            productSection: `cage`,
+            productKey: `evil`,
+        })).toBeNull();
+    });
+
     test(`calculates cage price on server`, () => {
         const price = getServerPrice({
             skuId: `2000188`,
@@ -85,6 +93,54 @@ describe(`send-order payload helpers`, () => {
         }, `ru`);
 
         expect(price?.amount).toBe(4200);
+    });
+
+    test(`calculates custom topcap base price without surcharges`, () => {
+        const price = getServerPrice({
+            skuId: ``,
+            productSection: `topcap`,
+            productKey: `custom`,
+            quantity: 1,
+            productParams: {
+                boltsMaterial: `none`,
+                colorOption: `black`,
+                customThickness: `thin`,
+            },
+        }, `ru`);
+
+        expect(price?.amount).toBe(3000);
+    });
+
+    test(`calculates serial topcap with titanium surcharge only`, () => {
+        const price = getServerPrice({
+            skuId: ``,
+            productSection: `topcap`,
+            productKey: `serial`,
+            quantity: 1,
+            productParams: {
+                boltsMaterial: `titanium`,
+                colorOption: `red`,
+                customThickness: `thick`,
+            },
+        }, `ru`);
+
+        expect(price?.amount).toBe(1700);
+    });
+
+    test(`applies custom color surcharge for silver topcap`, () => {
+        const price = getServerPrice({
+            skuId: ``,
+            productSection: `topcap`,
+            productKey: `custom`,
+            quantity: 1,
+            productParams: {
+                boltsMaterial: `none`,
+                colorOption: `silver`,
+                customThickness: `thin`,
+            },
+        }, `ru`);
+
+        expect(price?.amount).toBe(3500);
     });
 
     test(`accepts silver for cageColor and topcap colorOption`, () => {

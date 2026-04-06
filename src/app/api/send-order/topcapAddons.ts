@@ -37,19 +37,16 @@ function getBoltAddonKind(material: BoltMaterial, boltColor?: BoltColor): Topcap
 }
 
 export function getTopcapAddonSkuId(kind: TopcapAddonKind): string {
-    if (kind === `steel-bolt`) {
-        return getSkuIdByOtherCode(otherCodes.steelBolt);
+    switch (kind) {
+        case `steel-bolt`:
+            return getSkuIdByOtherCode(otherCodes.steelBolt);
+        case `titanium-bolt-black`:
+            return getSkuIdByOtherCode(otherCodes.titaniumBoltBlack);
+        case `titanium-bolt-light`:
+            return getSkuIdByOtherCode(otherCodes.titaniumBoltLight);
+        case `box`:
+            return getSkuIdByOtherCode(otherCodes.boxSetSmall);
     }
-
-    if (kind === `titanium-bolt-black`) {
-        return getSkuIdByOtherCode(otherCodes.titaniumBoltBlack);
-    }
-
-    if (kind === `titanium-bolt-light`) {
-        return getSkuIdByOtherCode(otherCodes.titaniumBoltLight);
-    }
-
-    return getSkuIdByOtherCode(otherCodes.boxSetSmall);
 }
 
 export function expandOrderItemsWithTopcapAddons(items: ParsedOrderItem[]): ParsedOrderInternalItem[] {

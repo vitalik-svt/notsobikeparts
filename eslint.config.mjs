@@ -26,12 +26,19 @@ const eslintConfig = [
     plugins: {
       "simple-import-sort": simpleImportSort,
     },
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: __dirname,
+      },
+    },
     rules: {
       quotes: [`error`, `backtick`],
       "prefer-template": `error`,
       "simple-import-sort/imports": `error`,
       "simple-import-sort/exports": `error`,
       "@typescript-eslint/consistent-type-imports": [`error`, { prefer: `type-imports` }],
+      "@typescript-eslint/switch-exhaustiveness-check": `error`,
     },
   },
 ];

@@ -6,11 +6,12 @@ import { useLocale } from "@/providers/I18nProvider";
 import { Locales } from "@/types/locales";
 import { getDefaultSku, toSkuMeta, warehouse } from "@/utils/warehouse";
 
+const feedbagHangerSku = getDefaultSku(warehouse.feedbagHanger);
+const { skuId: feedbagHangerSkuId } = toSkuMeta(feedbagHangerSku);
+
 export function useFeedbagHangerData() {
     const { t } = useTranslation(`feedbagHanger`);
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
-    const feedbagHangerSku = getDefaultSku(warehouse.feedbagHanger);
-    const { skuId } = toSkuMeta(feedbagHangerSku);
 
     const feedbagHanger = {
         name: t(`feedbagHanger.name`),
@@ -20,7 +21,7 @@ export function useFeedbagHangerData() {
         price: productPrices.feedbagHanger[`one-price`][locale],
         features: t(`feedbagHanger.features`, { returnObjects: true }) as string[],
         characteristics: [],
-        skuId,
+        skuId: feedbagHangerSkuId,
     }
 
     return feedbagHanger;

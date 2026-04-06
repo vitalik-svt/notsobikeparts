@@ -14,6 +14,7 @@ import { getDefaultSku, toSkuMeta, warehouse } from "@/utils/warehouse";
 export type CageColorOption = ProductColorOption<CageColor | CagePlusColor>;
 
 type CageColorOptionMap = Partial<Record<CageColor | CagePlusColor, CageColorOption>>;
+type ColorSkuLookup<T extends CageColor | CagePlusColor> = Partial<Record<T, WarehouseSku>>;
 
 export interface CageSettings {
     name: string;
@@ -51,14 +52,31 @@ function getColorFromSku(sku: WarehouseSku): CageColor | CagePlusColor | null {
     return null;
 }
 
-function buildColorOptions<T extends CageColor | CagePlusColor>(
+function createColorSkuLookup<T extends CageColor | CagePlusColor>(
     skus: WarehouseSku[],
+    colorOrder: readonly T[],
+): ColorSkuLookup<T> {
+    const allowedColors = new Set<CageColor | CagePlusColor>(colorOrder);
+
+    return skus.reduce<ColorSkuLookup<T>>((acc, sku) => {
+        const color = getColorFromSku(sku);
+
+        if (color && allowedColors.has(color)) {
+            acc[color as T] = sku;
+        }
+
+        return acc;
+    }, {});
+}
+
+function buildColorOptions<T extends CageColor | CagePlusColor>(
+    skusByColor: ColorSkuLookup<T>,
     colorOrder: readonly T[],
     labelPrefix: string,
     translate: (key: string) => string,
 ): ProductColorOption<T>[] {
     return colorOrder.reduce<ProductColorOption<T>[]>((acc, color) => {
-        const sku = skus.find((item) => getColorFromSku(item) === color);
+        const sku = skusByColor[color];
 
         if (!sku) {
             warnMissingColorOption(labelPrefix, color);
@@ -88,18 +106,22 @@ function getSkuByPreferredColor(
     return getDefaultSku(skus);
 }
 
+const frontBlackSku = getSkuByPreferredColor(warehouse.cageFront, `black`);
+const plusBlackSku = getSkuByPreferredColor(warehouse.cagePlus, `black`);
+const volumeBlackSku = getSkuByPreferredColor(warehouse.cageVolume, `black`);
+const littleSku = getDefaultSku(warehouse.cageLittle);
+const littleSkuId = toSkuMeta(littleSku).skuId;
+const frontSkusByColor = createColorSkuLookup(warehouse.cageFront, frontAndVolumeColorOrder);
+const volumeSkusByColor = createColorSkuLookup(warehouse.cageVolume, frontAndVolumeColorOrder);
+const plusSkusByColor = createColorSkuLookup(warehouse.cagePlus, plusColorOrder);
+
 export const useCagesProductData = () => {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t: tCages } = useTranslation(`cages`);
 
-    const frontBlackSku = getSkuByPreferredColor(warehouse.cageFront, `black`);
-    const plusBlackSku = getSkuByPreferredColor(warehouse.cagePlus, `black`);
-    const volumeBlackSku = getSkuByPreferredColor(warehouse.cageVolume, `black`);
-    const littleSku = getDefaultSku(warehouse.cageLittle);
-
-    const frontColorOptions = buildColorOptions(warehouse.cageFront, frontAndVolumeColorOrder, `front`, tCages);
-    const volumeColorOptions = buildColorOptions(warehouse.cageVolume, frontAndVolumeColorOrder, `volume`, tCages);
-    const plusColorOptions = buildColorOptions(warehouse.cagePlus, plusColorOrder, `plus`, tCages);
+    const frontColorOptions = buildColorOptions(frontSkusByColor, frontAndVolumeColorOrder, `front`, tCages);
+    const volumeColorOptions = buildColorOptions(volumeSkusByColor, frontAndVolumeColorOrder, `volume`, tCages);
+    const plusColorOptions = buildColorOptions(plusSkusByColor, plusColorOrder, `plus`, tCages);
 
     const cages: Record<ProductCageType, CageSettings> = {
         front: {
@@ -136,7 +158,7 @@ export const useCagesProductData = () => {
             price: productPrices.cages.little[locale],
             features: [],
             characteristics: tCages(`little.characteristics`, { returnObjects: true }) as string[],
-            skuId: toSkuMeta(littleSku).skuId,
+            skuId: littleSkuId,
         },
         plus: {
             name: tCages(`plus.name`),

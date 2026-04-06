@@ -1,4 +1,3 @@
-import { useItchyAndScratchyData } from "@/hooks/useItchyAndScratchyData";
 import * as warehouseModule from "@/utils/warehouse";
 
 vi.mock(`react-i18next`, () => ({
@@ -30,10 +29,12 @@ vi.mock(`@/providers/I18nProvider`, () => ({
 
 describe(`useItchyAndScratchyData`, () => {
     afterEach(() => {
+        vi.doUnmock(`@/utils/warehouse`);
+        vi.resetModules();
         vi.restoreAllMocks();
     });
 
-    test(`throws clear error when sku properties are invalid`, () => {
+    test(`throws clear error when sku properties are invalid`, async () => {
         const paintedTypeSortOrder = { powder: 0, anodized: 1 } as const;
         const cageColorSortOrder = { silver: 0, brown: 1, green: 2, black: 3 } as const;
 
@@ -52,19 +53,31 @@ describe(`useItchyAndScratchyData`, () => {
                 })[0]?.sku_id ?? ``,
         );
 
-        const parseSpy = vi.spyOn(warehouseModule, `parseItchyAndScratchyProperties`);
-        parseSpy
-            .mockReturnValueOnce(null)
-            .mockImplementation((properties) => ({
-                cageColor: String(properties.cageColor) as `black` | `silver` | `green` | `brown`,
-                paintedType: String(properties.paintedType) as `anodized` | `powder`,
-            }));
+        vi.doMock(`@/utils/warehouse`, () => {
+            let shouldFail = true;
 
-        expect(() => useItchyAndScratchyData())
-            .toThrow(`Invalid itchy-and-scratchy properties for sku_id=${expectedFailingSkuId}`);
+            return {
+                ...warehouseModule,
+                parseItchyAndScratchyProperties: vi.fn((properties) => {
+                    if (shouldFail) {
+                        shouldFail = false;
+                        return null;
+                    }
+
+                    return {
+                        cageColor: String(properties.cageColor) as `black` | `silver` | `green` | `brown`,
+                        paintedType: String(properties.paintedType) as `anodized` | `powder`,
+                    };
+                }),
+            };
+        });
+
+        await expect(import(`@/hooks/useItchyAndScratchyData`))
+            .rejects.toThrow(`Invalid itchy-and-scratchy properties for sku_id=${expectedFailingSkuId}`);
     });
 
-    test(`builds product descriptions by coating and color`, () => {
+    test(`builds product descriptions by coating and color`, async () => {
+        const { useItchyAndScratchyData } = await import(`@/hooks/useItchyAndScratchyData`);
         const data = useItchyAndScratchyData();
 
         const powderProduct = data.products.find((product) => product.productParams.paintedType === `powder`);

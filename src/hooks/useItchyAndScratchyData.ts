@@ -42,35 +42,18 @@ const cageColorSortOrder: Record<CageColor | CagePlusColor, number> = {
 
 const fallbackSortOrder = 999;
 
-export function useItchyAndScratchyData() {
-    const locale = (useLocale() || i18n.defaultLocale) as Locales;
-    const { t: tCages } = useTranslation(`cages`);
-    const { t: tItchyAndScratchy } = useTranslation(`itchyAndScratchy`);
-    const defectDescriptions = tItchyAndScratchy(`itchy_scratchy.defect.product`, { returnObjects: true }) as string[];
+function getParsedProperties(skuId: string, properties: Record<string, string | number | boolean>) {
+    const parsed = parseItchyAndScratchyProperties(properties);
 
-    const getParsedProperties = (skuId: string, properties: Record<string, string | number | boolean>) => {
-        const parsed = parseItchyAndScratchyProperties(properties);
+    if (!parsed) {
+        throw new Error(`Invalid itchy-and-scratchy properties for sku_id=${skuId}`);
+    }
 
-        if (!parsed) {
-            throw new Error(`Invalid itchy-and-scratchy properties for sku_id=${skuId}`);
-        }
+    return parsed;
+}
 
-        return parsed;
-    };
-
-    const getDescription = (productParams: ItchyAndScratchyColorMap): string[] => {
-        if (productParams.paintedType === `powder`) {
-            return [];
-        }
-
-        if (productParams.cageColor === `silver`) {
-            return defectDescriptions.slice(0, 1);
-        }
-
-        return defectDescriptions;
-    };
-
-    const sortedSkus = [...warehouse.itchyAndScratchy].sort((left, right) => {
+const itchyAndScratchyProductsBase = [...warehouse.itchyAndScratchy]
+    .sort((left, right) => {
         const leftPaintedType = String(left.properties.paintedType) as CoatingType;
         const rightPaintedType = String(right.properties.paintedType) as CoatingType;
         const leftCageColor = String(left.properties.cageColor) as CageColor | CagePlusColor;
@@ -85,24 +68,45 @@ export function useItchyAndScratchyData() {
 
         return (cageColorSortOrder[leftCageColor] ?? fallbackSortOrder)
             - (cageColorSortOrder[rightCageColor] ?? fallbackSortOrder);
+    })
+    .map((sku) => {
+        const skuId = String(sku.sku_id);
+
+        return {
+            skuId,
+            images: sku.photos,
+            productParams: getParsedProperties(skuId, sku.properties),
+        };
     });
 
-    const products = sortedSkus
-        .map((sku) => {
-            const skuId = String(sku.sku_id);
-            const productParams = getParsedProperties(skuId, sku.properties);
+export function useItchyAndScratchyData() {
+    const locale = (useLocale() || i18n.defaultLocale) as Locales;
+    const { t: tCages } = useTranslation(`cages`);
+    const { t: tItchyAndScratchy } = useTranslation(`itchyAndScratchy`);
+    const defectDescriptions = tItchyAndScratchy(`itchy_scratchy.defect.product`, { returnObjects: true }) as string[];
 
-            return {
-                skuId,
-                images: sku.photos,
-                name: tCages(`plus.name`),
-                description: getDescription(productParams),
-                price: productParams.paintedType === `powder`
-                    ? productPrices.itchyAndScratchy[`plus-powder`][locale]
-                    : productPrices.itchyAndScratchy[`plus-anodized`][locale],
-                productParams,
-            };
-        });
+    const getDescription = (productParams: ItchyAndScratchyColorMap): string[] => {
+        if (productParams.paintedType === `powder`) {
+            return [];
+        }
+
+        if (productParams.cageColor === `silver`) {
+            return defectDescriptions.slice(0, 1);
+        }
+
+        return defectDescriptions;
+    };
+
+    const products = itchyAndScratchyProductsBase.map(({ skuId, images, productParams }) => ({
+        skuId,
+        images,
+        name: tCages(`plus.name`),
+        description: getDescription(productParams),
+        price: productParams.paintedType === `powder`
+            ? productPrices.itchyAndScratchy[`plus-powder`][locale]
+            : productPrices.itchyAndScratchy[`plus-anodized`][locale],
+        productParams,
+    }));
 
     const data: ItchyAndScratchyData = {
         name: tItchyAndScratchy(`itchy_scratchy.name`),

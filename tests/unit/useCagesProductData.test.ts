@@ -1,5 +1,4 @@
-import { useCagesProductData } from "@/hooks/useCagesProductData";
-import { warehouse } from "@/utils/warehouse";
+import * as warehouseModule from "@/utils/warehouse";
 
 vi.mock(`@/providers/I18nProvider`, () => ({
     useLocale: () => `en`,
@@ -16,47 +15,72 @@ vi.mock(`react-i18next`, () => ({
 }));
 
 describe(`useCagesProductData`, () => {
-    test(`throws when required front color cannot be resolved in non-production`, () => {
-        const silverFrontSku = warehouse.cageFront.find((sku) => sku.properties.color === `silver`);
-
-        if (!silverFrontSku) {
-            throw new Error(`Expected silver cage-front SKU in warehouse`);
-        }
-
-        const originalColor = silverFrontSku.properties.color;
-        silverFrontSku.properties.color = `unknown`;
-
-        try {
-            expect(() => useCagesProductData()).toThrow(
-                `[useCagesProductData] Missing SKU for section=front color=silver`,
-            );
-        } finally {
-            silverFrontSku.properties.color = originalColor;
-        }
+    afterEach(() => {
+        vi.doUnmock(`@/utils/warehouse`);
+        vi.unstubAllEnvs();
+        vi.resetModules();
+        vi.restoreAllMocks();
     });
 
-    test(`warns in production when required front color cannot be resolved`, () => {
+    test(`throws when required front color cannot be resolved in non-production`, async () => {
+        vi.doMock(`@/utils/warehouse`, () => ({
+            ...warehouseModule,
+            warehouse: {
+                ...warehouseModule.warehouse,
+                cageFront: warehouseModule.warehouse.cageFront.map((sku) => {
+                    if (String(sku.properties.color) !== `silver`) {
+                        return sku;
+                    }
+
+                    return {
+                        ...sku,
+                        properties: {
+                            ...sku.properties,
+                            color: `unknown`,
+                        },
+                    };
+                }),
+            },
+        }));
+
+        const { useCagesProductData } = await import(`@/hooks/useCagesProductData`);
+
+        expect(() => useCagesProductData()).toThrow(
+            `[useCagesProductData] Missing SKU for section=front color=silver`,
+        );
+    });
+
+    test(`warns in production when required front color cannot be resolved`, async () => {
         const warnSpy = vi.spyOn(console, `warn`).mockImplementation(() => {});
-        const silverFrontSku = warehouse.cageFront.find((sku) => sku.properties.color === `silver`);
 
-        if (!silverFrontSku) {
-            throw new Error(`Expected silver cage-front SKU in warehouse`);
-        }
-
-        const originalColor = silverFrontSku.properties.color;
-        silverFrontSku.properties.color = `unknown`;
         vi.stubEnv(`NODE_ENV`, `production`);
 
-        try {
-            useCagesProductData();
+        vi.doMock(`@/utils/warehouse`, () => ({
+            ...warehouseModule,
+            warehouse: {
+                ...warehouseModule.warehouse,
+                cageFront: warehouseModule.warehouse.cageFront.map((sku) => {
+                    if (String(sku.properties.color) !== `silver`) {
+                        return sku;
+                    }
 
-            expect(warnSpy).toHaveBeenCalledWith(
-                `[useCagesProductData] Missing SKU for section=front color=silver`,
-            );
-        } finally {
-            vi.unstubAllEnvs();
-            silverFrontSku.properties.color = originalColor;
-            vi.restoreAllMocks();
-        }
+                    return {
+                        ...sku,
+                        properties: {
+                            ...sku.properties,
+                            color: `unknown`,
+                        },
+                    };
+                }),
+            },
+        }));
+
+        const { useCagesProductData } = await import(`@/hooks/useCagesProductData`);
+
+        useCagesProductData();
+
+        expect(warnSpy).toHaveBeenCalledWith(
+            `[useCagesProductData] Missing SKU for section=front color=silver`,
+        );
     });
 });

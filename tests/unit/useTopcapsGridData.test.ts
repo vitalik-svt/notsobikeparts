@@ -30,7 +30,7 @@ describe(`useTopcapsGridData`, () => {
     });
 
     test(`warns when configured sku cannot be rendered`, () => {
-        const skuWithoutUi = warehouse.topCap.find((sku) => sku.ui && sku.sku_photo !== `XXX` && sku.available);
+        const skuWithoutUi = warehouse.topCap.find((sku) => sku.ui && sku.sku_photo && sku.available);
 
         if (!skuWithoutUi) {
             throw new Error(`Expected topcap warehouse entries for warning tests`);
@@ -38,7 +38,7 @@ describe(`useTopcapsGridData`, () => {
 
         const skuWithoutUiId = String(skuWithoutUi.sku_id);
         const placeholderSku = warehouse.topCap.find((sku) => (
-            sku.ui && sku.sku_photo !== `XXX` && sku.available && String(sku.sku_id) !== skuWithoutUiId
+            sku.ui && sku.sku_photo && sku.available && String(sku.sku_id) !== skuWithoutUiId
         ));
 
         if (!placeholderSku) {
@@ -49,7 +49,7 @@ describe(`useTopcapsGridData`, () => {
         const originalUi = skuWithoutUi.ui;
         const originalPhoto = placeholderSku.sku_photo;
         skuWithoutUi.ui = undefined;
-        placeholderSku.sku_photo = `XXX`;
+        placeholderSku.sku_photo = ``;
 
         try {
             const items = useTopcapsGridData().flatMap((category) => category.items);

@@ -40,7 +40,7 @@ export const useTopcapsGridData = () => {
                 const skuId = String(sku.sku_id);
 
                 if (!sku.ui || sku.ui.category !== category.key || sku.ui.hidden) {
-                    if (!sku.ui && sku.available && sku.sku_photo !== `XXX` && !warnedSkuIds.has(skuId)) {
+                    if (!sku.ui && sku.available && sku.sku_photo && !warnedSkuIds.has(skuId)) {
                         warnedSkuIds.add(skuId);
                         warnTopcapSkuRenderIssue(skuId, `missing ui metadata`);
                     }
@@ -48,7 +48,7 @@ export const useTopcapsGridData = () => {
                     return false;
                 }
 
-                if (sku.sku_photo === `XXX`) {
+                if (!sku.sku_photo) {
                     warnTopcapSkuRenderIssue(skuId, `placeholder photo`);
                     return false;
                 }

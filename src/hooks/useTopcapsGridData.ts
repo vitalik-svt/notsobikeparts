@@ -32,13 +32,16 @@ function warnTopcapSkuRenderIssue(skuId: string, reason: `missing ui metadata` |
 export const useTopcapsGridData = () => {
     const { t } = useTranslation(`topcaps`);
 
+    const warnedSkuIds = new Set<string>();
+
     const topcaps: TopcapCategoryItem[] = categoryConfigs.map((category) => {
         const topcapItems = warehouse.topCap
             .filter((sku) => {
                 const skuId = String(sku.sku_id);
 
                 if (!sku.ui || sku.ui.category !== category.key || sku.ui.hidden) {
-                    if (!sku.ui && sku.available && sku.sku_photo !== `XXX`) {
+                    if (!sku.ui && sku.available && sku.sku_photo !== `XXX` && !warnedSkuIds.has(skuId)) {
+                        warnedSkuIds.add(skuId);
                         warnTopcapSkuRenderIssue(skuId, `missing ui metadata`);
                     }
 

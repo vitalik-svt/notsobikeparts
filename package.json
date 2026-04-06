@@ -8,6 +8,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "vitest run",
     "test:unit:coverage": "vitest run --coverage",

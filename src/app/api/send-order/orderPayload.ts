@@ -1,9 +1,12 @@
 import { z } from 'zod';
 
-import { ProductCageType, productPrices, ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
-import { ProductKey, ProductParams } from '@/stores/cartStore';
-import { Locales } from '@/types/locales';
-import { ProductSection } from '@/types/productSection';
+import type { ProductCageType, ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
+import { productPrices } from '@/constants/productPrices';
+import type { ProductKey } from '@/stores/cartStore';
+import type { Locales } from '@/types/locales';
+import type { ProductSection } from '@/types/productSection';
+
+import { isValidTopcapAddonSkuId } from './topcapAddons';
 
 const PRODUCT_SECTIONS: ProductSection[] = [`cage`, `topcap`, `voile`, `itchyAndScratchy`, `feedbagHanger`, `merch`, `chainBreaker`];
 const PRODUCT_KEYS: ProductKey[] = [`front`, `little`, `volume`, `plus`, `serial`, `custom`, `nine-black`, `twelve-black`, `twenty-black-w-logo`, `twenty-five-black-w-logo`, `one-price`];
@@ -16,6 +19,7 @@ const BOLT_MATERIALS = [`none`, `titanium`, `steel`] as const;
 const BOLT_COLORS = [`black`, `light`] as const;
 const ITCHY_COATINGS = [`anodized`, `powder`] as const;
 const CAGE_COLORS = [`black`, `silver`, `green`, `brown`] as const;
+export type TopcapAddonKind = `steel-bolt` | `titanium-bolt-black` | `titanium-bolt-light` | `box`;
 
 export const productParamsSchema = z.object({
   boltsMaterial: z.enum(BOLT_MATERIALS).optional(),
@@ -51,13 +55,20 @@ export const orderRequestSchema = z.object({
 
 export type ParsedOrderRequest = z.infer<typeof orderRequestSchema>;
 export type ParsedOrderItem = ParsedOrderRequest[`items`][number];
+export type ParsedOrderRequestProductParams = z.infer<typeof productParamsSchema>;
+export type ParsedOrderInternalProductParams = ParsedOrderRequestProductParams & {
+  topcapAddon?: TopcapAddonKind;
+};
+export type ParsedOrderInternalItem = Omit<ParsedOrderItem, `productParams`> & {
+  productParams?: ParsedOrderInternalProductParams;
+};
 
 export interface OrderRequestItem {
   skuId?: string;
   productSection: string;
   productKey: string;
   quantity?: unknown;
-  productParams?: ProductParams;
+  productParams?: ParsedOrderRequestProductParams;
 }
 
 export function isProductSection(value: string): value is ProductSection {
@@ -88,7 +99,7 @@ function isVoileKey(value: ProductKey): value is ProductVoileType {
   return VOILE_KEYS.includes(value as ProductVoileType);
 }
 
-export function getServerPrice(item: ParsedOrderItem, locale: Locales): ProductPriceSettings | null {
+export function getServerPrice(item: ParsedOrderInternalItem, locale: Locales): ProductPriceSettings | null {
   const identity = parseOrderIdentity(item);
 
   if (!identity) {
@@ -141,13 +152,25 @@ export function getServerPrice(item: ParsedOrderItem, locale: Locales): ProductP
     return null;
   }
 
+  const topcapAddon = item.productParams?.topcapAddon;
+
+  if (topcapAddon) {
+    if (!item.skuId || !isValidTopcapAddonSkuId(topcapAddon, item.skuId)) {
+      return null;
+    }
+
+    const addonPriceKey = topcapAddon === `box`
+      ? `box`
+      : topcapAddon === `steel-bolt`
+        ? `steel-bolt`
+        : `titanium-bolt`;
+
+    return productPrices.topcaps[addonPriceKey][locale];
+  }
+
   const basePrice = productPrices.topcaps[identity.productKey === `custom` ? `custom` : `serial`][locale];
   const params = item.productParams;
   let amount = basePrice.amount;
-
-  if (params?.boltsMaterial === `titanium`) {
-    amount += productPrices.topcaps[`titanium-bolt`][locale].amount;
-  }
 
   if (identity.productKey === `custom`) {
     if (params?.customThickness === `thick`) {

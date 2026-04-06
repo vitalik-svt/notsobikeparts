@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import ProductTitle from "@/components/ProductGrid/ProductTitle/ProductTitle";
-import { ProductPriceSettings } from "@/constants/productPrices";
+import type { ProductPriceSettings } from "@/constants/productPrices";
 
 import ProductPrice from "../../../ProductPrice/ProductPrice";
 

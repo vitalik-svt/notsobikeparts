@@ -3,7 +3,7 @@
 import type { ProductPriceSettings, ProductVoileType } from "@/constants/productPrices";
 import { SINGLE_PRODUCT_SECTIONS } from "@/constants/singleProductSections";
 import type { ProductSectionData } from "@/hooks/useProductData";
-import { AdditionalPriceOption, TopcapCustomColor, TopcapCustomThickness } from "@/hooks/useTopcapsData";
+import type { AdditionalPriceOption, TopcapCustomColor, TopcapCustomThickness } from "@/hooks/useTopcapsData";
 import { i18n } from "@/i18n/settings";
 import type { CartItem, TopcapParams } from "@/stores/cartStore";
 import type { Locales } from "@/types/locales";

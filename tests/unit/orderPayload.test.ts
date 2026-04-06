@@ -79,7 +79,7 @@ describe(`send-order payload helpers`, () => {
         expect(price?.currency).toBe(`RUB`);
     });
 
-    test(`calculates custom topcap surcharges on server`, () => {
+    test(`calculates custom topcap non-bolt surcharges on server`, () => {
         const price = getServerPrice({
             skuId: ``,
             productSection: `topcap`,
@@ -92,7 +92,7 @@ describe(`send-order payload helpers`, () => {
             },
         }, `ru`);
 
-        expect(price?.amount).toBe(4200);
+        expect(price?.amount).toBe(4000);
     });
 
     test(`calculates custom topcap base price without surcharges`, () => {
@@ -111,7 +111,7 @@ describe(`send-order payload helpers`, () => {
         expect(price?.amount).toBe(3000);
     });
 
-    test(`calculates serial topcap with titanium surcharge only`, () => {
+    test(`calculates serial topcap base price without bolt surcharge`, () => {
         const price = getServerPrice({
             skuId: ``,
             productSection: `topcap`,
@@ -124,7 +124,49 @@ describe(`send-order payload helpers`, () => {
             },
         }, `ru`);
 
-        expect(price?.amount).toBe(1700);
+        expect(price?.amount).toBe(1500);
+    });
+
+    test(`calculates topcap titanium-bolt addon price on server`, () => {
+        const price = getServerPrice({
+            skuId: `2000201`,
+            productSection: `topcap`,
+            productKey: `serial`,
+            quantity: 1,
+            productParams: {
+                topcapAddon: `titanium-bolt-black`,
+            },
+        }, `ru`);
+
+        expect(price?.amount).toBe(200);
+    });
+
+    test(`calculates topcap box addon price on server`, () => {
+        const price = getServerPrice({
+            skuId: `2000195`,
+            productSection: `topcap`,
+            productKey: `serial`,
+            quantity: 1,
+            productParams: {
+                topcapAddon: `box`,
+            },
+        }, `ru`);
+
+        expect(price?.amount).toBe(0);
+    });
+
+    test(`rejects forged topcap addon when skuId does not match addon identity`, () => {
+        const price = getServerPrice({
+            skuId: `2000002`,
+            productSection: `topcap`,
+            productKey: `serial`,
+            quantity: 1,
+            productParams: {
+                topcapAddon: `box`,
+            },
+        }, `ru`);
+
+        expect(price).toBeNull();
     });
 
     test(`applies custom color surcharge for silver topcap`, () => {
@@ -211,6 +253,32 @@ describe(`send-order payload helpers`, () => {
                         customThickness: `thin`,
                         boltsMaterial: `none`,
                         hasBox: false,
+                    },
+                },
+            ],
+        });
+
+        expect(result.success).toBe(false);
+    });
+
+    test(`rejects client-supplied topcapAddon in request payload`, () => {
+        const result = orderRequestSchema.safeParse({
+            locale: `ru`,
+            userFormData: {
+                name: `Demid`,
+                email: `demid@example.com`,
+                phone: `+1234567890`,
+                deliveryMethod: `post`,
+                comment: `test`,
+            },
+            items: [
+                {
+                    skuId: `2000002`,
+                    productSection: `topcap`,
+                    productKey: `serial`,
+                    quantity: 1,
+                    productParams: {
+                        topcapAddon: `box`,
                     },
                 },
             ],

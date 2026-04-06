@@ -1,4 +1,4 @@
-import { MenuItem } from "@/types/menu";
+import type { MenuItem } from "@/types/menu";
 
 import { useIsTouchDevice } from "../../useIsTouchDevice";
 import MenuItemControl from "../MenuItem/MenuItem";

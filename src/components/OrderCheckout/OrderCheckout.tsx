@@ -17,7 +17,8 @@ import { getProductPrice } from "@/utils/getProductPrice";
 import { resolveOrderItemName } from "@/utils/orderItemName";
 
 import TotalPriceWithAction from "../TotalPriceWithAction/TotalPriceWithAction";
-import FormCheckout, { CheckoutForm } from "./FormCheckout/FormCheckout";
+import type { CheckoutForm } from "./FormCheckout/FormCheckout";
+import FormCheckout from "./FormCheckout/FormCheckout";
 import OrderTableCheckout from "./OrderTableCheckout/OrderTableCheckout";
 
 export default function OrderCheckout() {

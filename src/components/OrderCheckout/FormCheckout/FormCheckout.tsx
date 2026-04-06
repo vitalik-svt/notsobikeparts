@@ -1,4 +1,4 @@
-import { FieldErrors, FieldValues, SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
+import type { FieldErrors, FieldValues, SubmitHandler, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import FormControl from './FormControl/FormControl';

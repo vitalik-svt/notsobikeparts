@@ -1,4 +1,4 @@
-import { ProductPriceSettings } from "@/constants/productPrices";
+import type { ProductPriceSettings } from "@/constants/productPrices";
 import useFormattedPrice from "@/hooks/useFormattedPrice";
 
 export default function ProductPrice({ priceSettings }: { priceSettings: ProductPriceSettings }) {

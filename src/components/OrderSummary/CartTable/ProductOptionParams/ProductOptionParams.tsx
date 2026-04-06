@@ -3,8 +3,8 @@
 import { useTranslation } from "react-i18next";
 
 import useProductOptionDictionary from "@/hooks/useProductOptionDictionary";
-import { ProductKey, ProductParams } from "@/stores/cartStore";
-import { ProductSection } from "@/types/productSection";
+import type { ProductKey, ProductParams } from "@/stores/cartStore";
+import type { ProductSection } from "@/types/productSection";
 
 import OptionRow from "./OptionRow/OptionRow";
 

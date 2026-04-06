@@ -1,4 +1,4 @@
-import { Locales } from '@/types/locales';
+import type { Locales } from '@/types/locales';
 
 import rawProductPriceSettings from '../../public/data/product-prices.json';
 

@@ -2,14 +2,16 @@
 
 import { useTranslation } from "react-i18next";
 
-import { productPrices, ProductPriceSettings } from "@/constants/productPrices";
+import type { ProductPriceSettings } from "@/constants/productPrices";
+import { productPrices } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
-import { BoltMaterial, TopcapOptions } from "@/stores/cartStore";
-import { Locales } from "@/types/locales";
+import type { BoltMaterial, TopcapOptions } from "@/stores/cartStore";
+import type { Locales } from "@/types/locales";
 import { formatPrice } from "@/utils/formatPrice";
 
-import { TopcapCategoryItem, useTopcapsGridData } from "./useTopcapsGridData";
+import type { TopcapCategoryItem} from "./useTopcapsGridData";
+import { useTopcapsGridData } from "./useTopcapsGridData";
 
 export interface AdditionalPriceOption {
     type: BoltMaterial | TopcapOptions;

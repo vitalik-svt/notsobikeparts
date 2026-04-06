@@ -4,8 +4,9 @@ import ProductOptionParams from "@/components/OrderSummary/CartTable/ProductOpti
 import { useProductData } from "@/hooks/useProductData";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
-import { CartItem, getCartLineKey } from "@/stores/cartStore";
-import { Locales } from "@/types/locales";
+import type { CartItem} from "@/stores/cartStore";
+import { getCartLineKey } from "@/stores/cartStore";
+import type { Locales } from "@/types/locales";
 import { formatPrice } from "@/utils/formatPrice";
 import { getProductPrice } from "@/utils/getProductPrice";
 import { resolveOrderItemName } from "@/utils/orderItemName";

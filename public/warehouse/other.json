@@ -48,5 +48,15 @@
       "code": "bolt_m6x30_ti_raw"
     },
     "available": true
+  },
+  "2000195": {
+    "product": "other",
+    "sku_photo": "",
+    "photos": [],
+    "properties": {
+      "component": "cardboardbox",
+      "code": "box_set_small"
+    },
+    "available": true
   }
 }

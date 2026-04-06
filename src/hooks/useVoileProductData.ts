@@ -1,8 +1,10 @@
 import { useTranslation } from "react-i18next";
 
-import { productPrices, ProductPriceSettings, ProductVoileType } from "@/constants/productPrices";
-import { Locales } from "@/types/locales";
-import { findSku, SkuMeta, toSkuMeta, warehouse } from "@/utils/warehouse";
+import type { ProductPriceSettings, ProductVoileType } from "@/constants/productPrices";
+import { productPrices } from "@/constants/productPrices";
+import type { Locales } from "@/types/locales";
+import type { SkuMeta} from "@/utils/warehouse";
+import { findSku, toSkuMeta, warehouse } from "@/utils/warehouse";
 
 type VoileOption = { label: string; value: ProductVoileType; skuId: string; };
 

@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 
 import { ROUTES } from "@/constants/routes";
-import { Locales } from "@/types/locales";
-import { MenuItem } from "@/types/menu";
+import type { Locales } from "@/types/locales";
+import type { MenuItem } from "@/types/menu";
 
 function localizeMenuOptions(menuOptions: MenuItem[], locale: Locales): MenuItem[] {
     if (!Array.isArray(menuOptions)) return menuOptions;

@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ProductCageType } from "@/constants/productPrices";
+import type { ProductCageType } from "@/constants/productPrices";
 
-import { CageSettings, useCagesProductData } from "./useCagesProductData";
+import type { CageSettings} from "./useCagesProductData";
+import { useCagesProductData } from "./useCagesProductData";
 import { useChainBreakerData } from "./useChainBreakerData";
 import { useFeedbagHangerData } from "./useFeedbagHangerData";
 import { useItchyAndScratchyData } from "./useItchyAndScratchyData";
 import { useMerchData } from "./useMerchData";
-import { useTopcapsData, UseTopcapsDataResult } from "./useTopcapsData";
+import type { UseTopcapsDataResult } from "./useTopcapsData";
+import { useTopcapsData } from "./useTopcapsData";
 import { useVoileProductData } from "./useVoileProductData";
 
 export type ProductSectionData = {

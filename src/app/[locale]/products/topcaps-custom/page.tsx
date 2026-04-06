@@ -19,9 +19,11 @@ import SegmentedControl from "@/components/SegmentedControl/SegmentedControl";
 import Select from "@/components/Select";
 import useFormattedPrice from "@/hooks/useFormattedPrice";
 import { useTopcapCustomPrice } from "@/hooks/useTopcapCustomPrice";
-import { TopcapCustomColor, TopcapCustomThickness, useTopcapsData } from "@/hooks/useTopcapsData";
+import type { TopcapCustomColor, TopcapCustomThickness} from "@/hooks/useTopcapsData";
+import { useTopcapsData } from "@/hooks/useTopcapsData";
 import { useNotifications } from "@/providers/NotificationsProvider";
-import { cartStore, TopcapParams } from "@/stores/cartStore";
+import type { TopcapParams } from "@/stores/cartStore";
+import { cartStore } from "@/stores/cartStore";
 
 const createUniqueCustomSkuId = () => {
     if (typeof crypto !== `undefined` && typeof crypto.randomUUID === `function`) {

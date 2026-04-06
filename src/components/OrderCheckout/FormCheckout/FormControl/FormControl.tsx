@@ -1,4 +1,4 @@
-import { FieldError, FieldErrors, FieldValues, Path, UseFormRegister } from "react-hook-form";
+import type { FieldError, FieldErrors, FieldValues, Path, UseFormRegister } from "react-hook-form";
 
 import FormControlWrapper from "../FormControlWrapper/FormControlWrapper";
 import InputError from "../InputError/InputError";

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { BoltColor, BoltMaterial } from "@/stores/cartStore";
+import type { BoltColor, BoltMaterial } from "@/stores/cartStore";
 
 import Radio from "../Radio/Radio";
 import SegmentedControl from "../SegmentedControl/SegmentedControl";

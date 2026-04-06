@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { MenuItem } from "@/types/menu";
+import type { MenuItem } from "@/types/menu";
 
 import SubMenuitem from "./SubMenuitem/SubMenuitem";
 

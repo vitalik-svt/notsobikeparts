@@ -1,12 +1,12 @@
 import { create } from 'zustand'
 import { createJSONStorage,persist } from 'zustand/middleware';
 
-import { CheckoutForm } from '@/components/OrderCheckout/FormCheckout/FormCheckout';
-import { ProductCageType, ProductVoileType } from '@/constants/productPrices';
-import { ProductLink } from '@/constants/routes';
-import { ItchyAndScratchyColorMap } from '@/hooks/useItchyAndScratchyData';
-import { TopcapCustomColor, TopcapCustomThickness, TopcapProductKey } from '@/hooks/useTopcapsData';
-import { ProductSection } from '@/types/productSection';
+import type { CheckoutForm } from '@/components/OrderCheckout/FormCheckout/FormCheckout';
+import type { ProductCageType, ProductVoileType } from '@/constants/productPrices';
+import type { ProductLink } from '@/constants/routes';
+import type { ItchyAndScratchyColorMap } from '@/hooks/useItchyAndScratchyData';
+import type { TopcapCustomColor, TopcapCustomThickness, TopcapProductKey } from '@/hooks/useTopcapsData';
+import type { ProductSection } from '@/types/productSection';
 
 
 export type BoltMaterial = `none` | `titanium` | `steel`;

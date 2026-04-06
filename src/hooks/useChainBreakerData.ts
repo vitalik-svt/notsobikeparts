@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { productPrices } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
-import { Locales } from "@/types/locales";
+import type { Locales } from "@/types/locales";
 import { getDefaultSku, toSkuMeta, warehouse } from "@/utils/warehouse";
 
 const chainBreakerSku = getDefaultSku(warehouse.chainBreaker);

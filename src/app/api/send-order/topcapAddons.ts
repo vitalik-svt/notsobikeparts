@@ -1,9 +1,7 @@
 import { BoltColor, BoltMaterial } from '@/stores/cartStore';
 import { warehouse } from '@/utils/warehouse';
 
-import { ParsedOrderItem } from './orderPayload';
-
-export type TopcapAddonKind = `steel-bolt` | `titanium-bolt-black` | `titanium-bolt-light` | `box`;
+import { ParsedOrderInternalItem, ParsedOrderItem, TopcapAddonKind } from './orderPayload';
 
 const otherCodeToSkuId = new Map<string, string>(
     warehouse.other.map((sku) => [String(sku.properties.code ?? ``), String(sku.sku_id)]),
@@ -55,14 +53,14 @@ export function getTopcapAddonSkuId(kind: TopcapAddonKind): string {
     return TOPCAP_BOX_SKU_ID;
 }
 
-export function expandOrderItemsWithTopcapAddons(items: ParsedOrderItem[]): ParsedOrderItem[] {
+export function expandOrderItemsWithTopcapAddons(items: ParsedOrderItem[]): ParsedOrderInternalItem[] {
     return items.flatMap((item) => {
         if (item.productSection !== `topcap`) {
             return [item];
         }
 
         const params = item.productParams;
-        const expanded: ParsedOrderItem[] = [item];
+        const expanded: ParsedOrderInternalItem[] = [item];
 
         if (params?.boltsMaterial && params.boltsMaterial !== `none`) {
             const boltAddonKind = getBoltAddonKind(params.boltsMaterial, params.boltColor);

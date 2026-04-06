@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { ProductCageType, productPrices, ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
-import { ProductKey, ProductParams } from '@/stores/cartStore';
+import { ProductKey } from '@/stores/cartStore';
 import { Locales } from '@/types/locales';
 import { ProductSection } from '@/types/productSection';
 
@@ -16,19 +16,18 @@ const BOLT_MATERIALS = [`none`, `titanium`, `steel`] as const;
 const BOLT_COLORS = [`black`, `light`] as const;
 const ITCHY_COATINGS = [`anodized`, `powder`] as const;
 const CAGE_COLORS = [`black`, `silver`, `green`, `brown`] as const;
-const TOPCAP_ADDONS = [`steel-bolt`, `titanium-bolt-black`, `titanium-bolt-light`, `box`] as const;
+export type TopcapAddonKind = `steel-bolt` | `titanium-bolt-black` | `titanium-bolt-light` | `box`;
 const TOPCAP_ADDON_SKU_IDS = {
   'steel-bolt': `2000198`,
   'titanium-bolt-black': `2000201`,
   'titanium-bolt-light': `2000349`,
   box: `2000195`,
-} as const;
+} as const satisfies Record<TopcapAddonKind, string>;
 
 export const productParamsSchema = z.object({
   boltsMaterial: z.enum(BOLT_MATERIALS).optional(),
   boltColor: z.enum(BOLT_COLORS).nullable().optional(),
   hasBox: z.boolean().optional(),
-  topcapAddon: z.enum(TOPCAP_ADDONS).optional(),
   cageColor: z.enum(CAGE_COLORS).optional(),
   voileType: z.enum(VOILE_KEYS).optional(),
   colorOption: z.enum(TOPCAP_COLOR_OPTIONS).optional(),
@@ -59,13 +58,20 @@ export const orderRequestSchema = z.object({
 
 export type ParsedOrderRequest = z.infer<typeof orderRequestSchema>;
 export type ParsedOrderItem = ParsedOrderRequest[`items`][number];
+export type ParsedOrderRequestProductParams = z.infer<typeof productParamsSchema>;
+export type ParsedOrderInternalProductParams = ParsedOrderRequestProductParams & {
+  topcapAddon?: TopcapAddonKind;
+};
+export type ParsedOrderInternalItem = Omit<ParsedOrderItem, `productParams`> & {
+  productParams?: ParsedOrderInternalProductParams;
+};
 
 export interface OrderRequestItem {
   skuId?: string;
   productSection: string;
   productKey: string;
   quantity?: unknown;
-  productParams?: ProductParams;
+  productParams?: ParsedOrderRequestProductParams;
 }
 
 export function isProductSection(value: string): value is ProductSection {
@@ -96,7 +102,7 @@ function isVoileKey(value: ProductKey): value is ProductVoileType {
   return VOILE_KEYS.includes(value as ProductVoileType);
 }
 
-export function getServerPrice(item: ParsedOrderItem, locale: Locales): ProductPriceSettings | null {
+export function getServerPrice(item: ParsedOrderInternalItem, locale: Locales): ProductPriceSettings | null {
   const identity = parseOrderIdentity(item);
 
   if (!identity) {

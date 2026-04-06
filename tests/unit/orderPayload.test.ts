@@ -261,6 +261,32 @@ describe(`send-order payload helpers`, () => {
         expect(result.success).toBe(false);
     });
 
+    test(`rejects client-supplied topcapAddon in request payload`, () => {
+        const result = orderRequestSchema.safeParse({
+            locale: `ru`,
+            userFormData: {
+                name: `Demid`,
+                email: `demid@example.com`,
+                phone: `+1234567890`,
+                deliveryMethod: `post`,
+                comment: `test`,
+            },
+            items: [
+                {
+                    skuId: `2000002`,
+                    productSection: `topcap`,
+                    productKey: `serial`,
+                    quantity: 1,
+                    productParams: {
+                        topcapAddon: `box`,
+                    },
+                },
+            ],
+        });
+
+        expect(result.success).toBe(false);
+    });
+
     test(`calculates itchy-and-scratchy powder price on server`, () => {
         const price = getServerPrice({
             skuId: `2000082`,

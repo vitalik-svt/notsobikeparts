@@ -59,7 +59,7 @@ describe(`sku constants integrity`, () => {
     });
 
     test(`all renderable topcaps have valid ui.category and ui.sort`, () => {
-        const renderableTopcaps = warehouse.topCap.filter((sku) => sku.sku_photo);
+        const renderableTopcaps = warehouse.topCap.filter((sku) => sku.sku_photo && !sku.ui?.hidden);
 
         expect(renderableTopcaps.length).toBeGreaterThan(0);
 

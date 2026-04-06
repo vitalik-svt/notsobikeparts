@@ -31,6 +31,16 @@ export interface CageSettings {
 const frontAndVolumeColorOrder: CageColor[] = [`black`, `silver`];
 const plusColorOrder: CagePlusColor[] = [`black`, `silver`, `green`, `brown`];
 
+function warnMissingColorOption(section: string, color: string): void {
+    const message = `[useCagesProductData] Missing SKU for section=${section} color=${color}`;
+
+    if (process.env.NODE_ENV !== `production`) {
+        throw new Error(message);
+    }
+
+    console.warn(message);
+}
+
 function getColorFromSku(sku: WarehouseSku): CageColor | CagePlusColor | null {
     const color = String(sku.properties.color ?? ``);
 
@@ -51,6 +61,7 @@ function buildColorOptions<T extends CageColor | CagePlusColor>(
         const sku = skus.find((item) => getColorFromSku(item) === color);
 
         if (!sku) {
+            warnMissingColorOption(labelPrefix, color);
             return acc;
         }
 

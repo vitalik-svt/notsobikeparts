@@ -44,9 +44,8 @@ describe(`useCagesProductData`, () => {
         }
 
         const originalColor = silverFrontSku.properties.color;
-        const originalNodeEnv = process.env.NODE_ENV;
         silverFrontSku.properties.color = `unknown`;
-        process.env.NODE_ENV = `production`;
+        vi.stubEnv(`NODE_ENV`, `production`);
 
         try {
             useCagesProductData();
@@ -55,7 +54,7 @@ describe(`useCagesProductData`, () => {
                 `[useCagesProductData] Missing SKU for section=front color=silver`,
             );
         } finally {
-            process.env.NODE_ENV = originalNodeEnv;
+            vi.unstubAllEnvs();
             silverFrontSku.properties.color = originalColor;
             vi.restoreAllMocks();
         }

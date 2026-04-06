@@ -1,0 +1,37 @@
+{
+  "topcaps": {
+    "serial": { "ru": 1500, "en": 20 },
+    "custom": { "ru": 3000, "en": 30 },
+    "titanium-bolt": { "ru": 200, "en": 3 },
+    "custom-color": { "ru": 500, "en": 5 },
+    "thick": { "ru": 500, "en": 5 },
+    "steel-bolt": { "ru": 0, "en": 0 },
+    "none-bolt": { "ru": 0, "en": 0 },
+    "box": { "ru": 0, "en": 0 }
+  },
+  "cages": {
+    "front": { "ru": 10800, "en": 150 },
+    "little": { "ru": 1800, "en": 20 },
+    "volume": { "ru": 3400, "en": 50 },
+    "plus": { "ru": 2900, "en": 30 }
+  },
+  "itchyAndScratchy": {
+    "plus-anodized": { "ru": 2000, "en": 20 },
+    "plus-powder": { "ru": 2000, "en": 20 }
+  },
+  "voile": {
+    "nine-black": { "ru": 800, "en": 8 },
+    "twelve-black": { "ru": 900, "en": 9 },
+    "twenty-black-w-logo": { "ru": 1200, "en": 12 },
+    "twenty-five-black-w-logo": { "ru": 1400, "en": 14 }
+  },
+  "feedbagHanger": {
+    "one-price": { "ru": 1500, "en": 20 }
+  },
+  "merch": {
+    "one-price": { "ru": 3000, "en": 30 }
+  },
+  "chainBreaker": {
+    "one-price": { "ru": 2500, "en": 30 }
+  }
+}

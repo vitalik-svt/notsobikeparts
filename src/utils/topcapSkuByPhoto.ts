@@ -15,7 +15,7 @@ const topcapSkuByPhoto = (() => {
     const map = new Map<string, TopcapSkuMeta>();
 
     for (const [skuId, sku] of Object.entries(raw)) {
-        if (!sku.sku_photo || sku.sku_photo === `XXX`) {
+        if (!sku.sku_photo) {
             continue;
         }
 

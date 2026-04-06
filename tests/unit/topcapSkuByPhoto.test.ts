@@ -3,7 +3,7 @@ import { getTopcapSkuByPhoto } from "@/utils/topcapSkuByPhoto";
 vi.mock(`../../public/warehouse/topcap.json`, () => ({
     default: {
         "1000001": { sku_photo: `/images/photo-a.avif` },
-        "1000002": { sku_photo: `XXX` },
+        "1000002": { sku_photo: `` },
         "1000003": {},
         "1000004": { sku_photo: `/images/photo-b.avif` },
     },
@@ -16,7 +16,7 @@ describe(`getTopcapSkuByPhoto`, () => {
         expect(map.get(`/images/photo-b.avif`)).toEqual({ skuId: `1000004` });
     });
 
-    test(`excludes entries with sku_photo === "XXX"`, () => {
+    test(`excludes entries with empty sku_photo`, () => {
         const map = getTopcapSkuByPhoto();
         expect([...map.values()].find(v => v.skuId === `1000002`)).toBeUndefined();
     });

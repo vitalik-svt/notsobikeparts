@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { TOPCAP_SKU_IDS } from "@/constants/topcapSkuIds";
-import { warehouse } from "@/utils/warehouse";
+import { TopcapUiCategory, warehouse } from "@/utils/warehouse";
 
 interface TopcapItem {
     description: string;
@@ -20,56 +19,74 @@ function getFileNameFromPath(path: string, fallback: string): string {
     return path.split(`/`).pop() ?? fallback;
 }
 
-const categoryConfigs = [
-    { nameKey: `topcaps.category.cyrillic`, skuIds: TOPCAP_SKU_IDS.cyrillic },
-    { nameKey: `topcaps.category.latin`, skuIds: TOPCAP_SKU_IDS.latin },
-    { nameKey: `topcaps.category.graphics`, skuIds: TOPCAP_SKU_IDS.graphics },
-] as const;
+const categoryConfigs: { key: TopcapUiCategory; nameKey: string }[] = [
+    { key: `cyrillic`, nameKey: `topcaps.category.cyrillic` },
+    { key: `latin`, nameKey: `topcaps.category.latin` },
+    { key: `graphics`, nameKey: `topcaps.category.graphics` },
+];
 
-const topcapSkuMap = new Map(warehouse.topCap.map((sku) => [String(sku.sku_id), sku]));
-
-function warnTopcapSkuRenderIssue(skuId: string, reason: `missing sku` | `placeholder photo`) {
+function warnTopcapSkuRenderIssue(skuId: string, reason: `missing ui metadata` | `placeholder photo`) {
     console.warn(`[useTopcapsGridData] Skipping topcap skuId=${skuId}: ${reason}`);
 }
+
+// Pre-group and pre-sort topcaps by category once at module load (warehouse data is static)
+const topcapsByCategory = (() => {
+    const map = new Map<TopcapUiCategory, typeof warehouse.topCap>();
+    const warnedSkuIds = new Set<string>();
+
+    for (const sku of warehouse.topCap) {
+        const skuId = String(sku.sku_id);
+
+        if (!sku.ui || sku.ui.hidden) {
+            if (!sku.ui && sku.available && sku.sku_photo && !warnedSkuIds.has(skuId)) {
+                warnedSkuIds.add(skuId);
+                warnTopcapSkuRenderIssue(skuId, `missing ui metadata`);
+            }
+            continue;
+        }
+
+        if (!sku.sku_photo) {
+            warnTopcapSkuRenderIssue(skuId, `placeholder photo`);
+            continue;
+        }
+
+        const group = map.get(sku.ui.category);
+
+        if (group) {
+            group.push(sku);
+        } else {
+            map.set(sku.ui.category, [sku]);
+        }
+    }
+
+    for (const group of map.values()) {
+        group.sort((left, right) => (left.ui?.sort ?? 0) - (right.ui?.sort ?? 0));
+    }
+
+    return map;
+})();
 
 export const useTopcapsGridData = () => {
     const { t } = useTranslation(`topcaps`);
 
-    const descriptions: Record<string, string> = {
-        [`2000131`]: t(`topcaps.description.black`),  // pic-13
-        [`2000254`]: t(`topcaps.description.1001`),   // pic-1001
-        [`2000256`]: t(`topcaps.description.1002`),   // pic-1002
-        [`2000255`]: t(`topcaps.description.1003`),   // pic-1003
-        [`2000253`]: t(`topcaps.description.1004`),   // pic-1004
-        [`2000065`]: t(`topcaps.description.black`),  // pic-1015
-    };
-
     const topcaps: TopcapCategoryItem[] = categoryConfigs.map((category) => {
+        const skus = topcapsByCategory.get(category.key) ?? [];
+
+        const items = skus.map((sku) => {
+            const skuId = String(sku.sku_id);
+
+            return {
+                description: sku.ui?.descriptionKey ? t(sku.ui.descriptionKey) : ``,
+                image: sku.sku_photo,
+                id: getFileNameFromPath(sku.sku_photo, skuId),
+                available: Boolean(sku.available),
+                skuId,
+            };
+        });
+
         return {
             categoryName: t(category.nameKey),
-            items: category.skuIds.reduce<TopcapItem[]>((acc, skuId) => {
-                const sku = topcapSkuMap.get(skuId);
-
-                if (!sku) {
-                    warnTopcapSkuRenderIssue(skuId, `missing sku`);
-                    return acc;
-                }
-
-                if (sku.sku_photo === `XXX`) {
-                    warnTopcapSkuRenderIssue(skuId, `placeholder photo`);
-                    return acc;
-                }
-
-                acc.push({
-                    description: descriptions[skuId] ?? ``,
-                    image: sku.sku_photo,
-                    id: getFileNameFromPath(sku.sku_photo, skuId),
-                    available: Boolean(sku.available),
-                    skuId,
-                });
-
-                return acc;
-            }, []),
+            items,
         };
     });
 

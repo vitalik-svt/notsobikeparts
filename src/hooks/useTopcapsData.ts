@@ -77,12 +77,7 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
                 `${serialGalleryUrl}/product-pic-7.avif`,
             ],
             name: t(`topcaps.name`),
-            description: [
-                t(`topcaps.description.1`),
-                t(`topcaps.description.2`),
-                t(`topcaps.description.3`),
-                t(`topcaps.description.4`),
-            ],
+            description: t(`topcaps.description`, { returnObjects: true }) as string[],
             price: productPrices.topcaps.serial[locale],
             "additional-price-options": [
                 {
@@ -100,10 +95,7 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
             ],
             equipment: {
                 title: t(`topcaps.equipment_title`),
-                items: [
-                    t(`topcaps.equipment.1`),
-                    t(`topcaps.equipment.2`),
-                ]
+                items: t(`topcaps.equipment`, { returnObjects: true }) as string[],
             },
             items: topcaps,
         },
@@ -122,22 +114,22 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
             ],
             thickness: [
                 {
-                    label: t(`topcaps.custom.thickness.1`),
+                    label: t(`topcaps.custom.thickness.thin`),
                     value: `thin`
                 },
                 {
-                    label: `${t(`topcaps.custom.thickness.2`)} (+${formatPrice(productPrices.topcaps[`thick`][locale])})`,
+                    label: `${t(`topcaps.custom.thickness.thick`)} (+${formatPrice(productPrices.topcaps[`thick`][locale])})`,
                     value: `thick`
                 },
             ],
             colorOptions: [
-                { label: t(`topcaps.custom.color.1`), value: `black` },
-                { label: `${t(`topcaps.custom.color.2`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `silver` },
-                { label: `${t(`topcaps.custom.color.3`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `red` },
-                { label: `${t(`topcaps.custom.color.4`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `blue` },
-                { label: `${t(`topcaps.custom.color.5`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `green` },
-                { label: `${t(`topcaps.custom.color.6`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `purple` },
-                { label: `${t(`topcaps.custom.color.7`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `gold` },
+                { label: t(`topcaps.custom.color.black`), value: `black` },
+                { label: `${t(`topcaps.custom.color.silver`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `silver` },
+                { label: `${t(`topcaps.custom.color.red`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `red` },
+                { label: `${t(`topcaps.custom.color.blue`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `blue` },
+                { label: `${t(`topcaps.custom.color.green`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `green` },
+                { label: `${t(`topcaps.custom.color.purple`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `purple` },
+                { label: `${t(`topcaps.custom.color.gold`)} (+${formatPrice(productPrices.topcaps[`custom-color`][locale])})`, value: `gold` },
             ],
             price: productPrices.topcaps.custom[locale],
             "additional-price-options": [

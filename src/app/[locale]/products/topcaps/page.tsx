@@ -34,7 +34,7 @@ export default function TopcapsPage() {
                     <p>
                         <Trans
                             ns="topcaps"
-                            i18nKey="topcaps.description.4"
+                            i18nKey="topcaps.description.contact"
                             components={{
                                 1: <a href={`mailto:${CONTACTS.EMAIL}`} className="underline" />
                             }}

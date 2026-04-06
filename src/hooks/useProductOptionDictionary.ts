@@ -16,17 +16,17 @@ export default function useProductOptionDictionary() {
         'titanium': t(`product.topcap.option.titanium`),
         'steel': t(`product.topcap.option.steel`),
         'custom-color': t(`product.topcap.option.custom-color`),
-        'black': tTopcaps(`topcaps.custom.color.1`),
+        'black': tTopcaps(`topcaps.custom.color.black`),
         'light': t(`product.topcap.bolt.color.light`),
-        'silver': tTopcaps(`topcaps.custom.color.2`),
-        'green': tCages(`plus.color_options.3`),    // shared by cage-plus, itchy-and-scratchy, and topcap custom
-        'brown': tCages(`plus.color_options.4`),
-        'red': tTopcaps(`topcaps.custom.color.3`),
-        'blue': tTopcaps(`topcaps.custom.color.4`),
-        'purple': tTopcaps(`topcaps.custom.color.6`),
-        'gold': tTopcaps(`topcaps.custom.color.7`),
-        'thin': tTopcaps(`topcaps.custom.thickness.1`),
-        'thick': tTopcaps(`topcaps.custom.thickness.2`),
+        'silver': tTopcaps(`topcaps.custom.color.silver`),
+        'green': tCages(`plus.color.green`),
+        'brown': tCages(`plus.color.brown`),
+        'red': tTopcaps(`topcaps.custom.color.red`),
+        'blue': tTopcaps(`topcaps.custom.color.blue`),
+        'purple': tTopcaps(`topcaps.custom.color.purple`),
+        'gold': tTopcaps(`topcaps.custom.color.gold`),
+        'thin': tTopcaps(`topcaps.custom.thickness.thin`),
+        'thick': tTopcaps(`topcaps.custom.thickness.thick`),
     };
 
     return optionDictionary;

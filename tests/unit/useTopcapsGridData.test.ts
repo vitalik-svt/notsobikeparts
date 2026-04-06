@@ -1,6 +1,4 @@
-import { TOPCAP_SKU_IDS } from "@/constants/topcapSkuIds";
 import { useTopcapsGridData } from "@/hooks/useTopcapsGridData";
-import { warehouse } from "@/utils/warehouse";
 
 vi.mock(`react-i18next`, () => ({
     useTranslation: () => ({
@@ -9,12 +7,6 @@ vi.mock(`react-i18next`, () => ({
 }));
 
 describe(`useTopcapsGridData`, () => {
-    let warnSpy: ReturnType<typeof vi.spyOn>;
-
-    beforeEach(() => {
-        warnSpy = vi.spyOn(console, `warn`).mockImplementation(() => {});
-    });
-
     afterEach(() => {
         vi.restoreAllMocks();
     });
@@ -30,34 +22,35 @@ describe(`useTopcapsGridData`, () => {
         }
     });
 
-    test(`warns when configured sku cannot be rendered`, () => {
-        const missingSkuId = `9999999`;
-        const mutableCyrillicSkuIds = TOPCAP_SKU_IDS.cyrillic as unknown as string[];
-        const placeholderSkuId = TOPCAP_SKU_IDS.cyrillic[0];
-        const placeholderSku = warehouse.topCap.find((sku) => String(sku.sku_id) === placeholderSkuId);
+    test(`warns when configured sku cannot be rendered`, async () => {
+        vi.resetModules();
 
-        if (!placeholderSku) {
-            throw new Error(`Expected topcap warehouse entry for placeholder warning test`);
-        }
+        vi.doMock(`@/utils/warehouse`, () => ({
+            warehouse: {
+                topCap: [
+                    // available SKU with photo but no ui — should warn "missing ui metadata"
+                    { sku_id: 9001, product: `topcap`, sku_photo: `/img/test.avif`, available: true, photos: [], properties: {} },
+                    // SKU with valid ui but no photo — should warn "placeholder photo"
+                    { sku_id: 9002, product: `topcap`, sku_photo: ``, available: true, photos: [], properties: {}, ui: { category: `cyrillic`, sort: 1 } },
+                ],
+            },
+        }));
 
-        const originalPhoto = placeholderSku.sku_photo;
-        mutableCyrillicSkuIds.unshift(missingSkuId);
-        placeholderSku.sku_photo = `XXX`;
+        const warnSpy = vi.spyOn(console, `warn`).mockImplementation(() => {});
 
         try {
-            const items = useTopcapsGridData().flatMap((category) => category.items);
+            const { useTopcapsGridData: freshHook } = await import(`@/hooks/useTopcapsGridData`);
+            const items = freshHook().flatMap((category) => category.items);
 
-            expect(items.some((item) => item.skuId === missingSkuId)).toBe(false);
-            expect(items.some((item) => item.skuId === placeholderSkuId)).toBe(false);
+            expect(items).toHaveLength(0);
             expect(warnSpy).toHaveBeenCalledWith(
-                `[useTopcapsGridData] Skipping topcap skuId=${missingSkuId}: missing sku`,
+                `[useTopcapsGridData] Skipping topcap skuId=9001: missing ui metadata`,
             );
             expect(warnSpy).toHaveBeenCalledWith(
-                `[useTopcapsGridData] Skipping topcap skuId=${placeholderSkuId}: placeholder photo`,
+                `[useTopcapsGridData] Skipping topcap skuId=9002: placeholder photo`,
             );
         } finally {
-            mutableCyrillicSkuIds.shift();
-            placeholderSku.sku_photo = originalPhoto;
+            vi.resetModules();
         }
     });
 });

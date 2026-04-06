@@ -1,9 +1,8 @@
 import { useTranslation } from "react-i18next";
 
 import { productPrices, ProductPriceSettings, ProductVoileType } from "@/constants/productPrices";
-import { VOILE_SKU_IDS } from "@/constants/voileSkuIds";
 import { Locales } from "@/types/locales";
-import { findSkuById, SkuMeta, toSkuMeta, warehouse } from "@/utils/warehouse";
+import { findSku, SkuMeta, toSkuMeta, warehouse } from "@/utils/warehouse";
 
 type VoileOption = { label: string; value: ProductVoileType; skuId: string; };
 
@@ -19,24 +18,42 @@ interface VoileProductData {
     skuByOption: Record<ProductVoileType, SkuMeta>;
 }
 
+const voileOptionPredicates: Record<ProductVoileType, (sku: (typeof warehouse.voile)[number]) => boolean> = {
+    'nine-black': (sku) => sku.properties.length_cm === 9 && sku.properties.color === `black` && sku.properties.logo === false,
+    'twelve-black': (sku) => sku.properties.length_cm === 12 && sku.properties.color === `black` && sku.properties.logo === false,
+    'twenty-black-w-logo': (sku) => sku.properties.length_cm === 20 && sku.properties.color === `black` && sku.properties.logo === true,
+    'twenty-five-black-w-logo': (sku) => sku.properties.length_cm === 25 && sku.properties.color === `black` && sku.properties.logo === true,
+};
+
+const voileOptionOrder: ProductVoileType[] = [
+    `nine-black`,
+    `twelve-black`,
+    `twenty-black-w-logo`,
+    `twenty-five-black-w-logo`,
+];
+
+function getVoileOptionSku(option: ProductVoileType) {
+    return findSku(warehouse.voile, voileOptionPredicates[option]);
+}
+
+const skuByOption: Record<ProductVoileType, SkuMeta> = {
+    'nine-black': toSkuMeta(getVoileOptionSku(`nine-black`)),
+    'twelve-black': toSkuMeta(getVoileOptionSku(`twelve-black`)),
+    'twenty-black-w-logo': toSkuMeta(getVoileOptionSku(`twenty-black-w-logo`)),
+    'twenty-five-black-w-logo': toSkuMeta(getVoileOptionSku(`twenty-five-black-w-logo`)),
+};
+
+const defaultVoileSku = getVoileOptionSku(`nine-black`);
+const voileSkus = warehouse.voile.map((sku) => toSkuMeta(sku));
+
 export const useVoileProductData = () => {
     const { t } = useTranslation(`voile`);
 
-    const skuByOption: Record<ProductVoileType, SkuMeta> = {
-        'nine-black': toSkuMeta(findSkuById(warehouse.voile, VOILE_SKU_IDS[`nine-black`])),
-        'twelve-black': toSkuMeta(findSkuById(warehouse.voile, VOILE_SKU_IDS[`twelve-black`])),
-        'twenty-black-w-logo': toSkuMeta(findSkuById(warehouse.voile, VOILE_SKU_IDS[`twenty-black-w-logo`])),
-        'twenty-five-black-w-logo': toSkuMeta(findSkuById(warehouse.voile, VOILE_SKU_IDS[`twenty-five-black-w-logo`])),
-    };
-
-    const defaultVoileSku = findSkuById(warehouse.voile, VOILE_SKU_IDS[`nine-black`]);
-
-    const voileOptions: VoileOption[] = [
-        { label: t(`voile.options.1`), value: `nine-black`, ...skuByOption[`nine-black`] },
-        { label: t(`voile.options.2`), value: `twelve-black`, ...skuByOption[`twelve-black`] },
-        { label: t(`voile.options.3`), value: `twenty-black-w-logo`, ...skuByOption[`twenty-black-w-logo`] },
-        { label: t(`voile.options.4`), value: `twenty-five-black-w-logo`, ...skuByOption[`twenty-five-black-w-logo`] },
-    ];
+    const voileOptions: VoileOption[] = voileOptionOrder.map((option) => ({
+        label: t(`voile.option.${option}`),
+        value: option,
+        ...skuByOption[option],
+    }));
 
     const voile: VoileProductData = {
         name: t(`voile.name`),
@@ -46,24 +63,24 @@ export const useVoileProductData = () => {
         price: productPrices.voile,
         characteristics: [
             {
-                title: t(`voile.options.1`),
-                description: t(`voile.characteristics.1`),
+                title: t(`voile.option.nine-black`),
+                description: t(`voile.characteristic.nine-black`),
             },
             {
-                title: t(`voile.options.2`),
-                description: t(`voile.characteristics.2`),
+                title: t(`voile.option.twelve-black`),
+                description: t(`voile.characteristic.twelve-black`),
             },
             {
-                title: t(`voile.options.3`),
-                description: t(`voile.characteristics.3`),
+                title: t(`voile.option.twenty-black-w-logo`),
+                description: t(`voile.characteristic.twenty-black-w-logo`),
             },
             {
-                title: t(`voile.options.4`),
-                description: t(`voile.characteristics.4`),
+                title: t(`voile.option.twenty-five-black-w-logo`),
+                description: t(`voile.characteristic.twenty-five-black-w-logo`),
             },
         ],
         ...skuByOption[`nine-black`],
-        skus: warehouse.voile.map((sku) => toSkuMeta(sku)),
+        skus: voileSkus,
         skuByOption,
     }
 

@@ -1,5 +1,7 @@
 import { Locales } from '@/types/locales';
 
+import rawProductPriceSettings from '../../public/data/product-prices.json';
+
 export type ProductCageType = `front` | `little` | `volume` | `plus`;
 export type ProductTopcapsType = `serial` | `custom` | `titanium-bolt` | `custom-color` | `thick` | `steel-bolt` | `none-bolt` | `box`;
 export type ProductVoileType = `nine-black` | `twelve-black` | `twenty-black-w-logo` | `twenty-five-black-w-logo`;
@@ -33,43 +35,7 @@ interface RawProductPrices {
     chainBreaker: Record<ProductWithOnePrice, Record<Locales, number>>;
 }
 
-const productPriceSettings: RawProductPrices = {
-    topcaps: {
-        serial: { ru: 1_500, en: 20 },
-        custom: { ru: 3_000, en: 30 },
-        'titanium-bolt': { ru: 200, en: 3 },
-        'custom-color': { ru: 500, en: 5 },
-        thick: { ru: 500, en: 5 },
-        'steel-bolt': { ru: 0, en: 0 },
-        'none-bolt': { ru: 0, en: 0 },
-        box: { ru: 0, en: 0 },
-    },
-    cages: {
-        front: { ru: 10_800, en: 150 },
-        little: { ru: 1_800, en: 20 },
-        volume: { ru: 3_400, en: 50 },
-        'plus': { ru: 2_900, en: 30 },
-    },
-    itchyAndScratchy: {
-        'plus-anodized': { ru: 2_000, en: 20 },
-        'plus-powder': { ru: 2_000, en: 20 },
-    },
-    voile: {
-        'nine-black': { ru: 800, en: 8 },
-        'twelve-black': { ru: 900, en: 9 },
-        'twenty-black-w-logo': { ru: 1_200, en: 12 },
-        'twenty-five-black-w-logo': { ru: 1_400, en: 14 },
-    },
-    feedbagHanger: {
-        'one-price': { ru: 1_500, en: 20 }
-    },
-    merch: {
-        'one-price': { ru: 3_000, en: 30 }
-    },
-    chainBreaker: {
-        'one-price': { ru: 2_500, en: 30 }
-    },
-};
+const productPriceSettings: RawProductPrices = rawProductPriceSettings;
 
 const localeCurrencyMap: Record<Locales, { currency: string; locale: string }> = {
     ru: { currency: `RUB`, locale: `ru-RU` },

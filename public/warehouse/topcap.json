@@ -7,7 +7,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 11
+    }
   },
   "2000003": {
     "product": "topcap",
@@ -17,7 +21,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 24
+    }
   },
   "2000004": {
     "product": "topcap",
@@ -27,7 +35,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 11
+    }
   },
   "2000005": {
     "product": "topcap",
@@ -37,7 +49,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 12
+    }
   },
   "2000006": {
     "product": "topcap",
@@ -47,7 +63,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 16
+    }
   },
   "2000007": {
     "product": "topcap",
@@ -57,7 +77,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 21
+    }
   },
   "2000008": {
     "product": "topcap",
@@ -67,7 +91,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 29
+    }
   },
   "2000009": {
     "product": "topcap",
@@ -77,7 +105,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 33
+    }
   },
   "2000010": {
     "product": "topcap",
@@ -87,7 +119,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 13
+    }
   },
   "2000011": {
     "product": "topcap",
@@ -97,7 +133,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 9
+    }
   },
   "2000012": {
     "product": "topcap",
@@ -107,7 +147,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 1
+    }
   },
   "2000013": {
     "product": "topcap",
@@ -117,7 +161,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 9
+    }
   },
   "2000014": {
     "product": "topcap",
@@ -127,7 +175,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 35
+    }
   },
   "2000015": {
     "product": "topcap",
@@ -137,11 +189,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 17
+    }
   },
   "2000016": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -157,7 +213,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 16
+    }
   },
   "2000019": {
     "product": "topcap",
@@ -167,7 +227,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 18
+    }
   },
   "2000020": {
     "product": "topcap",
@@ -177,7 +241,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "latin",
+      "sort": 28
+    }
   },
   "2000021": {
     "product": "topcap",
@@ -187,11 +255,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 50
+    }
   },
   "2000022": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -207,7 +279,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 32
+    }
   },
   "2000024": {
     "product": "topcap",
@@ -217,7 +293,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 25
+    }
   },
   "2000025": {
     "product": "topcap",
@@ -227,7 +307,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 66
+    }
   },
   "2000026": {
     "product": "topcap",
@@ -237,7 +321,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 15
+    }
   },
   "2000029": {
     "product": "topcap",
@@ -247,7 +335,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 20
+    }
   },
   "2000030": {
     "product": "topcap",
@@ -257,7 +349,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 27
+    }
   },
   "2000031": {
     "product": "topcap",
@@ -267,7 +363,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 1
+    }
   },
   "2000032": {
     "product": "topcap",
@@ -277,7 +377,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 18
+    }
   },
   "2000033": {
     "product": "topcap",
@@ -287,7 +391,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 17
+    }
   },
   "2000034": {
     "product": "topcap",
@@ -297,7 +405,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 49
+    }
   },
   "2000035": {
     "product": "topcap",
@@ -307,7 +419,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 21
+    }
   },
   "2000036": {
     "product": "topcap",
@@ -317,7 +433,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 2
+    }
   },
   "2000037": {
     "product": "topcap",
@@ -327,11 +447,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 51
+    }
   },
   "2000040": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -347,11 +471,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 12
+    }
   },
   "2000042": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -361,7 +489,7 @@
   },
   "2000043": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -371,7 +499,7 @@
   },
   "2000045": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -387,7 +515,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 8
+    }
   },
   "2000048": {
     "product": "topcap",
@@ -397,7 +529,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 24
+    }
   },
   "2000049": {
     "product": "topcap",
@@ -407,7 +543,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "graphics",
+      "sort": 23
+    }
   },
   "2000052": {
     "product": "topcap",
@@ -417,7 +557,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 6
+    }
   },
   "2000053": {
     "product": "topcap",
@@ -427,11 +571,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 27
+    }
   },
   "2000054": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -441,7 +589,7 @@
   },
   "2000055": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -457,11 +605,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 54
+    }
   },
   "2000057": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -477,7 +629,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 14
+    }
   },
   "2000059": {
     "product": "topcap",
@@ -487,7 +643,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 19
+    }
   },
   "2000060": {
     "product": "topcap",
@@ -497,11 +657,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 7
+    }
   },
   "2000062": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -517,11 +681,15 @@
       "thickness": "slim",
       "color": "silver"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 16
+    }
   },
   "2000064": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -537,7 +705,12 @@
       "thickness": "slim",
       "color": "red"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 15,
+      "descriptionKey": "topcaps.description.black"
+    }
   },
   "2000066": {
     "product": "topcap",
@@ -547,11 +720,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 13
+    }
   },
   "2000067": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -567,7 +744,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 7
+    }
   },
   "2000076": {
     "product": "topcap",
@@ -577,7 +758,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 62
+    }
   },
   "2000077": {
     "product": "topcap",
@@ -587,7 +772,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "graphics",
+      "sort": 22
+    }
   },
   "2000078": {
     "product": "topcap",
@@ -597,11 +786,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "graphics",
+      "sort": 9
+    }
   },
   "2000079": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -617,11 +810,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 22
+    }
   },
   "2000081": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -637,7 +834,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 14
+    }
   },
   "2000086": {
     "product": "topcap",
@@ -647,7 +848,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 32
+    }
   },
   "2000087": {
     "product": "topcap",
@@ -657,7 +862,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 29
+    }
   },
   "2000088": {
     "product": "topcap",
@@ -667,7 +876,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 18
+    }
   },
   "2000089": {
     "product": "topcap",
@@ -677,7 +890,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 17
+    }
   },
   "2000090": {
     "product": "topcap",
@@ -687,7 +904,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 7
+    }
   },
   "2000095": {
     "product": "topcap",
@@ -697,7 +918,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "latin",
+      "sort": 26
+    }
   },
   "2000096": {
     "product": "topcap",
@@ -707,7 +932,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 21
+    }
   },
   "2000097": {
     "product": "topcap",
@@ -717,7 +946,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 3
+    }
   },
   "2000098": {
     "product": "topcap",
@@ -727,7 +960,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 3
+    }
   },
   "2000099": {
     "product": "topcap",
@@ -737,7 +974,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 19
+    }
   },
   "2000100": {
     "product": "topcap",
@@ -747,7 +988,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 23
+    }
   },
   "2000104": {
     "product": "topcap",
@@ -757,7 +1002,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 28
+    }
   },
   "2000105": {
     "product": "topcap",
@@ -767,11 +1016,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 34
+    }
   },
   "2000106": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -787,7 +1040,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 5
+    }
   },
   "2000108": {
     "product": "topcap",
@@ -797,11 +1054,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 22
+    }
   },
   "2000109": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -811,7 +1072,7 @@
   },
   "2000110": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -827,7 +1088,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 33
+    }
   },
   "2000118": {
     "product": "topcap",
@@ -837,7 +1102,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 56
+    }
   },
   "2000119": {
     "product": "topcap",
@@ -847,7 +1116,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 64
+    }
   },
   "2000120": {
     "product": "topcap",
@@ -857,7 +1130,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 48
+    }
   },
   "2000122": {
     "product": "topcap",
@@ -867,7 +1144,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 53
+    }
   },
   "2000123": {
     "product": "topcap",
@@ -877,7 +1158,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 26
+    }
   },
   "2000125": {
     "product": "topcap",
@@ -887,7 +1172,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 5
+    }
   },
   "2000126": {
     "product": "topcap",
@@ -897,7 +1186,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 67
+    }
   },
   "2000128": {
     "product": "topcap",
@@ -907,7 +1200,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 57
+    }
   },
   "2000129": {
     "product": "topcap",
@@ -917,7 +1214,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 6
+    }
   },
   "2000131": {
     "product": "topcap",
@@ -927,7 +1228,12 @@
       "thickness": "slim",
       "color": "gold"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 13,
+      "descriptionKey": "topcaps.description.black"
+    }
   },
   "2000132": {
     "product": "topcap",
@@ -937,7 +1243,11 @@
       "thickness": "slim",
       "color": "brown"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 45
+    }
   },
   "2000133": {
     "product": "topcap",
@@ -947,7 +1257,11 @@
       "thickness": "slim",
       "color": "red"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 2
+    }
   },
   "2000136": {
     "product": "topcap",
@@ -957,7 +1271,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 4
+    }
   },
   "2000137": {
     "product": "topcap",
@@ -967,7 +1285,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 61
+    }
   },
   "2000138": {
     "product": "topcap",
@@ -977,7 +1299,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 19
+    }
   },
   "2000141": {
     "product": "topcap",
@@ -987,7 +1313,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "graphics",
+      "sort": 24
+    }
   },
   "2000142": {
     "product": "topcap",
@@ -997,7 +1327,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 23
+    }
   },
   "2000143": {
     "product": "topcap",
@@ -1007,7 +1341,11 @@
       "thickness": "slim",
       "color": "silver"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 25
+    }
   },
   "2000144": {
     "product": "topcap",
@@ -1017,11 +1355,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 30
+    }
   },
   "2000145": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1037,7 +1379,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 20
+    }
   },
   "2000147": {
     "product": "topcap",
@@ -1047,7 +1393,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 46
+    }
   },
   "2000148": {
     "product": "topcap",
@@ -1057,7 +1407,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 52
+    }
   },
   "2000149": {
     "product": "topcap",
@@ -1067,7 +1421,11 @@
       "thickness": "slim",
       "color": "red"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 10
+    }
   },
   "2000151": {
     "product": "topcap",
@@ -1077,11 +1435,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 31
+    }
   },
   "2000152": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1097,7 +1459,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 10
+    }
   },
   "2000154": {
     "product": "topcap",
@@ -1107,7 +1473,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 14
+    }
   },
   "2000155": {
     "product": "topcap",
@@ -1117,7 +1487,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 8
+    }
   },
   "2000156": {
     "product": "topcap",
@@ -1127,7 +1501,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 60
+    }
   },
   "2000157": {
     "product": "topcap",
@@ -1137,7 +1515,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 65
+    }
   },
   "2000158": {
     "product": "topcap",
@@ -1147,7 +1529,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 58
+    }
   },
   "2000159": {
     "product": "topcap",
@@ -1157,7 +1543,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 55
+    }
   },
   "2000160": {
     "product": "topcap",
@@ -1167,9 +1557,12 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 4
+    }
   },
-  
   "2000161": {
     "product": "topcap",
     "sku_photo": "/images/topcaps/serial/items/2000161.avif",
@@ -1178,7 +1571,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 30
+    }
   },
   "2000162": {
     "product": "topcap",
@@ -1188,7 +1585,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 31
+    }
   },
   "2000163": {
     "product": "topcap",
@@ -1198,7 +1599,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 59
+    }
   },
   "2000164": {
     "product": "topcap",
@@ -1208,7 +1613,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "graphics",
+      "sort": 10
+    }
   },
   "2000165": {
     "product": "topcap",
@@ -1218,7 +1627,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 8
+    }
   },
   "2000167": {
     "product": "topcap",
@@ -1228,7 +1641,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 15
+    }
   },
   "2000180": {
     "product": "topcap",
@@ -1238,7 +1655,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 20
+    }
   },
   "2000181": {
     "product": "topcap",
@@ -1248,7 +1669,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 47
+    }
   },
   "2000182": {
     "product": "topcap",
@@ -1258,7 +1683,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 25
+    }
   },
   "2000208": {
     "product": "topcap",
@@ -1268,7 +1697,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 63
+    }
   },
   "2000223": {
     "product": "topcap",
@@ -1278,7 +1711,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 38
+    }
   },
   "2000224": {
     "product": "topcap",
@@ -1288,7 +1725,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 12
+    }
   },
   "2000225": {
     "product": "topcap",
@@ -1298,11 +1739,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 44
+    }
   },
   "2000226": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1318,7 +1763,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 40
+    }
   },
   "2000228": {
     "product": "topcap",
@@ -1328,7 +1777,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 39
+    }
   },
   "2000236": {
     "product": "topcap",
@@ -1338,7 +1791,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 43
+    }
   },
   "2000237": {
     "product": "topcap",
@@ -1348,7 +1805,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 41
+    }
   },
   "2000238": {
     "product": "topcap",
@@ -1358,7 +1819,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "latin",
+      "sort": 37
+    }
   },
   "2000239": {
     "product": "topcap",
@@ -1368,11 +1833,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 42
+    }
   },
   "2000242": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1388,7 +1857,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 11
+    }
   },
   "2000244": {
     "product": "topcap",
@@ -1398,7 +1871,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 71
+    }
   },
   "2000245": {
     "product": "topcap",
@@ -1408,7 +1885,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 40
+    }
   },
   "2000249": {
     "product": "topcap",
@@ -1418,7 +1899,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 34
+    }
   },
   "2000250": {
     "product": "topcap",
@@ -1428,7 +1913,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 37
+    }
   },
   "2000251": {
     "product": "topcap",
@@ -1438,7 +1927,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 35
+    }
   },
   "2000252": {
     "product": "topcap",
@@ -1448,7 +1941,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 39
+    }
   },
   "2000253": {
     "product": "topcap",
@@ -1458,7 +1955,12 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "graphics",
+      "sort": 4,
+      "descriptionKey": "topcaps.description.1004"
+    }
   },
   "2000254": {
     "product": "topcap",
@@ -1468,7 +1970,12 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 1,
+      "descriptionKey": "topcaps.description.1001"
+    }
   },
   "2000255": {
     "product": "topcap",
@@ -1478,7 +1985,12 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "graphics",
+      "sort": 3,
+      "descriptionKey": "topcaps.description.1003"
+    }
   },
   "2000256": {
     "product": "topcap",
@@ -1488,7 +2000,12 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 2,
+      "descriptionKey": "topcaps.description.1002"
+    }
   },
   "2000260": {
     "product": "topcap",
@@ -1498,7 +2015,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 38
+    }
   },
   "2000261": {
     "product": "topcap",
@@ -1508,7 +2029,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 72
+    }
   },
   "2000262": {
     "product": "topcap",
@@ -1518,7 +2043,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "latin",
+      "sort": 36
+    }
   },
   "2000263": {
     "product": "topcap",
@@ -1528,7 +2057,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 36
+    }
   },
   "2000264": {
     "product": "topcap",
@@ -1538,7 +2071,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 5
+    }
   },
   "2000266": {
     "product": "topcap",
@@ -1548,7 +2085,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": false
+    "available": false,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 70
+    }
   },
   "2000267": {
     "product": "topcap",
@@ -1558,7 +2099,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 69
+    }
   },
   "2000268": {
     "product": "topcap",
@@ -1568,11 +2113,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 68
+    }
   },
   "2000269": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1582,7 +2131,7 @@
   },
   "2000270": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1592,7 +2141,7 @@
   },
   "2000271": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1602,7 +2151,7 @@
   },
   "2000272": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1612,7 +2161,7 @@
   },
   "2000273": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1628,11 +2177,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "graphics",
+      "sort": 6
+    }
   },
   "2000277": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1642,7 +2195,7 @@
   },
   "2000278": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1652,7 +2205,7 @@
   },
   "2000279": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1662,7 +2215,7 @@
   },
   "2000280": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1672,7 +2225,7 @@
   },
   "2000281": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1682,7 +2235,7 @@
   },
   "2000282": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1698,7 +2251,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 73
+    }
   },
   "2000287": {
     "product": "topcap",
@@ -1708,11 +2265,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 75
+    }
   },
   "2000288": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1728,11 +2289,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 74
+    }
   },
   "2000292": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1742,7 +2307,7 @@
   },
   "2000295": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1752,7 +2317,7 @@
   },
   "2000296": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1762,7 +2327,7 @@
   },
   "2000297": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1772,7 +2337,7 @@
   },
   "2000298": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1782,7 +2347,7 @@
   },
   "2000300": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1792,7 +2357,7 @@
   },
   "2000301": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1802,7 +2367,7 @@
   },
   "2000302": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1818,7 +2383,11 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 77
+    }
   },
   "2000304": {
     "product": "topcap",
@@ -1828,11 +2397,15 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true
+    "available": true,
+    "ui": {
+      "category": "cyrillic",
+      "sort": 76
+    }
   },
   "2000305": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1842,7 +2415,7 @@
   },
   "2000308": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1852,7 +2425,7 @@
   },
   "2000309": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1862,7 +2435,7 @@
   },
   "2000310": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1872,7 +2445,7 @@
   },
   "2000351": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1882,7 +2455,7 @@
   },
   "2000352": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1892,7 +2465,7 @@
   },
   "2000353": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1902,7 +2475,7 @@
   },
   "2000354": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1912,7 +2485,7 @@
   },
   "2000355": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",
@@ -1922,7 +2495,7 @@
   },
   "2000356": {
     "product": "topcap",
-    "sku_photo": "XXX",
+    "sku_photo": "",
     "photos": [],
     "properties": {
       "thickness": "slim",

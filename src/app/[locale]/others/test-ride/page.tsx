@@ -24,12 +24,7 @@ const images = [
 export default function TestRidePage() {
 	const { t } = useTranslation(`testRide`);
 
-	const testRideFeatures = [
-		t(`testRide.features.1`),
-		t(`testRide.features.2`),
-		t(`testRide.features.3`),
-		t(`testRide.features.4`),
-	];
+	const testRideFeatures = t(`testRide.features`, { returnObjects: true }) as string[];
 
 	return (
 		<ProductPage>

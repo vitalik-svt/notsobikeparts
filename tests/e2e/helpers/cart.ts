@@ -78,6 +78,44 @@ export async function expectCartSnapshot(page: Page, expected: CartStateSnapshot
     await expect.poll(async () => readCartSnapshot(page)).toEqual(expected);
 }
 
+export async function openCartInFreshPage(
+    page: Page,
+    run: (cartPage: Page) => Promise<void>,
+    currentLocale: string = locale,
+): Promise<void> {
+    const rawCartStorage = await page.evaluate(() => window.localStorage.getItem(`cart-storage`));
+    const browser = page.context().browser();
+
+    if (!browser) {
+        throw new Error(`Browser instance is not available for Playwright cart navigation helper`);
+    }
+
+    const baseUrl = new URL(page.url()).origin;
+    const cartContext = await browser.newContext();
+    const cartPage = await cartContext.newPage();
+
+    try {
+        await cartPage.goto(`${baseUrl}/${currentLocale}`);
+        await cartPage.evaluate((raw) => {
+            if (raw === null) {
+                window.localStorage.removeItem(`cart-storage`);
+                return;
+            }
+
+            window.localStorage.setItem(`cart-storage`, raw);
+        }, rawCartStorage);
+        await cartPage.goto(`${baseUrl}/${currentLocale}/cart`);
+
+        await run(cartPage);
+    } finally {
+        if (!cartPage.isClosed()) {
+            await cartPage.close();
+        }
+
+        await cartContext.close();
+    }
+}
+
 export async function addViaDefaultAddButton(page: Page) {
     await page.getByRole(`button`, { name: `В корзину` }).first().click();
 }

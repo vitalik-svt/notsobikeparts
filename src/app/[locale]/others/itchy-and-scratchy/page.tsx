@@ -23,10 +23,10 @@ export default function ItchyAndScratchyPage() {
     const { setNotification } = useNotifications();
 
     const cageColorLabel: Record<CageColor | CagePlusColor, string> = {
-        black: tCages(`plus.color_options.1`),
-        silver: tCages(`plus.color_options.2`),
-        green: tCages(`plus.color_options.3`),
-        brown: tCages(`plus.color_options.4`),
+        black: tCages(`plus.color.black`),
+        silver: tCages(`plus.color.silver`),
+        green: tCages(`plus.color.green`),
+        brown: tCages(`plus.color.brown`),
     };
 
 

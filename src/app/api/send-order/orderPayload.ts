@@ -6,6 +6,8 @@ import type { ProductKey } from '@/stores/cartStore';
 import type { Locales } from '@/types/locales';
 import type { ProductSection } from '@/types/productSection';
 
+import { isValidTopcapAddonSkuId } from './topcapAddons';
+
 const PRODUCT_SECTIONS: ProductSection[] = [`cage`, `topcap`, `voile`, `itchyAndScratchy`, `feedbagHanger`, `merch`, `chainBreaker`];
 const PRODUCT_KEYS: ProductKey[] = [`front`, `little`, `volume`, `plus`, `serial`, `custom`, `nine-black`, `twelve-black`, `twenty-black-w-logo`, `twenty-five-black-w-logo`, `one-price`];
 const LOCALES: Locales[] = [`ru`, `en`];
@@ -18,12 +20,6 @@ const BOLT_COLORS = [`black`, `light`] as const;
 const ITCHY_COATINGS = [`anodized`, `powder`] as const;
 const CAGE_COLORS = [`black`, `silver`, `green`, `brown`] as const;
 export type TopcapAddonKind = `steel-bolt` | `titanium-bolt-black` | `titanium-bolt-light` | `box`;
-const TOPCAP_ADDON_SKU_IDS = {
-  'steel-bolt': `2000198`,
-  'titanium-bolt-black': `2000201`,
-  'titanium-bolt-light': `2000349`,
-  box: `2000195`,
-} as const satisfies Record<TopcapAddonKind, string>;
 
 export const productParamsSchema = z.object({
   boltsMaterial: z.enum(BOLT_MATERIALS).optional(),
@@ -159,7 +155,7 @@ export function getServerPrice(item: ParsedOrderInternalItem, locale: Locales): 
   const topcapAddon = item.productParams?.topcapAddon;
 
   if (topcapAddon) {
-    if (!item.skuId || item.skuId !== TOPCAP_ADDON_SKU_IDS[topcapAddon]) {
+    if (!item.skuId || !isValidTopcapAddonSkuId(topcapAddon, item.skuId)) {
       return null;
     }
 

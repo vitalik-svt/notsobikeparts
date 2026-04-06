@@ -2,7 +2,8 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import FormCheckout, { CheckoutForm } from '@/components/OrderCheckout/FormCheckout/FormCheckout';
+import type { CheckoutForm } from '@/components/OrderCheckout/FormCheckout/FormCheckout';
+import FormCheckout from '@/components/OrderCheckout/FormCheckout/FormCheckout';
 
 vi.mock(`react-i18next`, () => ({
     useTranslation: () => ({

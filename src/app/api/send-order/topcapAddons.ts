@@ -49,6 +49,14 @@ export function getTopcapAddonSkuId(kind: TopcapAddonKind): string {
     }
 }
 
+export function isValidTopcapAddonSkuId(kind: TopcapAddonKind, skuId: string): boolean {
+    try {
+        return getTopcapAddonSkuId(kind) === skuId;
+    } catch {
+        return false;
+    }
+}
+
 export function expandOrderItemsWithTopcapAddons(items: ParsedOrderItem[]): ParsedOrderInternalItem[] {
     return items.flatMap((item) => {
         if (item.productSection !== `topcap`) {

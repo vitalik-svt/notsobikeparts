@@ -1,3 +1,4 @@
+import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 
 import { createOrderSuccessToken, ORDER_SUCCESS_COOKIE } from '@/utils/orderSuccessToken';
@@ -28,15 +29,15 @@ type CartStoragePayload = {
     version: number;
 };
 
-// eslint-disable-next-line quotes
-async function seedCartStorage(page: import("@playwright/test").Page, payload: CartStoragePayload) {
+ 
+async function seedCartStorage(page: Page, payload: CartStoragePayload) {
     await page.addInitScript((data) => {
         window.localStorage.setItem(`cart-storage`, JSON.stringify(data));
     }, payload);
 }
 
-// eslint-disable-next-line quotes
-function submitOrderButton(page: import("@playwright/test").Page) {
+ 
+function submitOrderButton(page: Page) {
     return page.locator(`button[type="submit"][form="checkout-form"]`).first();
 }
 

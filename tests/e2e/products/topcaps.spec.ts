@@ -1,6 +1,7 @@
+import type { Page } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 
-import { BoltMaterial } from '@/stores/cartStore';
+import type { BoltMaterial } from '@/stores/cartStore';
 
 import {
     addViaTopcapsSerialFlow,
@@ -14,8 +15,8 @@ import {
 } from '../helpers/cart';
 
 async function addSerialTopcapWithParams(
-    // eslint-disable-next-line quotes
-    page: import("@playwright/test").Page,
+     
+    page: Page,
     boltsMaterial: BoltMaterial,
     hasBox: boolean,
 ) {

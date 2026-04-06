@@ -1,5 +1,4 @@
 import { useTopcapsGridData } from "@/hooks/useTopcapsGridData";
-import { warehouse } from "@/utils/warehouse";
 
 vi.mock(`react-i18next`, () => ({
     useTranslation: () => ({
@@ -8,12 +7,6 @@ vi.mock(`react-i18next`, () => ({
 }));
 
 describe(`useTopcapsGridData`, () => {
-    let warnSpy: ReturnType<typeof vi.spyOn>;
-
-    beforeEach(() => {
-        warnSpy = vi.spyOn(console, `warn`).mockImplementation(() => {});
-    });
-
     afterEach(() => {
         vi.restoreAllMocks();
     });
@@ -29,42 +22,35 @@ describe(`useTopcapsGridData`, () => {
         }
     });
 
-    test(`warns when configured sku cannot be rendered`, () => {
-        const skuWithoutUi = warehouse.topCap.find((sku) => sku.ui && sku.sku_photo && sku.available);
+    test(`warns when configured sku cannot be rendered`, async () => {
+        vi.resetModules();
 
-        if (!skuWithoutUi) {
-            throw new Error(`Expected topcap warehouse entries for warning tests`);
-        }
+        vi.doMock(`@/utils/warehouse`, () => ({
+            warehouse: {
+                topCap: [
+                    // available SKU with photo but no ui — should warn "missing ui metadata"
+                    { sku_id: 9001, product: `topcap`, sku_photo: `/img/test.avif`, available: true, photos: [], properties: {} },
+                    // SKU with valid ui but no photo — should warn "placeholder photo"
+                    { sku_id: 9002, product: `topcap`, sku_photo: ``, available: true, photos: [], properties: {}, ui: { category: `cyrillic`, sort: 1 } },
+                ],
+            },
+        }));
 
-        const skuWithoutUiId = String(skuWithoutUi.sku_id);
-        const placeholderSku = warehouse.topCap.find((sku) => (
-            sku.ui && sku.sku_photo && sku.available && String(sku.sku_id) !== skuWithoutUiId
-        ));
-
-        if (!placeholderSku) {
-            throw new Error(`Expected second topcap warehouse entry for placeholder warning test`);
-        }
-
-        const placeholderSkuId = String(placeholderSku.sku_id);
-        const originalUi = skuWithoutUi.ui;
-        const originalPhoto = placeholderSku.sku_photo;
-        skuWithoutUi.ui = undefined;
-        placeholderSku.sku_photo = ``;
+        const warnSpy = vi.spyOn(console, `warn`).mockImplementation(() => {});
 
         try {
-            const items = useTopcapsGridData().flatMap((category) => category.items);
+            const { useTopcapsGridData: freshHook } = await import(`@/hooks/useTopcapsGridData`);
+            const items = freshHook().flatMap((category) => category.items);
 
-            expect(items.some((item) => item.skuId === skuWithoutUiId)).toBe(false);
-            expect(items.some((item) => item.skuId === placeholderSkuId)).toBe(false);
+            expect(items).toHaveLength(0);
             expect(warnSpy).toHaveBeenCalledWith(
-                `[useTopcapsGridData] Skipping topcap skuId=${skuWithoutUiId}: missing ui metadata`,
+                `[useTopcapsGridData] Skipping topcap skuId=9001: missing ui metadata`,
             );
             expect(warnSpy).toHaveBeenCalledWith(
-                `[useTopcapsGridData] Skipping topcap skuId=${placeholderSkuId}: placeholder photo`,
+                `[useTopcapsGridData] Skipping topcap skuId=9002: placeholder photo`,
             );
         } finally {
-            skuWithoutUi.ui = originalUi;
-            placeholderSku.sku_photo = originalPhoto;
+            vi.resetModules();
         }
     });
 });

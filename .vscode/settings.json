@@ -9,7 +9,8 @@
         "Велоаксессуары",
         "кейдж",
         "кейджи",
-        "открывашке"
+        "открывашке",
+        "Топкэп"
     ],
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"

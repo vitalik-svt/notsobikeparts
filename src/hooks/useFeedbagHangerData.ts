@@ -18,12 +18,7 @@ export function useFeedbagHangerData() {
         description: t(`feedbagHanger.description`),
         colorOptions: [],
         price: productPrices.feedbagHanger[`one-price`][locale],
-        features: [
-            t(`feedbagHanger.features.1`),
-            t(`feedbagHanger.features.2`),
-            t(`feedbagHanger.features.3`),
-            t(`feedbagHanger.features.4`),
-        ],
+        features: t(`feedbagHanger.features`, { returnObjects: true }) as string[],
         characteristics: [],
         skuId,
     }

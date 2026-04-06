@@ -2,6 +2,5 @@
     "merch.name": "Merch",
     "merch.description": "Well, merch is merch.",
     "merch.features_title": "Sweatshirt",
-    "merch.features.1": "Size L oversized",
-    "merch.features.2": "Silkscreen print"
+    "merch.features": ["Size L oversized", "Silkscreen print"]
 }

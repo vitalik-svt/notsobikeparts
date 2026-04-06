@@ -109,11 +109,7 @@ export function useItchyAndScratchyData() {
     const data: ItchyAndScratchyData = {
         name: tItchyAndScratchy(`itchy_scratchy.name`),
         images: [`/images/itchy-and-scratchy/gallery/product-pic-1.avif`],
-        description: [
-            tItchyAndScratchy(`itchy_scratchy.description.1`),
-            tItchyAndScratchy(`itchy_scratchy.description.2`),
-            tItchyAndScratchy(`itchy_scratchy.description.3`),
-        ],
+        description: tItchyAndScratchy(`itchy_scratchy.description`, { returnObjects: true }) as string[],
         products,
     };
 

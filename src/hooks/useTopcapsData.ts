@@ -77,12 +77,7 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
                 `${serialGalleryUrl}/product-pic-7.avif`,
             ],
             name: t(`topcaps.name`),
-            description: [
-                t(`topcaps.description.1`),
-                t(`topcaps.description.2`),
-                t(`topcaps.description.3`),
-                t(`topcaps.description.4`),
-            ],
+            description: t(`topcaps.description`, { returnObjects: true }) as string[],
             price: productPrices.topcaps.serial[locale],
             "additional-price-options": [
                 {
@@ -100,10 +95,7 @@ export const useTopcapsData = (): UseTopcapsDataResult => {
             ],
             equipment: {
                 title: t(`topcaps.equipment_title`),
-                items: [
-                    t(`topcaps.equipment.1`),
-                    t(`topcaps.equipment.2`),
-                ]
+                items: t(`topcaps.equipment`, { returnObjects: true }) as string[],
             },
             items: topcaps,
         },

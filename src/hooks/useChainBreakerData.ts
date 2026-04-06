@@ -19,11 +19,7 @@ export const useChainBreakerData = () => {
         colorOptions: [],
         price: productPrices.chainBreaker[`one-price`][locale],
         features: [],
-        characteristics: [
-            t(`chainBreaker.characteristics.1`),
-            t(`chainBreaker.characteristics.2`),
-            t(`chainBreaker.characteristics.3`),
-        ],
+        characteristics: t(`chainBreaker.characteristics`, { returnObjects: true }) as string[],
         skuId,
     }
 

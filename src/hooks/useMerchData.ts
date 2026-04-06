@@ -18,10 +18,7 @@ export function useMerchData() {
         description: t(`merch.description`),
         colorOptions: [],
         price: productPrices.merch[`one-price`][locale],
-        features: [
-            t(`merch.features.1`),
-            t(`merch.features.2`),
-        ],
+        features: t(`merch.features`, { returnObjects: true }) as string[],
         characteristics: [],
         skuId,
     }

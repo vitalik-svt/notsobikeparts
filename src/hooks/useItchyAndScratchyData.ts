@@ -1,12 +1,11 @@
 import { useTranslation } from "react-i18next";
 
-import { ITCHY_AND_SCRATCHY_SKU_IDS } from "@/constants/itchyAndScratchySkuIds";
 import { productPrices, ProductPriceSettings } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { CageColor, CagePlusColor } from "@/stores/cartStore";
 import { Locales } from "@/types/locales";
-import { findSkuById, parseItchyAndScratchyProperties, warehouse } from "@/utils/warehouse";
+import { parseItchyAndScratchyProperties, warehouse } from "@/utils/warehouse";
 
 export type CoatingType = `anodized` | `powder`;
 
@@ -29,15 +28,24 @@ interface ItchyAndScratchyData {
     }[];
 }
 
+const paintedTypeSortOrder: Record<CoatingType, number> = {
+    powder: 0,
+    anodized: 1,
+};
+
+const cageColorSortOrder: Record<CageColor | CagePlusColor, number> = {
+    silver: 0,
+    brown: 1,
+    green: 2,
+    black: 3,
+};
+
+const fallbackSortOrder = 999;
+
 export function useItchyAndScratchyData() {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
     const { t: tCages } = useTranslation(`cages`);
     const { t: tItchyAndScratchy } = useTranslation(`itchyAndScratchy`);
-
-    const sku2999999 = findSkuById(warehouse.itchyAndScratchy, ITCHY_AND_SCRATCHY_SKU_IDS.plusPowderBlack);
-    const sku2999998 = findSkuById(warehouse.itchyAndScratchy, ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedSilver);
-    const sku2999997 = findSkuById(warehouse.itchyAndScratchy, ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedBrown);
-    const sku2999996 = findSkuById(warehouse.itchyAndScratchy, ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedGreen);
 
     const getParsedProperties = (skuId: string, properties: Record<string, string | number | boolean>) => {
         const parsed = parseItchyAndScratchyProperties(properties);
@@ -49,6 +57,55 @@ export function useItchyAndScratchyData() {
         return parsed;
     };
 
+    const getDescription = (productParams: ItchyAndScratchyColorMap): string[] => {
+        if (productParams.paintedType === `powder`) {
+            return [];
+        }
+
+        if (productParams.cageColor === `silver`) {
+            return [tItchyAndScratchy(`itchy_scratchy.defect.product.1`)];
+        }
+
+        return [
+            tItchyAndScratchy(`itchy_scratchy.defect.product.1`),
+            tItchyAndScratchy(`itchy_scratchy.defect.product.2`),
+        ];
+    };
+
+    const sortedSkus = [...warehouse.itchyAndScratchy].sort((left, right) => {
+        const leftPaintedType = String(left.properties.paintedType) as CoatingType;
+        const rightPaintedType = String(right.properties.paintedType) as CoatingType;
+        const leftCageColor = String(left.properties.cageColor) as CageColor | CagePlusColor;
+        const rightCageColor = String(right.properties.cageColor) as CageColor | CagePlusColor;
+
+        const typeOrder = (paintedTypeSortOrder[leftPaintedType] ?? fallbackSortOrder)
+            - (paintedTypeSortOrder[rightPaintedType] ?? fallbackSortOrder);
+
+        if (typeOrder !== 0) {
+            return typeOrder;
+        }
+
+        return (cageColorSortOrder[leftCageColor] ?? fallbackSortOrder)
+            - (cageColorSortOrder[rightCageColor] ?? fallbackSortOrder);
+    });
+
+    const products = sortedSkus
+        .map((sku) => {
+            const skuId = String(sku.sku_id);
+            const productParams = getParsedProperties(skuId, sku.properties);
+
+            return {
+                skuId,
+                images: sku.photos,
+                name: tCages(`plus.name`),
+                description: getDescription(productParams),
+                price: productParams.paintedType === `powder`
+                    ? productPrices.itchyAndScratchy[`plus-powder`][locale]
+                    : productPrices.itchyAndScratchy[`plus-anodized`][locale],
+                productParams,
+            };
+        });
+
     const data: ItchyAndScratchyData = {
         name: tItchyAndScratchy(`itchy_scratchy.name`),
         images: [`/images/itchy-and-scratchy/gallery/product-pic-1.avif`],
@@ -57,46 +114,7 @@ export function useItchyAndScratchyData() {
             tItchyAndScratchy(`itchy_scratchy.description.2`),
             tItchyAndScratchy(`itchy_scratchy.description.3`),
         ],
-        products: [
-            {
-                skuId: ITCHY_AND_SCRATCHY_SKU_IDS.plusPowderBlack,
-                images: sku2999999.photos,
-                name: tCages(`plus.name`),
-                description: [],
-                price: productPrices.itchyAndScratchy[`plus-powder`][locale],
-                productParams: getParsedProperties(ITCHY_AND_SCRATCHY_SKU_IDS.plusPowderBlack, sku2999999.properties),
-            },
-            {
-                skuId: ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedSilver,
-                images: sku2999998.photos,
-                name: tCages(`plus.name`),
-                description: [tItchyAndScratchy(`itchy_scratchy.defect.product.1`)],
-                price: productPrices.itchyAndScratchy[`plus-anodized`][locale],
-                productParams: getParsedProperties(ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedSilver, sku2999998.properties),
-            },
-            {
-                skuId: ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedBrown,
-                images: sku2999997.photos,
-                name: tCages(`plus.name`),
-                description: [
-                    tItchyAndScratchy(`itchy_scratchy.defect.product.1`),
-                    tItchyAndScratchy(`itchy_scratchy.defect.product.2`),
-                ],
-                price: productPrices.itchyAndScratchy[`plus-anodized`][locale],
-                productParams: getParsedProperties(ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedBrown, sku2999997.properties),
-            },
-            {
-                skuId: ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedGreen,
-                images: sku2999996.photos,
-                name: tCages(`plus.name`),
-                description: [
-                    tItchyAndScratchy(`itchy_scratchy.defect.product.1`),
-                    tItchyAndScratchy(`itchy_scratchy.defect.product.2`),
-                ],
-                price: productPrices.itchyAndScratchy[`plus-anodized`][locale],
-                productParams: getParsedProperties(ITCHY_AND_SCRATCHY_SKU_IDS.plusAnodizedGreen, sku2999996.properties),
-            },
-        ],
+        products,
     };
 
     return data;

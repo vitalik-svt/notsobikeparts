@@ -1,4 +1,3 @@
-import { TOPCAP_SKU_IDS } from "@/constants/topcapSkuIds";
 import { useTopcapsGridData } from "@/hooks/useTopcapsGridData";
 import { warehouse } from "@/utils/warehouse";
 
@@ -31,32 +30,40 @@ describe(`useTopcapsGridData`, () => {
     });
 
     test(`warns when configured sku cannot be rendered`, () => {
-        const missingSkuId = `9999999`;
-        const mutableCyrillicSkuIds = TOPCAP_SKU_IDS.cyrillic as unknown as string[];
-        const placeholderSkuId = TOPCAP_SKU_IDS.cyrillic[0];
-        const placeholderSku = warehouse.topCap.find((sku) => String(sku.sku_id) === placeholderSkuId);
+        const skuWithoutUi = warehouse.topCap.find((sku) => sku.ui && sku.sku_photo !== `XXX` && sku.available);
 
-        if (!placeholderSku) {
-            throw new Error(`Expected topcap warehouse entry for placeholder warning test`);
+        if (!skuWithoutUi) {
+            throw new Error(`Expected topcap warehouse entries for warning tests`);
         }
 
+        const skuWithoutUiId = String(skuWithoutUi.sku_id);
+        const placeholderSku = warehouse.topCap.find((sku) => (
+            sku.ui && sku.sku_photo !== `XXX` && sku.available && String(sku.sku_id) !== skuWithoutUiId
+        ));
+
+        if (!placeholderSku) {
+            throw new Error(`Expected second topcap warehouse entry for placeholder warning test`);
+        }
+
+        const placeholderSkuId = String(placeholderSku.sku_id);
+        const originalUi = skuWithoutUi.ui;
         const originalPhoto = placeholderSku.sku_photo;
-        mutableCyrillicSkuIds.unshift(missingSkuId);
+        skuWithoutUi.ui = undefined;
         placeholderSku.sku_photo = `XXX`;
 
         try {
             const items = useTopcapsGridData().flatMap((category) => category.items);
 
-            expect(items.some((item) => item.skuId === missingSkuId)).toBe(false);
+            expect(items.some((item) => item.skuId === skuWithoutUiId)).toBe(false);
             expect(items.some((item) => item.skuId === placeholderSkuId)).toBe(false);
             expect(warnSpy).toHaveBeenCalledWith(
-                `[useTopcapsGridData] Skipping topcap skuId=${missingSkuId}: missing sku`,
+                `[useTopcapsGridData] Skipping topcap skuId=${skuWithoutUiId}: missing ui metadata`,
             );
             expect(warnSpy).toHaveBeenCalledWith(
                 `[useTopcapsGridData] Skipping topcap skuId=${placeholderSkuId}: placeholder photo`,
             );
         } finally {
-            mutableCyrillicSkuIds.shift();
+            skuWithoutUi.ui = originalUi;
             placeholderSku.sku_photo = originalPhoto;
         }
     });

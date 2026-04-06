@@ -1,63 +1,73 @@
-import { CAGE_SKU_IDS } from "@/constants/cageSkuIds";
-import { ITCHY_AND_SCRATCHY_SKU_IDS } from "@/constants/itchyAndScratchySkuIds";
-import { SINGLE_PRODUCT_SKU_IDS } from "@/constants/singleProductSkuIds";
-import { TOPCAP_SKU_IDS } from "@/constants/topcapSkuIds";
-import { VOILE_SKU_IDS } from "@/constants/voileSkuIds";
-import { findSkuById, warehouse } from "@/utils/warehouse";
+import { findSku, getDefaultSku, warehouse } from "@/utils/warehouse";
 
 describe(`sku constants integrity`, () => {
-    test(`all cage sku ids exist in warehouse`, () => {
-        for (const id of Object.values(CAGE_SKU_IDS.front)) {
-            expect(findSkuById(warehouse.cageFront, id).sku_id).toBe(Number(id));
-        }
+    test(`all required cage variants can be resolved from properties`, () => {
+        expect(findSku(warehouse.cageFront, (sku) => sku.properties.color === `black`).sku_id).toBeTypeOf(`number`);
+        expect(findSku(warehouse.cageFront, (sku) => sku.properties.color === `silver`).sku_id).toBeTypeOf(`number`);
 
-        for (const id of Object.values(CAGE_SKU_IDS.volume)) {
-            expect(findSkuById(warehouse.cageVolume, id).sku_id).toBe(Number(id));
-        }
+        expect(findSku(warehouse.cageVolume, (sku) => sku.properties.color === `black`).sku_id).toBeTypeOf(`number`);
+        expect(findSku(warehouse.cageVolume, (sku) => sku.properties.color === `silver`).sku_id).toBeTypeOf(`number`);
 
-        for (const id of Object.values(CAGE_SKU_IDS.plus)) {
-            expect(findSkuById(warehouse.cagePlus, id).sku_id).toBe(Number(id));
-        }
+        expect(findSku(warehouse.cagePlus, (sku) => sku.properties.color === `black`).sku_id).toBeTypeOf(`number`);
+        expect(findSku(warehouse.cagePlus, (sku) => sku.properties.color === `silver`).sku_id).toBeTypeOf(`number`);
+        expect(findSku(warehouse.cagePlus, (sku) => sku.properties.color === `green`).sku_id).toBeTypeOf(`number`);
+        expect(findSku(warehouse.cagePlus, (sku) => sku.properties.color === `brown`).sku_id).toBeTypeOf(`number`);
 
-        for (const id of Object.values(CAGE_SKU_IDS.little)) {
-            expect(findSkuById(warehouse.cageLittle, id).sku_id).toBe(Number(id));
-        }
+        expect(getDefaultSku(warehouse.cageLittle).sku_id).toBeTypeOf(`number`);
     });
 
-    test(`all itchy-and-scratchy sku ids exist in warehouse`, () => {
-        for (const id of Object.values(ITCHY_AND_SCRATCHY_SKU_IDS)) {
-            expect(findSkuById(warehouse.itchyAndScratchy, id).sku_id).toBe(Number(id));
-        }
+    test(`all required itchy-and-scratchy variants can be resolved from properties`, () => {
+        expect(findSku(warehouse.itchyAndScratchy, (sku) => (
+            sku.properties.cageColor === `black` && sku.properties.paintedType === `powder`
+        )).sku_id).toBeTypeOf(`number`);
+
+        expect(findSku(warehouse.itchyAndScratchy, (sku) => (
+            sku.properties.cageColor === `silver` && sku.properties.paintedType === `anodized`
+        )).sku_id).toBeTypeOf(`number`);
+
+        expect(findSku(warehouse.itchyAndScratchy, (sku) => (
+            sku.properties.cageColor === `brown` && sku.properties.paintedType === `anodized`
+        )).sku_id).toBeTypeOf(`number`);
+
+        expect(findSku(warehouse.itchyAndScratchy, (sku) => (
+            sku.properties.cageColor === `green` && sku.properties.paintedType === `anodized`
+        )).sku_id).toBeTypeOf(`number`);
     });
 
-    test(`all single-product sku ids exist in warehouse`, () => {
-        expect(findSkuById(warehouse.chainBreaker, SINGLE_PRODUCT_SKU_IDS.chainBreaker).sku_id)
-            .toBe(Number(SINGLE_PRODUCT_SKU_IDS.chainBreaker));
-
-        expect(findSkuById(warehouse.feedbagHanger, SINGLE_PRODUCT_SKU_IDS.feedbagHanger).sku_id)
-            .toBe(Number(SINGLE_PRODUCT_SKU_IDS.feedbagHanger));
-
-        expect(findSkuById(warehouse.merch, SINGLE_PRODUCT_SKU_IDS.merch).sku_id)
-            .toBe(Number(SINGLE_PRODUCT_SKU_IDS.merch));
+    test(`all single-product defaults can be resolved from warehouse`, () => {
+        expect(getDefaultSku(warehouse.chainBreaker).sku_id).toBeTypeOf(`number`);
+        expect(getDefaultSku(warehouse.feedbagHanger).sku_id).toBeTypeOf(`number`);
+        expect(getDefaultSku(warehouse.merch).sku_id).toBeTypeOf(`number`);
     });
 
-    test(`all voile sku ids exist in warehouse`, () => {
-        for (const id of Object.values(VOILE_SKU_IDS)) {
-            expect(findSkuById(warehouse.voile, id).sku_id).toBe(Number(id));
-        }
+    test(`all required voile option skus can be resolved from properties`, () => {
+        expect(findSku(warehouse.voile, (sku) => (
+            sku.properties.length_cm === 9 && sku.properties.color === `black` && sku.properties.logo === false
+        )).sku_id).toBeTypeOf(`number`);
+
+        expect(findSku(warehouse.voile, (sku) => (
+            sku.properties.length_cm === 12 && sku.properties.color === `black` && sku.properties.logo === false
+        )).sku_id).toBeTypeOf(`number`);
+
+        expect(findSku(warehouse.voile, (sku) => (
+            sku.properties.length_cm === 20 && sku.properties.color === `black` && sku.properties.logo === true
+        )).sku_id).toBeTypeOf(`number`);
+
+        expect(findSku(warehouse.voile, (sku) => (
+            sku.properties.length_cm === 25 && sku.properties.color === `black` && sku.properties.logo === true
+        )).sku_id).toBeTypeOf(`number`);
     });
 
-    test(`all topcap sku ids exist in warehouse`, () => {
-        for (const id of TOPCAP_SKU_IDS.cyrillic) {
-            expect(findSkuById(warehouse.topCap, id).sku_id).toBe(Number(id));
-        }
+    test(`all renderable topcaps have valid ui.category and ui.sort`, () => {
+        const renderableTopcaps = warehouse.topCap.filter((sku) => sku.sku_photo !== `XXX`);
 
-        for (const id of TOPCAP_SKU_IDS.latin) {
-            expect(findSkuById(warehouse.topCap, id).sku_id).toBe(Number(id));
-        }
+        expect(renderableTopcaps.length).toBeGreaterThan(0);
 
-        for (const id of TOPCAP_SKU_IDS.graphics) {
-            expect(findSkuById(warehouse.topCap, id).sku_id).toBe(Number(id));
+        for (const sku of renderableTopcaps) {
+            expect(sku.ui).toBeDefined();
+            expect([`cyrillic`, `latin`, `graphics`]).toContain(sku.ui?.category);
+            expect(typeof sku.ui?.sort).toBe(`number`);
+            expect((sku.ui?.sort ?? 0) > 0).toBe(true);
         }
     });
 });

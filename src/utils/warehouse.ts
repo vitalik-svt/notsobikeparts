@@ -12,12 +12,22 @@ import otherRaw from "../../public/warehouse/other.json";
 import topcapRaw from "../../public/warehouse/topcap.json";
 import voileRaw from "../../public/warehouse/voile.json";
 
+export type TopcapUiCategory = `cyrillic` | `latin` | `graphics`;
+
+export interface TopcapUiMeta {
+    category: TopcapUiCategory;
+    sort: number;
+    descriptionKey?: string;
+    hidden?: boolean;
+}
+
 export interface WarehouseEntry {
     product: string;
     sku_photo: string;
     available: boolean;
     photos: string[];
     properties: Record<string, string | number | boolean>;
+    ui?: TopcapUiMeta;
 }
 
 export interface WarehouseSku extends WarehouseEntry {
@@ -101,4 +111,14 @@ export function findSku(
 
 export function findSkuById(skus: WarehouseSku[], id: string): WarehouseSku {
     return findSku(skus, (item) => String(item.sku_id) === id);
+}
+
+export function getDefaultSku(skus: WarehouseSku[]): WarehouseSku {
+    const firstAvailable = skus.find((item) => item.available);
+
+    if (firstAvailable) {
+        return firstAvailable;
+    }
+
+    return findSku(skus, () => true);
 }

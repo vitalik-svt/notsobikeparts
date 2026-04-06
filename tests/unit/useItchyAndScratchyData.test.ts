@@ -1,4 +1,3 @@
-import { ITCHY_AND_SCRATCHY_SKU_IDS } from "@/constants/itchyAndScratchySkuIds";
 import { useItchyAndScratchyData } from "@/hooks/useItchyAndScratchyData";
 import * as warehouseModule from "@/utils/warehouse";
 
@@ -18,6 +17,24 @@ describe(`useItchyAndScratchyData`, () => {
     });
 
     test(`throws clear error when sku properties are invalid`, () => {
+        const paintedTypeSortOrder = { powder: 0, anodized: 1 } as const;
+        const cageColorSortOrder = { silver: 0, brown: 1, green: 2, black: 3 } as const;
+
+        const expectedFailingSkuId = String(
+            [...warehouseModule.warehouse.itchyAndScratchy]
+                .sort((left, right) => {
+                    const typeOrder = paintedTypeSortOrder[String(left.properties.paintedType) as keyof typeof paintedTypeSortOrder]
+                        - paintedTypeSortOrder[String(right.properties.paintedType) as keyof typeof paintedTypeSortOrder];
+
+                    if (typeOrder !== 0) {
+                        return typeOrder;
+                    }
+
+                    return cageColorSortOrder[String(left.properties.cageColor) as keyof typeof cageColorSortOrder]
+                        - cageColorSortOrder[String(right.properties.cageColor) as keyof typeof cageColorSortOrder];
+                })[0]?.sku_id ?? ``,
+        );
+
         const parseSpy = vi.spyOn(warehouseModule, `parseItchyAndScratchyProperties`);
         parseSpy
             .mockReturnValueOnce(null)
@@ -27,6 +44,6 @@ describe(`useItchyAndScratchyData`, () => {
             }));
 
         expect(() => useItchyAndScratchyData())
-            .toThrow(`Invalid itchy-and-scratchy properties for sku_id=${ITCHY_AND_SCRATCHY_SKU_IDS.plusPowderBlack}`);
+            .toThrow(`Invalid itchy-and-scratchy properties for sku_id=${expectedFailingSkuId}`);
     });
 });

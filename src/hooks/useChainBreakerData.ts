@@ -1,16 +1,15 @@
 import { useTranslation } from "react-i18next";
 
 import { productPrices } from "@/constants/productPrices";
-import { SINGLE_PRODUCT_SKU_IDS } from "@/constants/singleProductSkuIds";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { Locales } from "@/types/locales";
-import { findSkuById, toSkuMeta, warehouse } from "@/utils/warehouse";
+import { getDefaultSku, toSkuMeta, warehouse } from "@/utils/warehouse";
 
 export const useChainBreakerData = () => {
     const { t } = useTranslation(`chainBreaker`);
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
-    const chainBreakerSku = findSkuById(warehouse.chainBreaker, SINGLE_PRODUCT_SKU_IDS.chainBreaker);
+    const chainBreakerSku = getDefaultSku(warehouse.chainBreaker);
     const { skuId } = toSkuMeta(chainBreakerSku);
 
     const chainBreaker = {

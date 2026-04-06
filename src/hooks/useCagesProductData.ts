@@ -79,7 +79,7 @@ function getSkuByPreferredColor(
     skus: WarehouseSku[],
     preferredColor: CageColor | CagePlusColor,
 ): WarehouseSku {
-    const sku = skus.find((item) => getColorFromSku(item) === preferredColor && item.available);
+    const sku = skus.find((item) => getColorFromSku(item) === preferredColor);
 
     if (sku) {
         return sku;

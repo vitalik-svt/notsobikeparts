@@ -47,7 +47,7 @@ function buildColorOptions<T extends CageColor | CagePlusColor>(
     labelPrefix: string,
     translate: (key: string) => string,
 ): ProductColorOption<T>[] {
-    return colorOrder.reduce<ProductColorOption<T>[]>((acc, color, index) => {
+    return colorOrder.reduce<ProductColorOption<T>[]>((acc, color) => {
         const sku = skus.find((item) => getColorFromSku(item) === color);
 
         if (!sku) {
@@ -55,7 +55,7 @@ function buildColorOptions<T extends CageColor | CagePlusColor>(
         }
 
         acc.push({
-            label: translate(`${labelPrefix}.color_options.${index + 1}`),
+            label: translate(`${labelPrefix}.color.${color}`),
             value: color,
             skuId: String(sku.sku_id),
         });

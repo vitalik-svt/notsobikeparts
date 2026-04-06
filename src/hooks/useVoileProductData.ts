@@ -42,10 +42,10 @@ export const useVoileProductData = () => {
     const defaultVoileSku = getVoileOptionSku(`nine-black`);
 
     const voileOptions: VoileOption[] = [
-        { label: t(`voile.options.1`), value: `nine-black`, ...skuByOption[`nine-black`] },
-        { label: t(`voile.options.2`), value: `twelve-black`, ...skuByOption[`twelve-black`] },
-        { label: t(`voile.options.3`), value: `twenty-black-w-logo`, ...skuByOption[`twenty-black-w-logo`] },
-        { label: t(`voile.options.4`), value: `twenty-five-black-w-logo`, ...skuByOption[`twenty-five-black-w-logo`] },
+        { label: t(`voile.option.nine-black`), value: `nine-black`, ...skuByOption[`nine-black`] },
+        { label: t(`voile.option.twelve-black`), value: `twelve-black`, ...skuByOption[`twelve-black`] },
+        { label: t(`voile.option.twenty-black-w-logo`), value: `twenty-black-w-logo`, ...skuByOption[`twenty-black-w-logo`] },
+        { label: t(`voile.option.twenty-five-black-w-logo`), value: `twenty-five-black-w-logo`, ...skuByOption[`twenty-five-black-w-logo`] },
     ];
 
     const voile: VoileProductData = {
@@ -56,20 +56,20 @@ export const useVoileProductData = () => {
         price: productPrices.voile,
         characteristics: [
             {
-                title: t(`voile.options.1`),
-                description: t(`voile.characteristics.1`),
+                title: t(`voile.option.nine-black`),
+                description: t(`voile.characteristic.nine-black`),
             },
             {
-                title: t(`voile.options.2`),
-                description: t(`voile.characteristics.2`),
+                title: t(`voile.option.twelve-black`),
+                description: t(`voile.characteristic.twelve-black`),
             },
             {
-                title: t(`voile.options.3`),
-                description: t(`voile.characteristics.3`),
+                title: t(`voile.option.twenty-black-w-logo`),
+                description: t(`voile.characteristic.twenty-black-w-logo`),
             },
             {
-                title: t(`voile.options.4`),
-                description: t(`voile.characteristics.4`),
+                title: t(`voile.option.twenty-five-black-w-logo`),
+                description: t(`voile.characteristic.twenty-five-black-w-logo`),
             },
         ],
         ...skuByOption[`nine-black`],

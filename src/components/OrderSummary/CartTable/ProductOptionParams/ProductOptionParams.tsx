@@ -21,30 +21,30 @@ export default function ProductOptionParams({ productParams, productSection, pro
     const optionDictionary = useProductOptionDictionary();
 
     const topcapColorLabel = {
-        black: tTopcaps(`topcaps.custom.color.1`),
-        silver: tTopcaps(`topcaps.custom.color.2`),
-        red: tTopcaps(`topcaps.custom.color.3`),
-        blue: tTopcaps(`topcaps.custom.color.4`),
-        green: tTopcaps(`topcaps.custom.color.5`),
-        purple: tTopcaps(`topcaps.custom.color.6`),
-        gold: tTopcaps(`topcaps.custom.color.7`),
+        black: tTopcaps(`topcaps.custom.color.black`),
+        silver: tTopcaps(`topcaps.custom.color.silver`),
+        red: tTopcaps(`topcaps.custom.color.red`),
+        blue: tTopcaps(`topcaps.custom.color.blue`),
+        green: tTopcaps(`topcaps.custom.color.green`),
+        purple: tTopcaps(`topcaps.custom.color.purple`),
+        gold: tTopcaps(`topcaps.custom.color.gold`),
     };
 
     const plusCageColorLabel = {
-        black: tCages(`plus.color_options.1`),
-        silver: tCages(`plus.color_options.2`),
-        green: tCages(`plus.color_options.3`),
-        brown: tCages(`plus.color_options.4`),
+        black: tCages(`plus.color.black`),
+        silver: tCages(`plus.color.silver`),
+        green: tCages(`plus.color.green`),
+        brown: tCages(`plus.color.brown`),
     };
 
     const frontCageColorLabel = {
-        black: tCages(`front.color_options.1`),
-        silver: tCages(`front.color_options.2`),
+        black: tCages(`front.color.black`),
+        silver: tCages(`front.color.silver`),
     };
 
     const volumeCageColorLabel = {
-        black: tCages(`volume.color_options.1`),
-        silver: tCages(`volume.color_options.2`),
+        black: tCages(`volume.color.black`),
+        silver: tCages(`volume.color.silver`),
     };
 
     const cageColorLabelByContext =

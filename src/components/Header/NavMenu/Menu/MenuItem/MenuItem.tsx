@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { cartStore } from "@/stores/cartStore";
 import { menuStore } from "@/stores/menuStore";
-import { MenuItem } from "@/types/menu";
+import type { MenuItem } from "@/types/menu";
 
 interface Props {
     item: MenuItem;

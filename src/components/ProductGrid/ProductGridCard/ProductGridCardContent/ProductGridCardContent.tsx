@@ -7,12 +7,13 @@ import { BoltParamsControl } from '@/components/BoltParamsControl/BoltParamsCont
 import Button from '@/components/Button/Button';
 import Checkbox from '@/components/Checkbox/Checkbox';
 import ProductPrice from '@/components/ProductPrice/ProductPrice';
-import { ProductPriceSettings } from '@/constants/productPrices';
+import type { ProductPriceSettings } from '@/constants/productPrices';
 import useFormattedPrice from '@/hooks/useFormattedPrice';
 import { useKeyPress } from '@/hooks/useKeyPress';
-import { AdditionalPriceOption } from '@/hooks/useTopcapsData';
+import type { AdditionalPriceOption } from '@/hooks/useTopcapsData';
 import { useNotifications } from '@/providers/NotificationsProvider';
-import { cartStore, TopcapParams } from '@/stores/cartStore';
+import type { TopcapParams } from '@/stores/cartStore';
+import { cartStore } from '@/stores/cartStore';
 import { formatPrice } from '@/utils/formatPrice';
 
 import ProductTitle from '../../ProductTitle/ProductTitle';

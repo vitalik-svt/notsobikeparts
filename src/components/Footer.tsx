@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 import { CONTACTS } from "@/constants/contacts";
 import { i18n } from "@/i18n/settings";
-import { Locales } from "@/types/locales";
+import type { Locales } from "@/types/locales";
 
 import Select from "./Select";
 

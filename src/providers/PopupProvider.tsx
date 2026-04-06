@@ -1,6 +1,7 @@
 'use client';
 
-import { createContext, ReactNode, useContext, useEffect,useState } from "react";
+import type { ReactNode} from "react";
+import { createContext, useContext, useEffect,useState } from "react";
 import { createPortal } from "react-dom";
 
 import CloseButton from "@/components/CloseButton/CloseButton";

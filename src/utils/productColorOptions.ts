@@ -1,4 +1,5 @@
-import { findSkuById, toSkuMeta, WarehouseSku } from "@/utils/warehouse";
+import type { WarehouseSku } from "@/utils/warehouse";
+import { findSkuById, toSkuMeta } from "@/utils/warehouse";
 
 export type ProductColorOption<T extends string = string> = {
     label: string;

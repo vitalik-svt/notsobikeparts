@@ -1,12 +1,14 @@
 // src/app/api/send-order/route.ts
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextRequest} from 'next/server';
+import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 import { formatPrice } from '@/utils/formatPrice';
 import { resolveOrderItemName } from '@/utils/orderItemName';
 import { createOrderSuccessToken, ORDER_SUCCESS_COOKIE } from '@/utils/orderSuccessToken';
 
-import { getServerPrice, orderRequestSchema, ParsedOrderItem,parseOrderIdentity } from './orderPayload';
+import type { ParsedOrderItem} from './orderPayload';
+import { getServerPrice, orderRequestSchema,parseOrderIdentity } from './orderPayload';
 import { loadSkuNamesDictionary, loadTopcapsDictionary } from './skuNames';
 import { expandOrderItemsWithTopcapAddons } from './topcapAddons';
 

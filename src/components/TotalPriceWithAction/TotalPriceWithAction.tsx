@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useProductData } from "@/hooks/useProductData";
-import { CartItem } from "@/stores/cartStore";
+import type { CartItem } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
 import { getProductPrice } from "@/utils/getProductPrice";
 

@@ -1,13 +1,14 @@
 import { useTranslation } from "react-i18next";
 
-import type { ProductPriceSettings } from "@/constants/productPrices";
-import { ProductCageType, productPrices } from "@/constants/productPrices";
+import type { ProductCageType,ProductPriceSettings } from "@/constants/productPrices";
+import { productPrices } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
-import { CageColor, CagePlusColor } from "@/stores/cartStore";
+import type { CageColor, CagePlusColor } from "@/stores/cartStore";
 import type { Locales } from "@/types/locales";
-import { ProductSection } from "@/types/productSection";
-import { ProductColorOption, toColorOptionsByValue } from "@/utils/productColorOptions";
+import type { ProductSection } from "@/types/productSection";
+import type { ProductColorOption} from "@/utils/productColorOptions";
+import { toColorOptionsByValue } from "@/utils/productColorOptions";
 import type { WarehouseSku } from "@/utils/warehouse";
 import { getDefaultSku, toSkuMeta, warehouse } from "@/utils/warehouse";
 

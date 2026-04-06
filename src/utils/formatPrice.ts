@@ -1,4 +1,4 @@
-import { ProductPriceSettings } from "@/constants/productPrices";
+import type { ProductPriceSettings } from "@/constants/productPrices";
 
 export function formatPrice(priceSettings?: ProductPriceSettings): string {
     if (!priceSettings) return ``;

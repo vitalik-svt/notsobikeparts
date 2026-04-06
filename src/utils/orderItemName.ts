@@ -1,5 +1,5 @@
-import { ProductKey } from "@/stores/cartStore";
-import { ProductSection } from "@/types/productSection";
+import type { ProductKey } from "@/stores/cartStore";
+import type { ProductSection } from "@/types/productSection";
 
 export interface OrderItemNameInput {
     skuId?: string;

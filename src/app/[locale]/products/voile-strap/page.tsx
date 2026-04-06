@@ -14,13 +14,13 @@ import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInf
 import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import Select from "@/components/Select";
-import { ProductVoileType } from "@/constants/productPrices";
+import type { ProductVoileType } from "@/constants/productPrices";
 import { useVoileProductData } from "@/hooks/useVoileProductData";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import { cartStore } from "@/stores/cartStore";
-import { Locales } from "@/types/locales";
+import type { Locales } from "@/types/locales";
 
 export default function VoileStrapPage() {
     const pathname = usePathname();

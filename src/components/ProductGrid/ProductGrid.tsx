@@ -2,9 +2,9 @@
 
 import { useMemo, useRef } from "react";
 
-import { ProductPriceSettings } from "@/constants/productPrices";
-import { AdditionalPriceOption } from "@/hooks/useTopcapsData";
-import { TopcapCategoryItem } from "@/hooks/useTopcapsGridData";
+import type { ProductPriceSettings } from "@/constants/productPrices";
+import type { AdditionalPriceOption } from "@/hooks/useTopcapsData";
+import type { TopcapCategoryItem } from "@/hooks/useTopcapsGridData";
 import { usePopup } from "@/providers/PopupProvider";
 
 import SectionInfoBlock from "../SectionInfoBlock/SectionInfoBlock";

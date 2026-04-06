@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 
-import { TopcapUiCategory, warehouse } from "@/utils/warehouse";
+import type { TopcapUiCategory} from "@/utils/warehouse";
+import { warehouse } from "@/utils/warehouse";
 
 interface TopcapItem {
     description: string;

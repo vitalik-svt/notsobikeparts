@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { i18n } from "@/i18n/settings";
-import { Locales } from "@/types/locales";
+import type { Locales } from "@/types/locales";
 
 import enCommon from "../../public/locales/en/common.json";
 import ruCommon from "../../public/locales/ru/common.json";

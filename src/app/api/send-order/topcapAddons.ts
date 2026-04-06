@@ -1,7 +1,7 @@
-import { BoltColor, BoltMaterial } from '@/stores/cartStore';
+import type { BoltColor, BoltMaterial } from '@/stores/cartStore';
 import { warehouse } from '@/utils/warehouse';
 
-import { ParsedOrderInternalItem, ParsedOrderItem, TopcapAddonKind } from './orderPayload';
+import type { ParsedOrderInternalItem, ParsedOrderItem, TopcapAddonKind } from './orderPayload';
 
 const otherCodeToSkuId = new Map<string, string>(
     warehouse.other.map((sku) => [String(sku.properties.code ?? ``), String(sku.sku_id)]),

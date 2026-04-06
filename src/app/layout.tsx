@@ -2,7 +2,7 @@ import "keen-slider/keen-slider.min.css";
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import BodyMainContainer from "@/components/BodyMainContainer";
 

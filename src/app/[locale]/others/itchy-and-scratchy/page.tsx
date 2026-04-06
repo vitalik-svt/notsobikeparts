@@ -9,9 +9,11 @@ import ProductGridCard from "@/components/ProductGrid/ProductGridCard/ProductGri
 import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
-import { CoatingType, useItchyAndScratchyData } from "@/hooks/useItchyAndScratchyData";
+import type { CoatingType} from "@/hooks/useItchyAndScratchyData";
+import { useItchyAndScratchyData } from "@/hooks/useItchyAndScratchyData";
 import { useNotifications } from "@/providers/NotificationsProvider";
-import { CageColor, CagePlusColor, cartStore } from "@/stores/cartStore";
+import type { CageColor, CagePlusColor} from "@/stores/cartStore";
+import { cartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/utils/formatPrice";
 
 export default function ItchyAndScratchyPage() {

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { menuStore } from "@/stores/menuStore";
-import { MenuItem } from "@/types/menu";
+import type { MenuItem } from "@/types/menu";
 
 import { useIsTouchDevice } from "../../../useIsTouchDevice";
 

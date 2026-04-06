@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC, ReactNode } from "react";
+import type { ButtonHTMLAttributes, FC, ReactNode } from "react";
 
 type ButtonSize = `s` | `m` | `l`;
 type ButtonVariant = `primary` | `secondary`;

@@ -1,9 +1,10 @@
 import { z } from 'zod';
 
-import { ProductCageType, productPrices, ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
-import { ProductKey } from '@/stores/cartStore';
-import { Locales } from '@/types/locales';
-import { ProductSection } from '@/types/productSection';
+import type { ProductCageType, ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
+import { productPrices } from '@/constants/productPrices';
+import type { ProductKey } from '@/stores/cartStore';
+import type { Locales } from '@/types/locales';
+import type { ProductSection } from '@/types/productSection';
 
 const PRODUCT_SECTIONS: ProductSection[] = [`cage`, `topcap`, `voile`, `itchyAndScratchy`, `feedbagHanger`, `merch`, `chainBreaker`];
 const PRODUCT_KEYS: ProductKey[] = [`front`, `little`, `volume`, `plus`, `serial`, `custom`, `nine-black`, `twelve-black`, `twenty-black-w-logo`, `twenty-five-black-w-logo`, `one-price`];

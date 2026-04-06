@@ -18,7 +18,8 @@ import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import Select from "@/components/Select";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useNotifications } from "@/providers/NotificationsProvider";
-import { CageColor, cartStore } from "@/stores/cartStore";
+import type { CageColor} from "@/stores/cartStore";
+import { cartStore } from "@/stores/cartStore";
 
 export default function CageVolumePage() {
     const pathname = usePathname();

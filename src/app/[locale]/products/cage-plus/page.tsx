@@ -16,10 +16,11 @@ import ProductPage from "@/components/ProductPage/ProductPage";
 import RowWrapper from "@/components/RowWrapper/RowWrapper";
 import SectionInfoBlock from "@/components/SectionInfoBlock/SectionInfoBlock";
 import Select from "@/components/Select";
-import { ProductPriceSettings } from "@/constants/productPrices";
+import type { ProductPriceSettings } from "@/constants/productPrices";
 import { useCagesProductData } from "@/hooks/useCagesProductData";
 import { useNotifications } from "@/providers/NotificationsProvider";
-import { CagePlusColor, cartStore } from "@/stores/cartStore";
+import type { CagePlusColor} from "@/stores/cartStore";
+import { cartStore } from "@/stores/cartStore";
 
 export default function CagePlusPage() {
     const pathname = usePathname();

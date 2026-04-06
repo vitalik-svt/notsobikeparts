@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 import { ROUTES } from "@/constants/routes";
 import { menuStore } from "@/stores/menuStore";
-import { Locales } from "@/types/locales";
+import type { Locales } from "@/types/locales";
 
 import BurgerButton from "./BurgerButton/BurgerButton";
 import Logo from "./Logo/Logo";

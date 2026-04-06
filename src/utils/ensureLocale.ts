@@ -1,5 +1,5 @@
 import { i18n } from "@/i18n/settings";
-import { Locales } from "@/types/locales";
+import type { Locales } from "@/types/locales";
 
 const SUPPORTED_LOCALES = i18n.locales;
 

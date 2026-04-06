@@ -1,10 +1,11 @@
 import { useTranslation } from "react-i18next";
 
-import { productPrices, ProductPriceSettings } from "@/constants/productPrices";
+import type { ProductPriceSettings } from "@/constants/productPrices";
+import { productPrices } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
-import { CageColor, CagePlusColor } from "@/stores/cartStore";
-import { Locales } from "@/types/locales";
+import type { CageColor, CagePlusColor } from "@/stores/cartStore";
+import type { Locales } from "@/types/locales";
 import { parseItchyAndScratchyProperties, warehouse } from "@/utils/warehouse";
 
 export type CoatingType = `anodized` | `powder`;

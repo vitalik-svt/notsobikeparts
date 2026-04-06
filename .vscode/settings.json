@@ -8,7 +8,8 @@
         "topcaps",
         "Велоаксессуары",
         "кейдж",
-        "кейджи"
+        "кейджи",
+        "открывашке"
     ],
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"

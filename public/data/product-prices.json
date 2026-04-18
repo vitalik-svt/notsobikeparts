@@ -1,7 +1,7 @@
 {
   "topcaps": {
-    "serial": { "ru": 1500, "en": 20 },
-    "custom": { "ru": 3000, "en": 30 },
+    "serial": { "ru": 2000, "en": 20 },
+    "custom": { "ru": 4000, "en": 30 },
     "titanium-bolt": { "ru": 200, "en": 3 },
     "custom-color": { "ru": 500, "en": 5 },
     "thick": { "ru": 500, "en": 5 },
@@ -10,8 +10,8 @@
     "box": { "ru": 0, "en": 0 }
   },
   "cages": {
-    "front": { "ru": 10800, "en": 150 },
-    "little": { "ru": 1800, "en": 20 },
+    "front": { "ru": 12000, "en": 150 },
+    "little": { "ru": 2000, "en": 20 },
     "volume": { "ru": 3400, "en": 50 },
     "plus": { "ru": 2900, "en": 30 }
   },

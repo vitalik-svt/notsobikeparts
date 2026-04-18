@@ -75,7 +75,7 @@ describe(`send-order payload helpers`, () => {
             quantity: 1,
         }, `ru`);
 
-        expect(price?.amount).toBe(10800);
+        expect(price?.amount).toBe(12000);
         expect(price?.currency).toBe(`RUB`);
     });
 
@@ -92,7 +92,7 @@ describe(`send-order payload helpers`, () => {
             },
         }, `ru`);
 
-        expect(price?.amount).toBe(4000);
+        expect(price?.amount).toBe(5000);
     });
 
     test(`calculates custom topcap base price without surcharges`, () => {
@@ -108,7 +108,7 @@ describe(`send-order payload helpers`, () => {
             },
         }, `ru`);
 
-        expect(price?.amount).toBe(3000);
+        expect(price?.amount).toBe(4000);
     });
 
     test(`calculates serial topcap base price without bolt surcharge`, () => {
@@ -124,7 +124,7 @@ describe(`send-order payload helpers`, () => {
             },
         }, `ru`);
 
-        expect(price?.amount).toBe(1500);
+        expect(price?.amount).toBe(2000);
     });
 
     test(`calculates topcap titanium-bolt addon price on server`, () => {
@@ -182,7 +182,7 @@ describe(`send-order payload helpers`, () => {
             },
         }, `ru`);
 
-        expect(price?.amount).toBe(3500);
+        expect(price?.amount).toBe(4500);
     });
 
     test(`accepts silver for cageColor and topcap colorOption`, () => {

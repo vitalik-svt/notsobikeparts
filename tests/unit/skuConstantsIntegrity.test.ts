@@ -1,3 +1,4 @@
+import type { ProductItchyAndScratchyType } from "@/constants/productPrices";
 import { productPrices } from "@/constants/productPrices";
 import { findSku, getDefaultSku, warehouse } from "@/utils/warehouse";
 
@@ -21,7 +22,13 @@ describe(`warehouse integrity`, () => {
         expect(warehouse.itchyAndScratchy.length).toBeGreaterThan(0);
 
         for (const sku of warehouse.itchyAndScratchy) {
-            expect(productPrices.itchyAndScratchy[String(sku.sku_id)]).toBeDefined();
+            const skuId = String(sku.sku_id);
+
+            if (skuId in productPrices.itchyAndScratchy) {
+                expect(productPrices.itchyAndScratchy[skuId as ProductItchyAndScratchyType]).toBeDefined();
+            } else {
+                expect(`price for skuId=${skuId}`).toBe(`defined`);
+            }
         }
     });
 

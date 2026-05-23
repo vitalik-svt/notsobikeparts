@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
-import type { ProductPriceSettings } from "@/constants/productPrices";
-import { isProductItchyAndScratchySkuId, productPrices } from "@/constants/productPrices";
+import type { ProductItchyAndScratchyType, ProductPriceSettings } from "@/constants/productPrices";
+import { productPrices } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import type { CageColor, CagePlusColor } from "@/stores/cartStore";
@@ -47,12 +47,12 @@ function toProductParams(properties: Record<string, string | number | boolean>):
 const itchyAndScratchyProductsBase = warehouse.itchyAndScratchy.flatMap((sku) => {
     const skuId = String(sku.sku_id);
 
-    if (!isProductItchyAndScratchySkuId(skuId)) {
+    if (!(skuId in productPrices.itchyAndScratchy)) {
         warnItchyAndScratchySkuRenderIssue(skuId, `missing price`);
         return [];
     }
 
-    const price = productPrices.itchyAndScratchy[skuId];
+    const price = productPrices.itchyAndScratchy[skuId as ProductItchyAndScratchyType];
 
     return [{
         skuId,

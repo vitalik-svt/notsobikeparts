@@ -8,10 +8,6 @@ export type ProductVoileType = `nine-black` | `twelve-black` | `twenty-black-w-l
 export type ProductWithOnePrice = `one-price`;
 export type ProductItchyAndScratchyType = keyof typeof rawProductPriceSettings.itchyAndScratchy;
 
-export function isProductItchyAndScratchySkuId(skuId: string): skuId is ProductItchyAndScratchyType {
-    return skuId in rawProductPriceSettings.itchyAndScratchy;
-}
-
 export interface ProductPriceSettings {
     currency: string;
     amount: number;

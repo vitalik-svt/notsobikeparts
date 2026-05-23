@@ -1,3 +1,4 @@
+import { productPrices } from "@/constants/productPrices";
 import { findSku, getDefaultSku, warehouse } from "@/utils/warehouse";
 
 describe(`warehouse integrity`, () => {
@@ -16,22 +17,12 @@ describe(`warehouse integrity`, () => {
         expect(getDefaultSku(warehouse.cageLittle).sku_id).toBeTypeOf(`number`);
     });
 
-    test(`all required itchy-and-scratchy variants can be resolved from properties`, () => {
-        expect(findSku(warehouse.itchyAndScratchy, (sku) => (
-            sku.properties.cageColor === `black` && sku.properties.paintedType === `powder`
-        )).sku_id).toBeTypeOf(`number`);
+    test(`all itchy-and-scratchy warehouse skus have prices`, () => {
+        expect(warehouse.itchyAndScratchy.length).toBeGreaterThan(0);
 
-        expect(findSku(warehouse.itchyAndScratchy, (sku) => (
-            sku.properties.cageColor === `silver` && sku.properties.paintedType === `anodized`
-        )).sku_id).toBeTypeOf(`number`);
-
-        expect(findSku(warehouse.itchyAndScratchy, (sku) => (
-            sku.properties.cageColor === `brown` && sku.properties.paintedType === `anodized`
-        )).sku_id).toBeTypeOf(`number`);
-
-        expect(findSku(warehouse.itchyAndScratchy, (sku) => (
-            sku.properties.cageColor === `green` && sku.properties.paintedType === `anodized`
-        )).sku_id).toBeTypeOf(`number`);
+        for (const sku of warehouse.itchyAndScratchy) {
+            expect(productPrices.itchyAndScratchy[String(sku.sku_id)]).toBeDefined();
+        }
     });
 
     test(`all single-product defaults can be resolved from warehouse`, () => {

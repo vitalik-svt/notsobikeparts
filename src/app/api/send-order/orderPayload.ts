@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import type { ProductCageType, ProductPriceSettings, ProductVoileType } from '@/constants/productPrices';
-import { productPrices } from '@/constants/productPrices';
+import { productPrices, isProductItchyAndScratchySkuId } from '@/constants/productPrices';
 import type { ProductKey } from '@/stores/cartStore';
 import type { Locales } from '@/types/locales';
 import type { ProductSection } from '@/types/productSection';
@@ -137,15 +137,11 @@ export function getServerPrice(item: ParsedOrderInternalItem, locale: Locales): 
   }
 
   if (identity.productSection === `itchyAndScratchy`) {
-    const paintedType = item.productParams?.paintedType;
-
-    if (!paintedType) {
+    if (!item.skuId || !isProductItchyAndScratchySkuId(item.skuId)) {
       return null;
     }
 
-    const itchyKey = paintedType === `powder` ? `plus-powder` : `plus-anodized`;
-
-    return productPrices.itchyAndScratchy[itchyKey][locale];
+    return productPrices.itchyAndScratchy[item.skuId][locale];
   }
 
   if (identity.productSection !== `topcap`) {

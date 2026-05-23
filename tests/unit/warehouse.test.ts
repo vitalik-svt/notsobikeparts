@@ -1,38 +1,11 @@
 import {
     findSku,
     findSkuById,
-    parseItchyAndScratchyProperties,
     toSkuMeta,
     warehouse,
 } from "@/utils/warehouse";
 
-describe(`parseItchyAndScratchyProperties`, () => {
-    test(`returns parsed data for valid properties`, () => {
-        expect(parseItchyAndScratchyProperties({ cageColor: `black`, paintedType: `anodized` }))
-            .toEqual({ cageColor: `black`, paintedType: `anodized` });
-    });
-
-    test(`returns null for invalid cageColor`, () => {
-        expect(parseItchyAndScratchyProperties({ cageColor: `red`, paintedType: `anodized` }))
-            .toBeNull();
-    });
-
-    test(`returns null for invalid paintedType`, () => {
-        expect(parseItchyAndScratchyProperties({ cageColor: `silver`, paintedType: `spray` }))
-            .toBeNull();
-    });
-
-    test(`returns null for missing fields`, () => {
-        expect(parseItchyAndScratchyProperties({})).toBeNull();
-    });
-
-    test(`accepts all valid cageColor values`, () => {
-        for (const color of [`black`, `silver`, `green`, `brown`]) {
-            expect(parseItchyAndScratchyProperties({ cageColor: color, paintedType: `powder` }))
-                .not.toBeNull();
-        }
-    });
-});
+import { productPrices } from "@/constants/productPrices";
 
 describe(`toSkuMeta`, () => {
     const sku = {
@@ -95,6 +68,12 @@ describe(`warehouse`, () => {
                 expect(Number.isFinite(sku.sku_id)).toBe(true);
                 expect(typeof sku.available).toBe(`boolean`);
             }
+        }
+    });
+
+    test(`all itchy-and-scratchy entries have prices`, () => {
+        for (const sku of warehouse.itchyAndScratchy) {
+            expect(productPrices.itchyAndScratchy[String(sku.sku_id)]).toBeDefined();
         }
     });
 });

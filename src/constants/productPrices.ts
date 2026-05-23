@@ -6,7 +6,11 @@ export type ProductCageType = `front` | `little` | `volume` | `plus`;
 export type ProductTopcapsType = `serial` | `custom` | `titanium-bolt` | `custom-color` | `thick` | `steel-bolt` | `none-bolt` | `box`;
 export type ProductVoileType = `nine-black` | `twelve-black` | `twenty-black-w-logo` | `twenty-five-black-w-logo`;
 export type ProductWithOnePrice = `one-price`;
-export type ProductItchyAndScratchyType = `plus-anodized` | `plus-powder`;
+export type ProductItchyAndScratchyType = keyof typeof rawProductPriceSettings.itchyAndScratchy;
+
+export function isProductItchyAndScratchySkuId(skuId: string): skuId is ProductItchyAndScratchyType {
+    return skuId in rawProductPriceSettings.itchyAndScratchy;
+}
 
 export interface ProductPriceSettings {
     currency: string;

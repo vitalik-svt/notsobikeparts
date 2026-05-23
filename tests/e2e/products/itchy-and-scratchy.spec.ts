@@ -30,6 +30,7 @@ test(`itchy-and-scratchy products have valid productParams and images`, async ({
     const item = items[0];
     expect(item?.productSection).toBe(`itchyAndScratchy`);
     expect(item?.productParams).toBeDefined();
+    expect(item?.skuId).toMatch(/299999[6-9]/);
     expect(item?.productParams?.cageColor).toMatch(
         /black|silver|green|brown/,
     );
@@ -38,12 +39,12 @@ test(`itchy-and-scratchy products have valid productParams and images`, async ({
     );
 });
 
-// Products by SKU: 2999999 (black/powder), 2999998 (silver/anodized), 2999997 (brown/anodized), 2999996 (green/anodized)
+// Products follow warehouse json order
 const itchyProductCases: Array<{ skuId: string; expectedColor: string }> = [
-    { skuId: `2999999`, expectedColor: `Черный` },
-    { skuId: `2999998`, expectedColor: `Алюминий (прозрачное анодирование)` },
-    { skuId: `2999997`, expectedColor: `Светло-коричневый` },
     { skuId: `2999996`, expectedColor: `Светло-зелёный` },
+    { skuId: `2999997`, expectedColor: `Светло-коричневый` },
+    { skuId: `2999998`, expectedColor: `Алюминий (прозрачное анодирование)` },
+    { skuId: `2999999`, expectedColor: `Черный` },
 ];
 
 for (const { skuId, expectedColor } of itchyProductCases) {

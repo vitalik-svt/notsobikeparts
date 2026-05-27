@@ -1,19 +1,22 @@
 import { useTranslation } from "react-i18next";
 
-import type { ProductPriceSettings } from "@/constants/productPrices";
+import type { ProductItchyAndScratchyType, ProductPriceSettings } from "@/constants/productPrices";
 import { productPrices } from "@/constants/productPrices";
 import { i18n } from "@/i18n/settings";
 import { useLocale } from "@/providers/I18nProvider";
 import type { CageColor, CagePlusColor } from "@/stores/cartStore";
 import type { Locales } from "@/types/locales";
-import { parseItchyAndScratchyProperties, warehouse } from "@/utils/warehouse";
+import { warehouse } from "@/utils/warehouse";
 
 export type CoatingType = `anodized` | `powder`;
 
-export interface ItchyAndScratchyColorMap {
-    cageColor: CageColor | CagePlusColor;
-    paintedType: CoatingType;
+export interface ItchyAndScratchyProductParams {
+    cageColor?: CageColor | CagePlusColor;
+    paintedType?: CoatingType;
 }
+
+/** @deprecated Use ItchyAndScratchyProductParams */
+export type ItchyAndScratchyColorMap = ItchyAndScratchyProductParams;
 
 interface ItchyAndScratchyData {
     name: string;
@@ -25,60 +28,40 @@ interface ItchyAndScratchyData {
         name: string;
         description: string[];
         price: ProductPriceSettings;
-        productParams: ItchyAndScratchyColorMap;
+        available: boolean;
+        productParams: ItchyAndScratchyProductParams;
     }[];
 }
 
-const paintedTypeSortOrder: Record<CoatingType, number> = {
-    powder: 0,
-    anodized: 1,
-};
-
-const cageColorSortOrder: Record<CageColor | CagePlusColor, number> = {
-    silver: 0,
-    brown: 1,
-    green: 2,
-    black: 3,
-};
-
-const fallbackSortOrder = 999;
-
-function getParsedProperties(skuId: string, properties: Record<string, string | number | boolean>) {
-    const parsed = parseItchyAndScratchyProperties(properties);
-
-    if (!parsed) {
-        throw new Error(`Invalid itchy-and-scratchy properties for sku_id=${skuId}`);
-    }
-
-    return parsed;
+function warnItchyAndScratchySkuRenderIssue(skuId: string, reason: string) {
+    console.warn(`[useItchyAndScratchyData] Skipping skuId=${skuId}: ${reason}`);
 }
 
-const itchyAndScratchyProductsBase = [...warehouse.itchyAndScratchy]
-    .sort((left, right) => {
-        const leftPaintedType = String(left.properties.paintedType) as CoatingType;
-        const rightPaintedType = String(right.properties.paintedType) as CoatingType;
-        const leftCageColor = String(left.properties.cageColor) as CageColor | CagePlusColor;
-        const rightCageColor = String(right.properties.cageColor) as CageColor | CagePlusColor;
+function toProductParams(properties: Record<string, string | number | boolean>): ItchyAndScratchyProductParams {
+    return {
+        ...(typeof properties.cageColor === `string` ? { cageColor: properties.cageColor as CageColor | CagePlusColor } : {}),
+        ...(typeof properties.paintedType === `string` ? { paintedType: properties.paintedType as CoatingType } : {}),
+    };
+}
 
-        const typeOrder = (paintedTypeSortOrder[leftPaintedType] ?? fallbackSortOrder)
-            - (paintedTypeSortOrder[rightPaintedType] ?? fallbackSortOrder);
+const itchyAndScratchyProductsBase = warehouse.itchyAndScratchy.flatMap((sku) => {
+    const skuId = String(sku.sku_id);
 
-        if (typeOrder !== 0) {
-            return typeOrder;
-        }
+    if (!(skuId in productPrices.itchyAndScratchy)) {
+        warnItchyAndScratchySkuRenderIssue(skuId, `missing price`);
+        return [];
+    }
 
-        return (cageColorSortOrder[leftCageColor] ?? fallbackSortOrder)
-            - (cageColorSortOrder[rightCageColor] ?? fallbackSortOrder);
-    })
-    .map((sku) => {
-        const skuId = String(sku.sku_id);
+    const price = productPrices.itchyAndScratchy[skuId as ProductItchyAndScratchyType];
 
-        return {
-            skuId,
-            images: sku.photos,
-            productParams: getParsedProperties(skuId, sku.properties),
-        };
-    });
+    return [{
+        skuId,
+        images: sku.photos,
+        available: sku.available,
+        price,
+        productParams: toProductParams(sku.properties),
+    }];
+});
 
 export function useItchyAndScratchyData() {
     const locale = (useLocale() || i18n.defaultLocale) as Locales;
@@ -86,26 +69,37 @@ export function useItchyAndScratchyData() {
     const { t: tItchyAndScratchy } = useTranslation(`itchyAndScratchy`);
     const defectDescriptions = tItchyAndScratchy(`itchy_scratchy.defect.product`, { returnObjects: true }) as string[];
 
-    const getDescription = (productParams: ItchyAndScratchyColorMap): string[] => {
+    const getDescription = (productParams: ItchyAndScratchyProductParams): string[] => {
         if (productParams.paintedType === `powder`) {
             return [];
         }
 
-        if (productParams.cageColor === `silver`) {
+        if (productParams.paintedType === `anodized` && productParams.cageColor === `silver`) {
             return defectDescriptions.slice(0, 1);
         }
 
-        return defectDescriptions;
+        if (productParams.paintedType === `anodized`) {
+            return defectDescriptions;
+        }
+
+        return [];
     };
 
-    const products = itchyAndScratchyProductsBase.map(({ skuId, images, productParams }) => ({
+    const getName = (productParams: ItchyAndScratchyProductParams): string => {
+        if (productParams.cageColor) {
+            return tCages(`plus.name`);
+        }
+
+        return tItchyAndScratchy(`itchy_scratchy.name`);
+    };
+
+    const products = itchyAndScratchyProductsBase.map(({ skuId, images, available, price, productParams }) => ({
         skuId,
         images,
-        name: tCages(`plus.name`),
+        available,
+        name: getName(productParams),
         description: getDescription(productParams),
-        price: productParams.paintedType === `powder`
-            ? productPrices.itchyAndScratchy[`plus-powder`][locale]
-            : productPrices.itchyAndScratchy[`plus-anodized`][locale],
+        price: price[locale],
         productParams,
     }));
 

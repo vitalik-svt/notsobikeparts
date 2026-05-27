@@ -287,9 +287,9 @@ describe(`send-order payload helpers`, () => {
         expect(result.success).toBe(false);
     });
 
-    test(`calculates itchy-and-scratchy powder price on server`, () => {
+    test(`calculates itchy-and-scratchy price by skuId on server`, () => {
         const price = getServerPrice({
-            skuId: `2000082`,
+            skuId: `2999999`,
             productSection: `itchyAndScratchy`,
             productKey: `one-price`,
             quantity: 1,

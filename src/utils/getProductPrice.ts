@@ -27,23 +27,30 @@ export function getProductPrice(
         return voilePrice ?? null;
     }
 
-    // ItchyAndScratchy: section contains products[] each with its own price
+    // ItchyAndScratchy: section contains products[] each with its own price by skuId
     if (item.productSection === `itchyAndScratchy`) {
         const sec: any = section;
         if (Array.isArray(sec.products) && sec.products.length > 0) {
-            // try find by id/productKey
-            let found = item.productKey ? sec.products.find((p: any) => p.id === item.productKey) : null;
+            const found = item.skuId
+                ? sec.products.find((p: any) => p.skuId === item.skuId)
+                : null;
 
-            // try match by productParams if not found
-            if (!found && item.productParams) {
-                found = sec.products.find((p: any) =>
+            if (found) {
+                return found.price ?? null;
+            }
+
+            if (item.productParams) {
+                const matchedByParams = sec.products.find((p: any) =>
                     p.productParams?.paintedType === item.productParams?.paintedType
                     && p.productParams?.cageColor === item.productParams?.cageColor
                 );
+
+                if (matchedByParams) {
+                    return matchedByParams.price ?? null;
+                }
             }
 
-            const product = found ?? sec.products[0];
-            return product?.price ?? null;
+            return sec.products[0]?.price ?? null;
         }
 
         // fallback to direct price field if exists

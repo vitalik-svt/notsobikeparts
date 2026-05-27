@@ -34,46 +34,43 @@ describe(`useItchyAndScratchyData`, () => {
         vi.restoreAllMocks();
     });
 
-    test(`throws clear error when sku properties are invalid`, async () => {
-        const paintedTypeSortOrder = { powder: 0, anodized: 1 } as const;
-        const cageColorSortOrder = { silver: 0, brown: 1, green: 2, black: 3 } as const;
+    test(`skips sku without price`, async () => {
+        const warnSpy = vi.spyOn(console, `warn`).mockImplementation(() => {});
 
-        const expectedFailingSkuId = String(
-            [...warehouseModule.warehouse.itchyAndScratchy]
-                .sort((left, right) => {
-                    const typeOrder = paintedTypeSortOrder[String(left.properties.paintedType) as keyof typeof paintedTypeSortOrder]
-                        - paintedTypeSortOrder[String(right.properties.paintedType) as keyof typeof paintedTypeSortOrder];
+        vi.doMock(`@/utils/warehouse`, () => ({
+            ...warehouseModule,
+            warehouse: {
+                ...warehouseModule.warehouse,
+                itchyAndScratchy: [
+                    {
+                        sku_id: 9001,
+                        product: `itchy_and_scratchy`,
+                        sku_photo: ``,
+                        photos: [`/photo.avif`],
+                        properties: { cageColor: `black`, paintedType: `powder` },
+                        available: true,
+                    },
+                    ...warehouseModule.warehouse.itchyAndScratchy,
+                ],
+            },
+        }));
 
-                    if (typeOrder !== 0) {
-                        return typeOrder;
-                    }
+        const { useItchyAndScratchyData } = await import(`@/hooks/useItchyAndScratchyData`);
+        const data = useItchyAndScratchyData();
 
-                    return cageColorSortOrder[String(left.properties.cageColor) as keyof typeof cageColorSortOrder]
-                        - cageColorSortOrder[String(right.properties.cageColor) as keyof typeof cageColorSortOrder];
-                })[0]?.sku_id ?? ``,
+        expect(data.products.some((product) => product.skuId === `9001`)).toBe(false);
+        expect(warnSpy).toHaveBeenCalledWith(
+            `[useItchyAndScratchyData] Skipping skuId=9001: missing price`,
         );
+    });
 
-        vi.doMock(`@/utils/warehouse`, () => {
-            let shouldFail = true;
+    test(`keeps warehouse json order`, async () => {
+        const { useItchyAndScratchyData } = await import(`@/hooks/useItchyAndScratchyData`);
+        const data = useItchyAndScratchyData();
 
-            return {
-                ...warehouseModule,
-                parseItchyAndScratchyProperties: vi.fn((properties) => {
-                    if (shouldFail) {
-                        shouldFail = false;
-                        return null;
-                    }
-
-                    return {
-                        cageColor: String(properties.cageColor) as `black` | `silver` | `green` | `brown`,
-                        paintedType: String(properties.paintedType) as `anodized` | `powder`,
-                    };
-                }),
-            };
-        });
-
-        await expect(import(`@/hooks/useItchyAndScratchyData`))
-            .rejects.toThrow(`Invalid itchy-and-scratchy properties for sku_id=${expectedFailingSkuId}`);
+        expect(data.products.map((product) => product.skuId)).toEqual(
+            warehouseModule.warehouse.itchyAndScratchy.map((sku) => String(sku.sku_id)),
+        );
     });
 
     test(`builds product descriptions by coating and color`, async () => {

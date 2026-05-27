@@ -1,5 +1,3 @@
-import { z } from "zod";
-
 import cageFrontRaw from "../../public/warehouse/cage-front.json";
 import cageLittleRaw from "../../public/warehouse/cage-little.json";
 import cagePlusRaw from "../../public/warehouse/cage-plus.json";
@@ -42,14 +40,6 @@ const NULL_SKU_META: SkuMeta = { skuId: `` };
 
 type RawWarehouseMap = Record<string, WarehouseEntry>;
 
-// Zod schema for itchy-and-scratchy properties validation
-export const itchyAndScratchyPropertiesSchema = z.object({
-    cageColor: z.enum([`black`, `silver`, `green`, `brown`]),
-    paintedType: z.enum([`anodized`, `powder`]),
-});
-
-export type ItchyAndScratchyProperties = z.infer<typeof itchyAndScratchyPropertiesSchema>;
-
 function withSkuIds(raw: RawWarehouseMap): WarehouseSku[] {
     return Object.entries(raw).map(([skuId, sku]) => ({
         ...sku,
@@ -59,17 +49,6 @@ function withSkuIds(raw: RawWarehouseMap): WarehouseSku[] {
 
 function toRawWarehouseMap(input: unknown): RawWarehouseMap {
     return input as RawWarehouseMap;
-}
-
-/**
- * Parse and validate warehouse entry properties for itchy-and-scratchy products
- * Returns parsed properties if valid, null otherwise
- */
-export function parseItchyAndScratchyProperties(
-    properties: Record<string, string | number | boolean>,
-): ItchyAndScratchyProperties | null {
-    const result = itchyAndScratchyPropertiesSchema.safeParse(properties);
-    return result.success ? result.data : null;
 }
 
 export const warehouse = {

@@ -9,7 +9,7 @@ import ProductGridCard from "@/components/ProductGrid/ProductGridCard/ProductGri
 import ProductMain from "@/components/ProductPage/ProductMain/ProductMain";
 import ProductMainInfo from "@/components/ProductPage/ProductMain/ProductMainInfo/ProductMainInfo";
 import ProductPage from "@/components/ProductPage/ProductPage";
-import type { CoatingType} from "@/hooks/useItchyAndScratchyData";
+import type { CoatingType, ItchyAndScratchyProductParams} from "@/hooks/useItchyAndScratchyData";
 import { useItchyAndScratchyData } from "@/hooks/useItchyAndScratchyData";
 import { useNotifications } from "@/providers/NotificationsProvider";
 import type { CageColor, CagePlusColor} from "@/stores/cartStore";
@@ -40,10 +40,7 @@ export default function ItchyAndScratchyPage() {
     const addToCart = ({ imageUrl, skuId, productParams }: {
         imageUrl: string;
         skuId: string;
-        productParams: {
-            cageColor: CageColor | CagePlusColor;
-            paintedType: CoatingType;
-        };
+        productParams: ItchyAndScratchyProductParams;
     }) => {
         addItem({
             skuId,
@@ -71,8 +68,8 @@ export default function ItchyAndScratchyPage() {
                 </ProductMainInfo>
             </ProductMain>
             <ul className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {itchyAndScratchy.products.map((item, index) => (
-                    <li key={index}>
+                {itchyAndScratchy.products.map((item) => (
+                    <li key={item.skuId}>
                         <ProductGridCard
                             description={item.description.join(` `)}
                             url={item.images[0]}
@@ -86,17 +83,19 @@ export default function ItchyAndScratchyPage() {
                             addInfo={(
                                 <>
                                     <p className="font-bold">{formatPrice(item.price)}</p>
-                                    <div className="lowercase text-sm">
-                                        <OptionRow
-                                            label={tCommon(`cart.color_label`)}
-                                            value={cageColorLabel[item.productParams.cageColor]} />
-                                        <OptionRow
-                                            label={tCommon(`coatingTypeLabel`)}
-                                            value={paintedTypeLabel[item.productParams.paintedType]} />
-                                    </div>
+                                    {item.productParams.cageColor && item.productParams.paintedType && (
+                                        <div className="lowercase text-sm">
+                                            <OptionRow
+                                                label={tCommon(`cart.color_label`)}
+                                                value={cageColorLabel[item.productParams.cageColor]} />
+                                            <OptionRow
+                                                label={tCommon(`coatingTypeLabel`)}
+                                                value={paintedTypeLabel[item.productParams.paintedType]} />
+                                        </div>
+                                    )}
                                 </>
                             )}
-                            isAvailable
+                            isAvailable={item.available}
                         />
                     </li>
                 ))}

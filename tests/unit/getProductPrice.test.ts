@@ -55,28 +55,28 @@ describe(`getProductPrice`, () => {
     });
 
     describe(`itchyAndScratchy`, () => {
-        const productA = { id: `plus-anodized`, price: RUB, productParams: { cageColor: `black`, paintedType: `anodized` } };
-        const productB = { id: `plus-powder`, price: { ...RUB, amount: 1200 }, productParams: { cageColor: `silver`, paintedType: `powder` } };
+        const productA = { skuId: `2999998`, price: RUB, productParams: { cageColor: `silver`, paintedType: `anodized` } };
+        const productB = { skuId: `2999999`, price: { ...RUB, amount: 1200 }, productParams: { cageColor: `black`, paintedType: `powder` } };
 
         const productData = {
             itchyAndScratchy: { products: [productA, productB] },
         } as any;
 
-        test(`finds product by productKey (id)`, () => {
-            expect(getProductPrice(productData, item({ productSection: `itchyAndScratchy`, productKey: `plus-powder` })))
+        test(`finds product by skuId`, () => {
+            expect(getProductPrice(productData, item({ skuId: `2999999`, productSection: `itchyAndScratchy`, productKey: `one-price` })))
                 .toEqual(productB.price);
         });
 
         test(`falls back to matching by productParams`, () => {
             expect(getProductPrice(productData, item({
                 productSection: `itchyAndScratchy`,
-                productKey: ``,
-                productParams: { cageColor: `silver`, paintedType: `powder` },
+                productKey: `one-price`,
+                productParams: { cageColor: `black`, paintedType: `powder` },
             }))).toEqual(productB.price);
         });
 
         test(`falls back to first product when nothing matches`, () => {
-            expect(getProductPrice(productData, item({ productSection: `itchyAndScratchy`, productKey: `unknown` })))
+            expect(getProductPrice(productData, item({ productSection: `itchyAndScratchy`, productKey: `one-price`, skuId: `unknown` })))
                 .toEqual(productA.price);
         });
 

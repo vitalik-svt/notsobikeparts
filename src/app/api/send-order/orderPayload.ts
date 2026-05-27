@@ -137,7 +137,7 @@ export function getServerPrice(item: ParsedOrderInternalItem, locale: Locales): 
   }
 
   if (identity.productSection === `itchyAndScratchy`) {
-    if (!item.skuId || !(item.skuId in productPrices.itchyAndScratchy)) {
+    if (!item.skuId || !Object.hasOwn(productPrices.itchyAndScratchy, item.skuId)) {
       return null;
     }
 

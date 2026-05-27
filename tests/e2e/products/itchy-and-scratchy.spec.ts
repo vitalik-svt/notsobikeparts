@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
 
+import { productPrices } from '@/constants/productPrices';
+
 import { addProductAndExpectOneItem, addViaItchyAndScratchyByColor, locale, readCartItems, resetCartStorage } from '../helpers/cart';
 
 test(`can add itchy and scratchy to cart`, async ({ page }) => {
@@ -30,7 +32,8 @@ test(`itchy-and-scratchy products have valid productParams and images`, async ({
     const item = items[0];
     expect(item?.productSection).toBe(`itchyAndScratchy`);
     expect(item?.productParams).toBeDefined();
-    expect(item?.skuId).toMatch(/299999[6-9]/);
+    expect(item?.skuId).toBeDefined();
+    expect(Object.hasOwn(productPrices.itchyAndScratchy, item!.skuId!)).toBe(true);
     expect(item?.productParams?.cageColor).toMatch(
         /black|silver|green|brown/,
     );

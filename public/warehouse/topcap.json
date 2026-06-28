@@ -2113,7 +2113,7 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true,
+    "available": false,
     "ui": {
       "category": "cyrillic",
       "sort": 68

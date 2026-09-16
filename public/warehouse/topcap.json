@@ -1299,7 +1299,7 @@
       "thickness": "slim",
       "color": "black"
     },
-    "available": true,
+    "available": false,
     "ui": {
       "category": "graphics",
       "sort": 19

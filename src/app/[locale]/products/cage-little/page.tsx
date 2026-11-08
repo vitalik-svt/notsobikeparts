@@ -41,7 +41,7 @@ export default function LittleCagePage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={cages.little.images} />
+                <Gallery images={cages.little.images} alt={cages.little.name} />
                 <ProductMainInfo
                     title={cages.little.name}
                     price={cages.little.price as ProductPriceSettings}

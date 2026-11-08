@@ -52,7 +52,7 @@ export default function FrontCagePage() {
 	return (
 		<ProductPage>
 			<ProductMain>
-				<Gallery images={cages.front.images} />
+				<Gallery images={cages.front.images} alt={cages.front.name} />
 				<ProductMainInfo
 					title={cages.front.name}
 					price={cages.front.price as ProductPriceSettings}

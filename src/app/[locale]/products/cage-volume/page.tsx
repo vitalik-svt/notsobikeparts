@@ -50,7 +50,7 @@ export default function CageVolumePage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={cages.volume.images} />
+                <Gallery images={cages.volume.images} alt={cages.volume.name} />
                 <ProductMainInfo
                     title={cages.volume.name}
                     price={cages.volume.price}

@@ -11,9 +11,10 @@ import NavButton from './NavButton/NavButton';
 
 interface Props {
     images: string[];
+    alt?: string;
 }
 
-export default function Gallery({ images }: Props) {
+export default function Gallery({ images, alt = `` }: Props) {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isSlideShowModeOn, setIsSlideShowModeOn] = useState(false);
 
@@ -133,7 +134,7 @@ export default function Gallery({ images }: Props) {
                         key={idx}
                         className={mainSliderImageClasses}
                         src={src}
-                        alt=""
+                        alt={alt ? `${alt} — ${idx + 1}` : ``}
                         width={568}
                         height={200}
                         priority={idx === 0}
@@ -154,7 +155,7 @@ export default function Gallery({ images }: Props) {
                             >
                                 <Image
                                     src={src}
-                                    alt=""
+                                    alt={alt ? `${alt} — ${idx + 1}` : ``}
                                     width={60}
                                     height={60}
                                     className="flex w-40 object-cover"

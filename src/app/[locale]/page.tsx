@@ -10,14 +10,14 @@ export default function HomePage() {
 		<div className="flex flex-col items-center justify-center w-full p-8 pb-20 gap-16 font-sans sm:p-20 md:flex-row md:gap-32">
 			<Image
 				src="/notso-logo.webp"
-				alt=""
+				alt="notsobikeparts"
 				width={200}
 				height={200}
 				priority
 			/>
-			<p className="text-center text-lg sm:text-xl max-w-[600px]">
+			<h1 className="text-center text-lg sm:text-xl max-w-[600px] font-normal">
 				{t(`main.greeting`)}
-			</p>
+			</h1>
 		</div>
 	);
 }

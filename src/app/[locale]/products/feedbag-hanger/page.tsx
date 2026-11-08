@@ -42,7 +42,7 @@ export default function FeedbagHangerPage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={feedbagHangerData.images} />
+                <Gallery images={feedbagHangerData.images} alt={feedbagHangerData.name} />
                 <ProductMainInfo
                     title={feedbagHangerData.name}
                     price={feedbagHangerData.price}

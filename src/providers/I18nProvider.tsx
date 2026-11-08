@@ -13,6 +13,9 @@ export function useLocale() {
 export default function I18nProvider({ locale, children }: { locale: string; children: React.ReactNode }) {
     useEffect(() => {
         i18n.changeLanguage(locale);
+        // Root <html lang> is static (defaultLocale) to keep the root layout Next-safe;
+        // sync after hydrate so /en is correct without calling headers().
+        document.documentElement.lang = locale;
     }, [locale]);
 
     return (

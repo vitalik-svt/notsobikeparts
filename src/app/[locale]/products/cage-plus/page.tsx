@@ -49,7 +49,7 @@ export default function CagePlusPage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={cages.plus.images} />
+                <Gallery images={cages.plus.images} alt={cages.plus.name} />
                 <ProductMainInfo
                     title={cages.plus.name}
                     price={cages.plus.price as ProductPriceSettings}

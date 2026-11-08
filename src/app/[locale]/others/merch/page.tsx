@@ -43,7 +43,7 @@ export default function MerchPage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={merch.images} />
+                <Gallery images={merch.images} alt={merch.name} />
                 <ProductMainInfo
                     title={merch.name}
                     price={merch.price}

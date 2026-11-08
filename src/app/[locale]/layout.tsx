@@ -8,6 +8,8 @@ import { i18n } from "@/i18n/settings";
 import I18nProvider from "@/providers/I18nProvider";
 import { NotificationsProvider } from "@/providers/NotificationsProvider";
 import { PopupProvider } from "@/providers/PopupProvider";
+import { buildPageMetadata } from "@/seo/buildPageMetadata";
+import { OrganizationJsonLd } from "@/seo/JsonLd";
 import { ensureLocale } from "@/utils/ensureLocale";
 
 export function generateStaticParams() {
@@ -15,23 +17,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-    const baseUrl = `https://example.com`;
     const { locale } = await params;
-
-    return {
-        title: locale === `ru` ? `notsobikeparts | велоаксессуары` : `notsobikeparts | bike accessories`,
-        description:
-            locale === `ru`
-                ? `Компоненты и аксессуары для велосипедов, туризма и байкпакинга.`
-                : `Bike parts and accessories for commuting, touring, and bikepacking.`,
-        alternates: {
-            canonical: `${baseUrl}/${locale}`,
-            languages: {
-                en: `${baseUrl}/en`,
-                ru: `${baseUrl}/ru`,
-            },
-        },
-    };
+    return buildPageMetadata(`home`, locale);
 }
 
 export default async function LocaleLayout({
@@ -48,6 +35,7 @@ export default async function LocaleLayout({
 
     return (
         <I18nProvider locale={locale}>
+            <OrganizationJsonLd />
             <NotificationsProvider>
                 <PopupProvider>
                     <Header locale={locale} />

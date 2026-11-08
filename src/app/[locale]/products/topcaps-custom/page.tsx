@@ -94,7 +94,7 @@ export default function TopcapsCustomPage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={topcaps.custom.images} />
+                <Gallery images={topcaps.custom.images} alt={topcaps.custom.name} />
                 <ProductMainInfo
                     title={topcaps.custom.name}
                     price={totalPrice}

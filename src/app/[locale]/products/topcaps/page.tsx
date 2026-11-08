@@ -18,7 +18,7 @@ export default function TopcapsPage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={topcaps.serial.images} />
+                <Gallery images={topcaps.serial.images} alt={topcaps.serial.name} />
                 <ProductMainInfo
                     title={topcaps.serial.name}
                     price={topcaps.serial.price}

@@ -51,7 +51,7 @@ export default function VoileStrapPage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={voile.images} />
+                <Gallery images={voile.images} alt={voile.name} />
                 <ProductMainInfo
                     title={voile.name}
                     price={voile.price[currentOption][locale]}

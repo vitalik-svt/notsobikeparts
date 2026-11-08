@@ -58,7 +58,7 @@ export default function ItchyAndScratchyPage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={itchyAndScratchy.images} />
+                <Gallery images={itchyAndScratchy.images} alt={itchyAndScratchy.name} />
                 <ProductMainInfo
                     title={itchyAndScratchy.name}
                     description={itchyAndScratchy.description[0]}

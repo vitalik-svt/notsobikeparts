@@ -29,7 +29,7 @@ export default function TestRidePage() {
 	return (
 		<ProductPage>
 			<ProductMain>
-				<Gallery images={images} />
+				<Gallery images={images} alt={t(`testRide.name`)} />
 				<ProductMainInfo
 					title={t(`testRide.name`)}
 					description={t(`testRide.description.1`)}

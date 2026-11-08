@@ -39,7 +39,7 @@ export default function ChainBreakerPage() {
     return (
         <ProductPage>
             <ProductMain>
-                <Gallery images={chainBreakerData.images} />
+                <Gallery images={chainBreakerData.images} alt={chainBreakerData.name} />
                 <ProductMainInfo
                     title={chainBreakerData.name}
                     price={chainBreakerData.price}
